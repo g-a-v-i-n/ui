@@ -1,0 +1,164 @@
+.root {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px;
+  margin: 0;
+  list-style: none;
+}
+
+.trigger,
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--size-4);
+  height: var(--control-height-md);
+  padding: 0 var(--size-8);
+
+  border: none;
+  border-radius: 8px;
+  corner-shape: var(--corner-shape);
+  background: transparent;
+  color: var(--fg-primary);
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+
+  transition: background-color var(--duration-120) var(--ease-in-out-quad);
+
+  &:hover,
+  &[data-state="open"] {
+    background: var(--gray-a3);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--blue-9);
+    outline-offset: -1px;
+  }
+}
+
+.chevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--fg-tertiary);
+  transition: transform var(--duration-180) var(--ease-out-quad);
+}
+
+.trigger[data-state="open"] .chevron {
+  transform: rotate(180deg);
+}
+
+.content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 12px;
+
+  animation-duration: var(--duration-180);
+  animation-timing-function: var(--ease-out-quad);
+  animation-fill-mode: both;
+
+  &[data-motion="from-start"],
+  &[data-motion="from-end"],
+  &[data-state="open"] {
+    animation-name: contentEnter;
+  }
+
+  &[data-state="closed"] {
+    animation-name: contentExit;
+  }
+}
+
+.content .link {
+  display: flex;
+  height: auto;
+  padding: 8px;
+}
+
+.viewportPosition {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  perspective: 2000px;
+}
+
+.viewport {
+  position: relative;
+  margin-top: 6px;
+  width: var(--radix-navigation-menu-viewport-width);
+  height: var(--radix-navigation-menu-viewport-height);
+  overflow: hidden;
+
+  background: var(--bg-primary);
+  border-radius: 12px;
+  corner-shape: var(--corner-shape);
+  box-shadow: var(--shadow-modal);
+
+  z-index: 900;
+
+  transition:
+    width var(--duration-260) var(--ease-out-quad),
+    height var(--duration-260) var(--ease-out-quad);
+
+  animation-duration: var(--duration-180);
+  animation-timing-function: var(--ease-out-quad);
+  animation-fill-mode: both;
+
+  &[data-state="open"] {
+    animation-name: viewportEnter;
+  }
+
+  &[data-state="closed"] {
+    animation-name: viewportExit;
+  }
+}
+
+@keyframes contentEnter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes contentExit {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes viewportEnter {
+  from {
+    opacity: 0;
+    transform: translateY(-3px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes viewportExit {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-3px) scale(0.98);
+  }
+}

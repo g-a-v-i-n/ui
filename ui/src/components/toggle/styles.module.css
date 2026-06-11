@@ -1,0 +1,40 @@
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--size-6);
+  height: var(--control-height-md);
+  padding: 0 var(--size-8);
+
+  border: none;
+  border-radius: 8px;
+  corner-shape: var(--corner-shape);
+  background: transparent;
+  color: var(--fg-secondary);
+  cursor: pointer;
+  user-select: none;
+
+  transition:
+    background-color var(--duration-120) var(--ease-in-out-quad),
+    color var(--duration-120) var(--ease-in-out-quad);
+
+  &:hover {
+    background: var(--gray-a3);
+    color: var(--fg-primary);
+  }
+
+  &[data-state="on"] {
+    background: var(--gray-a4);
+    color: var(--fg-primary);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--blue-9);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}

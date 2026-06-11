@@ -1,0 +1,5 @@
+.middleDot {
+  circle {
+    fill: var(--gray-9);
+  }
+}

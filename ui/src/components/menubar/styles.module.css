@@ -1,0 +1,74 @@
+.root {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+}
+
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  height: var(--control-height-md);
+  padding: 0 var(--size-8);
+
+  border: none;
+  border-radius: 8px;
+  corner-shape: var(--corner-shape);
+  background: transparent;
+  color: var(--fg-primary);
+  cursor: pointer;
+  user-select: none;
+
+  transition: background-color var(--duration-120) var(--ease-in-out-quad);
+
+  &:hover,
+  &[data-state="open"] {
+    background: var(--gray-a3);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--blue-9);
+    outline-offset: -1px;
+  }
+
+  &[data-disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.animation {
+  transform-origin: var(--radix-popper-transform-origin);
+  animation-duration: var(--duration-180);
+  animation-timing-function: var(--ease-out-quad);
+  animation-fill-mode: both;
+
+  &[data-state="open"] {
+    animation-name: enterPop;
+  }
+  &[data-state="closed"] {
+    animation-name: exitPop;
+  }
+}
+
+@keyframes enterPop {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes exitPop {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}

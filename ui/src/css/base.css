@@ -1,0 +1,12 @@
+@import './reset.css';
+@import './color.css';
+@import './shadow.css';
+@import './size.css';
+@import './font.css';
+@import './motion.css';
+
+
+:root {
+    --corner-shape: superellipse(1.3);
+}
+

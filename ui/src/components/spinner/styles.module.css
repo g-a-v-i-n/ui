@@ -1,0 +1,30 @@
+.spinner {
+  display: inline-flex;
+  flex: none;
+  color: var(--fg-tertiary);
+
+  svg {
+    width: 100%;
+    height: 100%;
+    animation: spinnerRotate 800ms linear infinite;
+  }
+}
+
+/* A faint full ring with a solid quarter arc sweeping around it. */
+.track {
+  stroke: currentColor;
+  opacity: 0.25;
+}
+
+.indicator {
+  stroke: currentColor;
+}
+
+@keyframes spinnerRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

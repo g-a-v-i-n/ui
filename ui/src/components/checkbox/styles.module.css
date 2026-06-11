@@ -1,0 +1,35 @@
+.root {
+  width: var(--size-20);
+  height: var(--control-height-xs);
+  border-radius: 0.5rem;
+  corner-shape: var(--corner-shape);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  flex: none;
+  padding: 0;
+  border: none;
+
+  transition:
+    color var(--duration-120),
+    background-color var(--duration-120),
+    box-shadow var(--duration-120);
+
+  &[data-state="checked"] {
+    background-color: var(--blue-9);
+  }
+
+  &[data-state="unchecked"] {
+    background-color: var(--gray-1);
+    box-shadow: var(--shadow-button);
+
+  }
+}
+
+.indicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-0);
+}

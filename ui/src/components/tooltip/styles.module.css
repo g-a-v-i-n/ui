@@ -1,0 +1,114 @@
+.content {
+  z-index: 999;
+  pointer-events: all;
+  position: relative;
+  padding: var(--size-6) var(--size-8);
+  max-width: var(--size-256);
+
+  border-radius: var(--size-8);
+  corner-shape: var(--corner-shape);
+  background: var(--bg-primary);
+  color: var(--fg-primary);
+  box-shadow: var(--shadow-card);
+
+  text-align: center;
+  word-break: break-word;
+  white-space: pre-wrap;
+
+  code,
+  pre {
+    font-weight: 400;
+    font-family: var(--font-monospace);
+    background: var(--gray-3);
+    padding: var(--size-2) var(--size-4);
+    border-radius: var(--size-4);
+    corner-shape: var(--corner-shape);
+  }
+
+  strong {
+    font-weight: 500;
+  }
+
+  a {
+    color: var(--blue-10);
+    text-decoration: underline;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  animation-duration: var(--duration-120);
+  animation-timing-function: var(--ease-out-quad);
+  animation-fill-mode: both;
+
+  &[data-side="top"] {
+    transform-origin: bottom center;
+    &[data-state="delayed-open"],
+    &[data-state="instant-open"] {
+      animation-name: slideUpToOpen;
+    }
+    &[data-state="closed"] {
+      animation-name: slideUpToClosed;
+    }
+  }
+
+  &[data-side="bottom"] {
+    transform-origin: top center;
+    &[data-state="delayed-open"],
+    &[data-state="instant-open"] {
+      animation-name: slideDownToOpen;
+    }
+    &[data-state="closed"] {
+      animation-name: slideDownToClosed;
+    }
+  }
+
+  &[data-state="instant-open"] {
+    animation-duration: var(--duration-0);
+  }
+}
+
+@keyframes slideUpToOpen {
+  from {
+    opacity: 0;
+    transform: translateY(5px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideDownToOpen {
+  from {
+    opacity: 0;
+    transform: translateY(-5px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideUpToClosed {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(0) scale(0.95);
+  }
+}
+
+@keyframes slideDownToClosed {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(0) scale(0.95);
+  }
+}

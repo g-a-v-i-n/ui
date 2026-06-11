@@ -1,0 +1,227 @@
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--size-6);
+  height: var(--control-height-lg);
+  padding: 0 var(--size-12);
+
+  border: none;
+  border-radius: 12px;
+  corner-shape: var(--corner-shape);
+  background: var(--bg-primary);
+  color: var(--fg-primary);
+  box-shadow: var(--shadow-button);
+  cursor: pointer;
+  user-select: none;
+
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: var(--font-weight-medium, 500);
+
+  transition:
+    background-color var(--duration-120) var(--ease-in-out-quad),
+    box-shadow var(--duration-120) var(--ease-in-out-quad);
+
+  &:hover {
+    background: var(--gray-3);
+  }
+
+  &[data-placeholder] {
+    color: var(--fg-tertiary);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--blue-9);
+    outline-offset: 2px;
+  }
+
+  &[data-disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+.triggerIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--fg-tertiary);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  padding: 4px;
+  min-width: var(--size-128);
+  max-height: var(--radix-select-content-available-height);
+
+  background: var(--bg-primary);
+  border-radius: 12px;
+  corner-shape: var(--corner-shape);
+  box-shadow: var(--shadow-modal);
+
+  z-index: 900;
+  position: relative;
+  overflow: hidden;
+
+  transform-origin: var(--radix-popper-transform-origin);
+  animation-duration: var(--duration-180);
+  animation-timing-function: var(--ease-out-quad);
+  animation-fill-mode: both;
+
+  &[data-side="top"][data-state="open"] {
+    animation-name: slideUpToOpen;
+  }
+  &[data-side="top"][data-state="closed"] {
+    animation-name: slideUpToClosed;
+  }
+  &[data-side="bottom"][data-state="open"] {
+    animation-name: slideDownToOpen;
+  }
+  &[data-side="bottom"][data-state="closed"] {
+    animation-name: slideDownToClosed;
+  }
+  &[data-state="open"] {
+    animation-name: enterPop;
+  }
+  &[data-state="closed"] {
+    animation-name: exitPop;
+  }
+}
+
+.viewport {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--size-6);
+  position: relative;
+  height: var(--control-height-md);
+  padding: 0 var(--size-8) 0 var(--size-24);
+  border-radius: 8px;
+  corner-shape: var(--corner-shape);
+
+  color: var(--fg-primary);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.4;
+
+  user-select: none;
+  cursor: pointer;
+
+  transition: background-color var(--duration-120) var(--ease-in-out-quad);
+
+  &[data-highlighted] {
+    background-color: var(--gray-a3);
+    outline: none;
+  }
+
+  &[data-disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+.indicator {
+  position: absolute;
+  left: var(--size-5);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--blue-9);
+}
+
+.label {
+  padding: 4px 8px;
+}
+
+.separator {
+  height: var(--size-1);
+  background-color: var(--gray-a3);
+  margin: 2px 4px;
+}
+
+.scrollButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--control-height-xs);
+  color: var(--fg-tertiary);
+  cursor: default;
+}
+
+.scrollButtonUp > span {
+  transform: rotate(180deg);
+}
+
+@keyframes slideUpToOpen {
+  from {
+    opacity: 0;
+    transform: translateY(3px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideDownToOpen {
+  from {
+    opacity: 0;
+    transform: translateY(-3px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideUpToClosed {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(3px) scale(0.98);
+  }
+}
+
+@keyframes slideDownToClosed {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-3px) scale(0.98);
+  }
+}
+
+@keyframes enterPop {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes exitPop {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}

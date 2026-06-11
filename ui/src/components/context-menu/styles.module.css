@@ -1,0 +1,94 @@
+.content {
+  display: flex;
+  width: var(--size-180);
+  padding: 4px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+
+  border-radius: 8px;
+  corner-shape: var(--corner-shape);
+
+  background: var(--gray-1);
+
+  z-index: 900;
+  position: relative;
+
+  box-shadow: var(--shadow-modal);
+}
+
+.checkboxItem {
+  padding-left: 22px;
+  position: relative;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+}
+
+.check {
+  position: absolute;
+  transform: translateX(-16px);
+  color: var(--blue-10);
+  width: var(--size-10);
+}
+
+.itemContent {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.suffixSlot {
+  path {
+    color: var(--gray-11);
+  }
+  width: var(--size-12);
+}
+
+.noCheck {
+  width: var(--size-12);
+  min-width: var(--size-12);
+  flex: none;
+}
+
+@keyframes enterPop {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes exitPop {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+
+.animation {
+  transform-origin: var(--radix-context-menu-content-transform-origin);
+  animation-duration: var(--duration-80);
+  animation-timing-function: var(--ease-out-quad);
+  animation-fill-mode: both;
+
+  &[data-state="open"] {
+    animation-name: enterPop;
+  }
+  &[data-state="closed"] {
+    animation-name: exitPop;
+  }
+}

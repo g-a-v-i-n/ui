@@ -1,0 +1,82 @@
+:root {
+  --text-box-trim: both;
+
+  --font-normal-fallback:
+    system-ui, 'Helvetica Neue', 'Roboto', 'Oxygen-Sans', 'Ubuntu',
+    'Cantarell', sans-serif;
+  --font-monospace-fallback:
+    'SF Mono', 'SFMono-Regular', ui-monospace, 'Consolas', 'Liberation Mono',
+    Menlo, Courier, monospace;
+  --font-emoji-fallback:
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Twemoji Mozilla', 'Noto Color Emoji', 'Android Emoji';
+
+    --font-normal: var(--font-normal-fallback);
+    --font-sans: var(--font-normal-fallback);
+    --font-heading: var(--font-normal-fallback);
+    --font-body: var(--font-normal-fallback);
+    --font-ui: var(--font-normal-fallback);
+    --font-monospace: var(--font-monospace-fallback);
+    --font-emoji: var(--font-emoji-fallback);
+
+    /* Weights */
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    /* Scale */
+    --font-size-h0: xxx-large;
+    --font-weight-h0: var(--font-weight-semibold, 600);
+    --line-height-h0: 1.5;
+    --letter-spacing-h0: 0;
+
+    --font-size-h1: xxx-large;
+    --font-weight-h1: var(--font-weight-semibold, 600);
+    --line-height-h1: 1.5;
+    --letter-spacing-h1: 0;
+
+    --font-size-h2: xx-large;
+    --font-weight-h2: var(--font-weight-semibold, 600);
+    --line-height-h2: 1.5;
+    --letter-spacing-h2: 0;
+
+    --font-size-h3: x-large;
+    --font-weight-h3: var(--font-weight-semibold, 600);
+    --line-height-h3: 1.5;
+    --letter-spacing-h3: 0;
+
+    --font-size-h4: large;
+    --font-weight-h4: var(--font-weight-semibold, 600);
+    --line-height-h4: 1.5;
+    --letter-spacing-h4: 0;
+
+    --font-size-xxx-large: xxx-large;
+    --line-height-xxx-large: 1.2;
+    --letter-spacing-xxx-large: -0.0125em;
+
+    --font-size-xx-large: xx-large;
+    --line-height-xx-large: 1.3;
+    --letter-spacing-xx-large: -0.0125em;
+
+    --font-size-x-large: x-large;
+    --line-height-x-large: 1.4;
+    --letter-spacing-x-large: -0.01em;
+
+    --font-size-large-size: large;
+    --line-height-large: 1.5;
+    --letter-spacing-large: 0;
+
+    --font-size-normal: medium;
+    --line-height-normal: 1.5;
+    --letter-spacing-normal: 0;
+
+    --font-size-small: x-small;
+    --line-height-small: 1.5;
+    --letter-spacing-small: 0;
+
+    --font-size-x-small: xx-small;
+    --line-height-x-small: 1.5;
+    --letter-spacing-x-small: 0;
+}

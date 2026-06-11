@@ -1,0 +1,256 @@
+/* Container — the floating menu card.
+   Matches the Figma menu/dropdown surface: white, 1px hairline + soft drop shadow,
+   1px-gap stack of items with 4px outer padding. */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1px;
+  padding: 4px;
+
+  background: var(--bg-primary);
+  border-radius: 12px;
+  corner-shape: var(--corner-shape);
+  box-shadow: var(--shadow-modal);
+
+  z-index: 900;
+  position: relative;
+  min-width: var(--size-128);
+
+  &[data-width="auto"] {
+    width: auto;
+  }
+  &[data-width="sm"] {
+    width: var(--size-180);
+  }
+  &[data-width="md"] {
+    width: var(--size-212);
+  }
+  &[data-width="lg"] {
+    width: var(--size-212);
+  }
+
+  transform-origin: var(--radix-popper-transform-origin);
+  animation-duration: var(--duration-180);
+  animation-timing-function: var(--ease-out-quad);
+  animation-fill-mode: both;
+
+  &[data-side="top"][data-state="open"] {
+    animation-name: slideUpToOpen;
+  }
+  &[data-side="top"][data-state="closed"] {
+    animation-name: slideUpToClosed;
+  }
+  &[data-side="bottom"][data-state="open"] {
+    animation-name: slideDownToOpen;
+  }
+  &[data-side="bottom"][data-state="closed"] {
+    animation-name: slideDownToClosed;
+  }
+  &[data-state="open"] {
+    animation-name: enterPop;
+  }
+  &[data-state="closed"] {
+    animation-name: exitPop;
+  }
+}
+
+/* Section header (above a list of items inside a menu) */
+.label {
+  padding: 4px 8px;
+  color: var(--fg-tertiary);
+}
+
+/* Menu item — 6px × 8px padding, 8px radius, regular 13px text. */
+.item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 8px 8px;
+  gap: 6px;
+  border-radius: 8px;
+  height: var(--control-height-md);
+  corner-shape: var(--corner-shape);
+
+  color: var(--fg-primary);
+  user-select: none;
+  cursor: pointer;
+
+  transition: background-color var(--duration-120) var(--ease-in-out-quad);
+
+  &:hover,
+  &[data-state="open"],
+  &[data-highlighted] {
+    background-color: var(--gray-a3);
+  }
+
+  .left {
+    display: flex;
+    flex: 1 0 0;
+    min-width: var(--size-0);
+    align-items: center;
+    gap: 6px;
+    color: var(--fg-primary);
+  }
+
+  .prefix {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg,
+    div {
+      width: var(--size-16);
+      height: var(--size-16);
+      color: var(--fg-secondary);
+      transition: color var(--duration-120) var(--ease-in-out-quad);
+    }
+    svg[data-check] {
+      color: var(--blue-9);
+    }
+  }
+
+  .suffix {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    svg,
+    div {
+      width: var(--size-16);
+      height: var(--size-16);
+      color: var(--fg-secondary);
+      transition: color var(--duration-120) var(--ease-in-out-quad);
+    }
+  }
+
+  &:hover .prefix svg,
+  &:hover .prefix div,
+  &:hover .suffix svg,
+  &:hover .suffix div,
+  &[data-state="open"] .prefix svg,
+  &[data-state="open"] .prefix div,
+  &[data-state="open"] .suffix svg,
+  &[data-state="open"] .suffix div {
+    color: var(--color-text-1);
+  }
+}
+
+/* Divider — 4px vertical pad, 1px hairline at ~6% black. */
+* > .divider {
+  width: 100%;
+  padding: 2px 4px;
+
+  hr {
+    width: 100%;
+    height: var(--size-1);
+    background-color: var(--gray-a3);
+    border: none;
+  }
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Static lists embedded in menus (e.g. shortcut hint sections) */
+.menuList {
+  display: flex;
+  flex-direction: column;
+  padding: 6px 8px;
+  width: 100%;
+
+  background: var(--bg-quaternary);
+  border-radius: 8px;
+  corner-shape: var(--corner-shape);
+}
+
+.title {
+  padding: 4px 8px;
+  color: var(--fg-primary);
+}
+
+.listItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 2px 0;
+}
+
+.listItemLabel {
+  color: var(--fg-secondary);
+}
+
+.listItemValue {
+  color: var(--fg-primary);
+
+}
+
+@keyframes slideUpToOpen {
+  from {
+    opacity: 0;
+    transform: translateY(3px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideDownToOpen {
+  from {
+    opacity: 0;
+    transform: translateY(-3px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideUpToClosed {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(3px) scale(0.98);
+  }
+}
+
+@keyframes slideDownToClosed {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-3px) scale(0.98);
+  }
+}
+
+@keyframes enterPop {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes exitPop {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}

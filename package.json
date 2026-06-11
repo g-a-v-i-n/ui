@@ -1,0 +1,23 @@
+{
+  "name": "root",
+  "private": true,
+  "scripts": {
+    "website": "portless ui pnpm --dir website dev",
+    "typecheck": "pnpm -r --no-bail run typecheck",
+    "format": "pnpm -r --no-bail run format",
+    "clean": "pnpm -r --no-bail run clean"
+  },
+  "devDependencies": {
+    "@types/bun": "1.2.5",
+    "@types/css-modules": "1.0.5",
+    "@types/node": "20",
+    "@types/react": "19.0.12",
+    "@types/react-dom": "19.0.4",
+    "eslint": "9.6.0",
+    "eslint-config-next": "14.1.0",
+    "rimraf": "5.0.5",
+    "typescript": "5.5.3",
+    "vitest": "3.0.9"
+  },
+  "packageManager": "pnpm@10.6.1"
+}

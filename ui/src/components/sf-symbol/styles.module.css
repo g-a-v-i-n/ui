@@ -1,0 +1,10 @@
+.symbol {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "SF Pro", -apple-system, sans-serif;
+  line-height: 1;
+  text-align: center;
+  flex-shrink: 0;
+  text-box-trim: trim-both;
+}

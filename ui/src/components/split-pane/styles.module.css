@@ -1,0 +1,6 @@
+/* Theme allotment's sashes and separators with the library tokens. */
+.root {
+  --separator-border: var(--gray-a3);
+  --focus-border: var(--blue-9);
+  --sash-hover-transition-duration: var(--duration-120);
+}

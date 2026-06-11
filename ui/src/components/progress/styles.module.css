@@ -1,0 +1,16 @@
+.root {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: var(--size-6);
+  background: var(--gray-3);
+  border-radius: 999px;
+}
+
+.indicator {
+  width: 100%;
+  height: 100%;
+  background: var(--blue-9);
+  border-radius: 999px;
+  transition: transform var(--duration-260) var(--ease-out-quad);
+}

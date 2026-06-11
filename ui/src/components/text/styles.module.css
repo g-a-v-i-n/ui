@@ -1,0 +1,94 @@
+.text {
+  font-family: var(--font-sans);
+  text-box-trim: var(--text-box-trim);
+  margin: 0;
+  letter-spacing: 0;
+
+  color: currentColor;
+
+  &[data-size="xs"] {
+    font-size: 11px;
+    line-height: 1.4;
+  }
+  &[data-size="sm"] {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  &[data-size="md"] {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  &[data-size="lg"] {
+    font-size: 18px;
+    line-height: 1.4;
+    letter-spacing: -0.005em;
+  }
+  &[data-size="xl"] {
+    font-size: 22px;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+  &[data-size="2xl"] {
+    font-size: 28px;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+  }
+
+  &[data-weight="regular"] {
+    font-weight: var(--font-weight-normal, 400);
+  }
+  &[data-weight="medium"] {
+    font-weight: var(--font-weight-medium, 500);
+  }
+  &[data-weight="semibold"] {
+    font-weight: var(--font-weight-semibold, 600);
+  }
+  &[data-weight="bold"] {
+    font-weight: var(--font-weight-bold, 700);
+  }
+
+  &[data-color="primary"] {
+    color: var(--gray-12);
+  }
+  &[data-color="secondary"] {
+    color: var(--gray-11);
+  }
+  &[data-color="tertiary"] {
+    color: var(--gray-10);
+  }
+
+  &[data-truncate="true"] {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: var(--size-0);
+  }
+
+  &[data-tabular="true"] {
+    font-variant-numeric: tabular-nums;
+  }
+
+  &[data-transform="uppercase"] {
+    text-transform: uppercase;
+  }
+  &[data-transform="lowercase"] {
+    text-transform: lowercase;
+  }
+  &[data-transform="capitalize"] {
+    text-transform: capitalize;
+  }
+  &[data-transform="none"] {
+    text-transform: none;
+  }
+
+  &[data-decoration="underline"] {
+    text-decoration: underline;
+  }
+  &[data-decoration="line-through"] {
+    text-decoration: line-through;
+  }
+  &[data-decoration="none"] {
+    text-decoration: none;
+  }
+}

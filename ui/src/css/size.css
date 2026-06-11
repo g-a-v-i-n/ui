@@ -1,0 +1,82 @@
+:root {
+    --size-0: 0px;
+    --size-1: 1px;
+    --size-2: 2px;
+    --size-4: 4px;
+    --size-5: 5px;
+    --size-6: 6px;
+    --size-8: 8px;
+    --size-10: 10px;
+    --size-12: 12px;
+    --size-14: 14px;
+    --size-16: 16px;
+    --size-18: 18px;
+    --size-20: 20px;
+    --size-24: 24px;
+    --size-28: 28px;
+    --size-30: 30px;
+    --size-32: 32px;
+    --size-36: 36px;
+    --size-40: 40px;
+    --size-44: 44px;
+    --size-48: 48px;
+    --size-56: 56px;
+    --size-64: 64px;
+    --size-72: 72px;
+    --size-80: 80px;
+    --size-128: 128px;
+    --size-180: 180px;
+    --size-212: 212px;
+    --size-256: 256px;
+    --size-512: 512px;
+
+    --spacing: 0.25rem;
+
+    /* Control heights — the height of interactive elements. */
+    --control-height-xs: var(--size-20); /* inline controls: checkbox, radio, switch, slider */
+    --control-height-sm: var(--size-24); /* reserved for dense/compact variants */
+    --control-height-md: var(--size-28); /* chrome: toolbar/menubar/nav triggers, toggles, menu & sidebar items */
+    --control-height-lg: var(--size-32); /* form controls: Button, TextInput, Select trigger, ToggleGroup */
+    --control-height-xl: var(--size-40); /* large/prominent controls */
+
+    /* Negative spacing scale */
+    ---size-0: -0px;
+    ---size-1: -1px;
+    ---size-2: -2px;
+    ---size-4: -4px;
+    ---size-5: -5px;
+    ---size-6: -6px;
+    ---size-8: -8px;
+    ---size-10: -10px;
+    ---size-12: -12px;
+    ---size-14: -14px;
+    ---size-16: -16px;
+    ---size-18: -18px;
+    ---size-20: -20px;
+    ---size-24: -24px;
+    ---size-28: -28px;
+    ---size-30: -30px;
+    ---size-32: -32px;
+    ---size-36: -36px;
+    ---size-40: -40px;
+    ---size-44: -44px;
+    ---size-48: -48px;
+    ---size-56: -56px;
+    ---size-64: -64px;
+    ---size-72: -72px;
+    ---size-80: -80px;
+    ---size-128: -128px;
+    ---size-180: -180px;
+    ---size-212: -212px;
+    ---size-256: -256px;
+    ---size-512: -512px;
+
+
+    /* Container widths */
+    --container-page: 56rem; /* 896px */
+    --container-sidebar: 11.25rem; /* 180px */
+    --container-prose: 40rem; /* 640px */
+    --container-small: 30rem; /* 480px */
+    --container-normal: 40rem; /* 640px */
+    --container-large: 50rem; /* 800px */
+}

@@ -1,0 +1,65 @@
+.mask {
+  position: absolute;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+
+  &[data-direction="top"] {
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--mask-size);
+  }
+
+  &[data-direction="bottom"] {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: var(--mask-size);
+  }
+
+  &[data-direction="left"] {
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: var(--mask-size);
+  }
+
+  &[data-direction="right"] {
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: var(--mask-size);
+  }
+}
+
+/* A solid block whose blurred edge sits mid-strip: the outer edge and the
+   sides bleed 2x the blur radius past the clip so only the inner feather
+   shows, fading from opaque at the container edge to clear mid-strip. */
+.blur {
+  position: absolute;
+  background: var(--mask-color);
+  filter: blur(var(--mask-blur));
+}
+
+.mask[data-direction="top"] .blur {
+  inset: calc(-2 * var(--mask-blur)) calc(-2 * var(--mask-blur)) auto;
+  height: calc(50% + 2 * var(--mask-blur));
+}
+
+.mask[data-direction="bottom"] .blur {
+  inset: auto calc(-2 * var(--mask-blur)) calc(-2 * var(--mask-blur));
+  height: calc(50% + 2 * var(--mask-blur));
+}
+
+.mask[data-direction="left"] .blur {
+  inset: calc(-2 * var(--mask-blur)) auto calc(-2 * var(--mask-blur))
+    calc(-2 * var(--mask-blur));
+  width: calc(50% + 2 * var(--mask-blur));
+}
+
+.mask[data-direction="right"] .blur {
+  inset: calc(-2 * var(--mask-blur)) calc(-2 * var(--mask-blur))
+    calc(-2 * var(--mask-blur)) auto;
+  width: calc(50% + 2 * var(--mask-blur));
+}

@@ -1,0 +1,157 @@
+.viewport {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  margin: 0;
+  width: 380px;
+  max-width: 100vw;
+  list-style: none;
+  z-index: 1100;
+  outline: none;
+}
+
+.root {
+  position: relative;
+  display: grid;
+  grid-template-areas:
+    "title action"
+    "description action";
+  grid-template-columns: 1fr auto;
+  column-gap: 12px;
+  align-items: center;
+  padding: 12px 16px;
+  padding-right: 32px;
+
+  background: var(--bg-primary);
+  border-radius: 12px;
+  corner-shape: var(--corner-shape);
+  box-shadow: var(--shadow-modal);
+
+  &[data-state="open"] {
+    animation: toastSlideIn var(--duration-260) var(--ease-out-quint);
+  }
+
+  &[data-state="closed"] {
+    animation: toastFadeOut var(--duration-180) var(--ease-out-quad) both;
+  }
+
+  &[data-swipe="move"] {
+    transform: translateX(var(--radix-toast-swipe-move-x));
+  }
+
+  &[data-swipe="cancel"] {
+    transform: translateX(0);
+    transition: transform var(--duration-180) var(--ease-out-quad);
+  }
+
+  &[data-swipe="end"] {
+    animation: toastSwipeOut var(--duration-180) var(--ease-out-quad) both;
+  }
+}
+
+.title {
+  grid-area: title;
+}
+
+.description {
+  grid-area: description;
+}
+
+.action {
+  grid-area: action;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--control-height-md);
+  padding: 0 var(--size-8);
+
+  border: none;
+  border-radius: 8px;
+  corner-shape: var(--corner-shape);
+  background: transparent;
+  color: var(--fg-primary);
+  box-shadow: var(--shadow-hairline-2);
+  cursor: pointer;
+  user-select: none;
+
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: var(--font-weight-medium, 500);
+
+  transition: background-color var(--duration-120) var(--ease-in-out-quad);
+
+  &:hover {
+    background: var(--gray-a3);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--blue-9);
+    outline-offset: 2px;
+  }
+}
+
+.close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--control-height-xs);
+  height: var(--control-height-xs);
+
+  border: none;
+  border-radius: 6px;
+  corner-shape: var(--corner-shape);
+  background: transparent;
+  color: var(--fg-tertiary);
+  cursor: pointer;
+
+  transition:
+    color var(--duration-120) var(--ease-in-out-quad),
+    background-color var(--duration-120) var(--ease-in-out-quad);
+
+  &:hover {
+    color: var(--fg-primary);
+    background: var(--gray-a3);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--blue-9);
+    outline-offset: -1px;
+  }
+}
+
+@keyframes toastSlideIn {
+  from {
+    transform: translateX(calc(100% + 16px));
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes toastFadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+
+@keyframes toastSwipeOut {
+  from {
+    transform: translateX(var(--radix-toast-swipe-end-x));
+  }
+  to {
+    transform: translateX(calc(100% + 16px));
+  }
+}

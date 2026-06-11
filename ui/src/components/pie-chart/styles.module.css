@@ -1,0 +1,19 @@
+.pie {
+  display: block;
+}
+
+.track {
+  stroke: var(--gray-a3);
+}
+
+.underlay {
+  stroke: var(--gray-0);
+  transition: stroke-dasharray var(--duration-260) var(--ease-in-out-quad);
+}
+
+.fill {
+  stroke: var(--top-ring-color, var(--blue-9));
+  transition:
+    stroke-dasharray var(--duration-480) var(--ease-in-out-quad),
+    stroke var(--duration-480) var(--ease-in-out-quad);
+}

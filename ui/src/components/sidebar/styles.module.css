@@ -1,0 +1,201 @@
+/* Sidebar — a column surface with a hairline edge, header/footer, and
+   menu-style nav items grouped into (optionally collapsible) sections. */
+.root {
+  display: flex;
+  flex-direction: column;
+  width: var(--size-256);
+  height: 100%;
+  flex: none;
+
+  background: var(--bg-secondary);
+  box-shadow: inset -1px 0 0 var(--gray-a3);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--size-8);
+  padding: 12px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+  min-height: var(--size-0);
+  overflow-y: auto;
+  padding: var(--size-8);
+}
+
+.footer {
+  padding: var(--size-8);
+  box-shadow: inset 0 1px 0 var(--gray-a3);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.sectionLabel {
+  padding: 4px 8px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--size-6);
+  width: 100%;
+  height: var(--control-height-md);
+  padding: 0 var(--size-8);
+
+  border: none;
+  border-radius: 8px;
+  corner-shape: var(--corner-shape);
+  background: transparent;
+  color: var(--fg-secondary);
+  text-decoration: none;
+  text-align: left;
+  cursor: pointer;
+  user-select: none;
+  flex: none;
+
+  transition:
+    background-color var(--duration-120) var(--ease-in-out-quad),
+    color var(--duration-120) var(--ease-in-out-quad);
+
+  &:hover {
+    background: var(--gray-a3);
+    color: var(--fg-primary);
+  }
+
+  &[data-active] {
+    background: var(--gray-a4);
+    color: var(--fg-primary);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--blue-9);
+    outline-offset: -1px;
+  }
+
+  &:disabled,
+  &[data-disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+.itemLabel {
+  flex: 1;
+  min-width: var(--size-0);
+}
+
+.prefix,
+.suffix {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+
+  svg,
+  div,
+  span {
+    width: var(--size-16);
+    height: var(--size-16);
+    color: var(--fg-tertiary);
+    transition: color var(--duration-120) var(--ease-in-out-quad);
+  }
+}
+
+.item:hover .prefix span,
+.item:hover .prefix svg,
+.item[data-active] .prefix span,
+.item[data-active] .prefix svg {
+  color: var(--fg-primary);
+}
+
+.separator {
+  height: var(--size-1);
+  background: var(--gray-a3);
+  margin: 4px 8px;
+  flex: none;
+}
+
+.collapsibleTrigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--size-6);
+  width: 100%;
+  padding: 4px 8px;
+
+  border: none;
+  border-radius: 8px;
+  corner-shape: var(--corner-shape);
+  background: transparent;
+  cursor: pointer;
+  user-select: none;
+
+  transition: background-color var(--duration-120) var(--ease-in-out-quad);
+
+  &:hover {
+    background: var(--gray-a3);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--blue-9);
+    outline-offset: -1px;
+  }
+
+  &[data-state="open"] .collapsibleChevron {
+    transform: rotate(0deg);
+  }
+}
+
+.collapsibleChevron {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--fg-tertiary);
+  transform: rotate(-90deg);
+  transition: transform var(--duration-180) var(--ease-out-quad);
+}
+
+.collapsibleContent {
+  overflow: hidden;
+
+  &[data-state="open"] {
+    animation: sidebarSlideDown var(--duration-180) var(--ease-out-quad);
+  }
+
+  &[data-state="closed"] {
+    animation: sidebarSlideUp var(--duration-180) var(--ease-out-quad);
+  }
+}
+
+.collapsibleInner {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+@keyframes sidebarSlideDown {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-collapsible-content-height);
+  }
+}
+
+@keyframes sidebarSlideUp {
+  from {
+    height: var(--radix-collapsible-content-height);
+  }
+  to {
+    height: 0;
+  }
+}

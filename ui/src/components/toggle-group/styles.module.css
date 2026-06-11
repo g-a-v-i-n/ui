@@ -1,0 +1,68 @@
+.root {
+  display: inline-flex;
+  background-color: var(--bg-quaternary);
+  border-radius: 12px;
+  corner-shape: var(--corner-shape);
+  padding: 2px;
+  position: relative;
+  height: var(--control-height-lg);
+}
+
+.item {
+  height: 100%;
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  padding: 0 12px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+
+  color: var(--gray-9);
+  border-radius: 10px;
+  corner-shape: var(--corner-shape);
+
+  transition: color var(--transition-fast) var(--ease-out-quad);
+
+  &:hover {
+    color: var(--gray-11);
+  }
+
+  &[data-state="on"] {
+    color: var(--gray-12);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--blue-9);
+    outline-offset: -1px;
+  }
+
+  &[data-disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Shared-layout element — rendered only in the active item and animated
+   between items by motion's layoutId. */
+.highlight {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-color: var(--gray-0);
+  border-radius: 10px;
+  corner-shape: var(--corner-shape);
+}

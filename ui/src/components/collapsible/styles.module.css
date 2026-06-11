@@ -1,0 +1,29 @@
+.content {
+  overflow: hidden;
+
+  &[data-state="open"] {
+    animation: collapsibleSlideDown var(--duration-180) var(--ease-out-quad);
+  }
+
+  &[data-state="closed"] {
+    animation: collapsibleSlideUp var(--duration-180) var(--ease-out-quad);
+  }
+}
+
+@keyframes collapsibleSlideDown {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-collapsible-content-height);
+  }
+}
+
+@keyframes collapsibleSlideUp {
+  from {
+    height: var(--radix-collapsible-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
