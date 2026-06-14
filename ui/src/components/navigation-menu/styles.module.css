@@ -38,7 +38,7 @@
   }
 
   &:focus-visible {
-    outline: 2px solid var(--blue-9);
+    outline: 2px solid var(--focus-ring-color);
     outline-offset: -1px;
   }
 }
@@ -104,7 +104,7 @@
   corner-shape: var(--corner-shape);
   box-shadow: var(--shadow-modal);
 
-  z-index: 900;
+  z-index: var(--layer-popover);
 
   transition:
     width var(--duration-260) var(--ease-out-quad),

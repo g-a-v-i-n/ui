@@ -4,6 +4,7 @@
   border-radius: 12px;
   corner-shape: var(--corner-shape);
   padding: 2px;
+  gap:1px;
   position: relative;
   height: var(--control-height-lg);
 }
@@ -30,7 +31,8 @@
   transition: color var(--transition-fast) var(--ease-out-quad);
 
   &:hover {
-    color: var(--gray-11);
+    color: var(--gray-12);
+    background-color: transparent;
   }
 
   &[data-state="on"] {
@@ -38,7 +40,7 @@
   }
 
   &:focus-visible {
-    outline: 2px solid var(--blue-9);
+    outline: 2px solid var(--focus-ring-color);
     outline-offset: -1px;
   }
 

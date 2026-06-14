@@ -43,7 +43,7 @@
   }
 
   &:focus-visible {
-    outline: 2px solid var(--blue-9);
+    outline: 2px solid var(--focus-ring-color);
     outline-offset: -1px;
   }
 
@@ -55,6 +55,7 @@
 
   &[data-width="square"] {
     width: var(--control-height-md);
+    max-width: var(--control-height-md);
     padding: 0;
     flex: none;
   }
@@ -79,10 +80,103 @@
   }
 
   &:focus-visible {
-    outline: 2px solid var(--blue-9);
+    outline: 2px solid var(--focus-ring-color);
     outline-offset: -1px;
     border-radius: 8px;
   }
+}
+
+/* Input dressed like a quiet toolbar button — chrome on the container so
+   prefix/suffix slots sit inside the hover/focus surface. */
+.inputContainer {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--size-6);
+  height: var(--control-height-md);
+  padding: 0 var(--size-8);
+
+  border-radius: 8px;
+  corner-shape: var(--corner-shape);
+  background: transparent;
+
+  transition: background-color var(--duration-120) var(--ease-in-out-quad);
+
+  &:hover,
+  &:focus-within {
+    background: var(--gray-a3);
+  }
+
+  &:has(.input:focus-visible) {
+    outline: 2px solid var(--focus-ring-color);
+    outline-offset: -1px;
+  }
+
+  &:has(.input:disabled) {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &[data-width="hug"] {
+    width: fit-content;
+  }
+
+  &[data-width="fill"] {
+    flex: 1;
+    width: 100%;
+    min-width: var(--size-0);
+  }
+}
+
+.inputSlot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--fg-tertiary);
+  flex: none;
+}
+
+.input {
+  height: 100%;
+  padding: 0;
+  border: none;
+  background: transparent;
+  outline: none;
+
+  font-family: var(--font-sans);
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-medium, 500);
+  letter-spacing: var(--letter-spacing-small);
+  color: var(--fg-primary);
+
+  &[type="number"] {
+    font-variant-numeric: tabular-nums;
+
+    /* Hide the native spin buttons. */
+    -moz-appearance: textfield;
+    appearance: textfield;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+
+  &::placeholder {
+    color: var(--fg-tertiary);
+  }
+}
+
+[data-width="hug"] .input {
+  field-sizing: content;
+  max-width: var(--size-256);
+}
+
+[data-width="fill"] .input,
+[data-width="number"] .input {
+  flex: 1 0 0;
+  width: 100%;
+  min-width: var(--size-0);
 }
 
 .separator {
@@ -96,6 +190,13 @@
   display: flex;
   align-items: center;
   gap: 2px;
+}
+
+.group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--size-8);
 }
 
 /* Split button — a primary action and a dropdown chevron, visually joined:

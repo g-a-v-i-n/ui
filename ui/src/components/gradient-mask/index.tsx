@@ -1,4 +1,4 @@
-import React, { type Ref } from "react";
+import React from "react";
 import styles from "./styles.module.css";
 
 export type GradientMaskProps = {
@@ -15,39 +15,33 @@ export type GradientMaskProps = {
    (the non-scrolling wrapper, not the scroller itself) relative. The fade is
    a solid color-matched div feathered with a gaussian blur and clipped by the
    strip, rather than a CSS gradient. */
-export const GradientMask = React.forwardRef(
-  (
-    {
-      direction = "top",
-      size = 24,
-      blur,
-      color = "var(--bg-primary)",
-      className = "",
-      style,
-      ...props
-    }: GradientMaskProps,
-    forwardedRef: Ref<HTMLDivElement> | undefined
-  ) => {
-    return (
-      <div
-        {...props}
-        ref={forwardedRef}
-        aria-hidden="true"
-        data-direction={direction}
-        className={`${styles.mask} ${className}`}
-        style={
-          {
-            "--mask-size": `${size}px`,
-            "--mask-blur": `${blur ?? size / 4}px`,
-            "--mask-color": color,
-            ...style,
-          } as React.CSSProperties
-        }
-      >
-        <div className={styles.blur} />
-      </div>
-    );
-  }
-);
-
-GradientMask.displayName = "GradientMask";
+export const GradientMask = ({
+  direction = "top",
+  size = 24,
+  blur,
+  color = "var(--bg-primary)",
+  className = "",
+  style,
+  ref,
+  ...props
+}: GradientMaskProps & { ref?: React.Ref<HTMLDivElement> }) => {
+  return (
+    <div
+      {...props}
+      ref={ref}
+      aria-hidden="true"
+      data-direction={direction}
+      className={`${styles.mask} ${className}`}
+      style={
+        {
+          "--mask-size": `${size}px`,
+          "--mask-blur": `${blur ?? size / 4}px`,
+          "--mask-color": color,
+          ...style,
+        } as React.CSSProperties
+      }
+    >
+      <div className={styles.blur} />
+    </div>
+  );
+};

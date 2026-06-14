@@ -1,0 +1,31 @@
+/* Global stacking layers — z-index for floating/overlay UI.
+   Local, within-component stacking (highlight pills, gradient masks)
+   stays literal; these are only for elements portaled to the page. */
+:root {
+--layer-cursor: 20000; /* Cursor should always be on top of page content */
+    --layer-caret: calc(
+      var(--layer-cursor) - 1
+    ); /* Text caret is 1 layer below cursor */
+    --layer-max: 10000; /* Max for normal layers */
+    --layer-skip-nav: 5000;
+    --layer-find: 2000;
+    --layer-tooltip: 1100;
+    --layer-toast: 800;
+    --layer-dialog: 700;
+    --layer-dialog-overlay: 699;
+    --layer-command-menu: 650;
+    --layer-popover: 600;
+    --layer-context-menu: 600;
+    --layer-overlay: 500;
+    --layer-select: 400;
+    --layer-debug: 200;
+    --layer-pane: 200;
+    --layer-header: 100;
+    --layer-scrollbar: 75;
+    --layer-footer: 50;
+    --layer-5: 5;
+    --layer-4: 4;
+    --layer-3: 3;
+    --layer-2: 2;
+    --layer-1: 1;
+}

@@ -13,4 +13,31 @@
   background: var(--blue-9);
   border-radius: 999px;
   transition: transform var(--duration-260) var(--ease-out-quad);
+
+  /* Continuously sweep a left-to-right gradient across the fill. */
+  &[data-animated="true"] {
+    background-image: linear-gradient(
+      90deg,
+      var(--blue-9),
+      var(--blue-4),
+      var(--blue-9)
+    );
+    background-size: 200% 100%;
+    animation: progressSweep 1400ms linear infinite;
+  }
+}
+
+@keyframes progressSweep {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .indicator[data-animated="true"] {
+    animation: none;
+  }
 }

@@ -1,76 +1,48 @@
-import React, { type Ref } from "react";
+import React from "react";
 import { Collapsible as CollapsiblePrimitive } from "radix-ui";
 import { Text } from "../text";
 import { SFSymbol } from "../sf-symbol";
 import styles from "./styles.module.css";
 
-export const Sidebar = React.forwardRef(
-  (
-    { className = "", ...props }: React.HTMLAttributes<HTMLElement>,
-    forwardedRef: Ref<HTMLElement> | undefined
-  ) => {
-    return (
-      <aside
-        {...props}
-        ref={forwardedRef}
-        className={`${styles.root} ${className}`}
-      />
-    );
-  }
-);
+export const Sidebar = ({ className = "", ref, ...props }: React.HTMLAttributes<HTMLElement> & { ref?: React.Ref<HTMLElement> }) => {
+  return (
+    <aside
+      {...props}
+      ref={ref}
+      className={`${styles.root} ${className}`}
+    />
+  );
+};
 
-Sidebar.displayName = "Sidebar";
+export const SidebarHeader = ({ className = "", ref, ...props }: React.HTMLAttributes<HTMLDivElement> & { ref?: React.Ref<HTMLDivElement> }) => {
+  return (
+    <div
+      {...props}
+      ref={ref}
+      className={`${styles.header} ${className}`}
+    />
+  );
+};
 
-export const SidebarHeader = React.forwardRef(
-  (
-    { className = "", ...props }: React.HTMLAttributes<HTMLDivElement>,
-    forwardedRef: Ref<HTMLDivElement> | undefined
-  ) => {
-    return (
-      <div
-        {...props}
-        ref={forwardedRef}
-        className={`${styles.header} ${className}`}
-      />
-    );
-  }
-);
+export const SidebarContent = ({ className = "", ref, ...props }: React.HTMLAttributes<HTMLDivElement> & { ref?: React.Ref<HTMLDivElement> }) => {
+  return (
+    <div
+      {...props}
+      ref={ref}
+      className={`${styles.content} ${className}`}
+    />
+  );
+};
 
-SidebarHeader.displayName = "SidebarHeader";
-
-export const SidebarContent = React.forwardRef(
-  (
-    { className = "", ...props }: React.HTMLAttributes<HTMLDivElement>,
-    forwardedRef: Ref<HTMLDivElement> | undefined
-  ) => {
-    return (
-      <div
-        {...props}
-        ref={forwardedRef}
-        className={`${styles.content} ${className}`}
-      />
-    );
-  }
-);
-
-SidebarContent.displayName = "SidebarContent";
-
-export const SidebarFooter = React.forwardRef(
-  (
-    { className = "", ...props }: React.HTMLAttributes<HTMLDivElement>,
-    forwardedRef: Ref<HTMLDivElement> | undefined
-  ) => {
-    return (
-      <div
-        {...props}
-        ref={forwardedRef}
-        className={`${styles.footer} ${className}`}
-      />
-    );
-  }
-);
-
-SidebarFooter.displayName = "SidebarFooter";
+export const SidebarFooter = ({ className = "", ref, ...props }: React.HTMLAttributes<HTMLDivElement> & { ref?: React.Ref<HTMLDivElement> }) => {
+  return (
+    <div
+      {...props}
+      ref={ref}
+      className={`${styles.footer} ${className}`}
+    />
+  );
+};
 
 export const SidebarSectionLabel = ({
   children,
@@ -94,32 +66,24 @@ export const SidebarSectionLabel = ({
   );
 };
 
-SidebarSectionLabel.displayName = "SidebarSectionLabel";
-
-export const SidebarSection = React.forwardRef(
-  (
-    {
-      label,
-      children,
-      className = "",
-      ...props
-    }: React.HTMLAttributes<HTMLDivElement> & { label?: React.ReactNode },
-    forwardedRef: Ref<HTMLDivElement> | undefined
-  ) => {
-    return (
-      <div
-        {...props}
-        ref={forwardedRef}
-        className={`${styles.section} ${className}`}
-      >
-        {label != null && <SidebarSectionLabel>{label}</SidebarSectionLabel>}
-        {children}
-      </div>
-    );
-  }
-);
-
-SidebarSection.displayName = "SidebarSection";
+export const SidebarSection = ({
+  label,
+  children,
+  className = "",
+  ref,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement> & { label?: React.ReactNode } & { ref?: React.Ref<HTMLDivElement> }) => {
+  return (
+    <div
+      {...props}
+      ref={ref}
+      className={`${styles.section} ${className}`}
+    >
+      {label != null && <SidebarSectionLabel>{label}</SidebarSectionLabel>}
+      {children}
+    </div>
+  );
+};
 
 export type SidebarItemProps = {
   active?: boolean;
@@ -133,40 +97,34 @@ export type SidebarItemProps = {
   "prefix"
 >;
 
-export const SidebarItem = React.forwardRef(
-  (
-    {
-      active = false,
-      href,
-      prefixSlot,
-      suffixSlot,
-      children,
-      className = "",
-      ...props
-    }: SidebarItemProps,
-    forwardedRef: Ref<HTMLElement> | undefined
-  ) => {
-    const Tag = (href != null ? "a" : "button") as React.ElementType;
+export const SidebarItem = ({
+  active = false,
+  href,
+  prefixSlot,
+  suffixSlot,
+  children,
+  className = "",
+  ref,
+  ...props
+}: SidebarItemProps & { ref?: React.Ref<HTMLElement> }) => {
+  const Tag = (href != null ? "a" : "button") as React.ElementType;
 
-    return (
-      <Tag
-        {...props}
-        href={href}
-        ref={forwardedRef}
-        data-active={active || undefined}
-        className={`${styles.item} ${className}`}
-      >
-        {prefixSlot && <span className={styles.prefix}>{prefixSlot}</span>}
-        <Text as="span" size="sm" truncate className={styles.itemLabel}>
-          {children}
-        </Text>
-        {suffixSlot && <span className={styles.suffix}>{suffixSlot}</span>}
-      </Tag>
-    );
-  }
-);
-
-SidebarItem.displayName = "SidebarItem";
+  return (
+    <Tag
+      {...props}
+      href={href}
+      ref={ref}
+      data-active={active || undefined}
+      className={`${styles.item} ${className}`}
+    >
+      {prefixSlot && <span className={styles.prefix}>{prefixSlot}</span>}
+      <Text as="span" size="sm" truncate className={styles.itemLabel}>
+        {children}
+      </Text>
+      {suffixSlot && <span className={styles.suffix}>{suffixSlot}</span>}
+    </Tag>
+  );
+};
 
 export const SidebarSeparator = ({
   className = "",
@@ -174,8 +132,6 @@ export const SidebarSeparator = ({
 }: React.HTMLAttributes<HTMLDivElement>) => {
   return <div {...props} className={`${styles.separator} ${className}`} />;
 };
-
-SidebarSeparator.displayName = "SidebarSeparator";
 
 export const SidebarCollapsibleSection = ({
   label,
@@ -213,5 +169,3 @@ export const SidebarCollapsibleSection = ({
     </CollapsiblePrimitive.Root>
   );
 };
-
-SidebarCollapsibleSection.displayName = "SidebarCollapsibleSection";

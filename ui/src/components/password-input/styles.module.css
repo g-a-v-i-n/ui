@@ -1,0 +1,28 @@
+.suffixGroup {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--size-8);
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  color: var(--fg-tertiary);
+  cursor: pointer;
+  transition: color var(--duration-120) var(--ease-out-quad);
+
+  &:hover {
+    color: var(--fg-secondary);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--focus-ring-color);
+    outline-offset: 2px;
+    border-radius: var(--size-4);
+  }
+}

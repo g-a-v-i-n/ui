@@ -12,11 +12,11 @@
 .trigger {
   position: relative;
   padding: 8px 12px;
+  padding-bottom: 12px;
 
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+  corner-shape: var(--corner-shape);
 
   background: transparent;
   border: none;
@@ -25,11 +25,13 @@
   white-space: nowrap;
 
   color: var(--gray-9);
-  transition: color var(--duration-120) var(--ease-in-out-quad);
+  transition:
+    color var(--duration-120) var(--ease-in-out-quad),
+    background-color var(--duration-120) var(--ease-in-out-quad);
 
   &:hover {
     color: var(--gray-11);
-    background-color: transparent !important;
+    background-color: var(--gray-a3);
   }
 
   &[data-state="active"] {
@@ -37,7 +39,7 @@
   }
 
   &:focus-visible {
-    outline: 2px solid var(--blue-9);
+    outline: 2px solid var(--focus-ring-color);
     outline-offset: -1px;
   }
 
@@ -52,17 +54,8 @@
   z-index: 1;
 }
 
-/* Shared-layout elements — rendered only in the active trigger and animated
+/* The active underline — rendered only in the active trigger and animated
    between tabs by motion's layoutId. */
-.highlight {
-  position: absolute;
-  inset: 0;
-  background: var(--gray-a3);
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  corner-shape: var(--corner-shape);
-}
-
 .underline {
   position: absolute;
   left: 0;
@@ -78,7 +71,7 @@
   padding-top: 12px;
 
   &:focus-visible {
-    outline: 2px solid var(--blue-9);
-    outline-offset: 2px;
+    outline: 2px solid var(--focus-ring-color);
+    outline-offset: var(--focus-ring-offset);
   }
 }

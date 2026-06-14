@@ -2,19 +2,20 @@ import React from "react";
 import { RadioGroup as RadioGroupPrimitive } from "radix-ui";
 import styles from "./styles.module.css";
 
-export const Radio = React.forwardRef<
-  HTMLButtonElement,
-  RadioGroupPrimitive.RadioGroupItemProps
->(({ className = "", ...props }, forwardedRef) => {
+export const Radio = ({
+  className = "",
+  ref,
+  ...props
+}: RadioGroupPrimitive.RadioGroupItemProps & {
+  ref?: React.Ref<HTMLButtonElement>;
+}) => {
   return (
     <RadioGroupPrimitive.Item
       {...props}
-      ref={forwardedRef}
+      ref={ref}
       className={`${styles.root} ${className}`}
     >
       <RadioGroupPrimitive.Indicator className={styles.indicator} />
     </RadioGroupPrimitive.Item>
   );
-});
-
-Radio.displayName = "Radio";
+};

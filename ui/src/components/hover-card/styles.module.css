@@ -7,7 +7,7 @@
   corner-shape: var(--corner-shape);
   box-shadow: var(--shadow-card);
 
-  z-index: 900;
+  z-index: var(--layer-popover);
   position: relative;
 
   &[data-width="auto"] {

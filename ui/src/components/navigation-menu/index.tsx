@@ -1,4 +1,4 @@
-import React, { type Ref } from "react";
+import React from "react";
 import { NavigationMenu as NavigationMenuPrimitive } from "radix-ui";
 import { Text } from "../text";
 import { SFSymbol } from "../sf-symbol";
@@ -7,121 +7,91 @@ import styles from "./styles.module.css";
 export const NavigationMenuItem = NavigationMenuPrimitive.Item;
 export const NavigationMenuSub = NavigationMenuPrimitive.Sub;
 
-export const NavigationMenuRoot = React.forwardRef(
-  (
-    {
-      children,
-      className = "",
-      ...props
-    }: NavigationMenuPrimitive.NavigationMenuProps,
-    forwardedRef: Ref<HTMLElement> | undefined
-  ) => {
-    return (
-      <NavigationMenuPrimitive.Root
-        {...props}
-        ref={forwardedRef}
-        className={`${styles.root} ${className}`}
-      >
+export const NavigationMenuRoot = ({
+  children,
+  className = "",
+  ref,
+  ...props
+}: NavigationMenuPrimitive.NavigationMenuProps & { ref?: React.Ref<HTMLElement> }) => {
+  return (
+    <NavigationMenuPrimitive.Root
+      {...props}
+      ref={ref}
+      className={`${styles.root} ${className}`}
+    >
+      {children}
+      <div className={styles.viewportPosition}>
+        <NavigationMenuPrimitive.Viewport className={styles.viewport} />
+      </div>
+    </NavigationMenuPrimitive.Root>
+  );
+};
+
+export const NavigationMenuList = ({
+  className = "",
+  ref,
+  ...props
+}: NavigationMenuPrimitive.NavigationMenuListProps & { ref?: React.Ref<HTMLUListElement> }) => {
+  return (
+    <NavigationMenuPrimitive.List
+      {...props}
+      ref={ref}
+      className={`${styles.list} ${className}`}
+    />
+  );
+};
+
+export const NavigationMenuTrigger = ({
+  children,
+  className = "",
+  ref,
+  ...props
+}: NavigationMenuPrimitive.NavigationMenuTriggerProps & { ref?: React.Ref<HTMLButtonElement> }) => {
+  return (
+    <NavigationMenuPrimitive.Trigger
+      {...props}
+      ref={ref}
+      className={`${styles.trigger} ${className}`}
+    >
+      <Text as="span" size="sm" weight="medium" color="inherit">
         {children}
-        <div className={styles.viewportPosition}>
-          <NavigationMenuPrimitive.Viewport className={styles.viewport} />
-        </div>
-      </NavigationMenuPrimitive.Root>
-    );
-  }
-);
+      </Text>
+      <span className={styles.chevron} aria-hidden="true">
+        <SFSymbol symbol="􀆈" size="sm" />
+      </span>
+    </NavigationMenuPrimitive.Trigger>
+  );
+};
 
-NavigationMenuRoot.displayName = "NavigationMenuRoot";
+export const NavigationMenuContent = ({
+  className = "",
+  ref,
+  ...props
+}: NavigationMenuPrimitive.NavigationMenuContentProps & { ref?: React.Ref<HTMLDivElement> }) => {
+  return (
+    <NavigationMenuPrimitive.Content
+      {...props}
+      ref={ref}
+      className={`${styles.content} ${className}`}
+    />
+  );
+};
 
-export const NavigationMenuList = React.forwardRef(
-  (
-    {
-      className = "",
-      ...props
-    }: NavigationMenuPrimitive.NavigationMenuListProps,
-    forwardedRef: Ref<HTMLUListElement> | undefined
-  ) => {
-    return (
-      <NavigationMenuPrimitive.List
-        {...props}
-        ref={forwardedRef}
-        className={`${styles.list} ${className}`}
-      />
-    );
-  }
-);
-
-NavigationMenuList.displayName = "NavigationMenuList";
-
-export const NavigationMenuTrigger = React.forwardRef(
-  (
-    {
-      children,
-      className = "",
-      ...props
-    }: NavigationMenuPrimitive.NavigationMenuTriggerProps,
-    forwardedRef: Ref<HTMLButtonElement> | undefined
-  ) => {
-    return (
-      <NavigationMenuPrimitive.Trigger
-        {...props}
-        ref={forwardedRef}
-        className={`${styles.trigger} ${className}`}
-      >
-        <Text as="span" size="sm" weight="medium" color="inherit">
-          {children}
-        </Text>
-        <span className={styles.chevron} aria-hidden="true">
-          <SFSymbol symbol="􀆈" size="sm" />
-        </span>
-      </NavigationMenuPrimitive.Trigger>
-    );
-  }
-);
-
-NavigationMenuTrigger.displayName = "NavigationMenuTrigger";
-
-export const NavigationMenuContent = React.forwardRef(
-  (
-    {
-      className = "",
-      ...props
-    }: NavigationMenuPrimitive.NavigationMenuContentProps,
-    forwardedRef: Ref<HTMLDivElement> | undefined
-  ) => {
-    return (
-      <NavigationMenuPrimitive.Content
-        {...props}
-        ref={forwardedRef}
-        className={`${styles.content} ${className}`}
-      />
-    );
-  }
-);
-
-NavigationMenuContent.displayName = "NavigationMenuContent";
-
-export const NavigationMenuLink = React.forwardRef(
-  (
-    {
-      children,
-      className = "",
-      ...props
-    }: NavigationMenuPrimitive.NavigationMenuLinkProps,
-    forwardedRef: Ref<HTMLAnchorElement> | undefined
-  ) => {
-    return (
-      <NavigationMenuPrimitive.Link
-        {...props}
-        ref={forwardedRef}
-        className={`${styles.link} ${className}`}
-      >
-        <Text as="span" size="sm" color="inherit">
-          {children}
-        </Text>
-      </NavigationMenuPrimitive.Link>
-    );
-  }
-);
-
-NavigationMenuLink.displayName = "NavigationMenuLink";
+export const NavigationMenuLink = ({
+  children,
+  className = "",
+  ref,
+  ...props
+}: NavigationMenuPrimitive.NavigationMenuLinkProps & { ref?: React.Ref<HTMLAnchorElement> }) => {
+  return (
+    <NavigationMenuPrimitive.Link
+      {...props}
+      ref={ref}
+      className={`${styles.link} ${className}`}
+    >
+      <Text as="span" size="sm" color="inherit">
+        {children}
+      </Text>
+    </NavigationMenuPrimitive.Link>
+  );
+};

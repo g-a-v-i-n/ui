@@ -1,5 +1,5 @@
 :root {
-  --text-box-trim: both;
+  --text-box-trim: trim-both;
 
   --font-normal-fallback:
     system-ui, 'Helvetica Neue', 'Roboto', 'Oxygen-Sans', 'Ubuntu',
@@ -56,27 +56,28 @@
     --line-height-xxx-large: 1.2;
     --letter-spacing-xxx-large: -0.0125em;
 
-    --font-size-xx-large: xx-large;
-    --line-height-xx-large: 1.3;
-    --letter-spacing-xx-large: -0.0125em;
+    /* The Text component scale: x-small..xx-large = Text xs..2xl. */
+    --font-size-xx-large: 28px;
+    --line-height-xx-large: 1.2;
+    --letter-spacing-xx-large: -0.015em;
 
-    --font-size-x-large: x-large;
-    --line-height-x-large: 1.4;
-    --letter-spacing-x-large: -0.01em;
+    --font-size-x-large: 22px;
+    --line-height-x-large: 1.3;
+    --letter-spacing-x-large: 0.35px;
 
-    --font-size-large-size: large;
-    --line-height-large: 1.5;
-    --letter-spacing-large: 0;
+    --font-size-large: 18px;
+    --line-height-large: 1.4;
+    --letter-spacing-large: -0.45px;
 
-    --font-size-normal: medium;
+    --font-size-normal: 15px;
     --line-height-normal: 1.5;
-    --letter-spacing-normal: 0;
+    --letter-spacing-normal: -0.24px;
 
-    --font-size-small: x-small;
-    --line-height-small: 1.5;
-    --letter-spacing-small: 0;
+    --font-size-small: 13px;
+    --line-height-small: 1.4;
+    --letter-spacing-small: -0.08px;
 
-    --font-size-x-small: xx-small;
-    --line-height-x-small: 1.5;
-    --letter-spacing-x-small: 0;
+    --font-size-x-small: 11px;
+    --line-height-x-small: 1.4;
+    --letter-spacing-x-small: -0.07px;
 }

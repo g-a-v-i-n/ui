@@ -8,6 +8,7 @@ type TagProps = {
   children: ReactNode;
   variant?: Variant;
   round?: boolean;
+  mono?: boolean;
   className?: string;
 };
 
@@ -15,6 +16,7 @@ export const Tag = ({
   children,
   variant = "default",
   round = false,
+  mono = false,
   className = "",
 }: TagProps) => {
   return (
@@ -23,7 +25,7 @@ export const Tag = ({
       data-round={round || undefined}
       className={`${styles.tag} ${className}`}
     >
-      <Text as="span" size="xs" weight="medium" color="inherit">
+      <Text as="span" size="xs" weight="semibold" color="inherit" mono={mono}>
         {children}
       </Text>
     </span>

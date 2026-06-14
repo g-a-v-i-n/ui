@@ -1,7 +1,7 @@
 .spinner {
   display: inline-flex;
   flex: none;
-  color: var(--fg-tertiary);
+  color: var(--fg-primary);
 
   svg {
     width: 100%;

@@ -2,72 +2,64 @@ import React from "react";
 import { Text } from "../text";
 import styles from "./styles.module.css";
 
-export const MenuContainer = React.forwardRef(
-  (
-    {
-      children,
-      width = "auto",
-      className = "",
-      ...props
-    }: {
-      children: React.ReactNode;
-      className?: string;
-      width?: "sm" | "md" | "lg" | "auto";
-    },
-    forwardedRef: React.ForwardedRef<HTMLDivElement>
-  ) => {
-    return (
-      <div
-        {...props}
-        ref={forwardedRef}
-        data-width={width}
-        className={`${styles.container} ${className}`}
-      >
-        {children}
+export const MenuContainer = ({
+  children,
+  width = "auto",
+  className = "",
+  ref,
+  ...props
+}: {
+  children: React.ReactNode;
+  className?: string;
+  width?: "sm" | "md" | "lg" | "auto";
+} & React.HTMLAttributes<HTMLDivElement> & {
+    ref?: React.Ref<HTMLDivElement>;
+  }) => {
+  return (
+    <div
+      {...props}
+      ref={ref}
+      data-width={width}
+      className={`${styles.container} ${className}`}
+    >
+      {children}
+    </div>
+  );
+};
+
+export const MenuItem = ({
+  children,
+  className = "",
+  suffixSlot,
+  prefixSlot,
+  ref,
+  ...props
+}: {
+  children: React.ReactNode;
+  className?: string;
+  suffixSlot?: React.ReactNode;
+  prefixSlot?: React.ReactNode;
+} & React.HTMLAttributes<HTMLDivElement> & {
+    ref?: React.Ref<HTMLDivElement>;
+  }) => {
+  return (
+    <div
+      {...props}
+      ref={ref}
+      className={`${styles.item} ${className}`}
+    >
+      <div className={styles.left}>
+        {prefixSlot && <div className={styles.prefix}>{prefixSlot}</div>}
+        <Text size="sm">{children}</Text>
       </div>
-    );
-  }
-);
-
-MenuContainer.displayName = "MenuContainer";
-
-export const MenuItem = React.forwardRef(
-  (
-    {
-      children,
-      className = "",
-      suffixSlot,
-      prefixSlot,
-      ...props
-    }: {
-      children: React.ReactNode;
-      className?: string;
-      suffixSlot?: React.ReactNode;
-      prefixSlot?: React.ReactNode;
-    },
-    forwardedRef: React.ForwardedRef<HTMLDivElement>
-  ) => {
-    return (
-      <div
-        {...props}
-        ref={forwardedRef}
-        className={`${styles.item} ${className}`}
-      >
-        <div className={styles.left}>
-          {prefixSlot && <div className={styles.prefix}>{prefixSlot}</div>}
-          <Text size="sm">{children}</Text>
-        </div>
-        {suffixSlot && (
-          <Text as="div" size="sm" color="secondary" className={styles.suffix}>
-            {suffixSlot}
-          </Text>
-        )}
-      </div>
-    );
-  }
-);
-
-MenuItem.displayName = "MenuItem";
+      {suffixSlot && (
+        <Text as="div" size="sm" color="secondary" className={styles.suffix}>
+          {suffixSlot}
+        </Text>
+      )}
+    </div>
+  );
+};
 
 export const MenuDivider = () => {
   return (
@@ -77,33 +69,25 @@ export const MenuDivider = () => {
   );
 };
 
-MenuDivider.displayName = "MenuDivider";
-
-export const MenuGroup = React.forwardRef(
-  (
-    {
-      children,
-      className = "",
-      ...props
-    }: {
-      children?: React.ReactNode;
-      className?: string;
-    },
-    forwardedRef: React.ForwardedRef<HTMLDivElement>
-  ) => {
-    return (
-      <div
-        {...props}
-        ref={forwardedRef}
-        className={`${styles.group} ${className}`}
-      >
-        {children}
-      </div>
-    );
-  }
-);
-
-MenuGroup.displayName = "MenuGroup";
+export const MenuGroup = ({
+  children,
+  className = "",
+  ref,
+  ...props
+}: {
+  children?: React.ReactNode;
+  className?: string;
+} & { ref?: React.Ref<HTMLDivElement> }) => {
+  return (
+    <div
+      {...props}
+      ref={ref}
+      className={`${styles.group} ${className}`}
+    >
+      {children}
+    </div>
+  );
+};
 
 export const MenuLabel = ({
   children,
@@ -124,8 +108,6 @@ export const MenuLabel = ({
     >{children}</Text>
   );
 };
-
-MenuLabel.displayName = "MenuLabel";
 
 export const MenuTitle = ({
   children,
@@ -148,8 +130,6 @@ export const MenuTitle = ({
   );
 };
 
-MenuTitle.displayName = "MenuTitle";
-
 export const MenuList = ({
   children,
   className = "",
@@ -164,8 +144,6 @@ export const MenuList = ({
     </div>
   );
 };
-
-MenuList.displayName = "MenuList";
 
 export const MenuListItem = ({
   className = "",
@@ -189,4 +167,33 @@ export const MenuListItem = ({
   );
 };
 
-MenuListItem.displayName = "MenuListItem";
+/* The shared popup arrow — a soft notch with a hairline edge, designed to sit
+   against a floating menu card. Points down; Radix Arrow primitives rotate it
+   per side. SVGProps already includes ref, so it flows through the spread.
+   Props spread first: Radix Arrow injects its default 10x5 width/height via
+   asChild, and our fixed 28x9 size must win. */
+export const MenuArrow = ({
+  className = "",
+  ...props
+}: React.SVGProps<SVGSVGElement>) => {
+  return (
+    <svg
+      {...props}
+      className={`${styles.arrow} ${className}`}
+      width="28px"
+      height="9px"
+      viewBox="0 0 28 9"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M12.5858 6.58579L9.74904 3.74903C8.36542 2.36542 7.67361 1.67361 6.86628 1.17888C6.1505 0.740249 5.37015 0.417015 4.55386 0.221041C3.63316 0 2.65479 0 0.698068 0H27.3019C25.3452 0 24.3668 0 23.4461 0.221041C22.6299 0.417015 21.8495 0.740249 21.1337 1.17888C20.3264 1.67361 19.6346 2.36542 18.251 3.74903L15.4142 6.58579C14.6332 7.36684 13.3668 7.36683 12.5858 6.58579Z"
+        fill="var(--bg-primary)"
+      />
+      <path
+        d="M27.3018 1C25.2977 1 24.4585 1.00641 23.6797 1.19336C22.9655 1.36482 22.2825 1.64749 21.6562 2.03125C20.9733 2.44976 20.3753 3.03879 18.958 4.45605L16.1211 7.29297C14.9496 8.46434 13.0504 8.46434 11.8789 7.29297L9.04199 4.45605C7.62473 3.03879 7.02669 2.44976 6.34375 2.03125C5.71748 1.64749 5.03451 1.36482 4.32031 1.19336C3.54152 1.00641 2.70235 1 0.698242 1H6.55762C6.66158 1.05749 6.76476 1.11655 6.86621 1.17871C7.67354 1.67344 8.36542 2.36542 9.74902 3.74902L12.5859 6.58594C13.3669 7.36679 14.6331 7.36679 15.4141 6.58594L18.251 3.74902C19.6346 2.36542 20.3265 1.67344 21.1338 1.17871C21.2352 1.11655 21.3384 1.05749 21.4424 1H27.3018Z"
+        fill="var(--gray-a5)"
+      />
+    </svg>
+  );
+};

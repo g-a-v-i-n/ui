@@ -2,10 +2,10 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: var(--size-6);
-  padding: 0 var(--size-8);
+  gap: var(--size-8);
+  padding: 0 var(--size-10);
   height: var(--control-height-lg);
-  border-radius: var(--size-12);
+  border-radius: var(--size-10);
   corner-shape: var(--corner-shape);
 
   &[data-width="fill"] {
@@ -20,7 +20,7 @@
   }
 
   &[data-variant="default"] {
-    background-color: var(--bg-primary);
+    background-color: var(--bg-base);
     box-shadow: var(--shadow-hairline-2);
     transition: box-shadow var(--duration-120) var(--ease-out-quad);
 
@@ -29,7 +29,7 @@
     }
 
     &:focus-within {
-      box-shadow: 0 0 0 2px var(--blue-9);
+      box-shadow: 0 0 0 2px var(--focus-ring-color);
     }
   }
 
@@ -54,11 +54,28 @@
   padding: 0;
 
   font-family: var(--font-sans);
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 1;
-  letter-spacing: -0.13px;
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-small);
+  letter-spacing: var(--letter-spacing-small);
   color: var(--fg-primary);
+  text-box-trim: var(--text-box-trim);
+
+
+  &[type="number"] {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'cv08' on;
+
+    /* Hide the native spin buttons. */
+    -moz-appearance: textfield;
+    appearance: textfield;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
 
   &::placeholder {
     color: var(--fg-tertiary);
@@ -67,6 +84,12 @@
   &::-ms-clear {
     display: none;
   }
+}
+
+/* Hug sizes the input to its text natively, so prefix/suffix slots simply
+   add to the flex container's fit-content width. */
+[data-width="hug"] .input {
+  field-sizing: content;
 }
 
 [data-width="fill"] .input,

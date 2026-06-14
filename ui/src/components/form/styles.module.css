@@ -6,7 +6,7 @@
 
 .message {
   font-family: var(--font-sans);
-  font-size: 11px;
-  line-height: 1.4;
+  font-size: var(--font-size-x-small);
+  line-height: var(--line-height-x-small);
   color: var(--red-10);
 }

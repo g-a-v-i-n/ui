@@ -1,0 +1,142 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: var(--black-a9);
+  z-index: var(--layer-dialog-overlay);
+
+  animation-duration: var(--duration-180);
+  animation-timing-function: var(--ease-out-quad);
+  animation-fill-mode: both;
+
+  &[data-state="open"] {
+    animation-name: overlayFadeIn;
+  }
+  &[data-state="closed"] {
+    animation-name: overlayFadeOut;
+  }
+}
+
+.content {
+  position: fixed;
+  z-index: var(--layer-dialog);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-8);
+  padding: var(--size-20);
+
+  background: var(--bg-secondary);
+  box-shadow: var(--shadow-modal);
+
+  animation-duration: var(--duration-180);
+  animation-timing-function: var(--ease-out-quad);
+  animation-fill-mode: both;
+
+  &:focus {
+    outline: none;
+  }
+
+  /* Edge anchoring. Vertical drawers span full height; horizontal span full width. */
+  &[data-side="right"],
+  &[data-side="left"] {
+    top: 0;
+    bottom: 0;
+    width: var(--drawer-size, min(420px, 100vw));
+    max-width: 100vw;
+  }
+  &[data-side="right"] {
+    right: 0;
+  }
+  &[data-side="left"] {
+    left: 0;
+  }
+
+  &[data-side="top"],
+  &[data-side="bottom"] {
+    left: 0;
+    right: 0;
+    height: var(--drawer-size, min(420px, 100vh));
+    max-height: 100vh;
+  }
+  &[data-side="top"] {
+    top: 0;
+  }
+  &[data-side="bottom"] {
+    bottom: 0;
+  }
+
+  /* Slide animations per side. */
+  &[data-side="right"][data-state="open"] {
+    animation-name: slideInRight;
+  }
+  &[data-side="right"][data-state="closed"] {
+    animation-name: slideOutRight;
+  }
+  &[data-side="left"][data-state="open"] {
+    animation-name: slideInLeft;
+  }
+  &[data-side="left"][data-state="closed"] {
+    animation-name: slideOutLeft;
+  }
+  &[data-side="top"][data-state="open"] {
+    animation-name: slideInTop;
+  }
+  &[data-side="top"][data-state="closed"] {
+    animation-name: slideOutTop;
+  }
+  &[data-side="bottom"][data-state="open"] {
+    animation-name: slideInBottom;
+  }
+  &[data-side="bottom"][data-state="closed"] {
+    animation-name: slideOutBottom;
+  }
+}
+
+.title {
+  margin: 0;
+}
+.description {
+  margin: 0;
+}
+
+@keyframes overlayFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes overlayFadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+@keyframes slideOutRight {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(100%); opacity: 0; }
+}
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+@keyframes slideOutLeft {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(-100%); opacity: 0; }
+}
+@keyframes slideInTop {
+  from { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes slideOutTop {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(-100%); opacity: 0; }
+}
+@keyframes slideInBottom {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes slideOutBottom {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(100%); opacity: 0; }
+}

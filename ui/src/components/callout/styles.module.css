@@ -1,0 +1,81 @@
+.callout {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--size-8);
+  padding: var(--size-12);
+  border-radius: var(--size-16);
+  corner-shape: var(--corner-shape);
+
+  color: var(--callout-fg);
+  background-color: var(--callout-bg);
+  /* box-shadow: inset 0 0 0 1px var(--callout-border); */
+
+  &[data-variant="info"] {
+    --callout-bg: var(--blue-a2);
+    --callout-border: var(--blue-a5);
+    --callout-fg: var(--blue-12);
+    --callout-icon: var(--blue-10);
+  }
+  &[data-variant="success"] {
+    --callout-bg: var(--lime-a2);
+    --callout-border: var(--lime-a5);
+    --callout-fg: var(--lime-11);
+    --callout-icon: var(--lime-9);
+  }
+  &[data-variant="warning"] {
+    --callout-bg: var(--amber-a2);
+    --callout-border: var(--amber-a5);
+    --callout-fg: var(--amber-11);
+    --callout-icon: var(--amber-9);
+  }
+  &[data-variant="error"] {
+    --callout-bg: var(--tomato-a2);
+    --callout-border: var(--tomato-a5);
+    --callout-fg: var(--tomato-11);
+    --callout-icon: var(--tomato-9);
+  }
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  /* Match the line-box of the first small-text line so the icon sits on its
+     cap height rather than floating above it. */
+  min-height: calc(var(--font-size-small) * var(--line-height-small));
+  color: var(--callout-icon);
+  flex: none;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-2);
+  min-width: var(--size-0);
+  padding-top: 2px;
+  flex: 1;
+}
+
+.close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  color: var(--callout-icon);
+  cursor: pointer;
+  opacity: 0.7;
+  flex: none;
+  transition: opacity var(--duration-120) var(--ease-out-quad);
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--focus-ring-color);
+    outline-offset: 2px;
+    border-radius: var(--size-4);
+  }
+}

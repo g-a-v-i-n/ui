@@ -1,4 +1,4 @@
-import React, { Children, type Ref } from "react";
+import React, { Children } from "react";
 import { Toolbar as ToolbarPrimitive } from "radix-ui";
 import { Text } from "../text";
 import { SFSymbol } from "../sf-symbol";
@@ -22,128 +22,155 @@ const wrapText = (children: React.ReactNode) =>
     )
   );
 
-export const ToolbarRoot = React.forwardRef(
-  (
-    { className = "", ...props }: ToolbarPrimitive.ToolbarProps,
-    forwardedRef: Ref<HTMLDivElement> | undefined
-  ) => {
-    return (
-      <ToolbarPrimitive.Root
+export const ToolbarRoot = ({ className = "", ref, ...props }: ToolbarPrimitive.ToolbarProps & { ref?: React.Ref<HTMLDivElement> }) => {
+  return (
+    <ToolbarPrimitive.Root
+      {...props}
+      ref={ref}
+      className={`${styles.root} ${className}`}
+    />
+  );
+};
+
+export const ToolbarButton = ({
+  children,
+  className = "",
+  width = "hug",
+  ref,
+  ...props
+}: ToolbarPrimitive.ToolbarButtonProps & { width?: "hug" | "square" } & { ref?: React.Ref<HTMLButtonElement> }) => {
+  return (
+    <ToolbarPrimitive.Button
+      {...props}
+      ref={ref}
+      data-width={width}
+      className={`${styles.button} ${className}`}
+    >
+      {wrapText(children)}
+    </ToolbarPrimitive.Button>
+  );
+};
+
+export const ToolbarLink = ({ children, className = "", ref, ...props }: ToolbarPrimitive.ToolbarLinkProps & { ref?: React.Ref<HTMLAnchorElement> }) => {
+  return (
+    <ToolbarPrimitive.Link
+      {...props}
+      ref={ref}
+      className={`${styles.link} ${className}`}
+    >
+      {wrapText(children)}
+    </ToolbarPrimitive.Link>
+  );
+};
+
+export const ToolbarSeparator = ({ className = "", ref, ...props }: ToolbarPrimitive.ToolbarSeparatorProps & { ref?: React.Ref<HTMLDivElement> }) => {
+  return (
+    <ToolbarPrimitive.Separator
+      {...props}
+      ref={ref}
+      className={`${styles.separator} ${className}`}
+    />
+  );
+};
+
+export const ToolbarToggleGroup = ({
+  className = "",
+  ref,
+  ...props
+}: (
+  | ToolbarPrimitive.ToolbarToggleGroupSingleProps
+  | ToolbarPrimitive.ToolbarToggleGroupMultipleProps
+) & { ref?: React.Ref<HTMLDivElement> }) => {
+  return (
+    <ToolbarPrimitive.ToggleGroup
+      {...props}
+      ref={ref}
+      className={`${styles.toggleGroup} ${className}`}
+    />
+  );
+};
+
+export const ToolbarToggleItem = ({
+  children,
+  className = "",
+  ref,
+  ...props
+}: ToolbarPrimitive.ToolbarToggleItemProps & { ref?: React.Ref<HTMLButtonElement> }) => {
+  return (
+    <ToolbarPrimitive.ToggleItem
+      {...props}
+      ref={ref}
+      className={`${styles.button} ${className}`}
+    >
+      {wrapText(children)}
+    </ToolbarPrimitive.ToggleItem>
+  );
+};
+
+/* Plain layout grouping for related toolbar controls. */
+export const ToolbarGroup = ({
+  className = "",
+  ref,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement> & {
+  ref?: React.Ref<HTMLDivElement>;
+}) => {
+  return (
+    <div
+      {...props}
+      ref={ref}
+      className={`${styles.group} ${className}`}
+    />
+  );
+};
+
+export type ToolbarInputProps = Omit<
+  React.ComponentPropsWithoutRef<"input">,
+  "width" | "prefix"
+> & {
+  width?: "hug" | "fill" | number;
+  prefixSlot?: React.ReactNode;
+  suffixSlot?: React.ReactNode;
+  containerClassName?: string;
+  containerStyle?: React.CSSProperties;
+  ref?: React.Ref<HTMLInputElement>;
+};
+
+/* An input dressed like a quiet toolbar button — same height, radius, and
+   hover treatment as ToolbarButton. Hug width sizes to content via CSS
+   field-sizing. */
+export const ToolbarInput = ({
+  className = "",
+  containerClassName = "",
+  containerStyle,
+  width = "hug",
+  type = "text",
+  prefixSlot,
+  suffixSlot,
+  ref,
+  ...props
+}: ToolbarInputProps) => {
+  const widthMode = typeof width === "number" ? "number" : width;
+  const numberStyle =
+    typeof width === "number" ? { width: `${width}px` } : undefined;
+
+  return (
+    <div
+      data-width={widthMode}
+      className={`${styles.inputContainer} ${containerClassName}`}
+      style={{ ...containerStyle, ...numberStyle }}
+    >
+      {prefixSlot && <span className={styles.inputSlot}>{prefixSlot}</span>}
+      <input
         {...props}
-        ref={forwardedRef}
-        className={`${styles.root} ${className}`}
+        ref={ref}
+        type={type}
+        className={`${styles.input} ${className}`}
       />
-    );
-  }
-);
-
-ToolbarRoot.displayName = "ToolbarRoot";
-
-export const ToolbarButton = React.forwardRef(
-  (
-    {
-      children,
-      className = "",
-      width = "hug",
-      ...props
-    }: ToolbarPrimitive.ToolbarButtonProps & { width?: "hug" | "square" },
-    forwardedRef: Ref<HTMLButtonElement> | undefined
-  ) => {
-    return (
-      <ToolbarPrimitive.Button
-        {...props}
-        ref={forwardedRef}
-        data-width={width}
-        className={`${styles.button} ${className}`}
-      >
-        {wrapText(children)}
-      </ToolbarPrimitive.Button>
-    );
-  }
-);
-
-ToolbarButton.displayName = "ToolbarButton";
-
-export const ToolbarLink = React.forwardRef(
-  (
-    { children, className = "", ...props }: ToolbarPrimitive.ToolbarLinkProps,
-    forwardedRef: Ref<HTMLAnchorElement> | undefined
-  ) => {
-    return (
-      <ToolbarPrimitive.Link
-        {...props}
-        ref={forwardedRef}
-        className={`${styles.link} ${className}`}
-      >
-        {wrapText(children)}
-      </ToolbarPrimitive.Link>
-    );
-  }
-);
-
-ToolbarLink.displayName = "ToolbarLink";
-
-export const ToolbarSeparator = React.forwardRef(
-  (
-    { className = "", ...props }: ToolbarPrimitive.ToolbarSeparatorProps,
-    forwardedRef: Ref<HTMLDivElement> | undefined
-  ) => {
-    return (
-      <ToolbarPrimitive.Separator
-        {...props}
-        ref={forwardedRef}
-        className={`${styles.separator} ${className}`}
-      />
-    );
-  }
-);
-
-ToolbarSeparator.displayName = "ToolbarSeparator";
-
-export const ToolbarToggleGroup = React.forwardRef(
-  (
-    {
-      className = "",
-      ...props
-    }:
-      | ToolbarPrimitive.ToolbarToggleGroupSingleProps
-      | ToolbarPrimitive.ToolbarToggleGroupMultipleProps,
-    forwardedRef: Ref<HTMLDivElement> | undefined
-  ) => {
-    return (
-      <ToolbarPrimitive.ToggleGroup
-        {...props}
-        ref={forwardedRef}
-        className={`${styles.toggleGroup} ${className}`}
-      />
-    );
-  }
-);
-
-ToolbarToggleGroup.displayName = "ToolbarToggleGroup";
-
-export const ToolbarToggleItem = React.forwardRef(
-  (
-    {
-      children,
-      className = "",
-      ...props
-    }: ToolbarPrimitive.ToolbarToggleItemProps,
-    forwardedRef: Ref<HTMLButtonElement> | undefined
-  ) => {
-    return (
-      <ToolbarPrimitive.ToggleItem
-        {...props}
-        ref={forwardedRef}
-        className={`${styles.button} ${className}`}
-      >
-        {wrapText(children)}
-      </ToolbarPrimitive.ToggleItem>
-    );
-  }
-);
-
-ToolbarToggleItem.displayName = "ToolbarToggleItem";
+      {suffixSlot && <span className={styles.inputSlot}>{suffixSlot}</span>}
+    </div>
+  );
+};
 
 export type ToolbarSplitButtonProps = {
   prefixSlot?: React.ReactNode;
@@ -154,64 +181,58 @@ export type ToolbarSplitButtonProps = {
   children?: React.ReactNode;
 } & Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "prefix">;
 
-export const ToolbarSplitButton = React.forwardRef(
-  (
-    {
-      children,
-      prefixSlot,
-      tooltip,
-      dropdownContent,
-      dropdownAlign = "end",
-      dropdownWidth = "auto",
-      disabled,
-      className = "",
-      ...props
-    }: ToolbarSplitButtonProps,
-    forwardedRef: Ref<HTMLButtonElement> | undefined
-  ) => {
-    const primaryButton = (
-      <ToolbarPrimitive.Button
-        {...props}
-        ref={forwardedRef}
-        disabled={disabled}
-        className={styles.splitPrimary}
-      >
-        {prefixSlot && <span className={styles.splitPrefix}>{prefixSlot}</span>}
-        {wrapText(children)}
-      </ToolbarPrimitive.Button>
-    );
+export const ToolbarSplitButton = ({
+  children,
+  prefixSlot,
+  tooltip,
+  dropdownContent,
+  dropdownAlign = "end",
+  dropdownWidth = "auto",
+  disabled,
+  className = "",
+  ref,
+  ...props
+}: ToolbarSplitButtonProps & { ref?: React.Ref<HTMLButtonElement> }) => {
+  const primaryButton = (
+    <ToolbarPrimitive.Button
+      {...props}
+      ref={ref}
+      disabled={disabled}
+      className={styles.splitPrimary}
+    >
+      {prefixSlot && <span className={styles.splitPrefix}>{prefixSlot}</span>}
+      {wrapText(children)}
+    </ToolbarPrimitive.Button>
+  );
 
-    return (
-      <div className={`${styles.split} ${className}`}>
-        {tooltip ? (
-          <Tooltip content={tooltip}>{primaryButton}</Tooltip>
-        ) : (
-          primaryButton
-        )}
-        <DropdownMenuRoot>
-          <DropdownMenuTrigger>
-            <ToolbarPrimitive.Button
-              aria-label="More options"
-              disabled={disabled}
-              className={styles.splitTrigger}
-            >
-              <span className={styles.splitChevron} aria-hidden="true">
-                <SFSymbol symbol="􀆈" size="sm" />
-              </span>
-            </ToolbarPrimitive.Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent
-            align={dropdownAlign}
-            width={dropdownWidth}
-            sideOffset={8}
+  return (
+    <div className={`${styles.split} ${className}`}>
+      {tooltip ? (
+        <Tooltip content={tooltip}>{primaryButton}</Tooltip>
+      ) : (
+        primaryButton
+      )}
+      <DropdownMenuRoot>
+        <DropdownMenuTrigger>
+          <ToolbarPrimitive.Button
+            aria-label="More options"
+            disabled={disabled}
+            className={styles.splitTrigger}
           >
-            {dropdownContent}
-            <DropdownMenuArrow />
-          </DropdownMenuContent>
-        </DropdownMenuRoot>
-      </div>
-    );
-  }
-);
-
-ToolbarSplitButton.displayName = "ToolbarSplitButton";
+            <span className={styles.splitChevron} aria-hidden="true">
+              <SFSymbol symbol="􀆈" size="xs" weight="semibold" />
+            </span>
+          </ToolbarPrimitive.Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent
+          align={dropdownAlign}
+          width={dropdownWidth}
+          sideOffset={8}
+        >
+          {dropdownContent}
+          <DropdownMenuArrow />
+        </DropdownMenuContent>
+      </DropdownMenuRoot>
+    </div>
+  );
+};

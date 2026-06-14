@@ -23,7 +23,7 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--size-8);
-  padding: 12px 0;
+  padding: 16px 0;
 
   background: transparent !important;
   border: none;
@@ -32,7 +32,7 @@
   text-align: left;
 
   &:focus-visible {
-    outline: 2px solid var(--blue-9);
+    outline: 2px solid var(--focus-ring-color);
     outline-offset: -1px;
   }
 
@@ -61,6 +61,7 @@
 }
 
 .content {
+  position: relative;
   overflow: hidden;
 
   &[data-state="open"] {
@@ -73,23 +74,27 @@
 }
 
 .contentInner {
-  padding: 0 0 12px 0;
+  padding: 0 0 16px 0;
 }
 
 @keyframes accordionSlideDown {
   from {
     height: 0;
+    opacity: 0;
   }
   to {
     height: var(--radix-accordion-content-height);
+    opacity: 1;
   }
 }
 
 @keyframes accordionSlideUp {
   from {
     height: var(--radix-accordion-content-height);
+    opacity: 1;
   }
   to {
     height: 0;
+    opacity: 0;
   }
 }

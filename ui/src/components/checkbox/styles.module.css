@@ -1,7 +1,7 @@
 .root {
-  width: var(--size-20);
-  height: var(--control-height-xs);
-  border-radius: 0.5rem;
+  width: var(--size-18);
+  height: var(--size-18);
+  border-radius: 7px;
   corner-shape: var(--corner-shape);
   display: inline-flex;
   justify-content: center;
@@ -12,18 +12,17 @@
   border: none;
 
   transition:
-    color var(--duration-120),
-    background-color var(--duration-120),
-    box-shadow var(--duration-120);
+    color var(--duration-80),
+    background-color var(--duration-80),
+    box-shadow var(--duration-80);
 
   &[data-state="checked"] {
     background-color: var(--blue-9);
   }
 
   &[data-state="unchecked"] {
-    background-color: var(--gray-1);
+    background-color: transparent;
     box-shadow: var(--shadow-button);
-
   }
 }
 
@@ -32,4 +31,39 @@
   align-items: center;
   justify-content: center;
   color: var(--gray-0);
+
+  animation-timing-function: var(--ease-out-quad);
+  animation-fill-mode: both;
+
+  &[data-state="checked"] {
+    animation-name: checkIn;
+    animation-duration: var(--duration-120);
+  }
+
+  &[data-state="unchecked"] {
+    animation-name: checkOut;
+    animation-duration: var(--duration-120);
+  }
+}
+
+@keyframes checkIn {
+  from {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes checkOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.2);
+  }
 }

@@ -2,7 +2,7 @@
   position: fixed;
   inset: 0;
   background-color: var(--black-a9);
-  z-index: 1000;
+  z-index: var(--layer-dialog-overlay);
 
   animation-duration: var(--duration-180);
   animation-timing-function: var(--ease-out-quad);
@@ -22,7 +22,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1001;
+  z-index: var(--layer-dialog);
 
   background: var(--bg-secondary);
   border-radius: 20px;

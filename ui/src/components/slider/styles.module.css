@@ -60,8 +60,8 @@
   transition: box-shadow var(--duration-120) var(--ease-out-quad);
 
   &:focus-visible {
-    outline: 2px solid var(--blue-9);
-    outline-offset: 2px;
+    outline: 2px solid var(--focus-ring-color);
+    outline-offset: var(--focus-ring-offset);
   }
 
   &[data-disabled] {

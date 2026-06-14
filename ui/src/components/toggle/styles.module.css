@@ -29,12 +29,19 @@
   }
 
   &:focus-visible {
-    outline: 2px solid var(--blue-9);
-    outline-offset: 2px;
+    outline: 2px solid var(--focus-ring-color);
+    outline-offset: var(--focus-ring-offset);
   }
 
   &:disabled {
     opacity: 0.5;
     pointer-events: none;
+  }
+
+  &[data-width="square"] {
+    width: var(--control-height-md);
+    max-width: var(--control-height-md);
+    padding: 0;
+    flex: none;
   }
 }

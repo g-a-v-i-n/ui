@@ -1,79 +1,52 @@
-import React, { type Ref } from "react";
+import React from "react";
 import { ScrollArea as ScrollAreaPrimitive } from "radix-ui";
 import styles from "./styles.module.css";
 
 export const ScrollAreaCorner = ScrollAreaPrimitive.Corner;
 
-export const ScrollAreaRoot = React.forwardRef(
-  (
-    { className = "", ...props }: ScrollAreaPrimitive.ScrollAreaProps,
-    forwardedRef: Ref<HTMLDivElement> | undefined
-  ) => {
-    return (
-      <ScrollAreaPrimitive.Root
-        {...props}
-        ref={forwardedRef}
-        className={`${styles.root} ${className}`}
-      />
-    );
-  }
-);
+export const ScrollAreaRoot = ({ className = "", ref, ...props }: ScrollAreaPrimitive.ScrollAreaProps & { ref?: React.Ref<HTMLDivElement> }) => {
+  return (
+    <ScrollAreaPrimitive.Root
+      {...props}
+      ref={ref}
+      className={`${styles.root} ${className}`}
+    />
+  );
+};
 
-ScrollAreaRoot.displayName = "ScrollAreaRoot";
+export const ScrollAreaViewport = ({ className = "", ref, ...props }: ScrollAreaPrimitive.ScrollAreaViewportProps & { ref?: React.Ref<HTMLDivElement> }) => {
+  return (
+    <ScrollAreaPrimitive.Viewport
+      {...props}
+      ref={ref}
+      className={`${styles.viewport} ${className}`}
+    />
+  );
+};
 
-export const ScrollAreaViewport = React.forwardRef(
-  (
-    { className = "", ...props }: ScrollAreaPrimitive.ScrollAreaViewportProps,
-    forwardedRef: Ref<HTMLDivElement> | undefined
-  ) => {
-    return (
-      <ScrollAreaPrimitive.Viewport
-        {...props}
-        ref={forwardedRef}
-        className={`${styles.viewport} ${className}`}
-      />
-    );
-  }
-);
+export const ScrollAreaScrollbar = ({
+  className = "",
+  ref,
+  ...props
+}: ScrollAreaPrimitive.ScrollAreaScrollbarProps & { ref?: React.Ref<HTMLDivElement> }) => {
+  return (
+    <ScrollAreaPrimitive.Scrollbar
+      {...props}
+      ref={ref}
+      className={`${styles.scrollbar} ${className}`}
+    />
+  );
+};
 
-ScrollAreaViewport.displayName = "ScrollAreaViewport";
-
-export const ScrollAreaScrollbar = React.forwardRef(
-  (
-    {
-      className = "",
-      ...props
-    }: ScrollAreaPrimitive.ScrollAreaScrollbarProps,
-    forwardedRef: Ref<HTMLDivElement> | undefined
-  ) => {
-    return (
-      <ScrollAreaPrimitive.Scrollbar
-        {...props}
-        ref={forwardedRef}
-        className={`${styles.scrollbar} ${className}`}
-      />
-    );
-  }
-);
-
-ScrollAreaScrollbar.displayName = "ScrollAreaScrollbar";
-
-export const ScrollAreaThumb = React.forwardRef(
-  (
-    { className = "", ...props }: ScrollAreaPrimitive.ScrollAreaThumbProps,
-    forwardedRef: Ref<HTMLDivElement> | undefined
-  ) => {
-    return (
-      <ScrollAreaPrimitive.Thumb
-        {...props}
-        ref={forwardedRef}
-        className={`${styles.thumb} ${className}`}
-      />
-    );
-  }
-);
-
-ScrollAreaThumb.displayName = "ScrollAreaThumb";
+export const ScrollAreaThumb = ({ className = "", ref, ...props }: ScrollAreaPrimitive.ScrollAreaThumbProps & { ref?: React.Ref<HTMLDivElement> }) => {
+  return (
+    <ScrollAreaPrimitive.Thumb
+      {...props}
+      ref={ref}
+      className={`${styles.thumb} ${className}`}
+    />
+  );
+};
 
 export const ScrollArea = ({
   children,
@@ -98,5 +71,3 @@ export const ScrollArea = ({
     </ScrollAreaRoot>
   );
 };
-
-ScrollArea.displayName = "ScrollArea";

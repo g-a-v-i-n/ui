@@ -1,4 +1,4 @@
-import React, { type Ref } from "react";
+import React from "react";
 import { Dialog as DialogPrimitive } from "radix-ui";
 import { Text } from "../text";
 import styles from "./styles.module.css";
@@ -11,94 +11,68 @@ export const DialogTrigger = (props: DialogPrimitive.DialogTriggerProps) => (
   <DialogPrimitive.Trigger asChild {...props} />
 );
 
-export const DialogOverlay = React.forwardRef(
-  (
-    { className = "", ...props }: DialogPrimitive.DialogOverlayProps,
-    forwardedRef: Ref<HTMLDivElement> | undefined
-  ) => {
-    return (
-      <DialogPrimitive.Overlay
+export const DialogOverlay = ({ className = "", ref, ...props }: DialogPrimitive.DialogOverlayProps & { ref?: React.Ref<HTMLDivElement> }) => {
+  return (
+    <DialogPrimitive.Overlay
+      {...props}
+      ref={ref}
+      className={`${styles.overlay} ${className}`}
+    />
+  );
+};
+
+export const DialogContent = ({
+  children,
+  className = "",
+  ref,
+  ...props
+}: DialogPrimitive.DialogContentProps & { ref?: React.Ref<HTMLDivElement> }) => {
+  return (
+    <DialogPrimitive.Portal>
+      <DialogOverlay />
+      <DialogPrimitive.Content
         {...props}
-        ref={forwardedRef}
-        className={`${styles.overlay} ${className}`}
-      />
-    );
-  }
-);
+        ref={ref}
+        className={`${styles.content} ${className}`}
+      >
+        {children}
+      </DialogPrimitive.Content>
+    </DialogPrimitive.Portal>
+  );
+};
 
-DialogOverlay.displayName = "DialogOverlay";
+export const DialogTitle = ({ children, className = "", ref, ...props }: DialogPrimitive.DialogTitleProps & { ref?: React.Ref<HTMLHeadingElement> }) => {
+  return (
+    <DialogPrimitive.Title {...props} ref={ref} asChild>
+      <Text
+        as="h2"
+        size="sm"
+        weight="medium"
+        color="primary"
+        className={`${styles.title} ${className}`}
+      >
+        {children}
+      </Text>
+    </DialogPrimitive.Title>
+  );
+};
 
-export const DialogContent = React.forwardRef(
-  (
-    {
-      children,
-      className = "",
-      ...props
-    }: DialogPrimitive.DialogContentProps,
-    forwardedRef: Ref<HTMLDivElement> | undefined
-  ) => {
-    return (
-      <DialogPrimitive.Portal>
-        <DialogOverlay />
-        <DialogPrimitive.Content
-          {...props}
-          ref={forwardedRef}
-          className={`${styles.content} ${className} dark`}
-        >
-          {children}
-        </DialogPrimitive.Content>
-      </DialogPrimitive.Portal>
-    );
-  }
-);
-
-DialogContent.displayName = "DialogContent";
-
-export const DialogTitle = React.forwardRef(
-  (
-    { children, className = "", ...props }: DialogPrimitive.DialogTitleProps,
-    forwardedRef: Ref<HTMLHeadingElement> | undefined
-  ) => {
-    return (
-      <DialogPrimitive.Title {...props} ref={forwardedRef} asChild>
-        <Text
-          as="h2"
-          size="sm"
-          weight="medium"
-          color="primary"
-          className={`${styles.title} ${className}`}
-        >
-          {children}
-        </Text>
-      </DialogPrimitive.Title>
-    );
-  }
-);
-
-DialogTitle.displayName = "DialogTitle";
-
-export const DialogDescription = React.forwardRef(
-  (
-    {
-      children,
-      className = "",
-      ...props
-    }: DialogPrimitive.DialogDescriptionProps,
-    forwardedRef: Ref<HTMLParagraphElement> | undefined
-  ) => {
-    return (
-      <DialogPrimitive.Description {...props} ref={forwardedRef} asChild>
-        <Text
-          as="p"
-          size="sm"
-          color="secondary"
-          className={`${styles.description} ${className}`}
-        >
-          {children}
-        </Text>
-      </DialogPrimitive.Description>
-    );
-  }
-);
-
-DialogDescription.displayName = "DialogDescription";
+export const DialogDescription = ({
+  children,
+  className = "",
+  ref,
+  ...props
+}: DialogPrimitive.DialogDescriptionProps & { ref?: React.Ref<HTMLParagraphElement> }) => {
+  return (
+    <DialogPrimitive.Description {...props} ref={ref} asChild>
+      <Text
+        as="p"
+        size="sm"
+        color="secondary"
+        className={`${styles.description} ${className}`}
+      >
+        {children}
+      </Text>
+    </DialogPrimitive.Description>
+  );
+};

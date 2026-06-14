@@ -1,0 +1,135 @@
+.anchor {
+  display: inline-flex;
+
+  &[data-width="fill"] {
+    display: flex;
+    width: 100%;
+  }
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  color: var(--fg-tertiary);
+  cursor: pointer;
+  flex: none;
+}
+
+.content {
+  /* Match the menu width to the anchored field. */
+  width: var(--radix-popper-anchor-width);
+  min-width: var(--size-128);
+  max-height: var(--radix-popper-available-height);
+
+  background: var(--bg-primary);
+  border-radius: 12px;
+  corner-shape: var(--corner-shape);
+  box-shadow: var(--shadow-modal);
+
+  z-index: var(--layer-popover);
+  overflow: hidden;
+
+  transform-origin: var(--radix-popper-transform-origin);
+  animation-duration: var(--duration-180);
+  animation-timing-function: var(--ease-out-quad);
+  animation-fill-mode: both;
+
+  &[data-side="top"][data-state="open"] {
+    animation-name: slideUpToOpen;
+  }
+  &[data-side="top"][data-state="closed"] {
+    animation-name: slideUpToClosed;
+  }
+  &[data-side="bottom"][data-state="open"] {
+    animation-name: slideDownToOpen;
+  }
+  &[data-side="bottom"][data-state="closed"] {
+    animation-name: slideDownToClosed;
+  }
+  &[data-state="open"] {
+    animation-name: enterPop;
+  }
+  &[data-state="closed"] {
+    animation-name: exitPop;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: var(--size-4);
+  max-height: inherit;
+  overflow-y: auto;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: var(--size-6);
+  position: relative;
+  height: var(--control-height-md);
+  padding: 0 var(--size-8) 0 var(--size-24);
+  border-radius: 8px;
+  corner-shape: var(--corner-shape);
+
+  color: var(--fg-primary);
+  user-select: none;
+  cursor: pointer;
+
+  transition: background-color var(--duration-120) var(--ease-in-out-quad);
+
+  &[data-active] {
+    background-color: var(--gray-a3);
+    outline: none;
+  }
+
+  &[data-disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+.indicator {
+  position: absolute;
+  left: var(--size-5);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--blue-9);
+}
+
+.empty {
+  padding: var(--size-8) var(--size-8);
+  text-align: center;
+}
+
+@keyframes slideUpToOpen {
+  from { opacity: 0; transform: translateY(3px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes slideUpToClosed {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(3px) scale(0.98); }
+}
+@keyframes slideDownToOpen {
+  from { opacity: 0; transform: translateY(-3px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes slideDownToClosed {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(-3px) scale(0.98); }
+}
+@keyframes enterPop {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes exitPop {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.96); }
+}

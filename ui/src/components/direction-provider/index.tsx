@@ -12,7 +12,5 @@ export const DirectionProvider = ({
   <DirectionPrimitive.Provider dir={dir}>{children}</DirectionPrimitive.Provider>
 );
 
-DirectionProvider.displayName = "DirectionProvider";
-
 export const useDirection: (localDir?: Direction) => Direction =
   DirectionPrimitive.useDirection;

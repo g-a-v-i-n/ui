@@ -1,6 +1,6 @@
-import React, { type Ref } from "react";
+import React from "react";
 import { AlertDialog as AlertDialogPrimitive } from "radix-ui";
-import { Button } from "../button";
+import { Button, type ButtonProps } from "../button";
 import { Text } from "../text";
 import styles from "./styles.module.css";
 
@@ -11,131 +11,99 @@ export const AlertDialogTrigger = (
   props: AlertDialogPrimitive.AlertDialogTriggerProps
 ) => <AlertDialogPrimitive.Trigger asChild {...props} />;
 
-export const AlertDialogOverlay = React.forwardRef(
-  (
-    { className = "", ...props }: AlertDialogPrimitive.AlertDialogOverlayProps,
-    forwardedRef: Ref<HTMLDivElement> | undefined
-  ) => {
-    return (
-      <AlertDialogPrimitive.Overlay
+export const AlertDialogOverlay = ({ className = "", ref, ...props }: AlertDialogPrimitive.AlertDialogOverlayProps & { ref?: React.Ref<HTMLDivElement> }) => {
+  return (
+    <AlertDialogPrimitive.Overlay
+      {...props}
+      ref={ref}
+      className={`${styles.overlay} ${className}`}
+    />
+  );
+};
+
+export const AlertDialogContent = ({
+  children,
+  className = "",
+  ref,
+  ...props
+}: AlertDialogPrimitive.AlertDialogContentProps & { ref?: React.Ref<HTMLDivElement> }) => {
+  return (
+    <AlertDialogPrimitive.Portal>
+      <AlertDialogOverlay />
+      <AlertDialogPrimitive.Content
         {...props}
-        ref={forwardedRef}
-        className={`${styles.overlay} ${className}`}
-      />
-    );
-  }
-);
+        ref={ref}
+        className={`${styles.content} ${className}`}
+      >
+        {children}
+      </AlertDialogPrimitive.Content>
+    </AlertDialogPrimitive.Portal>
+  );
+};
 
-AlertDialogOverlay.displayName = "AlertDialogOverlay";
+export const AlertDialogTitle = ({
+  children,
+  className = "",
+  ref,
+  ...props
+}: AlertDialogPrimitive.AlertDialogTitleProps & { ref?: React.Ref<HTMLHeadingElement> }) => {
+  return (
+    <AlertDialogPrimitive.Title {...props} ref={ref} asChild>
+      <Text
+        as="h2"
+        size="sm"
+        weight="medium"
+        color="primary"
+        className={`${styles.title} ${className}`}
+      >
+        {children}
+      </Text>
+    </AlertDialogPrimitive.Title>
+  );
+};
 
-export const AlertDialogContent = React.forwardRef(
-  (
-    {
-      children,
-      className = "",
-      ...props
-    }: AlertDialogPrimitive.AlertDialogContentProps,
-    forwardedRef: Ref<HTMLDivElement> | undefined
-  ) => {
-    return (
-      <AlertDialogPrimitive.Portal>
-        <AlertDialogOverlay />
-        <AlertDialogPrimitive.Content
-          {...props}
-          ref={forwardedRef}
-          className={`${styles.content} ${className}`}
-        >
-          {children}
-        </AlertDialogPrimitive.Content>
-      </AlertDialogPrimitive.Portal>
-    );
-  }
-);
+export const AlertDialogDescription = ({
+  children,
+  className = "",
+  ref,
+  ...props
+}: AlertDialogPrimitive.AlertDialogDescriptionProps & { ref?: React.Ref<HTMLParagraphElement> }) => {
+  return (
+    <AlertDialogPrimitive.Description {...props} ref={ref} asChild>
+      <Text
+        as="p"
+        size="sm"
+        color="secondary"
+        className={`${styles.description} ${className}`}
+      >
+        {children}
+      </Text>
+    </AlertDialogPrimitive.Description>
+  );
+};
 
-AlertDialogContent.displayName = "AlertDialogContent";
+export const AlertDialogAction = ({
+  children,
+  variant = "primary",
+  ref,
+  ...props
+}: AlertDialogPrimitive.AlertDialogActionProps & {
+  variant?: ButtonProps["variant"];
+} & { ref?: React.Ref<HTMLButtonElement> }) => {
+  return (
+    <AlertDialogPrimitive.Action {...props} ref={ref} asChild>
+      <Button variant={variant}>{children}</Button>
+    </AlertDialogPrimitive.Action>
+  );
+};
 
-export const AlertDialogTitle = React.forwardRef(
-  (
-    {
-      children,
-      className = "",
-      ...props
-    }: AlertDialogPrimitive.AlertDialogTitleProps,
-    forwardedRef: Ref<HTMLHeadingElement> | undefined
-  ) => {
-    return (
-      <AlertDialogPrimitive.Title {...props} ref={forwardedRef} asChild>
-        <Text
-          as="h2"
-          size="sm"
-          weight="medium"
-          color="primary"
-          className={`${styles.title} ${className}`}
-        >
-          {children}
-        </Text>
-      </AlertDialogPrimitive.Title>
-    );
-  }
-);
-
-AlertDialogTitle.displayName = "AlertDialogTitle";
-
-export const AlertDialogDescription = React.forwardRef(
-  (
-    {
-      children,
-      className = "",
-      ...props
-    }: AlertDialogPrimitive.AlertDialogDescriptionProps,
-    forwardedRef: Ref<HTMLParagraphElement> | undefined
-  ) => {
-    return (
-      <AlertDialogPrimitive.Description {...props} ref={forwardedRef} asChild>
-        <Text
-          as="p"
-          size="sm"
-          color="secondary"
-          className={`${styles.description} ${className}`}
-        >
-          {children}
-        </Text>
-      </AlertDialogPrimitive.Description>
-    );
-  }
-);
-
-AlertDialogDescription.displayName = "AlertDialogDescription";
-
-export const AlertDialogAction = React.forwardRef(
-  (
-    { children, ...props }: AlertDialogPrimitive.AlertDialogActionProps,
-    forwardedRef: Ref<HTMLButtonElement> | undefined
-  ) => {
-    return (
-      <AlertDialogPrimitive.Action {...props} ref={forwardedRef} asChild>
-        <Button variant="primary">{children}</Button>
-      </AlertDialogPrimitive.Action>
-    );
-  }
-);
-
-AlertDialogAction.displayName = "AlertDialogAction";
-
-export const AlertDialogCancel = React.forwardRef(
-  (
-    { children, ...props }: AlertDialogPrimitive.AlertDialogCancelProps,
-    forwardedRef: Ref<HTMLButtonElement> | undefined
-  ) => {
-    return (
-      <AlertDialogPrimitive.Cancel {...props} ref={forwardedRef} asChild>
-        <Button variant="secondary">{children}</Button>
-      </AlertDialogPrimitive.Cancel>
-    );
-  }
-);
-
-AlertDialogCancel.displayName = "AlertDialogCancel";
+export const AlertDialogCancel = ({ children, ref, ...props }: AlertDialogPrimitive.AlertDialogCancelProps & { ref?: React.Ref<HTMLButtonElement> }) => {
+  return (
+    <AlertDialogPrimitive.Cancel {...props} ref={ref} asChild>
+      <Button variant="secondary">{children}</Button>
+    </AlertDialogPrimitive.Cancel>
+  );
+};
 
 export const AlertDialogFooter = ({
   children,
@@ -148,5 +116,3 @@ export const AlertDialogFooter = ({
     </div>
   );
 };
-
-AlertDialogFooter.displayName = "AlertDialogFooter";

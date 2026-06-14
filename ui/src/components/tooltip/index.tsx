@@ -1,5 +1,6 @@
 import { Tooltip as TooltipPrimitive } from "radix-ui";
-import { Arrow } from "../arrow";
+
+import { MenuArrow } from "../menu-primitives";
 import { Text } from "../text";
 import styles from "./styles.module.css";
 
@@ -28,7 +29,7 @@ export function Tooltip({
   side = "top",
   align = "center",
   collisionPadding = 12,
-  sideOffset = 8,
+  sideOffset = 4,
   onEscapeKeyDown,
   onPointerDownOutside,
   ...props
@@ -54,7 +55,7 @@ export function Tooltip({
         <Text as="div" size="xs" className={styles.content}>
           {content}
           <TooltipPrimitive.Arrow asChild>
-            <Arrow />
+            <MenuArrow />
           </TooltipPrimitive.Arrow>
         </Text>
       </TooltipPrimitive.Content>

@@ -15,6 +15,7 @@ type TextProps = {
   color?: Color;
   truncate?: boolean;
   tabularNumbers?: boolean;
+  mono?: boolean;
   transform?: Transform;
   decoration?: Decoration;
   className?: string;
@@ -28,6 +29,7 @@ export function Text({
   color = "inherit",
   truncate = false,
   tabularNumbers = false,
+  mono = false,
   transform,
   decoration,
   className = "",
@@ -41,6 +43,7 @@ export function Text({
       data-color={color}
       data-truncate={truncate || undefined}
       data-tabular={tabularNumbers || undefined}
+      data-mono={mono || undefined}
       data-transform={transform}
       data-decoration={decoration}
       className={`${styles.text} ${className}`}

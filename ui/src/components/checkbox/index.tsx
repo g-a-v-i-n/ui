@@ -19,7 +19,7 @@ export const Checkbox = ({
       id={id}
     >
       <CheckboxPrimitive.Indicator className={styles.indicator}>
-        <SFSymbol symbol="✓" size="md"/>
+        <SFSymbol symbol="✓" size="md" weight="semibold" />
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>
   );

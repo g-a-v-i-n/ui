@@ -1,5 +1,5 @@
 .content {
-  z-index: 999;
+  z-index: var(--layer-tooltip);
   pointer-events: all;
   position: relative;
   padding: var(--size-6) var(--size-8);
@@ -17,7 +17,7 @@
 
   code,
   pre {
-    font-weight: 400;
+    font-weight: var(--font-weight-normal);
     font-family: var(--font-monospace);
     background: var(--gray-3);
     padding: var(--size-2) var(--size-4);
@@ -26,7 +26,7 @@
   }
 
   strong {
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
   }
 
   a {

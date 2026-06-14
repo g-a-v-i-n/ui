@@ -7,4 +7,5 @@
   text-align: center;
   flex-shrink: 0;
   text-box-trim: trim-both;
+  user-select: none;
 }

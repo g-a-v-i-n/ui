@@ -1,6 +1,7 @@
-import React, { type Ref } from "react";
+import React from "react";
 import { Popover as PopoverPrimitive } from "radix-ui";
-import { Arrow } from "../arrow";
+
+import { MenuArrow } from "../menu-primitives";
 import styles from "./styles.module.css";
 
 export const PopoverRoot = PopoverPrimitive.Root;
@@ -12,48 +13,38 @@ export const PopoverTrigger = (props: PopoverPrimitive.PopoverTriggerProps) => (
   <PopoverPrimitive.Trigger asChild {...props} />
 );
 
-export const PopoverArrow = React.forwardRef(
-  (
-    props: PopoverPrimitive.PopoverArrowProps,
-    forwardedRef: Ref<SVGSVGElement> | undefined
-  ) => {
-    return (
-      <PopoverPrimitive.Arrow asChild {...props} ref={forwardedRef}>
-        <Arrow />
-      </PopoverPrimitive.Arrow>
-    );
-  }
-);
+export const PopoverArrow = ({
+  ref,
+  ...props
+}: PopoverPrimitive.PopoverArrowProps & { ref?: React.Ref<SVGSVGElement> }) => {
+  return (
+    <PopoverPrimitive.Arrow asChild {...props} ref={ref}>
+      <MenuArrow />
+    </PopoverPrimitive.Arrow>
+  );
+};
 
-PopoverArrow.displayName = "PopoverArrow";
-
-export const PopoverContent = React.forwardRef(
-  (
-    {
-      children,
-      className = "",
-      sideOffset = 8,
-      collisionPadding = 12,
-      ...props
-    }: PopoverPrimitive.PopoverContentProps,
-    forwardedRef: Ref<HTMLDivElement> | undefined
-  ) => {
-    return (
-      <PopoverPrimitive.Portal>
-        <PopoverPrimitive.Content
-          sideOffset={sideOffset}
-          collisionPadding={collisionPadding}
-          arrowPadding={6}
-          {...props}
-          ref={forwardedRef}
-          className={`${styles.content} ${className}`}
-        >
-          {children}
-          <PopoverArrow />
-        </PopoverPrimitive.Content>
-      </PopoverPrimitive.Portal>
-    );
-  }
-);
-
-PopoverContent.displayName = "PopoverContent";
+export const PopoverContent = ({
+  children,
+  className = "",
+  sideOffset = 8,
+  collisionPadding = 12,
+  ref,
+  ...props
+}: PopoverPrimitive.PopoverContentProps & { ref?: React.Ref<HTMLDivElement> }) => {
+  return (
+    <PopoverPrimitive.Portal>
+      <PopoverPrimitive.Content
+        sideOffset={sideOffset}
+        collisionPadding={collisionPadding}
+        arrowPadding={6}
+        {...props}
+        ref={ref}
+        className={`${styles.content} ${className}`}
+      >
+        {children}
+        <PopoverArrow />
+      </PopoverPrimitive.Content>
+    </PopoverPrimitive.Portal>
+  );
+};

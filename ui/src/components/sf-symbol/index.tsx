@@ -2,6 +2,7 @@ import { AccessibleIcon as AccessibleIconPrimitive } from "radix-ui";
 import styles from "./styles.module.css";
 
 const sizes = {
+  xs: 11,
   sm: 13,
   md: 15,
   lg: 18,
@@ -34,7 +35,7 @@ export function SFSymbol({
   symbol,
   label,
   size = "md",
-  weight = "regular",
+  weight = "medium",
   className,
   style,
 }: SFSymbolProps) {

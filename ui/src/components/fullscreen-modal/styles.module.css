@@ -1,0 +1,70 @@
+/* Fullscreen takeover — the "overlay" is an opaque app-background surface
+   rather than a scrim, with the content layered above it. */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-base);
+  z-index: var(--layer-dialog-overlay);
+
+  animation-duration: var(--duration-180);
+  animation-timing-function: var(--ease-out-quad);
+  animation-fill-mode: both;
+
+  &[data-state="open"] {
+    animation-name: modalFadeIn;
+  }
+
+  &[data-state="closed"] {
+    animation-name: modalFadeOut;
+  }
+}
+
+.content {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: var(--layer-dialog);
+
+  animation-duration: var(--duration-180);
+  animation-timing-function: var(--ease-out-quad);
+  animation-fill-mode: both;
+
+  &:focus {
+    outline: none;
+  }
+
+  &[data-state="open"] {
+    animation-name: modalFadeIn;
+  }
+
+  &[data-state="closed"] {
+    animation-name: modalFadeOut;
+  }
+}
+
+.close {
+  position: absolute;
+  top: var(--size-12);
+  left: var(--size-12);
+  z-index: 1;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

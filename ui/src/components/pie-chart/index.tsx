@@ -22,16 +22,16 @@ export const PieChart = ({
       style={style}
     >
       <circle
-        cx={SIZE / 2}
-        cy={SIZE / 2}
+        cx={"50%"}
+        cy={"50%"}
         r={CIRCUMFERENCE}
         fill="transparent"
         strokeWidth={STROKE}
         className={styles.track}
       />
       <circle
-        cx={SIZE / 2}
-        cy={SIZE / 2}
+        cx={"50%"}
+        cy={"50%"}
         r={CIRCUMFERENCE}
         fill="transparent"
         strokeWidth={STROKE + 4}

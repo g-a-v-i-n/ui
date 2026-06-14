@@ -1,4 +1,4 @@
-import React, { type Ref } from "react";
+import React from "react";
 import { HoverCard as HoverCardPrimitive } from "radix-ui";
 import styles from "./styles.module.css";
 
@@ -20,35 +20,29 @@ export const HoverCardTrigger = (
   props: HoverCardPrimitive.HoverCardTriggerProps
 ) => <HoverCardPrimitive.Trigger asChild {...props} />;
 
-export const HoverCardContent = React.forwardRef(
-  (
-    {
-      children,
-      className = "",
-      sideOffset = 6,
-      collisionPadding = 12,
-      width = "auto",
-      ...props
-    }: HoverCardPrimitive.HoverCardContentProps & {
-      width?: "sm" | "md" | "lg" | "auto";
-    },
-    forwardedRef: Ref<HTMLDivElement> | undefined
-  ) => {
-    return (
-      <HoverCardPrimitive.Portal>
-        <HoverCardPrimitive.Content
-          sideOffset={sideOffset}
-          collisionPadding={collisionPadding}
-          {...props}
-          ref={forwardedRef}
-          data-width={width}
-          className={`${styles.content} ${className}`}
-        >
-          {children}
-        </HoverCardPrimitive.Content>
-      </HoverCardPrimitive.Portal>
-    );
-  }
-);
-
-HoverCardContent.displayName = "HoverCardContent";
+export const HoverCardContent = ({
+  children,
+  className = "",
+  sideOffset = 6,
+  collisionPadding = 12,
+  width = "auto",
+  ref,
+  ...props
+}: HoverCardPrimitive.HoverCardContentProps & {
+  width?: "sm" | "md" | "lg" | "auto";
+} & { ref?: React.Ref<HTMLDivElement> }) => {
+  return (
+    <HoverCardPrimitive.Portal>
+      <HoverCardPrimitive.Content
+        sideOffset={sideOffset}
+        collisionPadding={collisionPadding}
+        {...props}
+        ref={ref}
+        data-width={width}
+        className={`${styles.content} ${className}`}
+      >
+        {children}
+      </HoverCardPrimitive.Content>
+    </HoverCardPrimitive.Portal>
+  );
+};

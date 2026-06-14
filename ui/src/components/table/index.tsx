@@ -1,158 +1,108 @@
-import React, { type Ref } from "react";
+import React from "react";
 import styles from "./styles.module.css";
 
-export const TableRoot = React.forwardRef(
-  (
-    { className = "", ...props }: React.TableHTMLAttributes<HTMLTableElement>,
-    forwardedRef: Ref<HTMLTableElement> | undefined
-  ) => {
-    return (
-      <table
-        {...props}
-        ref={forwardedRef}
-        className={`${styles.table} ${className}`}
-      />
-    );
-  }
-);
+export const TableRoot = ({ className = "", ref, ...props }: React.TableHTMLAttributes<HTMLTableElement> & { ref?: React.Ref<HTMLTableElement> }) => {
+  return (
+    <table
+      {...props}
+      ref={ref}
+      className={`${styles.table} ${className}`}
+    />
+  );
+};
 
-TableRoot.displayName = "TableRoot";
+export const TableHeader = ({
+  className = "",
+  ref,
+  ...props
+}: React.HTMLAttributes<HTMLTableSectionElement> & { ref?: React.Ref<HTMLTableSectionElement> }) => {
+  return (
+    <thead
+      {...props}
+      ref={ref}
+      className={`${styles.header} ${className}`}
+    />
+  );
+};
 
-export const TableHeader = React.forwardRef(
-  (
-    {
-      className = "",
-      ...props
-    }: React.HTMLAttributes<HTMLTableSectionElement>,
-    forwardedRef: Ref<HTMLTableSectionElement> | undefined
-  ) => {
-    return (
-      <thead
-        {...props}
-        ref={forwardedRef}
-        className={`${styles.header} ${className}`}
-      />
-    );
-  }
-);
+export const TableBody = ({
+  className = "",
+  ref,
+  ...props
+}: React.HTMLAttributes<HTMLTableSectionElement> & { ref?: React.Ref<HTMLTableSectionElement> }) => {
+  return (
+    <tbody
+      {...props}
+      ref={ref}
+      className={`${styles.body} ${className}`}
+    />
+  );
+};
 
-TableHeader.displayName = "TableHeader";
+export const TableFooter = ({
+  className = "",
+  ref,
+  ...props
+}: React.HTMLAttributes<HTMLTableSectionElement> & { ref?: React.Ref<HTMLTableSectionElement> }) => {
+  return (
+    <tfoot
+      {...props}
+      ref={ref}
+      className={`${styles.footer} ${className}`}
+    />
+  );
+};
 
-export const TableBody = React.forwardRef(
-  (
-    {
-      className = "",
-      ...props
-    }: React.HTMLAttributes<HTMLTableSectionElement>,
-    forwardedRef: Ref<HTMLTableSectionElement> | undefined
-  ) => {
-    return (
-      <tbody
-        {...props}
-        ref={forwardedRef}
-        className={`${styles.body} ${className}`}
-      />
-    );
-  }
-);
+export const TableRow = ({
+  className = "",
+  selected = false,
+  ref,
+  ...props
+}: React.HTMLAttributes<HTMLTableRowElement> & { selected?: boolean } & { ref?: React.Ref<HTMLTableRowElement> }) => {
+  return (
+    <tr
+      {...props}
+      ref={ref}
+      data-selected={selected || undefined}
+      className={`${styles.row} ${className}`}
+    />
+  );
+};
 
-TableBody.displayName = "TableBody";
+export const TableHead = ({
+  className = "",
+  ref,
+  ...props
+}: React.ThHTMLAttributes<HTMLTableCellElement> & { ref?: React.Ref<HTMLTableCellElement> }) => {
+  return (
+    <th
+      {...props}
+      ref={ref}
+      className={`${styles.head} ${className}`}
+    />
+  );
+};
 
-export const TableFooter = React.forwardRef(
-  (
-    {
-      className = "",
-      ...props
-    }: React.HTMLAttributes<HTMLTableSectionElement>,
-    forwardedRef: Ref<HTMLTableSectionElement> | undefined
-  ) => {
-    return (
-      <tfoot
-        {...props}
-        ref={forwardedRef}
-        className={`${styles.footer} ${className}`}
-      />
-    );
-  }
-);
+export const TableCell = ({
+  className = "",
+  ref,
+  ...props
+}: React.TdHTMLAttributes<HTMLTableCellElement> & { ref?: React.Ref<HTMLTableCellElement> }) => {
+  return (
+    <td
+      {...props}
+      ref={ref}
+      className={`${styles.cell} ${className}`}
+    />
+  );
+};
 
-TableFooter.displayName = "TableFooter";
-
-export const TableRow = React.forwardRef(
-  (
-    {
-      className = "",
-      selected = false,
-      ...props
-    }: React.HTMLAttributes<HTMLTableRowElement> & { selected?: boolean },
-    forwardedRef: Ref<HTMLTableRowElement> | undefined
-  ) => {
-    return (
-      <tr
-        {...props}
-        ref={forwardedRef}
-        data-selected={selected || undefined}
-        className={`${styles.row} ${className}`}
-      />
-    );
-  }
-);
-
-TableRow.displayName = "TableRow";
-
-export const TableHead = React.forwardRef(
-  (
-    {
-      className = "",
-      ...props
-    }: React.ThHTMLAttributes<HTMLTableCellElement>,
-    forwardedRef: Ref<HTMLTableCellElement> | undefined
-  ) => {
-    return (
-      <th
-        {...props}
-        ref={forwardedRef}
-        className={`${styles.head} ${className}`}
-      />
-    );
-  }
-);
-
-TableHead.displayName = "TableHead";
-
-export const TableCell = React.forwardRef(
-  (
-    {
-      className = "",
-      ...props
-    }: React.TdHTMLAttributes<HTMLTableCellElement>,
-    forwardedRef: Ref<HTMLTableCellElement> | undefined
-  ) => {
-    return (
-      <td
-        {...props}
-        ref={forwardedRef}
-        className={`${styles.cell} ${className}`}
-      />
-    );
-  }
-);
-
-TableCell.displayName = "TableCell";
-
-export const TableCaption = React.forwardRef(
-  (
-    { className = "", ...props }: React.HTMLAttributes<HTMLTableCaptionElement>,
-    forwardedRef: Ref<HTMLTableCaptionElement> | undefined
-  ) => {
-    return (
-      <caption
-        {...props}
-        ref={forwardedRef}
-        className={`${styles.caption} ${className}`}
-      />
-    );
-  }
-);
-
-TableCaption.displayName = "TableCaption";
+export const TableCaption = ({ className = "", ref, ...props }: React.HTMLAttributes<HTMLTableCaptionElement> & { ref?: React.Ref<HTMLTableCaptionElement> }) => {
+  return (
+    <caption
+      {...props}
+      ref={ref}
+      className={`${styles.caption} ${className}`}
+    />
+  );
+};

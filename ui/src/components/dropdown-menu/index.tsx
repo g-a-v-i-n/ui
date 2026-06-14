@@ -1,9 +1,9 @@
-import React, { type Ref } from "react";
+import React from "react";
 import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
 import styles from "./styles.module.css";
-import { Arrow } from "../arrow";
+
 import { SFSymbol } from "../sf-symbol";
-import { MenuContainer, MenuGroup, MenuItem, MenuLabel } from "../menu-primitives";
+import { MenuArrow, MenuContainer, MenuGroup, MenuItem, MenuLabel } from "../menu-primitives";
 
 export const DropdownMenuRoot = DropdownMenuPrimitive.Root;
 export const DropdownMenuPortal = DropdownMenuPrimitive.Portal;
@@ -13,118 +13,85 @@ export const DropdownMenuTrigger = (
 export const DropdownMenuSeparator = DropdownMenuPrimitive.Separator;
 export const DropdownMenuSub = DropdownMenuPrimitive.Sub;
 
-export const DropdownMenuContent = React.forwardRef(
-  (
-    {
-      children,
-      collisionPadding = 8,
-      className = "",
-      width,
-      ...props
-    }: DropdownMenuPrimitive.DropdownMenuContentProps & {
-      width?: "sm" | "md" | "lg" | "auto";
-    },
-    forwardedRef: Ref<HTMLDivElement> | undefined
-  ) => {
-    return (
-      <DropdownMenuPrimitive.Portal>
-        <DropdownMenuPrimitive.Content
-          sideOffset={-4}
-          collisionPadding={collisionPadding}
-          arrowPadding={6}
-          {...props}
-          ref={forwardedRef}
-          asChild
-        >
-          <MenuContainer
-            width={width}
-            className={`${styles.animation} ${className}`}
-          >
-            {children}
-          </MenuContainer>
-        </DropdownMenuPrimitive.Content>
-      </DropdownMenuPrimitive.Portal>
-    );
-  }
-);
-
-DropdownMenuContent.displayName = "DropdownMenuContent";
-
-export const DropdownMenuArrow = React.forwardRef(
-  (
-    { ...props }: DropdownMenuPrimitive.DropdownMenuArrowProps,
-    forwardedRef: Ref<SVGSVGElement> | undefined
-  ) => {
-    return (
-      <DropdownMenuPrimitive.Arrow asChild {...props} ref={forwardedRef}>
-        <Arrow />
-      </DropdownMenuPrimitive.Arrow>
-    );
-  }
-);
-
-DropdownMenuArrow.displayName = "DropdownMenuArrow";
-
-export const DropdownMenuLabel = React.forwardRef(
-  (
-    { children, ...props }: DropdownMenuPrimitive.DropdownMenuLabelProps,
-    forwardedRef: Ref<HTMLDivElement> | undefined
-  ) => {
-    return (
-      <DropdownMenuPrimitive.Label
+export const DropdownMenuContent = ({
+  children,
+  collisionPadding = 8,
+  className = "",
+  width,
+  ref,
+  ...props
+}: DropdownMenuPrimitive.DropdownMenuContentProps & {
+  width?: "sm" | "md" | "lg" | "auto";
+} & { ref?: React.Ref<HTMLDivElement> }) => {
+  return (
+    <DropdownMenuPrimitive.Portal>
+      <DropdownMenuPrimitive.Content
+        sideOffset={-4}
+        collisionPadding={collisionPadding}
+        arrowPadding={6}
         {...props}
-        className={styles.label}
-        ref={forwardedRef}
+        ref={ref}
         asChild
       >
-        <MenuLabel>{children}</MenuLabel>
-      </DropdownMenuPrimitive.Label>
-    );
-  }
-);
-
-DropdownMenuLabel.displayName = "DropdownMenuLabel";
-
-export const DropdownMenuItem = React.forwardRef(
-  (
-    {
-      children,
-      suffixSlot,
-      prefixSlot,
-      ...props
-    }: {
-      children: React.ReactNode;
-      suffixSlot?: React.ReactNode;
-      prefixSlot?: React.ReactNode;
-    } & DropdownMenuPrimitive.DropdownMenuItemProps,
-    forwardedRef: Ref<HTMLDivElement> | undefined
-  ) => {
-    return (
-      <DropdownMenuPrimitive.Item {...props} ref={forwardedRef} asChild>
-        <MenuItem suffixSlot={suffixSlot} prefixSlot={prefixSlot}>
+        <MenuContainer
+          width={width}
+          className={`${styles.animation} ${className}`}
+        >
           {children}
-        </MenuItem>
-      </DropdownMenuPrimitive.Item>
-    );
-  }
-);
+        </MenuContainer>
+      </DropdownMenuPrimitive.Content>
+    </DropdownMenuPrimitive.Portal>
+  );
+};
 
-DropdownMenuItem.displayName = "DropdownMenuItem";
+export const DropdownMenuArrow = ({ ref, ...props }: DropdownMenuPrimitive.DropdownMenuArrowProps & { ref?: React.Ref<SVGSVGElement> }) => {
+  return (
+    <DropdownMenuPrimitive.Arrow asChild {...props} ref={ref}>
+      <MenuArrow />
+    </DropdownMenuPrimitive.Arrow>
+  );
+};
 
-export const DropdownMenuGroup = React.forwardRef(
-  (
-    { children, ...props }: DropdownMenuPrimitive.DropdownMenuGroupProps,
-    forwardedRef: Ref<HTMLDivElement> | undefined
-  ) => {
-    return (
-      <DropdownMenuPrimitive.Group {...props} ref={forwardedRef} asChild>
-        <MenuGroup>{children}</MenuGroup>
-      </DropdownMenuPrimitive.Group>
-    );
-  }
-);
+export const DropdownMenuLabel = ({ children, ref, ...props }: DropdownMenuPrimitive.DropdownMenuLabelProps & { ref?: React.Ref<HTMLDivElement> }) => {
+  return (
+    <DropdownMenuPrimitive.Label
+      {...props}
+      className={styles.label}
+      ref={ref}
+      asChild
+    >
+      <MenuLabel>{children}</MenuLabel>
+    </DropdownMenuPrimitive.Label>
+  );
+};
 
-DropdownMenuGroup.displayName = "DropdownMenuGroup";
+export const DropdownMenuItem = ({
+  children,
+  suffixSlot,
+  prefixSlot,
+  ref,
+  ...props
+}: {
+  children: React.ReactNode;
+  suffixSlot?: React.ReactNode;
+  prefixSlot?: React.ReactNode;
+} & DropdownMenuPrimitive.DropdownMenuItemProps & { ref?: React.Ref<HTMLDivElement> }) => {
+  return (
+    <DropdownMenuPrimitive.Item {...props} ref={ref} asChild>
+      <MenuItem suffixSlot={suffixSlot} prefixSlot={prefixSlot}>
+        {children}
+      </MenuItem>
+    </DropdownMenuPrimitive.Item>
+  );
+};
+
+export const DropdownMenuGroup = ({ children, ref, ...props }: DropdownMenuPrimitive.DropdownMenuGroupProps & { ref?: React.Ref<HTMLDivElement> }) => {
+  return (
+    <DropdownMenuPrimitive.Group {...props} ref={ref} asChild>
+      <MenuGroup>{children}</MenuGroup>
+    </DropdownMenuPrimitive.Group>
+  );
+};
 
 export type DropdownMenuCheckboxItemProps =
   DropdownMenuPrimitive.DropdownMenuCheckboxItemProps & {
@@ -133,12 +100,15 @@ export type DropdownMenuCheckboxItemProps =
     children: React.ReactNode;
   };
 
-export const DropdownMenuCheckboxItem = React.forwardRef<
-  HTMLDivElement,
-  DropdownMenuCheckboxItemProps
->(({ children, prefixSlot, suffixSlot, ...props }, forwardedRef) => {
+export const DropdownMenuCheckboxItem = ({
+  children,
+  prefixSlot,
+  suffixSlot,
+  ref,
+  ...props
+}: DropdownMenuCheckboxItemProps & { ref?: React.Ref<HTMLDivElement> }) => {
   return (
-    <DropdownMenuPrimitive.CheckboxItem ref={forwardedRef} {...props} asChild>
+    <DropdownMenuPrimitive.CheckboxItem ref={ref} {...props} asChild>
       <MenuItem
         className={styles.checkboxItem}
         prefixSlot={
@@ -155,109 +125,90 @@ export const DropdownMenuCheckboxItem = React.forwardRef<
       </MenuItem>
     </DropdownMenuPrimitive.CheckboxItem>
   );
-});
+};
 
-DropdownMenuCheckboxItem.displayName = "DropdownMenuCheckboxItem";
-
-export const DropdownMenuRadioGroup = React.forwardRef<
-  HTMLDivElement,
-  DropdownMenuPrimitive.DropdownMenuRadioGroupProps
->(({ children, ...props }, forwardedRef) => {
+export const DropdownMenuRadioGroup = ({
+  children,
+  ref,
+  ...props
+}: DropdownMenuPrimitive.DropdownMenuRadioGroupProps & {
+  ref?: React.Ref<HTMLDivElement>;
+}) => {
   return (
-    <DropdownMenuPrimitive.RadioGroup {...props} ref={forwardedRef} asChild>
+    <DropdownMenuPrimitive.RadioGroup {...props} ref={ref} asChild>
       <MenuGroup>{children}</MenuGroup>
     </DropdownMenuPrimitive.RadioGroup>
   );
-});
+};
 
-DropdownMenuRadioGroup.displayName = "DropdownMenuRadioGroup";
+export const DropdownMenuRadioItem = ({
+  children,
+  suffixSlot,
+  prefixSlot,
+  ref,
+  ...props
+}: {
+  children: React.ReactNode;
+  suffixSlot?: React.ReactNode;
+  prefixSlot?: React.ReactNode;
+} & DropdownMenuPrimitive.DropdownMenuRadioItemProps & { ref?: React.Ref<HTMLDivElement> }) => {
+  return (
+    <DropdownMenuPrimitive.RadioItem {...props} ref={ref} asChild>
+      <MenuItem suffixSlot={suffixSlot} prefixSlot={prefixSlot}>
+        {children}
+      </MenuItem>
+    </DropdownMenuPrimitive.RadioItem>
+  );
+};
 
-export const DropdownMenuRadioItem = React.forwardRef(
-  (
-    {
-      children,
-      suffixSlot,
-      prefixSlot,
-      ...props
-    }: {
-      children: React.ReactNode;
-      suffixSlot?: React.ReactNode;
-      prefixSlot?: React.ReactNode;
-    } & DropdownMenuPrimitive.DropdownMenuRadioItemProps,
-    forwardedRef: React.ForwardedRef<HTMLDivElement>
-  ) => {
-    return (
-      <DropdownMenuPrimitive.RadioItem {...props} ref={forwardedRef} asChild>
-        <MenuItem suffixSlot={suffixSlot} prefixSlot={prefixSlot}>
-          {children}
-        </MenuItem>
-      </DropdownMenuPrimitive.RadioItem>
-    );
-  }
-);
+export const DropdownMenuSubTrigger = ({
+  children,
+  suffixSlot,
+  prefixSlot,
+  ref,
+  ...props
+}: {
+  children: React.ReactNode;
+  suffixSlot?: React.ReactNode;
+  prefixSlot?: React.ReactNode;
+} & DropdownMenuPrimitive.DropdownMenuSubTriggerProps & { ref?: React.Ref<HTMLDivElement> }) => {
+  return (
+    <DropdownMenuPrimitive.SubTrigger {...props} ref={ref} asChild>
+      <MenuItem
+        suffixSlot={suffixSlot ?? <SFSymbol symbol="􀆊" size="xs" weight="semibold" />}
+        prefixSlot={prefixSlot}
+      >
+        {children}
+      </MenuItem>
+    </DropdownMenuPrimitive.SubTrigger>
+  );
+};
 
-DropdownMenuRadioItem.displayName = "DropdownMenuRadioItem";
-
-export const DropdownMenuSubTrigger = React.forwardRef(
-  (
-    {
-      children,
-      suffixSlot,
-      prefixSlot,
-      ...props
-    }: {
-      children: React.ReactNode;
-      suffixSlot?: React.ReactNode;
-      prefixSlot?: React.ReactNode;
-    } & DropdownMenuPrimitive.DropdownMenuSubTriggerProps,
-    forwardedRef: Ref<HTMLDivElement> | undefined
-  ) => {
-    return (
-      <DropdownMenuPrimitive.SubTrigger {...props} ref={forwardedRef} asChild>
-        <MenuItem
-          suffixSlot={suffixSlot ?? <SFSymbol symbol="􀆈" style={{ transform: "rotate(-90deg)" }} />}
-          prefixSlot={prefixSlot}
+export const DropdownMenuSubContent = ({
+  children,
+  width,
+  className = "",
+  ref,
+  ...props
+}: DropdownMenuPrimitive.DropdownMenuSubContentProps & {
+  width?: "sm" | "md" | "lg" | "auto";
+} & { ref?: React.Ref<HTMLDivElement> }) => {
+  return (
+    <DropdownMenuPrimitive.Portal>
+      <DropdownMenuPrimitive.SubContent
+        sideOffset={2}
+        alignOffset={-3}
+        {...props}
+        ref={ref}
+        asChild
+      >
+        <MenuContainer
+          width={width}
+          className={`${styles.animation} ${className}`}
         >
           {children}
-        </MenuItem>
-      </DropdownMenuPrimitive.SubTrigger>
-    );
-  }
-);
-
-DropdownMenuSubTrigger.displayName = "DropdownMenuSubTrigger";
-
-export const DropdownMenuSubContent = React.forwardRef(
-  (
-    {
-      children,
-      width,
-      className = "",
-      ...props
-    }: DropdownMenuPrimitive.DropdownMenuSubContentProps & {
-      width?: "sm" | "md" | "lg" | "auto";
-    },
-    forwardedRef: Ref<HTMLDivElement> | undefined
-  ) => {
-    return (
-      <DropdownMenuPrimitive.Portal>
-        <DropdownMenuPrimitive.SubContent
-          sideOffset={2}
-          alignOffset={-5}
-          {...props}
-          ref={forwardedRef}
-          asChild
-        >
-          <MenuContainer
-            width={width}
-            className={`${styles.animation} ${className}`}
-          >
-            {children}
-          </MenuContainer>
-        </DropdownMenuPrimitive.SubContent>
-      </DropdownMenuPrimitive.Portal>
-    );
-  }
-);
-
-DropdownMenuSubContent.displayName = "DropdownMenuSubContent";
+        </MenuContainer>
+      </DropdownMenuPrimitive.SubContent>
+    </DropdownMenuPrimitive.Portal>
+  );
+};

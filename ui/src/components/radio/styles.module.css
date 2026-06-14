@@ -33,4 +33,39 @@
   height: var(--size-8);
   border-radius: 50%;
   background-color: #fff;
+
+  animation-timing-function: var(--ease-out-quad);
+  animation-fill-mode: both;
+
+  &[data-state="checked"] {
+    animation-name: checkIn;
+    animation-duration: var(--duration-180);
+  }
+
+  &[data-state="unchecked"] {
+    animation-name: checkOut;
+    animation-duration: var(--duration-120);
+  }
+}
+
+@keyframes checkIn {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes checkOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.4);
+  }
 }
