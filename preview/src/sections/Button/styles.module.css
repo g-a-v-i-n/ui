@@ -1,0 +1,10 @@
+.fillBox {
+  width: 320px;
+}
+
+.sizeRow {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+}

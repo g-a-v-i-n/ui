@@ -1,0 +1,31 @@
+.container {
+  width: 100%;
+  height: 280px;
+  box-shadow: var(--shadow-card);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.paneSecondary {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-secondary);
+}
+
+.panePrimary {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+}
+
+.paneTertiary {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-tertiary);
+}

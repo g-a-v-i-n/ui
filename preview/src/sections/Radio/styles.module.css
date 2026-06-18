@@ -1,0 +1,12 @@
+.option {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.optionDisabled {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.6;
+}

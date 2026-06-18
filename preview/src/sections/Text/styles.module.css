@@ -1,0 +1,22 @@
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.truncateBox {
+  width: 200px;
+  border: 1px dashed var(--gray-7, #ccc);
+  padding: 8px;
+}
+
+.row {
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+}
+
+.blueParent {
+  color: var(--blue-9);
+}

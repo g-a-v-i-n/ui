@@ -1,0 +1,11 @@
+.wrap {
+  width: 360px;
+}
+
+.slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  color: #fff;
+}

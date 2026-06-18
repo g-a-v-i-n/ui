@@ -1,9 +1,4 @@
-body {
-  margin: 0;
-  font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
-  background: var(--bg-base, #fff);
-  /* color: var(--gray-12, #111); */
-}
+
 
 .page {
   max-width: 880px;
@@ -55,27 +50,4 @@ body {
   gap: 16px;
   align-items: center;
   flex-wrap: wrap;
-}
-
-.context-target {
-  padding: 24px 32px;
-  border: 1px dashed var(--gray-7, #bbb);
-  border-radius: 6px;
-  font-size: 13px;
-  color: var(--gray-11, #555);
-  user-select: none;
-}
-
-button {
-  font: inherit;
-  padding: 6px 12px;
-  border-radius: 6px;
-  border: 1px solid var(--gray-7, #bbb);
-  background: var(--gray-2, #f7f7f7);
-  color: inherit;
-  cursor: pointer;
-}
-
-button:hover {
-  background: var(--gray-3, #efefef);
 }

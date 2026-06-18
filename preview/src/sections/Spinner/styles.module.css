@@ -1,0 +1,4 @@
+.blueSpinner {
+  color: var(--blue-9);
+  display: inline-flex;
+}

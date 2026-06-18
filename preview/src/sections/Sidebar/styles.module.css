@@ -1,0 +1,16 @@
+.container {
+  height: 380px;
+  display: flex;
+  box-shadow: var(--shadow-card);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.preview {
+  flex: 1;
+  min-width: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+}
