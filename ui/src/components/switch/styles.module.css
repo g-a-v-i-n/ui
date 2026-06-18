@@ -13,6 +13,7 @@
 
 .track[data-state="checked"] {
   background: var(--blue-9);
+  background-image: var(--gradient-accent);
 }
 
 .track[data-disabled] {

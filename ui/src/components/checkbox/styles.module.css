@@ -18,6 +18,7 @@
 
   &[data-state="checked"] {
     background-color: var(--blue-9);
+    background-image: var(--gradient-accent);
   }
 
   &[data-state="unchecked"] {

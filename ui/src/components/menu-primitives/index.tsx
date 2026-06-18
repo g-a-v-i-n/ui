@@ -157,10 +157,10 @@ export const MenuListItem = ({
 }) => {
   return (
     <div className={`${className} ${styles.listItem}`} {...props}>
-      <Text size="sm" color="secondary" className={styles.listItemLabel}>
+      <Text size="xs" color="secondary" className={styles.listItemLabel}>
         {label}
       </Text>
-      <Text size="sm" className={styles.listItemValue}>
+      <Text size="xs" className={styles.listItemValue}>
         {value}
       </Text>
     </div>

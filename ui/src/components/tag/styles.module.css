@@ -31,4 +31,24 @@
     background-color: var(--tomato-10);
     color: var(--bg-base);
   }
+
+  /* Secondary: softer tonal fills sharing the Callout background palette. */
+  &[data-secondary="true"] {
+    &[data-variant="default"] {
+      background-color: var(--gray-a3);
+      color: var(--gray-12);
+    }
+    &[data-variant="success"] {
+      background-color: var(--lime-a3);
+      color: var(--lime-10);
+    }
+    &[data-variant="warning"] {
+      background-color: var(--amber-a3);
+      color: var(--amber-10);
+    }
+    &[data-variant="error"] {
+      background-color: var(--tomato-a3);
+      color: var(--tomato-10);
+    }
+  }
 }

@@ -8,29 +8,29 @@
 
   color: var(--callout-fg);
   background-color: var(--callout-bg);
-  /* box-shadow: inset 0 0 0 1px var(--callout-border); */
+  box-shadow: inset 0 0 0 1px var(--callout-border);
 
   &[data-variant="info"] {
     --callout-bg: var(--blue-a2);
-    --callout-border: var(--blue-a5);
+    --callout-border: var(--blue-a2);
     --callout-fg: var(--blue-12);
     --callout-icon: var(--blue-10);
   }
   &[data-variant="success"] {
     --callout-bg: var(--lime-a2);
-    --callout-border: var(--lime-a5);
+    --callout-border: var(--lime-a2);
     --callout-fg: var(--lime-11);
     --callout-icon: var(--lime-9);
   }
   &[data-variant="warning"] {
     --callout-bg: var(--amber-a2);
-    --callout-border: var(--amber-a5);
+    --callout-border: var(--amber-a2);
     --callout-fg: var(--amber-11);
     --callout-icon: var(--amber-9);
   }
   &[data-variant="error"] {
     --callout-bg: var(--tomato-a2);
-    --callout-border: var(--tomato-a5);
+    --callout-border: var(--tomato-a2);
     --callout-fg: var(--tomato-11);
     --callout-icon: var(--tomato-9);
   }

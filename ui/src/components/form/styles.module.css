@@ -1,12 +1,12 @@
 .field {
   display: flex;
   flex-direction: column;
-  gap: var(--size-4);
+  gap: var(--size-8);
 }
 
 .message {
   font-family: var(--font-sans);
   font-size: var(--font-size-x-small);
   line-height: var(--line-height-x-small);
-  color: var(--red-10);
+  color: var(--red-9);
 }

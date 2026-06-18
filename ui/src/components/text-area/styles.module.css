@@ -30,10 +30,10 @@
   corner-shape: inherit;
 
   font-family: var(--font-sans);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-normal);
   font-weight: var(--font-weight-normal);
-  line-height: var(--line-height-small);
-  letter-spacing: var(--letter-spacing-small);
+  line-height: var(--line-height-normal);
+  letter-spacing: var(--letter-spacing-normal);
   color: var(--fg-primary);
   text-box-trim: var(--text-box-trim);
 

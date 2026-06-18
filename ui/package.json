@@ -8,6 +8,10 @@
   "exports": {
     "./package.json": "./package.json",
     "./css/base.css": "./dist/css/base.css",
+    "./primitives": {
+      "types": "./dist/primitives.d.ts",
+      "import": "./dist/primitives.js"
+    },
     "./components/*": {
       "types": "./dist/components/*/index.d.ts",
       "import": "./dist/components/*/index.js"

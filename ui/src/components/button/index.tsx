@@ -41,7 +41,7 @@ export const Button = ({
     >
       {prefixSlot && <span className={styles.prefix}>{prefixSlot}</span>}
       {children != null && (
-        <Text as="span" size={size === "xl" ? "md" : "sm"} weight="medium">
+        <Text as="span" size="md" weight="medium">
           {children}
         </Text>
       )}

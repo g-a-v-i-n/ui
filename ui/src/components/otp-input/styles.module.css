@@ -1,7 +1,7 @@
 .root {
   display: inline-flex;
   align-items: center;
-  gap: var(--size-4);
+  gap: var(--size-6);
 }
 
 .slot {

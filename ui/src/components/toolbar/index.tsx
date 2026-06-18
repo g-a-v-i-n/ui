@@ -9,6 +9,7 @@ import {
   DropdownMenuContent,
   DropdownMenuArrow,
 } from "../dropdown-menu";
+import { POPOVER_OFFSET } from "../../offsets";
 import styles from "./styles.module.css";
 
 const wrapText = (children: React.ReactNode) =>
@@ -92,11 +93,15 @@ export const ToolbarToggleGroup = ({
 
 export const ToolbarToggleItem = ({
   children,
+  tooltip,
   className = "",
   ref,
   ...props
-}: ToolbarPrimitive.ToolbarToggleItemProps & { ref?: React.Ref<HTMLButtonElement> }) => {
-  return (
+}: ToolbarPrimitive.ToolbarToggleItemProps & {
+  tooltip?: React.ReactNode;
+  ref?: React.Ref<HTMLButtonElement>;
+}) => {
+  const item = (
     <ToolbarPrimitive.ToggleItem
       {...props}
       ref={ref}
@@ -105,6 +110,16 @@ export const ToolbarToggleItem = ({
       {wrapText(children)}
     </ToolbarPrimitive.ToggleItem>
   );
+
+  // The tooltip trigger and a Toolbar ToggleItem both write `data-state` to the
+  // same node when composed via asChild, and the tooltip's value clobbers the
+  // toggle's on/off state (radix-ui primitives#602). Give the tooltip its own
+  // wrapper element so each keeps its data-state; focus/hover still bubble up.
+  return tooltip ? (
+    <Tooltip content={tooltip}>
+      <span className={styles.tooltipTrigger}>{item}</span>
+    </Tooltip>
+  ) : item;
 };
 
 /* Plain layout grouping for related toolbar controls. */
@@ -178,6 +193,8 @@ export type ToolbarSplitButtonProps = {
   dropdownContent: React.ReactNode;
   dropdownAlign?: "start" | "center" | "end";
   dropdownWidth?: "sm" | "md" | "lg" | "auto";
+  /** Render the primary (left) button as a square icon button. */
+  square?: boolean;
   children?: React.ReactNode;
 } & Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "prefix">;
 
@@ -188,6 +205,7 @@ export const ToolbarSplitButton = ({
   dropdownContent,
   dropdownAlign = "end",
   dropdownWidth = "auto",
+  square = false,
   disabled,
   className = "",
   ref,
@@ -198,6 +216,7 @@ export const ToolbarSplitButton = ({
       {...props}
       ref={ref}
       disabled={disabled}
+      data-width={square ? "square" : undefined}
       className={styles.splitPrimary}
     >
       {prefixSlot && <span className={styles.splitPrefix}>{prefixSlot}</span>}
@@ -227,7 +246,7 @@ export const ToolbarSplitButton = ({
         <DropdownMenuContent
           align={dropdownAlign}
           width={dropdownWidth}
-          sideOffset={8}
+          sideOffset={POPOVER_OFFSET}
         >
           {dropdownContent}
           <DropdownMenuArrow />

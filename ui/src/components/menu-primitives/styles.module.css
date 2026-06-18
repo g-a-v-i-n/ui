@@ -178,7 +178,7 @@ span:has(> .arrow) {
   padding: 6px 8px;
   width: 100%;
 
-  background: var(--bg-quaternary);
+  background: var(--bg-tertiary);
   border-radius: 8px;
   corner-shape: var(--corner-shape);
 }

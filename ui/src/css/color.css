@@ -57,9 +57,9 @@
 
     --bg-base: var(--gray-0);
     --bg-primary: var(--gray-0);
-    --bg-secondary: var(--gray-1);
-    --bg-tertiary: var(--gray-2);
-    --bg-quaternary: var(--gray-3);
+    --bg-secondary: var(--gray-2);
+    --bg-tertiary: var(--gray-3);
+    --bg-quaternary: var(--gray-4);
 
     --fg-primary: var(--gray-12);
     --fg-secondary: var(--gray-11);
@@ -68,6 +68,18 @@
 
     --focus-ring-color: var(--gray-8);
     --focus-ring-offset: 3px;
+
+    /* Scrim behind modal overlays (dialog, alert-dialog, drawer). */
+    --scrim: var(--black-a4);
+
+    /* Subtle top-to-bottom sheen for accent control fills (checked checkbox,
+       switch track, radio). Anchored to --blue-9 with a soft highlight on top,
+       so it adapts to light/dark automatically via the themed --blue-9. */
+    --gradient-accent: linear-gradient(
+      to bottom,
+      color-mix(in oklab, white 14%, var(--blue-9)),
+      var(--blue-9)
+    );
 }
 
 

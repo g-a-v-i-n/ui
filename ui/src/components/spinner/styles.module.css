@@ -18,6 +18,9 @@
 
 .indicator {
   stroke: currentColor;
+  /* Breathe the arc length as it spins. Period is 2x the rotation so the
+     grow/shrink lands cleanly every two turns rather than drifting. */
+  animation: spinnerDash 1600ms ease-in-out infinite;
 }
 
 @keyframes spinnerRotate {
@@ -26,5 +29,21 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes spinnerDash {
+  0%,
+  100% {
+    stroke-dasharray: 20 80;
+  }
+  50% {
+    stroke-dasharray: 55 45;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .indicator {
+    animation: none;
   }
 }

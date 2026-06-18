@@ -3,42 +3,14 @@
   corner-shape: var(--corner-shape);
   padding: var(--size-16);
 
-  transition: box-shadow var(--duration-120) var(--ease-out-quad);
-
-  /* Elevated: lifts off the page with a shadow over the base surface. */
-  &[data-variant="elevated"] {
-    background-color: var(--bg-base);
-  }
-
-  /* Resting: hairline border, no drop shadow. */
-  &[data-elevation="low"] {
-    box-shadow: var(--shadow-hairline-1);
-  }
-
-  /* Raised: sits above the page. */
-  &[data-elevation="medium"] {
+  /* Raised: sits above the page surface with a soft shadow. */
+  &[data-variant="primary"] {
+    background-color: var(--bg-primary);
     box-shadow: var(--shadow-card);
   }
 
-  /* Floating: overlay-level lift. */
-  &[data-elevation="high"] {
-    box-shadow: var(--shadow-button);
-  }
-
-  /* Filled: flat, no shadow or border — depth comes from a darker background. */
-  &[data-variant="filled"] {
-    box-shadow: none;
-  }
-
-  &[data-tone="subtle"] {
+  /* Flat: depth comes from the darker background, no shadow. */
+  &[data-variant="secondary"] {
     background-color: var(--bg-secondary);
-  }
-
-  &[data-tone="muted"] {
-    background-color: var(--bg-tertiary);
-  }
-
-  &[data-tone="strong"] {
-    background-color: var(--bg-quaternary);
   }
 }

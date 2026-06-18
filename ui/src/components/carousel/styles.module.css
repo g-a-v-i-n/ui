@@ -1,0 +1,115 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-12);
+  width: 100%;
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.viewport {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--size-12);
+  corner-shape: var(--corner-shape);
+  /* Let vertical page scroll through; horizontal is the carousel's to handle. */
+  touch-action: pan-y;
+}
+
+.track {
+  display: flex;
+  transition: transform var(--duration-320) var(--ease-out-quad);
+  will-change: transform;
+}
+
+.slide {
+  flex: 0 0 100%;
+  min-width: var(--size-0);
+}
+
+/* Overlaid prev/next controls, vertically centered. */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--control-height-md);
+  height: var(--control-height-md);
+  padding: 0;
+
+  border: none;
+  border-radius: 9999px;
+  corner-shape: round;
+  background: var(--bg-base);
+  color: var(--fg-primary);
+  box-shadow: var(--shadow-button);
+  cursor: pointer;
+
+  transition:
+    background-color var(--duration-120) var(--ease-out-quad),
+    opacity var(--duration-120) var(--ease-out-quad);
+
+  &:hover {
+    background: var(--bg-secondary);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--focus-ring-color);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.arrowPrev {
+  left: var(--size-8);
+}
+
+.arrowNext {
+  right: var(--size-8);
+}
+
+.dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--size-6);
+}
+
+.dot {
+  width: var(--size-6);
+  height: var(--size-6);
+  padding: 0;
+  border: none;
+  border-radius: 9999px;
+  corner-shape: round;
+  background: var(--gray-a5);
+  cursor: pointer;
+
+  transition:
+    background-color var(--duration-120) var(--ease-out-quad),
+    transform var(--duration-120) var(--ease-out-quad);
+
+  &:hover {
+    background: var(--gray-a7);
+  }
+
+  &[data-active] {
+    background: var(--blue-9);
+    transform: scale(1.15);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--focus-ring-color);
+    outline-offset: 2px;
+  }
+}

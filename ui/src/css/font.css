@@ -19,6 +19,14 @@
     --font-monospace: var(--font-monospace-fallback);
     --font-emoji: var(--font-emoji-fallback);
 
+    /* SF Symbols are Private Use Area glyphs; browsers do NOT font-fallback for
+       PUA, so the FIRST matched font must contain them. Lead with the live
+       system font (carries the symbols on macOS/iOS) — Safari resolves a quoted
+       "SF Pro" to a symbol-less face and shows tofu. */
+    --font-symbol:
+      -apple-system, BlinkMacSystemFont, system-ui, "SF Pro", "SF Pro Text",
+      sans-serif;
+
     /* Weights */
     --font-weight-light: 300;
     --font-weight-normal: 400;
@@ -52,32 +60,32 @@
     --line-height-h4: 1.5;
     --letter-spacing-h4: 0;
 
-    --font-size-xxx-large: xxx-large;
+    --font-size-xxx-large: 36px;
     --line-height-xxx-large: 1.2;
-    --letter-spacing-xxx-large: -0.0125em;
+    --letter-spacing-xxx-large: 0.36px;
 
     /* The Text component scale: x-small..xx-large = Text xs..2xl. */
     --font-size-xx-large: 28px;
     --line-height-xx-large: 1.2;
-    --letter-spacing-xx-large: -0.015em;
+    --letter-spacing-xx-large: 0.36px;
 
     --font-size-x-large: 22px;
     --line-height-x-large: 1.3;
     --letter-spacing-x-large: 0.35px;
 
-    --font-size-large: 18px;
+    --font-size-large: 16px;
     --line-height-large: 1.4;
-    --letter-spacing-large: -0.45px;
+    --letter-spacing-large: -0.32px;
 
-    --font-size-normal: 15px;
+    --font-size-normal: 14px;
     --line-height-normal: 1.5;
-    --letter-spacing-normal: -0.24px;
+    --letter-spacing-normal: -0.15px;
 
     --font-size-small: 13px;
     --line-height-small: 1.4;
     --letter-spacing-small: -0.08px;
 
-    --font-size-x-small: 11px;
+    --font-size-x-small: 12px;
     --line-height-x-small: 1.4;
-    --letter-spacing-x-small: -0.07px;
+    --letter-spacing-x-small: 0px;
 }

@@ -14,8 +14,8 @@
   padding: 8px 12px;
   padding-bottom: 12px;
 
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
   corner-shape: var(--corner-shape);
 
   background: transparent;
@@ -63,7 +63,7 @@
   bottom: 0;
   height: 2px;
   background: var(--fg-primary);
-  border-radius: 999px;
+  /* border-radius: 999px; */
   z-index: 1;
 }
 

@@ -2,6 +2,7 @@ import { Tooltip as TooltipPrimitive } from "radix-ui";
 
 import { MenuArrow } from "../menu-primitives";
 import { Text } from "../text";
+import { TOOLTIP_OFFSET } from "../../offsets";
 import styles from "./styles.module.css";
 
 export const TooltipProvider = TooltipPrimitive.Provider;
@@ -29,7 +30,7 @@ export function Tooltip({
   side = "top",
   align = "center",
   collisionPadding = 12,
-  sideOffset = 4,
+  sideOffset = TOOLTIP_OFFSET,
   onEscapeKeyDown,
   onPointerDownOutside,
   ...props

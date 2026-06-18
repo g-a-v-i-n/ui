@@ -199,6 +199,13 @@
   gap: var(--size-8);
 }
 
+/* Wrapper that becomes the tooltip trigger, keeping the tooltip's data-state
+   off the toggle button (which has its own on/off data-state). See radix-ui
+   primitives#602 — composing two data-state primitives on one node collides. */
+.tooltipTrigger {
+  display: inline-flex;
+}
+
 /* Split button — a primary action and a dropdown chevron, visually joined:
    8px outer corners, 2px inner corners, 1px seam. */
 .split {

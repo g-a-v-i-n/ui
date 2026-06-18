@@ -1,12 +1,13 @@
 .container {
   position: relative;
   display: inline-flex;
-  align-items: center;
-  gap: var(--size-8);
-  padding: 0 var(--size-10);
   height: var(--control-height-lg);
   border-radius: var(--size-10);
   corner-shape: var(--corner-shape);
+
+  /* Base horizontal inset; slot widths (--prefix-w / --suffix-w) are added on
+     top by the input padding and set in JS from each slot's measured width. */
+  --input-pad: var(--size-10);
 
   &[data-width="fill"] {
     display: flex;
@@ -47,20 +48,29 @@
   }
 }
 
+/* The input fills the control and owns the padding, so the whole surface is a
+   click target. Slots are overlaid (see below), and the input is inset past
+   them via the measured slot vars. */
 .input {
+  flex: 1 1 auto;
+  min-width: var(--size-0);
+  height: 100%;
+  box-sizing: border-box;
+
   border: none;
   outline: none;
   background: transparent;
-  padding: 0;
+  padding-block: 0;
+  padding-left: calc(var(--input-pad) + var(--prefix-w, 0px));
+  padding-right: calc(var(--input-pad) + var(--suffix-w, 0px));
 
   font-family: var(--font-sans);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-normal);
   font-weight: var(--font-weight-normal);
-  line-height: var(--line-height-small);
-  letter-spacing: var(--letter-spacing-small);
+  line-height: var(--line-height-normal);
+  letter-spacing: var(--letter-spacing-normal);
   color: var(--fg-primary);
   text-box-trim: var(--text-box-trim);
-
 
   &[type="number"] {
     font-variant-numeric: tabular-nums;
@@ -86,24 +96,31 @@
   }
 }
 
-/* Hug sizes the input to its text natively, so prefix/suffix slots simply
-   add to the flex container's fit-content width. */
+/* Hug sizes the input to its text natively; slot reservation comes from the
+   padding above, so the control still hugs to text + slots. */
 [data-width="hug"] .input {
+  flex: none;
+  width: auto;
   field-sizing: content;
 }
 
-[data-width="fill"] .input,
-[data-width="number"] .input {
-  width: 100%;
-  flex: 1 0 0;
-  min-width: var(--size-0);
-}
-
+/* Slots overlay the input's padding zones, vertically centered against the
+   full control height. */
 .prefix,
 .suffix {
+  position: absolute;
+  top: 0;
+  bottom: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   color: var(--fg-secondary);
-  flex: none;
+}
+
+.prefix {
+  left: var(--input-pad);
+}
+
+.suffix {
+  right: var(--input-pad);
 }

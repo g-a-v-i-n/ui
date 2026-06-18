@@ -1,7 +1,7 @@
 .overlay {
   position: fixed;
   inset: 0;
-  background-color: var(--black-a9);
+  background-color: var(--scrim);
   z-index: var(--layer-dialog-overlay);
 
   animation-duration: var(--duration-180);

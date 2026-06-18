@@ -1,3 +1,7 @@
+.input { 
+    /* font-family: "SF Pro", -apple-system, sans-serif; */
+
+}
 .suffixGroup {
   display: inline-flex;
   align-items: center;
@@ -15,6 +19,10 @@
   color: var(--fg-tertiary);
   cursor: pointer;
   transition: color var(--duration-120) var(--ease-out-quad);
+
+  font-size:    var(--font-size-small);
+  letter-spacing: var(--letter-spacing-small);
+  font-weight: 500;
 
   &:hover {
     color: var(--fg-secondary);

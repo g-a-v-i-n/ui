@@ -44,7 +44,7 @@ export const Callout = ({
       className={`${styles.callout} ${className}`}
     >
       <span className={styles.icon} aria-hidden="true">
-        {icon ?? <SFSymbol symbol={defaultIcon[variant]} size="lg" />}
+        {icon ?? <SFSymbol symbol={defaultIcon[variant]} size="md" />}
       </span>
       <div className={styles.content}>
         {title && (

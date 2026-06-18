@@ -4,6 +4,7 @@ import styles from "./styles.module.css";
 
 import { SFSymbol } from "../sf-symbol";
 import { MenuArrow, MenuContainer, MenuGroup, MenuItem, MenuLabel } from "../menu-primitives";
+import { POPOVER_OFFSET } from "../../offsets";
 
 export const DropdownMenuRoot = DropdownMenuPrimitive.Root;
 export const DropdownMenuPortal = DropdownMenuPrimitive.Portal;
@@ -16,6 +17,7 @@ export const DropdownMenuSub = DropdownMenuPrimitive.Sub;
 export const DropdownMenuContent = ({
   children,
   collisionPadding = 8,
+  sideOffset = POPOVER_OFFSET,
   className = "",
   width,
   ref,
@@ -26,7 +28,7 @@ export const DropdownMenuContent = ({
   return (
     <DropdownMenuPrimitive.Portal>
       <DropdownMenuPrimitive.Content
-        sideOffset={-4}
+        sideOffset={sideOffset}
         collisionPadding={collisionPadding}
         arrowPadding={6}
         {...props}

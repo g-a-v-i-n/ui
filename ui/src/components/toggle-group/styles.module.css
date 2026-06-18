@@ -1,6 +1,6 @@
 .root {
   display: inline-flex;
-  background-color: var(--bg-quaternary);
+  background-color: var(--bg-tertiary);
   border-radius: 12px;
   corner-shape: var(--corner-shape);
   padding: 2px;
