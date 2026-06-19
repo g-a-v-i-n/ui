@@ -73,4 +73,5 @@ h6 {
 
 button {
   all: unset;
+  box-sizing: border-box;
 }

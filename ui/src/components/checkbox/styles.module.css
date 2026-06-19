@@ -25,6 +25,12 @@
     background-color: transparent;
     box-shadow: var(--shadow-button);
   }
+
+  &:disabled,
+  &[data-disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }
 
 .indicator {

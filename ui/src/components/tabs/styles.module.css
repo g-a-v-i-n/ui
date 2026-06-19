@@ -50,6 +50,7 @@
 }
 
 .label {
+  display: flex;
   position: relative;
   z-index: 1;
 }

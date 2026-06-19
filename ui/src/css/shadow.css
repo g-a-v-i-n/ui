@@ -22,9 +22,9 @@
     --shadow-x-large: 0px 8px 18px 0px var(--black-a8);
     --shadow-debug: 0 10px 10px 0px var(--black-a11);
 
-    --shadow-hairline-1: 0 0 0 1px var(--gray-a4);
-    --shadow-hairline-2: 0 0 0 1px var(--gray-a5);
-    --shadow-hairline-3: 0 0 0 1px var(--gray-a7);
+    --shadow-hairline-1: 0 0 0 1px var(--gray-a3);
+    --shadow-hairline-2: 0 0 0 1px var(--gray-a4);
+    --shadow-hairline-3: 0 0 0 1px var(--gray-a6);
 
     --shadow-button: var(--shadow-hairline-1), var(--shadow-small);
     --shadow-card: var(--shadow-hairline-1), var(--shadow-large);

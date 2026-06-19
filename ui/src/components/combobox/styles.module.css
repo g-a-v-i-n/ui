@@ -27,7 +27,7 @@
   max-height: var(--radix-popper-available-height);
 
   background: var(--bg-primary);
-  border-radius: 12px;
+  border-radius: var(--size-10);
   corner-shape: var(--corner-shape);
   box-shadow: var(--shadow-modal);
 

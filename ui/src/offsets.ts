@@ -5,10 +5,10 @@
  */
 
 /** Tooltips sit close to their trigger. */
-export const TOOLTIP_OFFSET = 3;
+export const TOOLTIP_OFFSET = 2;
 
 /**
  * Menus & popovers. Shared by `Popover`, `DropdownMenu`, and the `Toolbar`
  * split-button dropdown (which inherits the `DropdownMenu` default).
  */
-export const POPOVER_OFFSET = 5;
+export const POPOVER_OFFSET = 3;

@@ -3,7 +3,7 @@
   align-items: flex-start;
   gap: var(--size-8);
   padding: var(--size-12);
-  border-radius: var(--size-16);
+  border-radius: var(--size-12);
   corner-shape: var(--corner-shape);
 
   color: var(--callout-fg);

@@ -67,6 +67,7 @@
     --fg-quaternary: var(--gray-9);
 
     --focus-ring-color: var(--gray-8);
+    --focus-ring-width: 2px;
     --focus-ring-offset: 3px;
 
     /* Scrim behind modal overlays (dialog, alert-dialog, drawer). */

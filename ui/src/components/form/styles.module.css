@@ -4,9 +4,29 @@
   gap: var(--size-8);
 }
 
+/* Form.Message mounts only when the field is invalid, so it animates on enter
+   — height 0 → auto (via interpolate-size, since radix doesn't expose a measured
+   height var here) plus opacity, mirroring the accordion's expand. */
 .message {
+  display: block;
+  overflow: hidden;
+  interpolate-size: allow-keywords;
+
   font-family: var(--font-sans);
   font-size: var(--font-size-x-small);
   line-height: var(--line-height-x-small);
   color: var(--red-9);
+
+  animation: formMessageIn var(--duration-180) var(--ease-out-quad);
+}
+
+@keyframes formMessageIn {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: auto;
+    opacity: 1;
+  }
 }

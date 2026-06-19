@@ -240,12 +240,6 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
-  svg,
-  span {
-    width: var(--size-16);
-    height: var(--size-16);
-  }
 }
 
 .splitChevron {

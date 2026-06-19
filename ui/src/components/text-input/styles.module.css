@@ -21,7 +21,7 @@
   }
 
   &[data-variant="default"] {
-    background-color: var(--bg-base);
+    background-color: transparent;
     box-shadow: var(--shadow-hairline-2);
     transition: box-shadow var(--duration-120) var(--ease-out-quad);
 
@@ -45,6 +45,11 @@
     &:focus-within {
       background-color: var(--gray-a3);
     }
+  }
+
+  &:has(.input:disabled) {
+    opacity: 0.5;
+    pointer-events: none;
   }
 }
 

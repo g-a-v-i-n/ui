@@ -5,7 +5,7 @@
   background: var(--bg-primary);
   border-radius: 12px;
   corner-shape: var(--corner-shape);
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--shadow-modal);
 
   z-index: var(--layer-popover);
   position: relative;

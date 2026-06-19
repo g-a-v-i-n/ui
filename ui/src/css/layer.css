@@ -11,13 +11,15 @@
     --layer-find: 2000;
     --layer-tooltip: 1100;
     --layer-toast: 800;
+    /* Floating menus sit above dialogs — they're routinely triggered from
+       within a dialog and must render on top of it, not behind. */
+    --layer-command-menu: 780;
+    --layer-popover: 770;
+    --layer-context-menu: 770;
+    --layer-select: 760;
     --layer-dialog: 700;
     --layer-dialog-overlay: 699;
-    --layer-command-menu: 650;
-    --layer-popover: 600;
-    --layer-context-menu: 600;
     --layer-overlay: 500;
-    --layer-select: 400;
     --layer-debug: 200;
     --layer-pane: 200;
     --layer-header: 100;
