@@ -13,6 +13,8 @@ export function CheckboxSection() {
     <Section title="Checkbox">
       <Checkbox id="cb-a" checked={cbA} onCheckedChange={(v) => setCbA(Boolean(v))} />
       <Checkbox id="cb-b" checked={cbB} onCheckedChange={(v) => setCbB(Boolean(v))} />
+      <Checkbox id="cb-disabled" disabled />
+      <Checkbox id="cb-disabled-checked" checked disabled />
       <div className={styles.rowBox}>
         <CheckboxRow
           id="cb-row"

@@ -1,4 +1,4 @@
-import { SFSymbol } from 'ui/components/sf-symbol';
+import { Icon } from 'ui/components/icon';
 import {
   MenuContainer,
   MenuItem,
@@ -16,7 +16,7 @@ export function MenuPrimitivesSection() {
       <MenuContainer width="md">
         <MenuTitle>Settings</MenuTitle>
         <MenuLabel>Section</MenuLabel>
-        <MenuItem prefixSlot={<SFSymbol symbol="✓" />}>Selected item</MenuItem>
+        <MenuItem prefixSlot={<Icon icon="check" size="md" />}>Selected item</MenuItem>
         <MenuItem suffixSlot={<span>⌘K</span>}>With shortcut</MenuItem>
         <MenuDivider />
         <MenuList>

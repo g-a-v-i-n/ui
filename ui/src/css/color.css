@@ -73,11 +73,11 @@
     /* Scrim behind modal overlays (dialog, alert-dialog, drawer). */
     --scrim: var(--black-a4);
 
-    /* Subtle top-to-bottom sheen for accent control fills (checked checkbox,
-       switch track, radio). Anchored to --blue-9 with a soft highlight on top,
-       so it adapts to light/dark automatically via the themed --blue-9. */
+    /* Subtle bottom-to-top sheen for accent control fills (checked checkbox,
+       switch track, radio). Anchored to --blue-9 with a soft highlight on the
+       bottom, so it adapts to light/dark automatically via the themed --blue-9. */
     --gradient-accent: linear-gradient(
-      to bottom,
+      to top,
       color-mix(in oklab, white 14%, var(--blue-9)),
       var(--blue-9)
     );

@@ -22,7 +22,7 @@ export const IconSwap = ({
   swapKey,
   children,
   scale = 0.5,
-  duration = 0.080, /* debug speed (--duration-debug: 2s); was 0.080 */
+  duration = 0.08,
   mode = "wait",
   className = "",
   style,

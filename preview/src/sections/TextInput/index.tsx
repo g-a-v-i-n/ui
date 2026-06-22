@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SFSymbol } from 'ui/components/sf-symbol';
+import { Icon } from 'ui/components/icon';
 import { Text } from 'ui/components/text';
 import { TextInput } from 'ui/components/text-input';
 import { Tag } from 'ui/components/tag';
@@ -25,7 +25,7 @@ export function TextInputSection() {
           value={inputFill}
           onChange={(e) => setInputFill(e.target.value)}
           placeholder="Fill-width input"
-          prefixSlot={<SFSymbol symbol="􀊫" size="sm" />}
+          prefixSlot={<Icon icon="magnifying-glass" size="md" />}
         />
         <TextInput
           variant="toolbar"
@@ -33,6 +33,13 @@ export function TextInputSection() {
           onChange={(e) => setInputToolbar(e.target.value)}
         />
         <TextInput value="120" width={80} readOnly />
+        <TextInput defaultValue="Disabled" disabled />
+        <TextInput
+          placeholder="Disabled with slots…"
+          disabled
+          prefixSlot={<Icon icon="magnifying-glass" size="md" />}
+          suffixSlot={<Tag mono>⌘K</Tag>}
+        />
         <TextInput
           type="number"
           defaultValue={1111}
@@ -46,7 +53,7 @@ export function TextInputSection() {
         <div className={styles.slotRow}>
           <TextInput
             defaultValue="hug + prefix"
-            prefixSlot={<SFSymbol symbol="􀊫" size="sm" />}
+            prefixSlot={<Icon icon="magnifying-glass" size="md" />}
           />
           <TextInput
             defaultValue="42"
@@ -58,7 +65,7 @@ export function TextInputSection() {
           />
           <TextInput
             placeholder="Both slots…"
-            prefixSlot={<SFSymbol symbol="􀊫" size="sm" />}
+            prefixSlot={<Icon icon="magnifying-glass" size="md" />}
             suffixSlot={<Tag mono>⌘K</Tag>}
           />
           <TextInput
@@ -70,7 +77,7 @@ export function TextInputSection() {
         <TextInput
           width="fill"
           placeholder="Fill with both slots…"
-          prefixSlot={<SFSymbol symbol="􀊫" size="sm" />}
+          prefixSlot={<Icon icon="magnifying-glass" size="md" />}
           suffixSlot={<Tag>12 results</Tag>}
         />
         <TextInput

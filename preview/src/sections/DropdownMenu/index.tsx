@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SFSymbol } from 'ui/components/sf-symbol';
+import { Icon } from 'ui/components/icon';
 import { Button } from 'ui/components/button';
 import {
   DropdownMenuRoot,
@@ -28,7 +28,7 @@ export function DropdownMenuSection() {
     <Section title="Dropdown menu">
       <DropdownMenuRoot>
         <DropdownMenuTrigger>
-          <Button variant="secondary" suffixSlot={<SFSymbol symbol="􀆈" size="sm" className={styles.chevron} />}>
+          <Button variant="secondary" suffixSlot={<Icon icon="chevron-down" size="md" className={styles.chevron} />}>
             Open dropdown
           </Button>
         </DropdownMenuTrigger>

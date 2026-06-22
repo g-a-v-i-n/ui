@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { SFSymbol } from 'ui/components/sf-symbol';
+import { Icon } from 'ui/components/icon';
 import { Tag } from 'ui/components/tag';
 import { DropdownMenuItem } from 'ui/components/dropdown-menu';
 import {
@@ -54,18 +55,18 @@ export function ToolbarSection() {
             aria-label="Toggle favorite"
             tooltip={toolbarFavorite ? 'Remove from favorites' : 'Add to favorites'}
           >
-            <SFSymbol symbol={toolbarFavorite ? '􀋃' : '􀋂'} size="sm" />
+            <Icon icon={toolbarFavorite ? 'star-fill' : 'star'} size="md" />
           </ToolbarToggleItem>
         </ToolbarToggleGroup>
         <ToolbarSeparator />
         <ToolbarGroup>
         <ToolbarButton width="square" aria-label="Search">
-          <SFSymbol symbol="􀊫" size="sm" />
+          <Icon icon="magnifying-glass" size="md" />
         </ToolbarButton>
         <ToolbarButton>Share</ToolbarButton>
         <ToolbarSplitButton
           tooltip="Run"
-          prefixSlot={<SFSymbol symbol="􀊄" size="sm" />}
+          prefixSlot={<Icon icon="play-fill" size="md" />}
           onClick={() => console.log('run')}
           dropdownContent={
             <>
@@ -81,7 +82,7 @@ export function ToolbarSection() {
           square
           tooltip="Run"
           aria-label="Run"
-          prefixSlot={<SFSymbol symbol="􀊄" size="sm" />}
+          prefixSlot={<Icon icon="play-fill" size="md" />}
           onClick={() => console.log('run')}
           dropdownContent={
             <>

@@ -4,6 +4,7 @@ import { TooltipProvider } from 'ui/components/tooltip';
 import { ToastProvider, ToastViewport } from 'ui/components/toast';
 
 import { TextSection } from './sections/Text';
+import { IconSection } from './sections/Icon';
 import { SFSymbolSection } from './sections/SFSymbol';
 import { ButtonSection } from './sections/Button';
 import { CheckboxSection } from './sections/Checkbox';
@@ -81,6 +82,7 @@ function App() {
             </header>
 
             <TextSection />
+            <IconSection />
             <SFSymbolSection />
             <ButtonSection />
             <CheckboxSection />

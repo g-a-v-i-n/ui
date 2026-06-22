@@ -11,9 +11,26 @@
   transition: background-color var(--duration-120) var(--ease-in-out-cubic);
 }
 
-.track[data-state="checked"] {
-  background: var(--blue-9);
+/* The accent gradient lives on an overlay and fades via opacity — background-image
+   itself can't be transitioned, so animating it directly snaps. The base
+   background-color animates underneath for the gray → blue color shift. */
+.track::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-color: var(--blue-9);
   background-image: var(--gradient-accent);
+  opacity: 0;
+  transition: opacity var(--duration-120) var(--ease-in-out-cubic);
+}
+
+.track[data-state="checked"] {
+  background-color: var(--blue-9);
+}
+
+.track[data-state="checked"]::before {
+  opacity: 1;
 }
 
 .track[data-disabled] {

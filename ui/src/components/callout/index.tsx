@@ -1,6 +1,6 @@
 import React from "react";
 import { Text } from "../text";
-import { SFSymbol } from "../sf-symbol";
+import { Icon, type IconName } from "../icon";
 import styles from "./styles.module.css";
 
 type Variant = "info" | "success" | "warning" | "error";
@@ -16,13 +16,12 @@ type CalloutProps = Omit<React.ComponentPropsWithoutRef<"div">, "title"> & {
   ref?: React.Ref<HTMLDivElement>;
 };
 
-// Default leading glyphs per variant. info/warning use SF Symbols (verify they
-// render in SF Pro); success/error use the proven ✓/✕ marks.
-const defaultIcon: Record<Variant, string> = {
-  info: "􀅵",
-  success: "􀁣",
-  warning: "􀇿",
-  error: "􀁡",
+// Default leading icon per variant, from the icon set.
+const defaultIcon: Record<Variant, IconName> = {
+  info: "info-circle-fill",
+  success: "check-circle-fill",
+  warning: "triangle-exclamation-fill",
+  error: "circle-xmark",
 };
 
 export const Callout = ({
@@ -44,7 +43,7 @@ export const Callout = ({
       className={`${styles.callout} ${className}`}
     >
       <span className={styles.icon} aria-hidden="true">
-        {icon ?? <SFSymbol symbol={defaultIcon[variant]} size="md" />}
+        {icon ?? <Icon icon={defaultIcon[variant]} size="lg" />}
       </span>
       <div className={styles.content}>
         {title && (
@@ -65,7 +64,7 @@ export const Callout = ({
           aria-label="Dismiss"
           onClick={onClose}
         >
-          <SFSymbol symbol="✕" size="sm" />
+          <Icon icon="x-mark" size="sm" />
         </button>
       )}
     </div>

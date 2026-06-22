@@ -55,7 +55,7 @@
   z-index: 1;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
 }
 
 /* Shared-layout element — rendered only in the active item and animated

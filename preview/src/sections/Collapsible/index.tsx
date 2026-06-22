@@ -1,5 +1,5 @@
 import { Text } from 'ui/components/text';
-import { SFSymbol } from 'ui/components/sf-symbol';
+import { Icon } from 'ui/components/icon';
 import { Button } from 'ui/components/button';
 import {
   CollapsibleRoot,
@@ -14,7 +14,7 @@ export function CollapsibleSection() {
     <Section title="Collapsible">
       <CollapsibleRoot className={styles.root}>
         <CollapsibleTrigger>
-          <Button variant="secondary" suffixSlot={<SFSymbol symbol="􀆈" size="sm" />}>
+          <Button variant="secondary" suffixSlot={<Icon icon="chevron-down" size="md" />}>
             Toggle details
           </Button>
         </CollapsibleTrigger>

@@ -1,4 +1,5 @@
 .root {
+  position: relative;
   width: var(--size-18);
   height: var(--size-18);
   border-radius: 50%;
@@ -16,10 +17,27 @@
     background-color var(--duration-120) var(--ease-out-quad),
     box-shadow var(--duration-120) var(--ease-out-quad);
 
-  &[data-state="checked"] {
+  /* The accent gradient fades via opacity on an overlay — background-image can't
+     be transitioned, so animating it directly snaps. The base background-color
+     animates underneath for the gray → blue shift. */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
     background-color: var(--blue-9);
     background-image: var(--gradient-accent);
+    opacity: 0;
+    transition: opacity var(--duration-120) var(--ease-out-quad);
+  }
+
+  &[data-state="checked"] {
+    background-color: var(--blue-9);
     box-shadow: var(--shadow-none);
+  }
+
+  &[data-state="checked"]::before {
+    opacity: 1;
   }
 
   &[data-disabled] {
@@ -29,6 +47,8 @@
 }
 
 .indicator {
+  position: relative;
+  z-index: 1;
   display: inline-flex;
   width: var(--size-8);
   height: var(--size-8);
