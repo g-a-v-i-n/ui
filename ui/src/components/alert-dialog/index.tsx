@@ -27,12 +27,41 @@ export const AlertDialogContent = ({
   ref,
   ...props
 }: AlertDialogPrimitive.AlertDialogContentProps & { ref?: React.Ref<HTMLDivElement> }) => {
+  const innerRef = React.useRef<HTMLDivElement | null>(null);
+  const shakeAnim = React.useRef<Animation | null>(null);
+
+  const setRefs = (node: HTMLDivElement | null) => {
+    innerRef.current = node;
+    if (typeof ref === "function") ref(node);
+    else if (ref) (ref as React.RefObject<HTMLDivElement | null>).current = node;
+  };
+
+  // An alert dialog never dismisses on an outside click — shake "no" to make
+  // that refusal felt. Animate the independent `translate` property so it
+  // composes on top of the centering `transform`, not against it.
+  const shakeNo = () => {
+    const el = innerRef.current;
+    if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    shakeAnim.current?.cancel();
+    shakeAnim.current = el.animate(
+      [
+        { translate: "0" },
+        { translate: "-8px" },
+        { translate: "7px" },
+        { translate: "-5px" },
+        { translate: "3px" },
+        { translate: "0" },
+      ],
+      { duration: 360, easing: "ease-in-out" }
+    );
+  };
+
   return (
     <AlertDialogPrimitive.Portal>
-      <AlertDialogOverlay />
+      <AlertDialogOverlay onPointerDown={shakeNo} />
       <AlertDialogPrimitive.Content
         {...props}
-        ref={ref}
+        ref={setRefs}
         className={`${styles.content} ${className}`}
       >
         {children}

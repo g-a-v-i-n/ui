@@ -6,32 +6,20 @@
   border-radius: var(--size-12);
   corner-shape: var(--corner-shape);
 
-  color: var(--callout-fg);
-  background-color: var(--callout-bg);
-  box-shadow: inset 0 0 0 1px var(--callout-border);
+  color: var(--fg-primary);
+  background-color: transparent;
+  box-shadow: var(--shadow-hairline-1);
 
   &[data-variant="info"] {
-    --callout-bg: var(--blue-a2);
-    --callout-border: var(--blue-a2);
-    --callout-fg: var(--blue-12);
     --callout-icon: var(--blue-10);
   }
   &[data-variant="success"] {
-    --callout-bg: var(--lime-a2);
-    --callout-border: var(--lime-a2);
-    --callout-fg: var(--lime-11);
     --callout-icon: var(--lime-9);
   }
   &[data-variant="warning"] {
-    --callout-bg: var(--amber-a2);
-    --callout-border: var(--amber-a2);
-    --callout-fg: var(--amber-11);
     --callout-icon: var(--amber-9);
   }
   &[data-variant="error"] {
-    --callout-bg: var(--tomato-a2);
-    --callout-border: var(--tomato-a2);
-    --callout-fg: var(--tomato-11);
     --callout-icon: var(--tomato-9);
   }
 }
@@ -41,7 +29,7 @@
   align-items: center;
   /* Match the line-box of the first small-text line so the icon sits on its
      cap height rather than floating above it. */
-  min-height: calc(var(--font-size-small) * var(--line-height-small));
+  min-height: calc(var(--font-size-sm) * var(--line-height-sm));
   color: var(--callout-icon);
   flex: none;
 }
@@ -51,7 +39,7 @@
   flex-direction: column;
   gap: var(--size-6);
   min-width: var(--size-0);
-  padding-top: 2px;
+  padding-top: 0px;
   flex: 1;
 }
 

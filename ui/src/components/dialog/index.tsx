@@ -24,56 +24,15 @@ export const DialogOverlay = ({ className = "", ref, ...props }: DialogPrimitive
 export const DialogContent = ({
   children,
   className = "",
-  shakeOnInteractOutside = false,
-  onPointerDownOutside,
   ref,
   ...props
-}: DialogPrimitive.DialogContentProps & {
-  /** Refuse scrim/outside-click dismissal with a side-to-side "no" shake. */
-  shakeOnInteractOutside?: boolean;
-  ref?: React.Ref<HTMLDivElement>;
-}) => {
-  const innerRef = React.useRef<HTMLDivElement | null>(null);
-  const shakeAnim = React.useRef<Animation | null>(null);
-
-  const setRefs = (node: HTMLDivElement | null) => {
-    innerRef.current = node;
-    if (typeof ref === "function") ref(node);
-    else if (ref) (ref as React.RefObject<HTMLDivElement | null>).current = node;
-  };
-
+}: DialogPrimitive.DialogContentProps & { ref?: React.Ref<HTMLDivElement> }) => {
   return (
     <DialogPrimitive.Portal>
       <DialogOverlay />
       <DialogPrimitive.Content
         {...props}
-        ref={setRefs}
-        onPointerDownOutside={(event) => {
-          if (shakeOnInteractOutside) {
-            // Refuse the dismiss; shake "no" instead of closing. WAAPI overrides
-            // the centering transform only while running, then settles back.
-            event.preventDefault();
-            const el = innerRef.current;
-            if (
-              el &&
-              !window.matchMedia("(prefers-reduced-motion: reduce)").matches
-            ) {
-              shakeAnim.current?.cancel();
-              shakeAnim.current = el.animate(
-                [
-                  { transform: "translate(-50%, -50%) translateX(0)" },
-                  { transform: "translate(-50%, -50%) translateX(-8px)" },
-                  { transform: "translate(-50%, -50%) translateX(7px)" },
-                  { transform: "translate(-50%, -50%) translateX(-5px)" },
-                  { transform: "translate(-50%, -50%) translateX(3px)" },
-                  { transform: "translate(-50%, -50%) translateX(0)" },
-                ],
-                { duration: 360, easing: "ease-in-out" }
-              );
-            }
-          }
-          onPointerDownOutside?.(event);
-        }}
+        ref={ref}
         className={`${styles.content} ${className}`}
       >
         {children}

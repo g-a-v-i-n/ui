@@ -18,8 +18,8 @@
   box-shadow: var(--shadow-hairline-2);
 
   font-family: var(--font-sans);
-  font-size: var(--font-size-large);
-  line-height: var(--line-height-large);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-lg);
   font-weight: var(--font-weight-medium);
   font-variant-numeric: tabular-nums;
   color: var(--fg-primary);

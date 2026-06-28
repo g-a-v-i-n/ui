@@ -19,11 +19,14 @@ const transition = {
 
 type ToggleGroupProps = {
   highlightClassName?: string;
+  /** Fully rounded (pill) shape for the group, items, and highlight. */
+  round?: boolean;
 } & ToggleGroupPrimitive.ToggleGroupSingleProps;
 
 export const ToggleGroup = ({
   className = "",
   highlightClassName = "",
+  round = false,
   value,
   defaultValue,
   onValueChange,
@@ -47,6 +50,7 @@ export const ToggleGroup = ({
       defaultValue={defaultValue}
       onValueChange={handleValueChange}
       ref={ref}
+      data-round={round ? "" : undefined}
       className={`${styles.root} ${className}`}
     >
       <ToggleGroupContext.Provider

@@ -6,36 +6,51 @@
 
   color: currentColor;
 
-  /* Sizes come from the css/font.css scale: xs..2xl = x-small..xx-large. */
+  /* Sizes come from the css/font.css scale (token names match these: xs..4xl). */
   &[data-size="xs"] {
-    font-size: var(--font-size-x-small);
-    line-height: var(--line-height-x-small);
-    letter-spacing: var(--letter-spacing-x-small);
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-xs);
+    letter-spacing: var(--letter-spacing-xs);
   }
   &[data-size="sm"] {
-    font-size: var(--font-size-small);
-    line-height: var(--line-height-small);
-    letter-spacing: var(--letter-spacing-small);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-sm);
+    letter-spacing: var(--letter-spacing-sm);
   }
   &[data-size="md"] {
-    font-size: var(--font-size-normal);
-    line-height: var(--line-height-normal);
-    letter-spacing: var(--letter-spacing-normal);
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-md);
+    letter-spacing: var(--letter-spacing-md);
   }
   &[data-size="lg"] {
-    font-size: var(--font-size-large);
-    line-height: var(--line-height-large);
-    letter-spacing: var(--letter-spacing-large);
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-lg);
+    letter-spacing: var(--letter-spacing-lg);
   }
   &[data-size="xl"] {
-    font-size: var(--font-size-x-large);
-    line-height: var(--line-height-x-large);
-    letter-spacing: var(--letter-spacing-x-large);
+    font-size: var(--font-size-xl);
+    line-height: var(--line-height-xl);
+    letter-spacing: var(--letter-spacing-xl);
   }
   &[data-size="2xl"] {
-    font-size: var(--font-size-xx-large);
-    line-height: var(--line-height-xx-large);
-    letter-spacing: var(--letter-spacing-xx-large);
+    font-size: var(--font-size-2xl);
+    line-height: var(--line-height-2xl);
+    letter-spacing: var(--letter-spacing-2xl);
+  }
+  &[data-size="3xl"] {
+    font-size: var(--font-size-3xl);
+    line-height: var(--line-height-3xl);
+    letter-spacing: var(--letter-spacing-3xl);
+  }
+  &[data-size="4xl"] {
+    font-size: var(--font-size-4xl);
+    line-height: var(--line-height-4xl);
+    letter-spacing: var(--letter-spacing-4xl);
+  }
+  &[data-size="5xl"] {
+    font-size: var(--font-size-5xl);
+    line-height: var(--line-height-5xl);
+    letter-spacing: var(--letter-spacing-5xl);
   }
 
   &[data-weight="regular"] {

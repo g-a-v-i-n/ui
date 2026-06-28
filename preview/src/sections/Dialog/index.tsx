@@ -33,27 +33,6 @@ export function DialogSection() {
           </div>
         </DialogContent>
       </DialogRoot>
-
-      <DialogRoot>
-        <DialogTrigger>
-          <Button variant="secondary">Open dialog (shakes on outside click)</Button>
-        </DialogTrigger>
-        <DialogContent className={styles.content} shakeOnInteractOutside>
-          <DialogTitle>Finish this first</DialogTitle>
-          <DialogDescription>
-            Clicking the scrim won&apos;t dismiss this — it shakes &ldquo;no.&rdquo; Use a
-            button or press escape instead.
-          </DialogDescription>
-          <div className={styles.actions}>
-            <DialogClose asChild>
-              <Button variant="secondary">Cancel</Button>
-            </DialogClose>
-            <DialogClose asChild>
-              <Button>Confirm</Button>
-            </DialogClose>
-          </div>
-        </DialogContent>
-      </DialogRoot>
     </Section>
   );
 }

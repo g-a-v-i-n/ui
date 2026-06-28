@@ -9,6 +9,18 @@
   height: var(--control-height-lg);
 }
 
+/* Pill variant — fully round the group, items, and the sliding highlight. */
+.root[data-round] {
+  border-radius: 999px;
+  corner-shape: rounded;
+
+
+  & .item,
+  & .highlight {
+    border-radius: 999px;
+  }
+}
+
 .item {
   height: 100%;
   flex: 1;

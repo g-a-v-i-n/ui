@@ -3,8 +3,8 @@
   border-collapse: collapse;
 
   font-family: var(--font-sans);
-  font-size: var(--font-size-small);
-  line-height: var(--line-height-small);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
   color: var(--fg-primary);
   font-variant-numeric: tabular-nums;
   text-align: left;
@@ -32,7 +32,7 @@
 
 .head {
   padding: 6px 8px;
-  font-size: var(--font-size-x-small);
+  font-size: var(--font-size-xs);
   font-weight: var(--font-weight-medium, 500);
   color: var(--fg-tertiary);
 }
@@ -50,7 +50,7 @@
 .caption {
   caption-side: bottom;
   padding-top: 8px;
-  font-size: var(--font-size-x-small);
+  font-size: var(--font-size-xs);
   color: var(--fg-tertiary);
   text-align: left;
 }

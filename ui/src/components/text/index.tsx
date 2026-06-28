@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./styles.module.css";
 
-type Size = "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
+type Size = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl";
 type Weight = "regular" | "medium" | "semibold" | "bold";
 type Color = "primary" | "secondary" | "tertiary" | "inherit";
 type As = "span" | "p" | "div" | "label" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";

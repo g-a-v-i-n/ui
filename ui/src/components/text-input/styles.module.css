@@ -70,10 +70,10 @@
   padding-right: calc(var(--input-pad) + var(--suffix-w, 0px));
 
   font-family: var(--font-sans);
-  font-size: var(--font-size-normal);
+  font-size: var(--font-size-md);
   font-weight: var(--font-weight-normal);
-  line-height: var(--line-height-normal);
-  letter-spacing: var(--letter-spacing-normal);
+  line-height: var(--line-height-md);
+  letter-spacing: var(--letter-spacing-md);
   color: var(--fg-primary);
   text-box-trim: var(--text-box-trim);
 

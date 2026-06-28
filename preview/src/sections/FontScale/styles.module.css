@@ -1,0 +1,21 @@
+.sample {
+  display: block;
+  font-family: var(--font-sans);
+  color: var(--fg-primary);
+  white-space: nowrap;
+}
+
+.token,
+.value {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.token {
+  color: var(--fg-primary);
+}
+
+.value {
+  color: var(--fg-tertiary);
+}

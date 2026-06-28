@@ -25,17 +25,19 @@ type Side = "left" | "right" | "top" | "bottom";
 
 export const DrawerContent = ({
   children,
+  scrim = true,
   side = "right",
   className = "",
   ref,
   ...props
 }: DialogPrimitive.DialogContentProps & {
+  scrim?: boolean;
   side?: Side;
   ref?: React.Ref<HTMLDivElement>;
 }) => {
   return (
     <DialogPrimitive.Portal>
-      <DrawerOverlay />
+      {scrim ? <DrawerOverlay /> : null}
       <DialogPrimitive.Content
         {...props}
         ref={ref}

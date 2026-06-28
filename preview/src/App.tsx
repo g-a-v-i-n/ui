@@ -4,6 +4,8 @@ import { TooltipProvider } from 'ui/components/tooltip';
 import { ToastProvider, ToastViewport } from 'ui/components/toast';
 
 import { TextSection } from './sections/Text';
+import { ColorsSection } from './sections/Colors';
+import { FontScaleSection } from './sections/FontScale';
 import { IconSection } from './sections/Icon';
 import { SFSymbolSection } from './sections/SFSymbol';
 import { ButtonSection } from './sections/Button';
@@ -82,6 +84,8 @@ function App() {
             </header>
 
             <TextSection />
+            <ColorsSection />
+            <FontScaleSection />
             <IconSection />
             <SFSymbolSection />
             <ButtonSection />

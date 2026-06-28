@@ -20,8 +20,8 @@
   cursor: pointer;
   transition: color var(--duration-120) var(--ease-out-quad);
 
-  font-size:    var(--font-size-small);
-  letter-spacing: var(--letter-spacing-small);
+  font-size:    var(--font-size-sm);
+  letter-spacing: var(--letter-spacing-sm);
   font-weight: 500;
 
   &:hover {

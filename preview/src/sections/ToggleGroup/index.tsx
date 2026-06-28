@@ -39,6 +39,7 @@ export function ToggleGroupSection() {
 
       <ToggleGroup
         type="single"
+        round
         value={toggleTheme}
         onValueChange={(v) => v && setToggleTheme(v)}
       >

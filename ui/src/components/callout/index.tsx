@@ -52,7 +52,7 @@ export const Callout = ({
           </Text>
         )}
         {children && (
-          <Text as="div" size="sm" color="inherit">
+          <Text as="div" size="xs" color="inherit">
             {children}
           </Text>
         )}

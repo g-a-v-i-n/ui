@@ -27,9 +27,9 @@
   body {
     margin: 0;
     font-family: var(--font-normal);
-    font-size: var(--font-size-normal);
-    line-height: var(--line-height-normal);
-    letter-spacing: var(--letter-spacing-normal);
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-md);
+    letter-spacing: var(--letter-spacing-md);
   }
 
   hr {

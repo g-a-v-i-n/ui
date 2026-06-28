@@ -13,8 +13,8 @@
   interpolate-size: allow-keywords;
 
   font-family: var(--font-sans);
-  font-size: var(--font-size-x-small);
-  line-height: var(--line-height-x-small);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
   color: var(--red-9);
 
   animation: formMessageIn var(--duration-180) var(--ease-out-quad);

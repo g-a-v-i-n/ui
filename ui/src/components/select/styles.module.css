@@ -16,8 +16,8 @@
   user-select: none;
 
   font-family: var(--font-sans);
-  font-size: var(--font-size-small);
-  line-height: var(--line-height-small);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
   font-weight: var(--font-weight-medium, 500);
 
   transition:
@@ -109,8 +109,8 @@
 
   color: var(--fg-primary);
   font-family: var(--font-sans);
-  font-size: var(--font-size-small);
-  line-height: var(--line-height-small);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
 
   user-select: none;
   cursor: pointer;

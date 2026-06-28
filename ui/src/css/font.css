@@ -60,32 +60,40 @@
     --line-height-h4: 1.5;
     --letter-spacing-h4: 0;
 
-    --font-size-xxx-large: 36px;
-    --line-height-xxx-large: 1.2;
-    --letter-spacing-xxx-large: 0.36px;
+    /* Scale — token names match the Text size prop (xs..5xl). */
+    --font-size-xs: 12px;
+    --line-height-xs: 1.4;
+    --letter-spacing-xs: 0px;
 
-    /* The Text component scale: x-small..xx-large = Text xs..2xl. */
-    --font-size-xx-large: 28px;
-    --line-height-xx-large: 1.2;
-    --letter-spacing-xx-large: 0.36px;
+    --font-size-sm: 13px;
+    --line-height-sm: 1.4;
+    --letter-spacing-sm: -0.08px;
 
-    --font-size-x-large: 22px;
-    --line-height-x-large: 1.3;
-    --letter-spacing-x-large: 0.35px;
+    --font-size-md: 14px;
+    --line-height-md: 1.5;
+    --letter-spacing-md: -0.15px;
 
-    --font-size-large: 16px;
-    --line-height-large: 1.4;
-    --letter-spacing-large: -0.32px;
+    --font-size-lg: 16px;
+    --line-height-lg: 1.4;
+    --letter-spacing-lg: -0.32px;
 
-    --font-size-normal: 14px;
-    --line-height-normal: 1.5;
-    --letter-spacing-normal: -0.15px;
+    --font-size-xl: 20px;
+    --line-height-xl: 1.4;
+    --letter-spacing-xl: -0.4px;
 
-    --font-size-small: 13px;
-    --line-height-small: 1.4;
-    --letter-spacing-small: -0.08px;
+    --font-size-2xl: 24px;
+    --line-height-2xl: 1.3;
+    --letter-spacing-2xl: -0.5px;
 
-    --font-size-x-small: 12px;
-    --line-height-x-small: 1.4;
-    --letter-spacing-x-small: 0px;
+    --font-size-3xl: 32px;
+    --line-height-3xl: 1.2;
+    --letter-spacing-3xl: -0.6px;
+
+    --font-size-4xl: 48px;
+    --line-height-4xl: 1.1;
+    --letter-spacing-4xl: -1px;
+
+    --font-size-5xl: 64px;
+    --line-height-5xl: 1.05;
+    --letter-spacing-5xl: -1.5px;
 }

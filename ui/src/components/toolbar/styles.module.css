@@ -143,9 +143,9 @@
   outline: none;
 
   font-family: var(--font-sans);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium, 500);
-  letter-spacing: var(--letter-spacing-small);
+  letter-spacing: var(--letter-spacing-sm);
   color: var(--fg-primary);
 
   &[type="number"] {

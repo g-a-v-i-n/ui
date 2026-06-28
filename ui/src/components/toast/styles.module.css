@@ -80,7 +80,7 @@
   user-select: none;
 
   font-family: var(--font-sans);
-  font-size: var(--font-size-small);
+  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium, 500);
 
   transition: background-color var(--duration-120) var(--ease-in-out-quad);
