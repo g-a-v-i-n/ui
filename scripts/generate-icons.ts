@@ -1,21 +1,22 @@
 /**
- * Generate icon React components from a Figma page.
+ * Generate icon React components from Figma pages.
  *
- * The target page is expected to contain only 14x14 icon frames. Each frame is
+ * Each target page is expected to contain only 14x14 icon frames. Each frame is
  * exported from Figma as SVG, parsed to a hast tree, converted to a JSX estree
  * via `hast-util-to-estree`, serialized back to source with `estree-util-to-js`,
- * and written as a component whose SVG shapes live inside `<IconWrapper>`.
+ * and written as a weighted component whose SVG shapes live inside `<IconWrapper>`.
  *
  * Run (Node >= 23.6 strips TS types natively):
- *   FIGMA_TOKEN=xxx FIGMA_FILE_KEY=yyy node scripts/generate-icons.ts [pageName]
+ *   FIGMA_TOKEN=xxx FIGMA_FILE_KEY=yyy node scripts/generate-icons.ts
  *
  * Env / args:
  *   FIGMA_TOKEN      (required)  Figma personal access token.
  *   FIGMA_FILE_KEY   (required)  File key (the part after /file/ or /design/ in the URL).
- *   FIGMA_PAGE       (optional)  Page (canvas) name. Default: "Icons". Overridden by argv[2].
+ *   FIGMA_PAGES      (optional)  Comma-separated weight=page pairs. Default: "normal=normal,bold=bold".
+ *                                Example: "normal=Icons,bold=Icons Bold".
  *   --keep-colors    (optional)  Keep Figma's literal fill/stroke colors instead of
  *                                rewriting them to `currentColor`.
- *   --out <dir>      (optional)  Output dir. Default: ui/src/components/icons.
+ *   --out <dir>      (optional)  Output dir. Default: ui/src/components/icon/static.
  */
 
 import { writeFile, mkdir, readdir, readFile } from "node:fs/promises";
@@ -28,6 +29,7 @@ import { toJs, jsx } from "estree-util-to-js";
 const FIGMA_API = "https://api.figma.com/v1";
 const DEFAULT_VIEWBOX = "0 0 18 18"; // IconWrapper's default; omit the prop when it matches
 const EXPORT_CHUNK = 100; // max node ids per /images request
+const DEFAULT_WEIGHTS = ["normal", "bold"] as const;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, "..");
@@ -48,33 +50,58 @@ type FigmaNode = {
 
 function parseArgs() {
   const argv = process.argv.slice(2);
-  const positional: string[] = [];
   let keepColors = false;
   let indexOnly = false;
   let out = path.join(REPO_ROOT, "ui/src/components/icon/static");
+  let pagesArg = process.env.FIGMA_PAGES ?? "normal=normal,bold=bold";
 
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i];
     if (arg === "--keep-colors") keepColors = true;
     else if (arg === "--index-only") indexOnly = true;
     else if (arg === "--out") out = path.resolve(argv[++i] ?? out);
-    else positional.push(arg);
+    else if (arg === "--pages") pagesArg = argv[++i] ?? pagesArg;
   }
 
   const token = process.env.FIGMA_TOKEN;
   const fileKey = process.env.FIGMA_FILE_KEY;
-  const pageName = positional[0] ?? process.env.FIGMA_PAGE ?? "Icons";
+  const pages = parsePages(pagesArg);
 
   // Figma creds are only needed for a full run, not for rebuilding the index.
   if (!indexOnly && (!token || !fileKey)) {
     console.error(
       "Missing config. Set FIGMA_TOKEN and FIGMA_FILE_KEY.\n" +
-        "Usage: FIGMA_TOKEN=xxx FIGMA_FILE_KEY=yyy node scripts/generate-icons.ts [pageName]"
+        "Usage: FIGMA_TOKEN=xxx FIGMA_FILE_KEY=yyy node scripts/generate-icons.ts"
     );
     process.exit(1);
   }
 
-  return { token, fileKey, pageName, keepColors, indexOnly, out };
+  return { token, fileKey, pages, keepColors, indexOnly, out };
+}
+
+function parsePages(input: string) {
+  const pages = input
+    .split(",")
+    .map((part) => part.trim())
+    .filter(Boolean)
+    .map((part) => {
+      const [weight, ...pageParts] = part.split("=");
+      const page = pageParts.join("=").trim();
+      return {
+        weight: weight.trim(),
+        pageName: page || weight.trim(),
+      };
+    });
+
+  if (pages.length === 0) {
+    throw new Error("No icon pages configured. Use FIGMA_PAGES or --pages.");
+  }
+  for (const page of pages) {
+    if (!/^[a-z][a-z0-9-]*$/.test(page.weight)) {
+      throw new Error(`Invalid icon weight "${page.weight}". Use lowercase kebab-case.`);
+    }
+  }
+  return pages;
 }
 
 async function figma(token: string, url: string) {
@@ -96,10 +123,12 @@ async function getIconFrames(token: string, fileKey: string, pageName: string) {
     throw new Error(`Page "${pageName}" not found. Available pages: ${names}`);
   }
 
-  // Each direct child of the page is one icon frame.
-  const frames = (page.children ?? []).filter((n) => n.type === "FRAME" || n.type === "COMPONENT");
+  // Each direct child of the page is one exportable icon node.
+  const frames = (page.children ?? []).filter(
+    (n) => n.type === "FRAME" || n.type === "COMPONENT" || n.type === "INSTANCE"
+  );
   if (frames.length === 0) {
-    throw new Error(`Page "${pageName}" has no FRAME/COMPONENT children to export.`);
+    throw new Error(`Page "${pageName}" has no FRAME/COMPONENT/INSTANCE children to export.`);
   }
   return frames;
 }
@@ -219,8 +248,8 @@ function componentSource(pascal: string, viewBox: string, children: string): str
   // Match the hand-written icons: only set viewBox when it differs from the
   // IconWrapper default, otherwise the prop is redundant.
   const viewBoxProp = viewBox === DEFAULT_VIEWBOX ? "" : `viewBox="${viewBox}" `;
-  return `import { IconWrapper } from "../icon-wrapper";
-import type { IconProps } from "../types";
+  return `import { IconWrapper } from "../../icon-wrapper";
+import type { IconProps } from "../../types";
 
 export const ${pascal} = (props: IconProps) => {
   return (
@@ -237,55 +266,94 @@ function mapKey(kebab: string): string {
   return /^[a-z][a-zA-Z0-9]*$/.test(kebab) ? kebab : `"${kebab}"`;
 }
 
+/** "lock-locked" -> "LockLocked", for building unique per-weight import aliases. */
+function pascalCase(kebab: string): string {
+  return kebab
+    .split("-")
+    .filter(Boolean)
+    .map((w) => w[0].toUpperCase() + w.slice(1))
+    .join("");
+}
+
 /**
- * (Re)write the generated icon registry by scanning the static dir. Every
- * `*.tsx` whose exported component we can read becomes an entry, so adding an
- * icon is just dropping a file in static/ and re-running — no hand-editing.
+ * (Re)write the generated icon registry by scanning static/<weight> dirs.
+ * Every `*.tsx` whose exported component we can read becomes an entry, so adding
+ * an icon is just dropping a file in a weight dir and re-running — no hand-editing.
  *
  * Only the name→component map lives here; index.tsx (hand-written, stable)
  * imports it to build the `Icon` component, types, and re-exports. Keeping them
  * split means this churning file stays tiny and index.tsx never gets rewritten.
  */
 async function writeRegistry(staticDir: string) {
-  const dir = await readdir(staticDir);
-  const entries: { kebab: string; component: string }[] = [];
+  const existingWeights = (await readdir(staticDir, { withFileTypes: true }))
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name)
+    .sort();
+  const weights = Array.from(new Set([...DEFAULT_WEIGHTS, ...existingWeights])).sort();
 
-  for (const file of dir.filter((f) => f.endsWith(".tsx")).sort()) {
-    const kebab = file.replace(/\.tsx$/, "");
-    const src = await readFile(path.join(staticDir, file), "utf8");
-    const match = src.match(/export const (\w+)/);
-    if (!match) {
-      console.warn(`  ! ${file} has no \`export const\`; omitting from registry`);
-      continue;
+  const registry: Record<string, { kebab: string; component: string }[]> = {};
+
+  for (const weight of weights) {
+    const weightDir = path.join(staticDir, weight);
+    await mkdir(weightDir, { recursive: true });
+    const dir = await readdir(weightDir);
+    const entries: { kebab: string; component: string }[] = [];
+
+    for (const file of dir.filter((f) => f.endsWith(".tsx")).sort()) {
+      const kebab = file.replace(/\.tsx$/, "");
+      const src = await readFile(path.join(weightDir, file), "utf8");
+      const match = src.match(/export const (\w+)/);
+      if (!match) {
+        console.warn(`  ! ${weight}/${file} has no \`export const\`; omitting from registry`);
+        continue;
+      }
+      entries.push({ kebab, component: match[1] });
     }
-    entries.push({ kebab, component: match[1] });
+    entries.sort((a, b) => a.kebab.localeCompare(b.kebab));
+    registry[weight] = entries;
   }
-  entries.sort((a, b) => a.kebab.localeCompare(b.kebab));
 
   const staticName = path.basename(staticDir);
-  const imports = entries
-    .map((e) => `import { ${e.component} } from "./${staticName}/${e.kebab}";`)
+  // The same icon exists in every weight under the same exported name (e.g.
+  // `ArrowDown`), so alias each import by weight to keep local bindings unique.
+  const localName = (weight: string, component: string) =>
+    `${pascalCase(weight)}${component}`;
+  const imports = Object.entries(registry)
+    .flatMap(([weight, entries]) =>
+      entries.map(
+        (e) =>
+          `import { ${e.component} as ${localName(weight, e.component)} } from "./${staticName}/${weight}/${e.kebab}";`
+      )
+    )
     .join("\n");
-  const map = entries.map((e) => `  ${mapKey(e.kebab)}: ${e.component},`).join("\n");
+  const maps = Object.entries(registry)
+    .map(([weight, entries]) => {
+      const map = entries
+        .map((e) => `    ${mapKey(e.kebab)}: ${localName(weight, e.component)},`)
+        .join("\n");
+      return `  ${mapKey(weight)}: {\n${map}\n  },`;
+    })
+    .join("\n");
+  const count = Object.values(registry).reduce((total, entries) => total + entries.length, 0);
 
   const source = `// AUTO-GENERATED by scripts/generate-icons.ts — do not edit by hand.
-// Add an icon by placing its component in ./${staticName} and re-running:
+// Add an icon by placing its component in ./${staticName}/<weight> and re-running:
 //   pnpm generate-icons              regenerate from Figma, then rebuild this file
 //   pnpm generate-icons:index        rebuild this file from ./${staticName} only
 ${imports}
 
 export const icons = {
-${map}
+${maps}
 } as const;
 `;
 
   const registryPath = path.join(path.dirname(staticDir), "registry.ts");
   await writeFile(registryPath, source, "utf8");
-  console.log(`\nWrote ${path.relative(REPO_ROOT, registryPath)} (${entries.length} icon(s)).`);
+  console.log(`\nWrote ${path.relative(REPO_ROOT, registryPath)} (${count} icon(s), ${weights.length} weight(s)).`);
 }
 
 async function main() {
-  const { token, fileKey, pageName, keepColors, indexOnly, out } = parseArgs();
+  const { token, fileKey, pages, keepColors, indexOnly, out } = parseArgs();
 
   // --index-only: skip Figma entirely, just rebuild the registry from ./static.
   if (indexOnly) {
@@ -294,37 +362,43 @@ async function main() {
     return;
   }
 
-  console.log(`Fetching page "${pageName}" from file ${fileKey}…`);
-  const frames = await getIconFrames(token!, fileKey!, pageName);
-  console.log(`Found ${frames.length} icon frame(s). Requesting SVG export…`);
-
-  const urls = await getSvgUrls(token!, fileKey!, frames.map((f) => f.id));
   await mkdir(out, { recursive: true });
 
-  // Download + transform each icon. Parallel within a single pass.
-  await Promise.all(
-    frames.map(async (frame) => {
-      const url = urls[frame.id];
-      if (!url) {
-        console.warn(`  ! No export URL for "${frame.name}" (${frame.id}); skipping`);
-        return;
-      }
+  for (const page of pages) {
+    const weightDir = path.join(out, page.weight);
+    await mkdir(weightDir, { recursive: true });
 
-      const res = await fetch(url);
-      if (!res.ok) {
-        console.warn(`  ! Failed to download "${frame.name}": ${res.status}; skipping`);
-        return;
-      }
-      const svg = await res.text();
+    console.log(`Fetching page "${page.pageName}" as "${page.weight}" from file ${fileKey}…`);
+    const frames = await getIconFrames(token!, fileKey!, page.pageName);
+    console.log(`Found ${frames.length} icon frame(s). Requesting SVG export…`);
 
-      const { kebab, pascal } = names(frame.name);
-      const { viewBox, children } = svgToJsx(svg, keepColors);
-      const file = path.join(out, `${kebab}.tsx`);
-      await writeFile(file, componentSource(pascal, viewBox, children), "utf8");
+    const urls = await getSvgUrls(token!, fileKey!, frames.map((f) => f.id));
 
-      console.log(`  ✓ ${kebab}.tsx  (${pascal})`);
-    })
-  );
+    // Download + transform each icon. Parallel within a single page.
+    await Promise.all(
+      frames.map(async (frame) => {
+        const url = urls[frame.id];
+        if (!url) {
+          console.warn(`  ! No export URL for "${frame.name}" (${frame.id}); skipping`);
+          return;
+        }
+
+        const res = await fetch(url);
+        if (!res.ok) {
+          console.warn(`  ! Failed to download "${frame.name}": ${res.status}; skipping`);
+          return;
+        }
+        const svg = await res.text();
+
+        const { kebab, pascal } = names(frame.name);
+        const { viewBox, children } = svgToJsx(svg, keepColors);
+        const file = path.join(weightDir, `${kebab}.tsx`);
+        await writeFile(file, componentSource(pascal, viewBox, children), "utf8");
+
+        console.log(`  ✓ ${page.weight}/${kebab}.tsx  (${pascal})`);
+      })
+    );
+  }
 
   // Rebuild the registry from everything now in ./static (newly written + existing).
   await writeRegistry(out);

@@ -12,6 +12,7 @@ const sizes = {
 export const IconWrapper = ({
   className = "",
   size,
+  weight: _weight,
   width,
   height,
   viewBox = "0 0 18 18",

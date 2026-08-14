@@ -2,6 +2,22 @@ import { useEffect, useState } from 'react';
 import { Section } from '../../Section';
 import styles from './styles.module.css';
 
+const FAMILY_ORDER = [
+  'gray',
+  'black',
+  'white',
+  'red',
+  'amber',
+  'tomato',
+  'purple',
+  'teal',
+  'blue',
+  'pink',
+  'crimson',
+  'grass',
+  'orange',
+];
+
 // Walk a rule list (incl. nested @media/@supports and @import sheets) collecting
 // every custom-property name that is set anywhere.
 function collectFromRules(rules: CSSRuleList, names: Set<string>) {
@@ -43,7 +59,52 @@ function collectColorVars(): string[] {
       const value = root.getPropertyValue(name).trim();
       return value.length > 0 && CSS.supports('color', value);
     })
-    .sort();
+    .sort(compareColorVars);
+}
+
+function compareColorVars(a: string, b: string) {
+  const parsedA = parseColorVar(a);
+  const parsedB = parseColorVar(b);
+
+  if (parsedA.familyOrder !== parsedB.familyOrder) {
+    return parsedA.familyOrder - parsedB.familyOrder;
+  }
+  if (parsedA.family !== parsedB.family) {
+    return parsedA.family.localeCompare(parsedB.family);
+  }
+  if (parsedA.alpha !== parsedB.alpha) {
+    return Number(parsedA.alpha) - Number(parsedB.alpha);
+  }
+  if (parsedA.step !== parsedB.step) {
+    return parsedA.step - parsedB.step;
+  }
+  return a.localeCompare(b);
+}
+
+function parseColorVar(name: string) {
+  const [, raw = name] = /^--(.+)$/.exec(name) ?? [];
+  const match = /^(.*?)-(a?)(\d+)$/.exec(raw);
+
+  if (!match) {
+    return {
+      family: raw,
+      familyOrder: Number.POSITIVE_INFINITY,
+      alpha: false,
+      step: Number.POSITIVE_INFINITY,
+    };
+  }
+
+  const family = match[1];
+  const familyOrder = FAMILY_ORDER.includes(family)
+    ? FAMILY_ORDER.indexOf(family)
+    : Number.POSITIVE_INFINITY;
+
+  return {
+    family,
+    familyOrder,
+    alpha: match[2] === 'a',
+    step: Number(match[3]),
+  };
 }
 
 export function ColorsSection() {

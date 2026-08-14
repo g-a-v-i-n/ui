@@ -8,7 +8,10 @@ export function IconSection() {
       <div className={styles.grid}>
         {iconNames.map((name) => (
           <div key={name} className={styles.cell}>
-            <Icon icon={name} />
+            <div className={styles.weights}>
+              <Icon icon={name} weight="normal" />
+              <Icon icon={name} weight="bold" />
+            </div>
             <span className={styles.label}>{name}</span>
           </div>
         ))}

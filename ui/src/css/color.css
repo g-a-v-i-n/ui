@@ -98,7 +98,7 @@
     --fg-tertiary: var(--gray-10);
     --fg-quaternary: var(--gray-9);
   }
-
+/* 
   :root, .light, .light-theme {
   --orange-1: #fefcfb;
   --orange-2: #fff5f0;
@@ -308,4 +308,4 @@
       --lime-track: oklch(78.4% 0.2386 137.3);
     }
   }
-}
+} */

@@ -5,6 +5,7 @@ import { ToastProvider, ToastViewport } from 'ui/components/toast';
 
 import { TextSection } from './sections/Text';
 import { ColorsSection } from './sections/Colors';
+import { ColorScaleExperimentSection } from './sections/ColorScaleExperiment';
 import { FontScaleSection } from './sections/FontScale';
 import { IconSection } from './sections/Icon';
 import { SFSymbolSection } from './sections/SFSymbol';
@@ -85,6 +86,7 @@ function App() {
 
             <TextSection />
             <ColorsSection />
+            <ColorScaleExperimentSection />
             <FontScaleSection />
             <IconSection />
             <SFSymbolSection />
