@@ -1,0 +1,67 @@
+/* Shared recipe classes for component CSS modules, applied with
+   `composes: <name> from "../../css/recipes.module.css";`. Each recipe is
+   parameterized through custom props (with defaults) so a component can
+   retune a knob without copying the whole block. Layout-critical properties
+   (position, z-index) stay in the components — surfaces disagree on them. */
+
+/* Elevated floating surface: menus, popovers, dialogs, tooltips, toasts.
+   The page sits on --bg-base; every floating surface sits on --bg-elevated
+   with --shadow-elevated drawing its rim and drop shadow (see css/color.css). */
+.floatingSurface {
+  background: var(--surface-background, var(--bg-elevated));
+  backdrop-filter: var(--blur-elevated);
+  border-radius: var(--surface-radius, 12px);
+  corner-shape: var(--corner-shape);
+  box-shadow: var(--surface-shadow, var(--shadow-elevated));
+}
+
+/* Radix popper enter/exit: scale pop for surfaces with no meaningful side
+   (dropdown menus, menubar panels). */
+.popAnimation {
+  transform-origin: var(--radix-popper-transform-origin);
+  animation-duration: var(--duration-180);
+  animation-timing-function: var(--ease-out-quad);
+  animation-fill-mode: both;
+
+  &[data-state="open"] {
+    animation-name: var(--kf-enter-pop);
+  }
+  &[data-state="closed"] {
+    animation-name: var(--kf-exit-pop);
+  }
+}
+
+/* Fade enter/exit driven by Radix open/closed state — overlays and
+   full-screen panels. */
+.fadeAnimation {
+  animation-duration: var(--duration-180);
+  animation-timing-function: var(--ease-out-quad);
+  animation-fill-mode: both;
+
+  &[data-state="open"] {
+    animation-name: var(--kf-fade-in);
+  }
+  &[data-state="closed"] {
+    animation-name: var(--kf-fade-out);
+  }
+}
+
+/* Side-aware popper enter/exit: slide along data-side, pop as the fallback
+   when Radix reports no side. The extra attribute selector outweighs the
+   popAnimation fallback rules regardless of source order. */
+.popperAnimation {
+  composes: popAnimation;
+
+  &[data-side="top"][data-state="open"] {
+    animation-name: var(--kf-slide-up-to-open);
+  }
+  &[data-side="top"][data-state="closed"] {
+    animation-name: var(--kf-slide-up-to-closed);
+  }
+  &[data-side="bottom"][data-state="open"] {
+    animation-name: var(--kf-slide-down-to-open);
+  }
+  &[data-side="bottom"][data-state="closed"] {
+    animation-name: var(--kf-slide-down-to-closed);
+  }
+}

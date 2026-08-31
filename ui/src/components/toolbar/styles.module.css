@@ -67,7 +67,7 @@
   }
 
   &:focus-visible {
-    outline: 2px solid var(--focus-ring-color);
+    outline: var(--focus-ring-width) solid var(--focus-ring-color);
     animation: var(--focus-ring-animation);
     outline-offset: -1px;
   }
@@ -105,7 +105,7 @@
   }
 
   &:focus-visible {
-    outline: 2px solid var(--focus-ring-color);
+    outline: var(--focus-ring-width) solid var(--focus-ring-color);
     animation: var(--focus-ring-animation);
     outline-offset: -1px;
     border-radius: 8px;
@@ -133,7 +133,7 @@
   }
 
   &:has(.input:focus-visible) {
-    outline: 2px solid var(--focus-ring-color);
+    outline: var(--focus-ring-width) solid var(--focus-ring-color);
     animation: var(--focus-ring-animation);
     outline-offset: -1px;
   }

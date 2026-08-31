@@ -1,31 +1,17 @@
-.overlay,
 .content {
-  --overlay-background: var(--scrim);
-
-  --content-background: var(--bg-elevated);
-  --content-shadow: var(--shadow-elevated);
   --content-shadow-flat: var(--shadow-hairline-1);
 }
 
 .overlay {
-  position: fixed;
-  inset: 0;
-  background-color: var(--overlay-background);
-  z-index: var(--layer-dialog-overlay);
-
-  animation-duration: var(--duration-180);
-  animation-timing-function: var(--ease-out-quad);
-  animation-fill-mode: both;
-
-  &[data-state="open"] {
-    animation-name: overlayFadeIn;
-  }
-  &[data-state="closed"] {
-    animation-name: overlayFadeOut;
-  }
+  composes: overlay from "../dialog/styles.module.css";
 }
 
 .content {
+  composes: floatingSurface from "../../css/recipes.module.css";
+
+  /* Edge-anchored panel: square corners. */
+  --surface-radius: 0;
+
   position: fixed;
   z-index: var(--layer-dialog);
 
@@ -33,10 +19,6 @@
   flex-direction: column;
   gap: var(--size-8);
   padding: var(--size-20);
-
-  background: var(--content-background);
-  backdrop-filter: var(--blur-elevated);
-  box-shadow: var(--content-shadow);
 
   &[data-elevated="false"] {
     box-shadow: var(--content-shadow-flat);
@@ -112,16 +94,6 @@
 .description {
   margin: 0;
 }
-
-@keyframes overlayFadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-@keyframes overlayFadeOut {
-  from { opacity: 1; }
-  to { opacity: 0; }
-}
-
 @keyframes slideInRight {
   from { transform: translateX(100%); opacity: 0; }
   to { transform: translateX(0); opacity: 1; }

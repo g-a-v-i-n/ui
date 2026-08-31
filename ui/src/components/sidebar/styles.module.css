@@ -96,7 +96,7 @@
   }
 
   &:focus-visible {
-    outline: 2px solid var(--focus-ring-color);
+    outline: var(--focus-ring-width) solid var(--focus-ring-color);
     animation: var(--focus-ring-animation);
     outline-offset: -1px;
   }
@@ -166,7 +166,7 @@
   }
 
   &:focus-visible {
-    outline: 2px solid var(--focus-ring-color);
+    outline: var(--focus-ring-width) solid var(--focus-ring-color);
     animation: var(--focus-ring-animation);
     outline-offset: -1px;
   }
@@ -186,14 +186,16 @@
 }
 
 .collapsibleContent {
+  --collapse-height: var(--radix-collapsible-content-height);
+
   overflow: hidden;
 
   &[data-state="open"] {
-    animation: sidebarSlideDown var(--duration-180) var(--ease-out-quad);
+    animation: var(--kf-collapse-open) var(--duration-180) var(--ease-out-quad);
   }
 
   &[data-state="closed"] {
-    animation: sidebarSlideUp var(--duration-180) var(--ease-out-quad);
+    animation: var(--kf-collapse-closed) var(--duration-180) var(--ease-out-quad);
   }
 }
 
@@ -201,22 +203,4 @@
   display: flex;
   flex-direction: column;
   gap: 1px;
-}
-
-@keyframes sidebarSlideDown {
-  from {
-    height: 0;
-  }
-  to {
-    height: var(--radix-collapsible-content-height);
-  }
-}
-
-@keyframes sidebarSlideUp {
-  from {
-    height: var(--radix-collapsible-content-height);
-  }
-  to {
-    height: 0;
-  }
 }

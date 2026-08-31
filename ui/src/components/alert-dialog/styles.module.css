@@ -1,67 +1,13 @@
-.overlay,
-.content {
-  --overlay-background: var(--scrim);
-
-  --content-background: var(--bg-elevated);
-  --content-shadow: var(--shadow-elevated);
-}
-
+/* The alert dialog is the dialog surface plus a minimum width and an action
+   footer — everything else composes from ../dialog. */
 .overlay {
-  position: fixed;
-  inset: 0;
-  background-color: var(--overlay-background);
-  z-index: var(--layer-dialog-overlay);
-
-  animation-duration: var(--duration-180);
-  animation-timing-function: var(--ease-out-quad);
-  animation-fill-mode: both;
-
-  &[data-state="open"] {
-    animation-name: overlayFadeIn;
-  }
-
-  &[data-state="closed"] {
-    animation-name: overlayFadeOut;
-  }
+  composes: overlay from "../dialog/styles.module.css";
 }
 
 .content {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: var(--layer-dialog);
-
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-
-  background: var(--content-background);
-  backdrop-filter: var(--blur-elevated);
-  border-radius: 16px;
-  corner-shape: var(--corner-shape);
-  box-shadow: var(--content-shadow);
-  padding: 20px;
+  composes: content from "../dialog/styles.module.css";
 
   min-width: var(--size-256);
-  max-width: calc(100vw - 16px);
-  max-height: 85vh;
-
-  animation-duration: var(--duration-180);
-  animation-timing-function: var(--ease-out-quad);
-  animation-fill-mode: both;
-
-  &:focus {
-    outline: none;
-  }
-
-  &[data-state="open"] {
-    animation-name: contentEnter;
-  }
-
-  &[data-state="closed"] {
-    animation-name: contentExit;
-  }
 }
 
 .title {
@@ -77,44 +23,4 @@
   display: flex;
   justify-content: flex-end;
   gap: 8px;
-}
-
-@keyframes overlayFadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes overlayFadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes contentEnter {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -48%) scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
-}
-
-@keyframes contentExit {
-  from {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  to {
-    opacity: 0;
-    transform: translate(-50%, -48%) scale(0.96);
-  }
 }

@@ -70,7 +70,7 @@
   transition: box-shadow var(--duration-120) var(--ease-out-quad);
 
   &:focus-visible {
-    outline: 2px solid var(--focus-ring-color);
+    outline: var(--focus-ring-width) solid var(--focus-ring-color);
     animation: var(--focus-ring-animation);
     outline-offset: var(--focus-ring-offset);
   }

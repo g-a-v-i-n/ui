@@ -43,6 +43,185 @@
        shadow ring wipes it for the first frames). Applied via var() so CSS
        modules can't rename the global keyframes. */
     --focus-ring-animation: focus-ring-in var(--duration-180) var(--ease-out-quad);
+
+    /* Shared enter/exit keyframes for floating surfaces and controls, defined
+       once below and applied via these vars so CSS modules can't rename the
+       global names (same trick as --focus-ring-animation). Components tune
+       distances through element-scoped custom props (--slide-*, --check-*,
+       --collapse-*) instead of keeping their own keyframe copies. */
+    --kf-enter-pop: enter-pop;
+    --kf-exit-pop: exit-pop;
+    --kf-fade-in: fade-in;
+    --kf-fade-out: fade-out;
+    --kf-slide-up-to-open: slide-up-to-open;
+    --kf-slide-up-to-closed: slide-up-to-closed;
+    --kf-slide-down-to-open: slide-down-to-open;
+    --kf-slide-down-to-closed: slide-down-to-closed;
+    --kf-dialog-content-enter: dialog-content-enter;
+    --kf-dialog-content-exit: dialog-content-exit;
+    --kf-check-in: check-in;
+    --kf-check-out: check-out;
+    --kf-collapse-open: collapse-open;
+    --kf-collapse-closed: collapse-closed;
+}
+
+/* Scale-in pop for popper surfaces without a side to slide from. */
+@keyframes enter-pop {
+    from {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes exit-pop {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+}
+
+/* Plain fades — overlays, fullscreen modals, cross-fading panels. */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+/* Side-aware popper slides. --slide-distance/--slide-scale shape the enter,
+   --slide-exit-distance the exit (tooltip: 5px/0.95 enter, 0 exit). */
+@keyframes slide-up-to-open {
+    from {
+        opacity: 0;
+        transform: translateY(var(--slide-distance, 3px)) scale(var(--slide-scale, 0.98));
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes slide-down-to-open {
+    from {
+        opacity: 0;
+        transform: translateY(calc(-1 * var(--slide-distance, 3px))) scale(var(--slide-scale, 0.98));
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes slide-up-to-closed {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(var(--slide-exit-distance, 3px)) scale(var(--slide-scale, 0.98));
+    }
+}
+
+@keyframes slide-down-to-closed {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(calc(-1 * var(--slide-exit-distance, 3px))) scale(var(--slide-scale, 0.98));
+    }
+}
+
+/* Centered dialog content: fade + rise + settle around the -50%/-50% anchor. */
+@keyframes dialog-content-enter {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -48%) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes dialog-content-exit {
+    from {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translate(-50%, -48%) scale(0.96);
+    }
+}
+
+/* Check/radio indicator pop. --check-scale-min is the collapsed size. */
+@keyframes check-in {
+    from {
+        opacity: 0;
+        transform: scale(var(--check-scale-min, 0.2));
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes check-out {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(var(--check-scale-min, 0.2));
+    }
+}
+
+/* Height collapse for accordion/collapsible/sidebar. The consumer must set
+   --collapse-height to its Radix measured-height var; --collapse-min-opacity
+   defaults to a pure height animation (accordion fades too, so it sets 0). */
+@keyframes collapse-open {
+    from {
+        height: 0;
+        opacity: var(--collapse-min-opacity, 1);
+    }
+    to {
+        height: var(--collapse-height);
+        opacity: 1;
+    }
+}
+
+@keyframes collapse-closed {
+    from {
+        height: var(--collapse-height);
+        opacity: 1;
+    }
+    to {
+        height: 0;
+        opacity: var(--collapse-min-opacity, 1);
+    }
 }
 
 @keyframes focus-ring-in {

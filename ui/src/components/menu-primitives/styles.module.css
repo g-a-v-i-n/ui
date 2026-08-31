@@ -9,9 +9,6 @@
 .title,
 .listItem,
 .arrow {
-  --container-background: var(--bg-elevated);
-  --container-shadow: var(--shadow-elevated);
-
   /* The arrow sits against the container card: same surface, and its hairline
      edge matches the card's --shadow-elevated rim in both modes. */
   --arrow-background: var(--bg-elevated);
@@ -38,17 +35,13 @@
    Matches the Figma menu/dropdown surface: gray-2 with a white rim + soft drop
    shadow (--shadow-elevated), 1px-gap stack of items with 4px outer padding. */
 .container {
+  composes: floatingSurface popperAnimation from "../../css/recipes.module.css";
+
   display: flex;
   flex-direction: column;
   align-items: stretch;
   gap: 1px;
   padding: 4px;
-
-  background: var(--container-background);
-  backdrop-filter: var(--blur-elevated);
-  border-radius: 12px;
-  corner-shape: var(--corner-shape);
-  box-shadow: var(--container-shadow);
 
   z-index: var(--layer-popover);
   position: relative;
@@ -65,30 +58,6 @@
   }
   &[data-width="lg"] {
     width: var(--size-212);
-  }
-
-  transform-origin: var(--radix-popper-transform-origin);
-  animation-duration: var(--duration-180);
-  animation-timing-function: var(--ease-out-quad);
-  animation-fill-mode: both;
-
-  &[data-side="top"][data-state="open"] {
-    animation-name: slideUpToOpen;
-  }
-  &[data-side="top"][data-state="closed"] {
-    animation-name: slideUpToClosed;
-  }
-  &[data-side="bottom"][data-state="open"] {
-    animation-name: slideDownToOpen;
-  }
-  &[data-side="bottom"][data-state="closed"] {
-    animation-name: slideDownToClosed;
-  }
-  &[data-state="open"] {
-    animation-name: enterPop;
-  }
-  &[data-state="closed"] {
-    animation-name: exitPop;
   }
 }
 
@@ -118,7 +87,6 @@
   outline: none;
 
   transition: background-color var(--duration-120) var(--ease-in-out-quad);
-
 
   &:hover,
   &:focus,
@@ -250,70 +218,4 @@ span:has(> .arrow) {
 .listItemValue {
   color: var(--list-item-value-color);
 
-}
-
-@keyframes slideUpToOpen {
-  from {
-    opacity: 0;
-    transform: translateY(3px) scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes slideDownToOpen {
-  from {
-    opacity: 0;
-    transform: translateY(-3px) scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes slideUpToClosed {
-  from {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(3px) scale(0.98);
-  }
-}
-
-@keyframes slideDownToClosed {
-  from {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-3px) scale(0.98);
-  }
-}
-
-@keyframes enterPop {
-  from {
-    opacity: 0;
-    transform: scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes exitPop {
-  from {
-    opacity: 1;
-    transform: scale(1);
-  }
-  to {
-    opacity: 0;
-    transform: scale(0.96);
-  }
 }

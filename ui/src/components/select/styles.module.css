@@ -7,9 +7,6 @@
   --trigger-foreground-placeholder: var(--fg-tertiary);
   --trigger-icon-color: var(--fg-tertiary);
 
-  --content-background: var(--bg-elevated);
-  --content-shadow: var(--shadow-elevated);
-
   --item-foreground: var(--fg-primary);
   --item-background-highlighted: var(--gray-a3);
   --indicator-color: var(--blue-9);
@@ -48,7 +45,7 @@
   }
 
   &:focus-visible {
-    outline: 2px solid var(--focus-ring-color);
+    outline: var(--focus-ring-width) solid var(--focus-ring-color);
     animation: var(--focus-ring-animation);
     outline-offset: var(--focus-ring-offset);
   }
@@ -67,45 +64,17 @@
 }
 
 .content {
+  composes: floatingSurface popperAnimation from "../../css/recipes.module.css";
+
   display: flex;
   flex-direction: column;
   padding: 4px;
   min-width: var(--size-128);
   max-height: var(--radix-select-content-available-height);
 
-  background: var(--content-background);
-  backdrop-filter: var(--blur-elevated);
-  border-radius: 12px;
-  corner-shape: var(--corner-shape);
-  box-shadow: var(--content-shadow);
-
   z-index: var(--layer-select);
   position: relative;
   overflow: hidden;
-
-  transform-origin: var(--radix-popper-transform-origin);
-  animation-duration: var(--duration-180);
-  animation-timing-function: var(--ease-out-quad);
-  animation-fill-mode: both;
-
-  &[data-side="top"][data-state="open"] {
-    animation-name: slideUpToOpen;
-  }
-  &[data-side="top"][data-state="closed"] {
-    animation-name: slideUpToClosed;
-  }
-  &[data-side="bottom"][data-state="open"] {
-    animation-name: slideDownToOpen;
-  }
-  &[data-side="bottom"][data-state="closed"] {
-    animation-name: slideDownToClosed;
-  }
-  &[data-state="open"] {
-    animation-name: enterPop;
-  }
-  &[data-state="closed"] {
-    animation-name: exitPop;
-  }
 }
 
 .viewport {
@@ -172,70 +141,4 @@
 
 .scrollButtonUp > span {
   transform: rotate(180deg);
-}
-
-@keyframes slideUpToOpen {
-  from {
-    opacity: 0;
-    transform: translateY(3px) scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes slideDownToOpen {
-  from {
-    opacity: 0;
-    transform: translateY(-3px) scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes slideUpToClosed {
-  from {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(3px) scale(0.98);
-  }
-}
-
-@keyframes slideDownToClosed {
-  from {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-3px) scale(0.98);
-  }
-}
-
-@keyframes enterPop {
-  from {
-    opacity: 0;
-    transform: scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes exitPop {
-  from {
-    opacity: 1;
-    transform: scale(1);
-  }
-  to {
-    opacity: 0;
-    transform: scale(0.96);
-  }
 }

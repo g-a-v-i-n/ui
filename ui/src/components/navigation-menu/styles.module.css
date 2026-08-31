@@ -2,9 +2,6 @@
   --item-foreground: var(--fg-primary);
   --item-background-hover: var(--gray-a3);
   --chevron-color: var(--fg-tertiary);
-
-  --viewport-background: var(--bg-elevated);
-  --viewport-shadow: var(--shadow-elevated);
 }
 
 .root {
@@ -47,7 +44,7 @@
   }
 
   &:focus-visible {
-    outline: 2px solid var(--focus-ring-color);
+    outline: var(--focus-ring-width) solid var(--focus-ring-color);
     animation: var(--focus-ring-animation);
     outline-offset: -1px;
   }
@@ -66,23 +63,16 @@
 }
 
 .content {
+  composes: fadeAnimation from "../../css/recipes.module.css";
+
   position: absolute;
   top: 0;
   left: 0;
   padding: 12px;
 
-  animation-duration: var(--duration-180);
-  animation-timing-function: var(--ease-out-quad);
-  animation-fill-mode: both;
-
   &[data-motion="from-start"],
-  &[data-motion="from-end"],
-  &[data-state="open"] {
-    animation-name: contentEnter;
-  }
-
-  &[data-state="closed"] {
-    animation-name: contentExit;
+  &[data-motion="from-end"] {
+    animation-name: var(--kf-fade-in);
   }
 }
 
@@ -103,17 +93,13 @@
 }
 
 .viewport {
+  composes: floatingSurface from "../../css/recipes.module.css";
+
   position: relative;
   margin-top: 6px;
   width: var(--radix-navigation-menu-viewport-width);
   height: var(--radix-navigation-menu-viewport-height);
   overflow: hidden;
-
-  background: var(--viewport-background);
-  backdrop-filter: var(--blur-elevated);
-  border-radius: 12px;
-  corner-shape: var(--corner-shape);
-  box-shadow: var(--viewport-shadow);
 
   z-index: var(--layer-popover);
 
@@ -126,50 +112,10 @@
   animation-fill-mode: both;
 
   &[data-state="open"] {
-    animation-name: viewportEnter;
+    animation-name: var(--kf-slide-down-to-open);
   }
 
   &[data-state="closed"] {
-    animation-name: viewportExit;
-  }
-}
-
-@keyframes contentEnter {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes contentExit {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes viewportEnter {
-  from {
-    opacity: 0;
-    transform: translateY(-3px) scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes viewportExit {
-  from {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(-3px) scale(0.98);
+    animation-name: var(--kf-slide-down-to-closed);
   }
 }

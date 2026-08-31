@@ -27,7 +27,7 @@
   /* Outline, not box-shadow — see text-input: keeps the hairline (also a
      box-shadow) intact under the animated ring. */
   &:focus-within {
-    outline: 2px solid var(--focus-ring-color);
+    outline: var(--focus-ring-width) solid var(--focus-ring-color);
     outline-offset: 0;
     animation: var(--focus-ring-animation);
   }

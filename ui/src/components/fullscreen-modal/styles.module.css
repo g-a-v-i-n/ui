@@ -5,26 +5,18 @@
 }
 
 .overlay {
+  composes: fadeAnimation from "../../css/recipes.module.css";
+
   position: fixed;
   inset: 0;
   background: var(--overlay-background);
   backdrop-filter: var(--blur-elevated);
   z-index: var(--layer-dialog-overlay);
-
-  animation-duration: var(--duration-180);
-  animation-timing-function: var(--ease-out-quad);
-  animation-fill-mode: both;
-
-  &[data-state="open"] {
-    animation-name: modalFadeIn;
-  }
-
-  &[data-state="closed"] {
-    animation-name: modalFadeOut;
-  }
 }
 
 .content {
+  composes: fadeAnimation from "../../css/recipes.module.css";
+
   position: fixed;
   inset: 0;
   display: flex;
@@ -32,20 +24,8 @@
   overflow: hidden;
   z-index: var(--layer-dialog);
 
-  animation-duration: var(--duration-180);
-  animation-timing-function: var(--ease-out-quad);
-  animation-fill-mode: both;
-
   &:focus {
     outline: none;
-  }
-
-  &[data-state="open"] {
-    animation-name: modalFadeIn;
-  }
-
-  &[data-state="closed"] {
-    animation-name: modalFadeOut;
   }
 }
 
@@ -54,22 +34,4 @@
   top: var(--size-12);
   left: var(--size-12);
   z-index: 1;
-}
-
-@keyframes modalFadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes modalFadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
 }

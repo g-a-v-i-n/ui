@@ -1,31 +1,22 @@
 .overlay,
 .content {
   --overlay-background: var(--scrim);
-
-  --content-background: var(--bg-elevated);
-  --content-shadow: var(--shadow-elevated);
 }
 
 .overlay {
+  composes: fadeAnimation from "../../css/recipes.module.css";
+
   position: fixed;
   inset: 0;
   background-color: var(--overlay-background);
   z-index: var(--layer-dialog-overlay);
-
-  animation-duration: var(--duration-180);
-  animation-timing-function: var(--ease-out-quad);
-  animation-fill-mode: both;
-
-  &[data-state="open"] {
-    animation-name: overlayFadeIn;
-  }
-
-  &[data-state="closed"] {
-    animation-name: overlayFadeOut;
-  }
 }
 
 .content {
+  composes: floatingSurface from "../../css/recipes.module.css";
+
+  --surface-radius: 16px;
+
   position: fixed;
   top: 50%;
   left: 50%;
@@ -36,11 +27,6 @@
   flex-direction: column;
   gap: 12px;
 
-  background: var(--content-background);
-  backdrop-filter: var(--blur-elevated);
-  border-radius: 16px;
-  corner-shape: var(--corner-shape);
-  box-shadow: var(--content-shadow);
   padding: 20px;
 
   max-width: calc(100vw - 16px);
@@ -55,11 +41,11 @@
   }
 
   &[data-state="open"] {
-    animation-name: contentEnter;
+    animation-name: var(--kf-dialog-content-enter);
   }
 
   &[data-state="closed"] {
-    animation-name: contentExit;
+    animation-name: var(--kf-dialog-content-exit);
   }
 }
 
@@ -69,44 +55,4 @@
 
 .description {
   margin: 0;
-}
-
-@keyframes overlayFadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes overlayFadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes contentEnter {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -48%) scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
-}
-
-@keyframes contentExit {
-  from {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
-  to {
-    opacity: 0;
-    transform: translate(-50%, -48%) scale(0.96);
-  }
 }
