@@ -8,26 +8,19 @@ import { ArrowRight as BoldArrowRight } from "./static/bold/arrow-right";
 import { ArrowUp as BoldArrowUp } from "./static/bold/arrow-up";
 import { Check as BoldCheck } from "./static/bold/check";
 import { CheckCircle as BoldCheckCircle } from "./static/bold/check-circle";
-import { CheckCircleFill as BoldCheckCircleFill } from "./static/bold/check-circle-fill";
 import { ChevronDown as BoldChevronDown } from "./static/bold/chevron-down";
 import { ChevronLeft as BoldChevronLeft } from "./static/bold/chevron-left";
 import { ChevronRight as BoldChevronRight } from "./static/bold/chevron-right";
 import { ChevronUp as BoldChevronUp } from "./static/bold/chevron-up";
 import { Circle as BoldCircle } from "./static/bold/circle";
-import { CircleFill as BoldCircleFill } from "./static/bold/circle-fill";
 import { CircleXmark as BoldCircleXmark } from "./static/bold/circle-xmark";
 import { Crosshairs as BoldCrosshairs } from "./static/bold/crosshairs";
 import { Document as BoldDocument } from "./static/bold/document";
-import { DocumentFill as BoldDocumentFill } from "./static/bold/document-fill";
-import { EllipsisHorizontal as BoldEllipsisHorizontal } from "./static/bold/ellipsis-horizontal";
-import { EllipsisVertical as BoldEllipsisVertical } from "./static/bold/ellipsis-vertical";
 import { Folder as BoldFolder } from "./static/bold/folder";
-import { FolderFill as BoldFolderFill } from "./static/bold/folder-fill";
 import { GridSquare as BoldGridSquare } from "./static/bold/grid-square";
 import { Hexagon as BoldHexagon } from "./static/bold/hexagon";
 import { HexagonFill as BoldHexagonFill } from "./static/bold/hexagon-fill";
 import { InfoCircle as BoldInfoCircle } from "./static/bold/info-circle";
-import { InfoCircleFill as BoldInfoCircleFill } from "./static/bold/info-circle-fill";
 import { Link as BoldLink } from "./static/bold/link";
 import { List as BoldList } from "./static/bold/list";
 import { LockLocked as BoldLockLocked } from "./static/bold/lock-locked";
@@ -38,15 +31,12 @@ import { MagnifyingGlass as BoldMagnifyingGlass } from "./static/bold/magnifying
 import { Minus as BoldMinus } from "./static/bold/minus";
 import { Moon as BoldMoon } from "./static/bold/moon";
 import { Pause as BoldPause } from "./static/bold/pause";
-import { PauseFill as BoldPauseFill } from "./static/bold/pause-fill";
 import { Photo as BoldPhoto } from "./static/bold/photo";
-import { PhotoFill as BoldPhotoFill } from "./static/bold/photo-fill";
 import { Placeholder as BoldPlaceholder } from "./static/bold/placeholder";
 import { Play as BoldPlay } from "./static/bold/play";
 import { PlayFill as BoldPlayFill } from "./static/bold/play-fill";
 import { Plus as BoldPlus } from "./static/bold/plus";
 import { Rectangle as BoldRectangle } from "./static/bold/rectangle";
-import { RectangleFill as BoldRectangleFill } from "./static/bold/rectangle-fill";
 import { RulerSquare as BoldRulerSquare } from "./static/bold/ruler-square";
 import { SliderHorizontal as BoldSliderHorizontal } from "./static/bold/slider-horizontal";
 import { SliderVertical as BoldSliderVertical } from "./static/bold/slider-vertical";
@@ -84,7 +74,6 @@ import { Hexagon as NormalHexagon } from "./static/normal/hexagon";
 import { HexagonFill as NormalHexagonFill } from "./static/normal/hexagon-fill";
 import { InfoCircle as NormalInfoCircle } from "./static/normal/info-circle";
 import { InfoCircleFill as NormalInfoCircleFill } from "./static/normal/info-circle-fill";
-import { InfoCircleXmark as NormalInfoCircleXmark } from "./static/normal/info-circle-xmark";
 import { Link as NormalLink } from "./static/normal/link";
 import { List as NormalList } from "./static/normal/list";
 import { LockLocked as NormalLockLocked } from "./static/normal/lock-locked";
@@ -116,7 +105,6 @@ import { Sun as NormalSun } from "./static/normal/sun";
 import { TriangleExclamation as NormalTriangleExclamation } from "./static/normal/triangle-exclamation";
 import { TriangleExclamationFill as NormalTriangleExclamationFill } from "./static/normal/triangle-exclamation-fill";
 import { Viewfinder as NormalViewfinder } from "./static/normal/viewfinder";
-import { XMark as NormalXMark } from "./static/normal/x-mark";
 import { Xmark as NormalXmark } from "./static/normal/xmark";
 
 export const icons = {
@@ -127,26 +115,20 @@ export const icons = {
     "arrow-up": BoldArrowUp,
     check: BoldCheck,
     "check-circle": BoldCheckCircle,
-    "check-circle-fill": BoldCheckCircleFill,
     "chevron-down": BoldChevronDown,
     "chevron-left": BoldChevronLeft,
     "chevron-right": BoldChevronRight,
     "chevron-up": BoldChevronUp,
     circle: BoldCircle,
-    "circle-fill": BoldCircleFill,
     "circle-xmark": BoldCircleXmark,
     crosshairs: BoldCrosshairs,
     document: BoldDocument,
-    "document-fill": BoldDocumentFill,
-    "ellipsis-horizontal": BoldEllipsisHorizontal,
-    "ellipsis-vertical": BoldEllipsisVertical,
     folder: BoldFolder,
-    "folder-fill": BoldFolderFill,
     "grid-square": BoldGridSquare,
     hexagon: BoldHexagon,
     "hexagon-fill": BoldHexagonFill,
     "info-circle": BoldInfoCircle,
-    "info-circle-fill": BoldInfoCircleFill,
+    "info-circle-xmark": BoldCircleXmark,
     link: BoldLink,
     list: BoldList,
     "lock-locked": BoldLockLocked,
@@ -157,15 +139,12 @@ export const icons = {
     minus: BoldMinus,
     moon: BoldMoon,
     pause: BoldPause,
-    "pause-fill": BoldPauseFill,
     photo: BoldPhoto,
-    "photo-fill": BoldPhotoFill,
     placeholder: BoldPlaceholder,
     play: BoldPlay,
     "play-fill": BoldPlayFill,
     plus: BoldPlus,
     rectangle: BoldRectangle,
-    "rectangle-fill": BoldRectangleFill,
     "ruler-square": BoldRulerSquare,
     "slider-horizontal": BoldSliderHorizontal,
     "slider-vertical": BoldSliderVertical,
@@ -175,6 +154,7 @@ export const icons = {
     "triangle-exclamation": BoldTriangleExclamation,
     "triangle-exclamation-fill": BoldTriangleExclamationFill,
     viewfinder: BoldViewfinder,
+    "x-mark": BoldXmark,
     xmark: BoldXmark,
   },
   normal: {
@@ -205,7 +185,7 @@ export const icons = {
     "hexagon-fill": NormalHexagonFill,
     "info-circle": NormalInfoCircle,
     "info-circle-fill": NormalInfoCircleFill,
-    "info-circle-xmark": NormalInfoCircleXmark,
+    "info-circle-xmark": NormalCircleXmark,
     link: NormalLink,
     list: NormalList,
     "lock-locked": NormalLockLocked,
@@ -237,7 +217,7 @@ export const icons = {
     "triangle-exclamation": NormalTriangleExclamation,
     "triangle-exclamation-fill": NormalTriangleExclamationFill,
     viewfinder: NormalViewfinder,
-    "x-mark": NormalXMark,
+    "x-mark": NormalXmark,
     xmark: NormalXmark,
   },
 } as const;

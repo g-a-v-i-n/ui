@@ -1,7 +1,4 @@
-import * as RadixColors from "@radix-ui/colors";
-import Color from "colorjs.io";
-import BezierEasing from "bezier-easing";
-
+import { lum, darkLum, lightAlpha, darkAlpha } from "./curves.ts";
 import { makeScale } from "./make-scale.ts";
 import { writeScaleCss } from "./write-scale-css.ts";
 
@@ -14,34 +11,6 @@ const scaleNames = {
 }
 
 const sat = 0.85;
-
-// 12 step scales
-const lum = [
-    0.99,
-    0.97,
-    0.95,
-    0.93,
-    0.91,
-    0.89,
-    0.86,
-    0.78,
-    0.56,
-    0.52,
-    0.44,
-    0.09,
-];
-
-// Dark mode runs the same ramp reversed: step 1 dark, step 12 light. The
-// anchor still bends each ramp through the seed's lightness at step 9.
-const darkLum = [...lum].reverse();
-
-// Alpha opacities follow each ramp's distance from its background:
-// light = distance below white, dark = distance above black.
-const lightAlpha = lum.map((l) => 1 - l);
-const darkAlpha = [...darkLum];
-
-// Neutral grays in LAB: L* from the 12 luminance steps, a = b = 0.
-// export const redScale = lum.map((l) => new Color("lab", [l * 100, 0, 0]));
 
 // Named scales: chroma from each seed (scaled by sat), L* from the 12
 // luminance steps, interpolated in the space set in config.ts.

@@ -19,7 +19,6 @@
 
   &:hover {
     color: var(--foreground-hover);
-    /* text-decoration-style: solid; */
   }
 
   &:focus-visible {

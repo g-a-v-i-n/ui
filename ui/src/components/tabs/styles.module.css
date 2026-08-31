@@ -23,7 +23,6 @@
 .trigger {
   position: relative;
   padding: 8px 12px;
-  /* padding-bottom: 12px; */
 
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
@@ -70,7 +69,6 @@
   bottom: 0;
   height: 2px;
   background: var(--underline-background);
-  /* border-radius: 999px; */
   z-index: 1;
 }
 

@@ -7,10 +7,6 @@ import { ToastProvider, ToastViewport } from 'ui/components/toast';
 import { TestDropdownMenuProvider } from './TestDropdownMenuProvider';
 
 import { TextSection } from './sections/Text';
-// import { ColorsSection } from './sections/Colors';
-// Custom scales are disabled in ui/src/css/color.css (app uses stock Radix);
-// re-enable this section alongside those imports.
-// import { CustomColorsSection } from './sections/CustomColors';
 import { ColorScaleExperimentSection } from './sections/ColorScaleExperiment';
 import { FontScaleSection } from './sections/FontScale';
 import { IconSection } from './sections/Icon';
@@ -98,8 +94,6 @@ function App() {
 
               <TextSection />
               <FontScaleSection />
-              {/* <ColorsSection /> */}
-              {/* <CustomColorsSection /> */}
               <ColorScaleExperimentSection />
               <IconSection />
               <ButtonSection />

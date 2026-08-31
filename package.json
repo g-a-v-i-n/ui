@@ -5,13 +5,10 @@
   "scripts": {
     "lint": "oxlint ui/src",
     "agentation": "agentation-mcp server",
-    "website": "pnpm --dir website dev",
     "build": "pnpm --filter ui run build",
     "build:all": "pnpm generate-icons && pnpm generate-custom-colors && pnpm --filter ui run build && pnpm --filter preview run build",
     "typecheck": "pnpm -r --no-bail run typecheck",
-    "format": "pnpm -r --no-bail run format",
     "clean": "pnpm -r --no-bail run clean",
-    "generate-colors": "node scripts/generate-colors.ts",
     "generate-custom-colors": "node scripts/vendor/custom-color/index.ts",
     "generate-icons": "node scripts/generate-icons.ts",
     "generate-icons:index": "node scripts/generate-icons.ts --index-only"
@@ -19,23 +16,17 @@
   "devDependencies": {
     "@oxlint/plugins": "1.79.0",
     "@radix-ui/colors": "3.0.0",
-    "@types/bun": "1.2.5",
     "@types/css-modules": "1.0.5",
     "@types/node": "20",
     "@types/react": "19.0.12",
     "@types/react-dom": "19.0.4",
     "agentation-mcp": "^1.2.0",
-    "bezier-easing": "2.1.0",
     "colorjs.io": "0.5.2",
-    "eslint": "9.6.0",
-    "eslint-config-next": "14.1.0",
     "estree-util-to-js": "^2.0.0",
     "hast-util-from-html": "^2.0.3",
     "hast-util-to-estree": "^3.1.3",
     "oxlint": "1.79.0",
-    "rimraf": "5.0.5",
-    "typescript": "5.5.3",
-    "vitest": "3.0.9"
+    "typescript": "5.5.3"
   },
   "packageManager": "pnpm@10.6.1"
 }

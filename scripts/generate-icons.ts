@@ -19,7 +19,7 @@
  *   --out <dir>      (optional)  Output dir. Default: ui/src/components/icon/static.
  */
 
-import { writeFile, mkdir, readdir, readFile } from "node:fs/promises";
+import { writeFile, mkdir, readdir, readFile, rm, access } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { fromHtml } from "hast-util-from-html";
@@ -261,6 +261,51 @@ ${children}
 `;
 }
 
+/**
+ * Alternate public names for the same glyph. The Figma pages carry both names,
+ * so a full run regenerates the alias files; pruning deletes them and the
+ * registry maps each alias name onto the canonical component instead, keeping
+ * the public name union unchanged with one module per glyph.
+ */
+const ALIAS_NAMES: Record<string, string> = {
+  "x-mark": "xmark",
+  "info-circle-xmark": "circle-xmark",
+};
+
+/**
+ * Remove redundant generated files before building the registry: alias-named
+ * duplicates of canonical icons, and non-normal weight files byte-identical to
+ * their normal counterpart (`Icon` falls back to normal for missing weights).
+ */
+async function pruneRedundantIcons(staticDir: string) {
+  const weights = (await readdir(staticDir, { withFileTypes: true }))
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name);
+
+  for (const weight of weights) {
+    const weightDir = path.join(staticDir, weight);
+
+    for (const [alias, canonical] of Object.entries(ALIAS_NAMES)) {
+      const hasCanonical = await access(path.join(weightDir, `${canonical}.tsx`))
+        .then(() => true)
+        .catch(() => false);
+      if (hasCanonical) await rm(path.join(weightDir, `${alias}.tsx`), { force: true });
+    }
+
+    if (weight === "normal") continue;
+    for (const file of (await readdir(weightDir)).filter((f) => f.endsWith(".tsx"))) {
+      const weighted = await readFile(path.join(weightDir, file), "utf8");
+      const normal = await readFile(path.join(staticDir, "normal", file), "utf8").catch(
+        () => null
+      );
+      if (weighted === normal) {
+        await rm(path.join(weightDir, file));
+        console.log(`  - pruned ${weight}/${file} (identical to normal)`);
+      }
+    }
+  }
+}
+
 /** A bare identifier can be an unquoted object key; anything else needs quotes. */
 function mapKey(kebab: string): string {
   return /^[a-z][a-zA-Z0-9]*$/.test(kebab) ? kebab : `"${kebab}"`;
@@ -328,7 +373,17 @@ async function writeRegistry(staticDir: string) {
     .join("\n");
   const maps = Object.entries(registry)
     .map(([weight, entries]) => {
-      const map = entries
+      // Alias names share the canonical entry's component (and its import).
+      const byKebab = new Map(entries.map((e) => [e.kebab, e]));
+      const mapEntries = [...entries];
+      for (const [alias, canonical] of Object.entries(ALIAS_NAMES)) {
+        const target = byKebab.get(canonical);
+        if (target && !byKebab.has(alias)) {
+          mapEntries.push({ kebab: alias, component: target.component });
+        }
+      }
+      mapEntries.sort((a, b) => a.kebab.localeCompare(b.kebab));
+      const map = mapEntries
         .map((e) => `    ${mapKey(e.kebab)}: ${localName(weight, e.component)},`)
         .join("\n");
       return `  ${mapKey(weight)}: {\n${map}\n  },`;
@@ -358,6 +413,7 @@ async function main() {
   // --index-only: skip Figma entirely, just rebuild the registry from ./static.
   if (indexOnly) {
     await mkdir(out, { recursive: true });
+    await pruneRedundantIcons(out);
     await writeRegistry(out);
     return;
   }
@@ -401,6 +457,7 @@ async function main() {
   }
 
   // Rebuild the registry from everything now in ./static (newly written + existing).
+  await pruneRedundantIcons(out);
   await writeRegistry(out);
 }
 

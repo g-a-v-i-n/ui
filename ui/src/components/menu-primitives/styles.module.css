@@ -120,8 +120,6 @@
   transition: background-color var(--duration-120) var(--ease-in-out-quad);
 
 
-  /* transition: background-color var(--duration-120) var(--ease-in-out-quad); */
-
   &:hover,
   &:focus,
   &[data-state="open"],
