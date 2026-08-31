@@ -2,11 +2,13 @@ import React from "react";
 import { Avatar as AvatarPrimitive } from "radix-ui";
 import { Text } from "../text";
 import styles from "./styles.module.css";
+import { cx } from "../../lib/cx";
+import { styled } from "../../lib/styled";
 
 type Size = "sm" | "md" | "lg";
 
 export const AvatarRoot = ({
-  className = "",
+  className,
   size = "md",
   children,
   ref,
@@ -17,7 +19,7 @@ export const AvatarRoot = ({
       {...props}
       ref={ref}
       data-size={size}
-      className={`${styles.root} ${className}`}
+      className={cx(styles.root, className)}
     >
       {children}
       {/* span, not div — the Radix root renders a <span>. Last child so it
@@ -27,19 +29,11 @@ export const AvatarRoot = ({
   );
 };
 
-export const AvatarImage = ({ className = "", ref, ...props }: AvatarPrimitive.AvatarImageProps & { ref?: React.Ref<HTMLImageElement> }) => {
-  return (
-    <AvatarPrimitive.Image
-      {...props}
-      ref={ref}
-      className={`${styles.image} ${className}`}
-    />
-  );
-};
+export const AvatarImage = styled(AvatarPrimitive.Image, styles.image, "AvatarImage");
 
 export const AvatarFallback = ({
   children,
-  className = "",
+  className,
   ref,
   ...props
 }: AvatarPrimitive.AvatarFallbackProps & { ref?: React.Ref<HTMLSpanElement> }) => {
@@ -47,7 +41,7 @@ export const AvatarFallback = ({
     <AvatarPrimitive.Fallback
       {...props}
       ref={ref}
-      className={`${styles.fallback} ${className}`}
+      className={cx(styles.fallback, className)}
     >
       <Text as="span" size="md" weight="medium" color="inherit">
         {children}

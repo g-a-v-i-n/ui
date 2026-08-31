@@ -1,77 +1,30 @@
 import React from "react";
 import { Text } from "../text";
 import styles from "./styles.module.css";
+import { cx } from "../../lib/cx";
+import { styled } from "../../lib/styled";
 
-export const TableRoot = ({ className = "", ref, ...props }: React.TableHTMLAttributes<HTMLTableElement> & { ref?: React.Ref<HTMLTableElement> }) => {
-  return (
-    <table
-      {...props}
-      ref={ref}
-      className={`${styles.table} ${className}`}
-    />
-  );
-};
-
-export const TableHeader = ({
-  className = "",
-  ref,
-  ...props
-}: React.HTMLAttributes<HTMLTableSectionElement> & { ref?: React.Ref<HTMLTableSectionElement> }) => {
-  return (
-    <thead
-      {...props}
-      ref={ref}
-      className={`${styles.header} ${className}`}
-    />
-  );
-};
-
-export const TableBody = ({
-  className = "",
-  ref,
-  ...props
-}: React.HTMLAttributes<HTMLTableSectionElement> & { ref?: React.Ref<HTMLTableSectionElement> }) => {
-  return (
-    <tbody
-      {...props}
-      ref={ref}
-      className={`${styles.body} ${className}`}
-    />
-  );
-};
-
-export const TableFooter = ({
-  className = "",
-  ref,
-  ...props
-}: React.HTMLAttributes<HTMLTableSectionElement> & { ref?: React.Ref<HTMLTableSectionElement> }) => {
-  return (
-    <tfoot
-      {...props}
-      ref={ref}
-      className={`${styles.footer} ${className}`}
-    />
-  );
-};
+export const TableRoot = styled("table", styles.table, "TableRoot");
+export const TableHeader = styled("thead", styles.header, "TableHeader");
+export const TableBody = styled("tbody", styles.body, "TableBody");
+export const TableFooter = styled("tfoot", styles.footer, "TableFooter");
 
 export const TableRow = ({
-  className = "",
+  className,
   selected = false,
-  ref,
   ...props
-}: React.HTMLAttributes<HTMLTableRowElement> & { selected?: boolean } & { ref?: React.Ref<HTMLTableRowElement> }) => {
+}: React.ComponentProps<"tr"> & { selected?: boolean }) => {
   return (
     <tr
       {...props}
-      ref={ref}
       data-selected={selected || undefined}
-      className={`${styles.row} ${className}`}
+      className={cx(styles.row, className)}
     />
   );
 };
 
 export const TableHead = ({
-  className = "",
+  className,
   ref,
   ...props
 }: Omit<React.ThHTMLAttributes<HTMLTableCellElement>, "color"> & { ref?: React.Ref<HTMLTableCellElement> }) => {
@@ -81,14 +34,16 @@ export const TableHead = ({
       size="xs"
       weight="medium"
       {...props}
+      // SAFETY: as="th" renders an HTMLTableCellElement, so the narrower ref
+      // only ever receives that element.
       ref={ref as React.Ref<HTMLElement>}
-      className={`${styles.head} ${className}`}
+      className={cx(styles.head, className)}
     />
   );
 };
 
 export const TableCell = ({
-  className = "",
+  className,
   ref,
   ...props
 }: Omit<React.TdHTMLAttributes<HTMLTableCellElement>, "color"> & { ref?: React.Ref<HTMLTableCellElement> }) => {
@@ -97,20 +52,24 @@ export const TableCell = ({
       as="td"
       size="sm"
       {...props}
+      // SAFETY: as="td" renders an HTMLTableCellElement, so the narrower ref
+      // only ever receives that element.
       ref={ref as React.Ref<HTMLElement>}
-      className={`${styles.cell} ${className}`}
+      className={cx(styles.cell, className)}
     />
   );
 };
 
-export const TableCaption = ({ className = "", ref, ...props }: Omit<React.HTMLAttributes<HTMLTableCaptionElement>, "color"> & { ref?: React.Ref<HTMLTableCaptionElement> }) => {
+export const TableCaption = ({ className, ref, ...props }: Omit<React.HTMLAttributes<HTMLTableCaptionElement>, "color"> & { ref?: React.Ref<HTMLTableCaptionElement> }) => {
   return (
     <Text
       as="caption"
       size="xs"
       {...props}
+      // SAFETY: as="caption" renders an HTMLTableCaptionElement, so the
+      // narrower ref only ever receives that element.
       ref={ref as React.Ref<HTMLElement>}
-      className={`${styles.caption} ${className}`}
+      className={cx(styles.caption, className)}
     />
   );
 };

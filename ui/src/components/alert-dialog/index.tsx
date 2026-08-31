@@ -4,6 +4,8 @@ import { motion, useAnimationControls } from "motion/react";
 import { Button, type ButtonProps } from "../button";
 import { Text } from "../text";
 import styles from "./styles.module.css";
+import { cx } from "../../lib/cx";
+import { styled } from "../../lib/styled";
 
 export const AlertDialogRoot = AlertDialogPrimitive.Root;
 export const AlertDialogPortal = AlertDialogPrimitive.Portal;
@@ -12,19 +14,11 @@ export const AlertDialogTrigger = (
   props: AlertDialogPrimitive.AlertDialogTriggerProps
 ) => <AlertDialogPrimitive.Trigger asChild {...props} />;
 
-export const AlertDialogOverlay = ({ className = "", ref, ...props }: AlertDialogPrimitive.AlertDialogOverlayProps & { ref?: React.Ref<HTMLDivElement> }) => {
-  return (
-    <AlertDialogPrimitive.Overlay
-      {...props}
-      ref={ref}
-      className={`${styles.overlay} ${className}`}
-    />
-  );
-};
+export const AlertDialogOverlay = styled(AlertDialogPrimitive.Overlay, styles.overlay, "AlertDialogOverlay");
 
 export const AlertDialogContent = ({
   children,
-  className = "",
+  className,
   ref,
   ...props
 }: AlertDialogPrimitive.AlertDialogContentProps & { ref?: React.Ref<HTMLDivElement> }) => {
@@ -50,7 +44,7 @@ export const AlertDialogContent = ({
       <AlertDialogPrimitive.Content {...props} ref={ref} asChild>
         <motion.div
           animate={controls}
-          className={`${styles.content} ${className}`}
+          className={cx(styles.content, className)}
         >
           {children}
         </motion.div>
@@ -61,7 +55,7 @@ export const AlertDialogContent = ({
 
 export const AlertDialogTitle = ({
   children,
-  className = "",
+  className,
   ref,
   ...props
 }: AlertDialogPrimitive.AlertDialogTitleProps & { ref?: React.Ref<HTMLHeadingElement> }) => {
@@ -72,7 +66,7 @@ export const AlertDialogTitle = ({
         size="lg"
         weight="semibold"
         color="primary"
-        className={`${styles.title} ${className}`}
+        className={cx(styles.title, className)}
       >
         {children}
       </Text>
@@ -82,7 +76,7 @@ export const AlertDialogTitle = ({
 
 export const AlertDialogDescription = ({
   children,
-  className = "",
+  className,
   ref,
   ...props
 }: AlertDialogPrimitive.AlertDialogDescriptionProps & { ref?: React.Ref<HTMLParagraphElement> }) => {
@@ -92,7 +86,7 @@ export const AlertDialogDescription = ({
         as="p"
         size="sm"
         color="secondary"
-        className={`${styles.description} ${className}`}
+        className={cx(styles.description, className)}
       >
         {children}
       </Text>
@@ -125,11 +119,11 @@ export const AlertDialogCancel = ({ children, ref, ...props }: AlertDialogPrimit
 
 export const AlertDialogFooter = ({
   children,
-  className = "",
+  className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => {
   return (
-    <div {...props} className={`${styles.footer} ${className}`}>
+    <div {...props} className={cx(styles.footer, className)}>
       {children}
     </div>
   );

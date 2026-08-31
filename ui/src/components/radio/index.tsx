@@ -1,9 +1,10 @@
 import React from "react";
 import { RadioGroup as RadioGroupPrimitive } from "radix-ui";
 import styles from "./styles.module.css";
+import { cx } from "../../lib/cx";
 
 export const Radio = ({
-  className = "",
+  className,
   ref,
   ...props
 }: RadioGroupPrimitive.RadioGroupItemProps & {
@@ -13,7 +14,7 @@ export const Radio = ({
     <RadioGroupPrimitive.Item
       {...props}
       ref={ref}
-      className={`${styles.root} ${className}`}
+      className={cx(styles.root, className)}
     >
       <RadioGroupPrimitive.Indicator className={styles.indicator} />
     </RadioGroupPrimitive.Item>

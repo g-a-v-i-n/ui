@@ -28,8 +28,8 @@ export const ColorInput = ({
   onValueChange,
   width = "hug",
   variant = "default",
-  className = "",
-  containerClassName = "",
+  className,
+  containerClassName,
   onClick,
   ref,
   ...props

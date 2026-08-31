@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./styles.module.css";
+import { cx } from "../../lib/cx";
 
 type TextInputProps = Omit<React.ComponentPropsWithoutRef<"input">, "width"> & {
   prefixSlot?: React.ReactNode;
@@ -15,12 +16,12 @@ type TextInputProps = Omit<React.ComponentPropsWithoutRef<"input">, "width"> & {
 const SLOT_GAP = 8;
 
 export const TextInput = ({
-  className = "",
+  className,
   prefixSlot,
   suffixSlot,
   variant = "default",
   width = "hug",
-  containerClassName = "",
+  containerClassName,
   containerStyle,
   type = "text",
   ref,
@@ -59,7 +60,7 @@ export const TextInput = ({
   return (
     <div
       ref={containerRef}
-      className={`${styles.container} ${containerClassName}`}
+      className={cx(styles.container, containerClassName)}
       data-variant={variant}
       data-width={widthMode}
       style={{ ...containerStyle, ...numberStyle }}
@@ -73,7 +74,7 @@ export const TextInput = ({
         {...props}
         ref={ref}
         type={type}
-        className={`${styles.input} ${className}`}
+        className={cx(styles.input, className)}
       />
       {suffixSlot && (
         <div ref={suffixRef} className={styles.suffix}>

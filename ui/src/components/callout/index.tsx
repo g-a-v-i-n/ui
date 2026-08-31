@@ -2,6 +2,7 @@ import React from "react";
 import { Text } from "../text";
 import { Icon, type IconName } from "../icon";
 import styles from "./styles.module.css";
+import { cx } from "../../lib/cx";
 
 type Variant = "info" | "success" | "warning" | "error";
 
@@ -30,7 +31,7 @@ export const Callout = ({
   icon,
   onClose,
   children,
-  className = "",
+  className,
   ref,
   ...props
 }: CalloutProps) => {
@@ -40,7 +41,7 @@ export const Callout = ({
       ref={ref}
       data-variant={variant}
       role={variant === "warning" || variant === "error" ? "alert" : "status"}
-      className={`${styles.callout} ${className}`}
+      className={cx(styles.callout, className)}
     >
       <span className={styles.icon} aria-hidden="true">
         {icon ?? <Icon icon={defaultIcon[variant]} size="lg" />}

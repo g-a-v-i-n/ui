@@ -1,8 +1,9 @@
-import React, { Children } from "react";
+import React from "react";
 import { ToggleGroup as ToggleGroupPrimitive } from "radix-ui";
 import { motion } from "motion/react";
-import { Text } from "../text";
 import styles from "./styles.module.css";
+import { wrapTextChildren } from "../text/wrap";
+import { cx } from "../../lib/cx";
 
 /* The active item renders the highlight pill as a motion element with an
    instance-scoped layoutId, so it glides between items on change. */
@@ -24,7 +25,7 @@ type ToggleGroupProps = {
 } & ToggleGroupPrimitive.ToggleGroupSingleProps;
 
 export const ToggleGroup = ({
-  className = "",
+  className,
   highlightClassName = "",
   round = false,
   value,
@@ -51,7 +52,7 @@ export const ToggleGroup = ({
       onValueChange={handleValueChange}
       ref={ref}
       data-round={round ? "" : undefined}
-      className={`${styles.root} ${className}`}
+      className={cx(styles.root, className)}
     >
       <ToggleGroupContext.Provider
         value={{ value: currentValue, baseId, highlightClassName }}
@@ -63,7 +64,7 @@ export const ToggleGroup = ({
 };
 
 export const ToggleGroupItem = ({
-  className = "",
+  className,
   children,
   value,
   ref,
@@ -77,25 +78,17 @@ export const ToggleGroupItem = ({
       {...props}
       value={value}
       ref={ref}
-      className={`${styles.item} ${className}`}
+      className={cx(styles.item, className)}
     >
       {isActive && (
         <motion.span
           layoutId={`${ctx.baseId}-highlight`}
           transition={transition}
-          className={`${styles.highlight} ${ctx.highlightClassName}`}
+          className={cx(styles.highlight, ctx.highlightClassName)}
         />
       )}
       <span className={styles.content}>
-        {Children.map(children, (child) =>
-          typeof child === "string" || typeof child === "number" ? (
-            <Text as="span" size="sm" weight="medium">
-              {child}
-            </Text>
-          ) : (
-            child
-          )
-        )}
+        {wrapTextChildren(children)}
       </span>
     </ToggleGroupPrimitive.Item>
   );

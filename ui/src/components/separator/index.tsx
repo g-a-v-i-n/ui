@@ -1,13 +1,7 @@
 import React from "react";
 import { Separator as SeparatorPrimitive } from "radix-ui";
 import styles from "./styles.module.css";
+import { cx } from "../../lib/cx";
+import { styled } from "../../lib/styled";
 
-export const Separator = ({ className = "", ref, ...props }: SeparatorPrimitive.SeparatorProps & { ref?: React.Ref<HTMLDivElement> }) => {
-  return (
-    <SeparatorPrimitive.Root
-      {...props}
-      ref={ref}
-      className={`${styles.root} ${className}`}
-    />
-  );
-};
+export const Separator = styled(SeparatorPrimitive.Root, styles.root, "Separator");

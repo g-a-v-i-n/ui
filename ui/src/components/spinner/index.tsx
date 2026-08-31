@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./styles.module.css";
+import { cx } from "../../lib/cx";
 
 const sizes = {
   sm: 12,
@@ -17,7 +18,7 @@ export type SpinnerProps = {
 export function Spinner({
   size = "md",
   label = "Loading",
-  className = "",
+  className,
   style,
 }: SpinnerProps) {
   const px = sizes[size];
@@ -26,7 +27,7 @@ export function Spinner({
     <span
       role="status"
       aria-label={label}
-      className={`${styles.spinner} ${className}`}
+      className={cx(styles.spinner, className)}
       style={{ width: px, height: px, ...style }}
     >
       <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">

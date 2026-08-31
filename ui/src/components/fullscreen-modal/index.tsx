@@ -4,6 +4,7 @@ import { Button } from "../button";
 import { SFSymbol } from "../sf-symbol";
 import { Tooltip } from "../tooltip";
 import styles from "./styles.module.css";
+import { cx } from "../../lib/cx";
 
 export type FullscreenModalProps = {
   children: React.ReactNode;
@@ -33,7 +34,7 @@ export const FullscreenModal = ({
   title,
   description,
   hideCloseButton = false,
-  className = "",
+  className,
 }: FullscreenModalProps) => {
   const dialogTrigger =
     trigger != null ? (
@@ -55,7 +56,7 @@ export const FullscreenModal = ({
       <DialogPrimitive.Portal>
         <DialogPrimitive.Overlay className={styles.overlay} />
         <DialogPrimitive.Content
-          className={`${styles.content} ${className}`}
+          className={cx(styles.content, className)}
           onEscapeKeyDown={(e) => {
             if (disableClose) {
               e.preventDefault();

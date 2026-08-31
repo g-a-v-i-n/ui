@@ -3,17 +3,19 @@ import { Select as SelectPrimitive } from "radix-ui";
 import { Text } from "../text";
 import { SFSymbol } from "../sf-symbol";
 import styles from "./styles.module.css";
+import { cx } from "../../lib/cx";
+import { styled } from "../../lib/styled";
 
 export const SelectRoot = SelectPrimitive.Root;
 export const SelectValue = SelectPrimitive.Value;
 export const SelectGroup = SelectPrimitive.Group;
 
-export const SelectTrigger = ({ children, className = "", ref, ...props }: SelectPrimitive.SelectTriggerProps & { ref?: React.Ref<HTMLButtonElement> }) => {
+export const SelectTrigger = ({ children, className, ref, ...props }: SelectPrimitive.SelectTriggerProps & { ref?: React.Ref<HTMLButtonElement> }) => {
   return (
     <SelectPrimitive.Trigger
       {...props}
       ref={ref}
-      className={`${styles.trigger} ${className}`}
+      className={cx(styles.trigger, className)}
     >
       <Text as="span" size="sm" weight="medium">
         {children}
@@ -26,7 +28,7 @@ export const SelectTrigger = ({ children, className = "", ref, ...props }: Selec
 };
 
 export const SelectScrollUpButton = ({
-  className = "",
+  className,
   ref,
   ...props
 }: SelectPrimitive.SelectScrollUpButtonProps & { ref?: React.Ref<HTMLDivElement> }) => {
@@ -34,7 +36,7 @@ export const SelectScrollUpButton = ({
     <SelectPrimitive.ScrollUpButton
       {...props}
       ref={ref}
-      className={`${styles.scrollButton} ${styles.scrollButtonUp} ${className}`}
+      className={cx(styles.scrollButton, styles.scrollButtonUp, className)}
     >
       <SFSymbol symbol="􀆈" size="sm" />
     </SelectPrimitive.ScrollUpButton>
@@ -42,7 +44,7 @@ export const SelectScrollUpButton = ({
 };
 
 export const SelectScrollDownButton = ({
-  className = "",
+  className,
   ref,
   ...props
 }: SelectPrimitive.SelectScrollDownButtonProps & { ref?: React.Ref<HTMLDivElement> }) => {
@@ -50,7 +52,7 @@ export const SelectScrollDownButton = ({
     <SelectPrimitive.ScrollDownButton
       {...props}
       ref={ref}
-      className={`${styles.scrollButton} ${styles.scrollButtonDown} ${className}`}
+      className={cx(styles.scrollButton, styles.scrollButtonDown, className)}
     >
       <SFSymbol symbol="􀆈" size="sm" />
     </SelectPrimitive.ScrollDownButton>
@@ -59,7 +61,7 @@ export const SelectScrollDownButton = ({
 
 export const SelectContent = ({
   children,
-  className = "",
+  className,
   position = "popper",
   sideOffset = 4,
   collisionPadding = 12,
@@ -74,7 +76,7 @@ export const SelectContent = ({
         collisionPadding={collisionPadding}
         {...props}
         ref={ref}
-        className={`${styles.content} ${className}`}
+        className={cx(styles.content, className)}
       >
         <SelectScrollUpButton />
         <SelectPrimitive.Viewport className={styles.viewport}>
@@ -86,12 +88,12 @@ export const SelectContent = ({
   );
 };
 
-export const SelectItem = ({ children, className = "", ref, ...props }: SelectPrimitive.SelectItemProps & { ref?: React.Ref<HTMLDivElement> }) => {
+export const SelectItem = ({ children, className, ref, ...props }: SelectPrimitive.SelectItemProps & { ref?: React.Ref<HTMLDivElement> }) => {
   return (
     <SelectPrimitive.Item
       {...props}
       ref={ref}
-      className={`${styles.item} ${className}`}
+      className={cx(styles.item, className)}
     >
       <SelectPrimitive.ItemIndicator className={styles.indicator}>
         <SFSymbol symbol="✓" size="sm" />
@@ -103,12 +105,12 @@ export const SelectItem = ({ children, className = "", ref, ...props }: SelectPr
   );
 };
 
-export const SelectLabel = ({ children, className = "", ref, ...props }: SelectPrimitive.SelectLabelProps & { ref?: React.Ref<HTMLDivElement> }) => {
+export const SelectLabel = ({ children, className, ref, ...props }: SelectPrimitive.SelectLabelProps & { ref?: React.Ref<HTMLDivElement> }) => {
   return (
     <SelectPrimitive.Label
       {...props}
       ref={ref}
-      className={`${styles.label} ${className}`}
+      className={cx(styles.label, className)}
     >
       <Text as="span" size="xs" weight="medium" color="tertiary">
         {children}
@@ -117,12 +119,4 @@ export const SelectLabel = ({ children, className = "", ref, ...props }: SelectP
   );
 };
 
-export const SelectSeparator = ({ className = "", ref, ...props }: SelectPrimitive.SelectSeparatorProps & { ref?: React.Ref<HTMLDivElement> }) => {
-  return (
-    <SelectPrimitive.Separator
-      {...props}
-      ref={ref}
-      className={`${styles.separator} ${className}`}
-    />
-  );
-};
+export const SelectSeparator = styled(SelectPrimitive.Separator, styles.separator, "SelectSeparator");

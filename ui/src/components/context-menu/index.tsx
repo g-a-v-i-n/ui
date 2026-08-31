@@ -1,13 +1,24 @@
 import React from "react";
 import { ContextMenu as ContextMenuPrimitive } from "radix-ui";
-import { MenuContainer, MenuDivider, MenuItem } from "../menu-primitives";
-import { SFSymbol } from "../sf-symbol";
+import { MenuContainer } from "../menu-primitives";
+import { createMenuParts } from "../menu-primitives/create-menu-parts";
 
 export const ContextMenuRoot = ContextMenuPrimitive.Root;
 export const ContextMenuPortal = ContextMenuPrimitive.Portal;
 export const ContextMenuTrigger = (
   props: ContextMenuPrimitive.ContextMenuTriggerProps
 ) => <ContextMenuPrimitive.Trigger asChild {...props} />;
+export const ContextMenuSub = ContextMenuPrimitive.Sub;
+
+const parts = createMenuParts(ContextMenuPrimitive);
+export const ContextMenuItem = parts.Item;
+export const ContextMenuCheckboxItem = parts.CheckboxItem;
+export const ContextMenuRadioGroup = parts.RadioGroup;
+export const ContextMenuRadioItem = parts.RadioItem;
+export const ContextMenuGroup = parts.Group;
+export const ContextMenuLabel = parts.Label;
+export const ContextMenuSubTrigger = parts.SubTrigger;
+export const ContextMenuSeparator = parts.Separator;
 
 export const ContextMenuContent = ({
   children,
@@ -27,63 +38,6 @@ export const ContextMenuContent = ({
         <MenuContainer>{children}</MenuContainer>
       </ContextMenuPrimitive.Content>
     </ContextMenuPrimitive.Portal>
-  );
-};
-
-export const ContextMenuItem = ({
-  children,
-  suffixSlot,
-  prefixSlot,
-  ref,
-  ...props
-}: {
-  children: React.ReactNode;
-  suffixSlot?: React.ReactNode;
-  prefixSlot?: React.ReactNode;
-} & ContextMenuPrimitive.ContextMenuItemProps & { ref?: React.Ref<HTMLDivElement> }) => {
-  return (
-    <ContextMenuPrimitive.Item {...props} ref={ref} asChild>
-      <MenuItem suffixSlot={suffixSlot} prefixSlot={prefixSlot}>
-        {children}
-      </MenuItem>
-    </ContextMenuPrimitive.Item>
-  );
-};
-
-export const ContextMenuSeparator = ({
-  ref,
-  ...props
-}: ContextMenuPrimitive.ContextMenuSeparatorProps & {
-  ref?: React.Ref<HTMLDivElement>;
-}) => {
-  return (
-    <ContextMenuPrimitive.Separator {...props} ref={ref} asChild>
-      <MenuDivider />
-    </ContextMenuPrimitive.Separator>
-  );
-};
-
-export const ContextMenuSub = ContextMenuPrimitive.Sub;
-export const ContextMenuSubTrigger = ({
-  children,
-  suffixSlot,
-  prefixSlot,
-  ref,
-  ...props
-}: {
-  children: React.ReactNode;
-  suffixSlot?: React.ReactNode;
-  prefixSlot?: React.ReactNode;
-} & ContextMenuPrimitive.ContextMenuSubTriggerProps & { ref?: React.Ref<HTMLDivElement> }) => {
-  return (
-    <ContextMenuPrimitive.SubTrigger {...props} ref={ref} asChild>
-      <MenuItem
-        suffixSlot={suffixSlot ?? <SFSymbol symbol="􀆊" size="xs" weight="semibold" />}
-        prefixSlot={prefixSlot}
-      >
-        {children}
-      </MenuItem>
-    </ContextMenuPrimitive.SubTrigger>
   );
 };
 

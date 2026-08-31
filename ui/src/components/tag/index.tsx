@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Text } from "../text";
 import styles from "./styles.module.css";
+import { cx } from "../../lib/cx";
 
 type Variant = "default" | "success" | "warning" | "error" | "blue";
 
@@ -23,7 +24,7 @@ export const Tag = ({
   outline = false,
   round = false,
   mono = false,
-  className = "",
+  className,
 }: TagProps) => {
   return (
     <span
@@ -31,7 +32,7 @@ export const Tag = ({
       data-secondary={secondary || undefined}
       data-outline={outline || undefined}
       data-round={round || undefined}
-      className={`${styles.tag} ${className}`}
+      className={cx(styles.tag, className)}
     >
       <Text as="span" size="xs" weight="semibold" color="inherit" mono={mono}>
         {children}

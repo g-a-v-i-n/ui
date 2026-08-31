@@ -3,30 +3,17 @@ import { Toast as ToastPrimitive } from "radix-ui";
 import { Text } from "../text";
 import { SFSymbol } from "../sf-symbol";
 import styles from "./styles.module.css";
+import { wrapTextChildren } from "../text/wrap";
+import { cx } from "../../lib/cx";
+import { styled } from "../../lib/styled";
 
 export const ToastProvider = ToastPrimitive.Provider;
 
-export const ToastViewport = ({ className = "", ref, ...props }: ToastPrimitive.ToastViewportProps & { ref?: React.Ref<HTMLOListElement> }) => {
-  return (
-    <ToastPrimitive.Viewport
-      {...props}
-      ref={ref}
-      className={`${styles.viewport} ${className}`}
-    />
-  );
-};
+export const ToastViewport = styled(ToastPrimitive.Viewport, styles.viewport, "ToastViewport");
 
-export const ToastRoot = ({ className = "", ref, ...props }: ToastPrimitive.ToastProps & { ref?: React.Ref<HTMLLIElement> }) => {
-  return (
-    <ToastPrimitive.Root
-      {...props}
-      ref={ref}
-      className={`${styles.root} ${className}`}
-    />
-  );
-};
+export const ToastRoot = styled(ToastPrimitive.Root, styles.root, "ToastRoot");
 
-export const ToastTitle = ({ children, className = "", ref, ...props }: ToastPrimitive.ToastTitleProps & { ref?: React.Ref<HTMLDivElement> }) => {
+export const ToastTitle = ({ children, className, ref, ...props }: ToastPrimitive.ToastTitleProps & { ref?: React.Ref<HTMLDivElement> }) => {
   return (
     <ToastPrimitive.Title {...props} ref={ref} asChild>
       <Text
@@ -34,7 +21,7 @@ export const ToastTitle = ({ children, className = "", ref, ...props }: ToastPri
         size="sm"
         weight="medium"
         color="primary"
-        className={`${styles.title} ${className}`}
+        className={cx(styles.title, className)}
       >
         {children}
       </Text>
@@ -44,7 +31,7 @@ export const ToastTitle = ({ children, className = "", ref, ...props }: ToastPri
 
 export const ToastDescription = ({
   children,
-  className = "",
+  className,
   ref,
   ...props
 }: ToastPrimitive.ToastDescriptionProps & { ref?: React.Ref<HTMLDivElement> }) => {
@@ -54,7 +41,7 @@ export const ToastDescription = ({
         as="div"
         size="sm"
         color="secondary"
-        className={`${styles.description} ${className}`}
+        className={cx(styles.description, className)}
       >
         {children}
       </Text>
@@ -62,36 +49,28 @@ export const ToastDescription = ({
   );
 };
 
-export const ToastAction = ({ className = "", asChild, children, ref, ...props }: ToastPrimitive.ToastActionProps & { ref?: React.Ref<HTMLButtonElement> }) => {
+export const ToastAction = ({ className, asChild, children, ref, ...props }: ToastPrimitive.ToastActionProps & { ref?: React.Ref<HTMLButtonElement> }) => {
   return (
     <ToastPrimitive.Action
       {...props}
       asChild={asChild}
       ref={ref}
-      className={`${styles.action} ${className}`}
+      className={cx(styles.action, className)}
     >
       {asChild
         ? children
-        : React.Children.map(children, (child) =>
-            typeof child === "string" || typeof child === "number" ? (
-              <Text as="span" size="sm" weight="medium">
-                {child}
-              </Text>
-            ) : (
-              child
-            )
-          )}
+        : wrapTextChildren(children)}
     </ToastPrimitive.Action>
   );
 };
 
-export const ToastClose = ({ className = "", ref, ...props }: ToastPrimitive.ToastCloseProps & { ref?: React.Ref<HTMLButtonElement> }) => {
+export const ToastClose = ({ className, ref, ...props }: ToastPrimitive.ToastCloseProps & { ref?: React.Ref<HTMLButtonElement> }) => {
   return (
     <ToastPrimitive.Close
       aria-label="Dismiss"
       {...props}
       ref={ref}
-      className={`${styles.close} ${className}`}
+      className={cx(styles.close, className)}
     >
       <SFSymbol symbol="✕" size="sm" />
     </ToastPrimitive.Close>

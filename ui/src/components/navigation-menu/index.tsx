@@ -3,13 +3,15 @@ import { NavigationMenu as NavigationMenuPrimitive } from "radix-ui";
 import { Text } from "../text";
 import { SFSymbol } from "../sf-symbol";
 import styles from "./styles.module.css";
+import { cx } from "../../lib/cx";
+import { styled } from "../../lib/styled";
 
 export const NavigationMenuItem = NavigationMenuPrimitive.Item;
 export const NavigationMenuSub = NavigationMenuPrimitive.Sub;
 
 export const NavigationMenuRoot = ({
   children,
-  className = "",
+  className,
   ref,
   ...props
 }: NavigationMenuPrimitive.NavigationMenuProps & { ref?: React.Ref<HTMLElement> }) => {
@@ -17,7 +19,7 @@ export const NavigationMenuRoot = ({
     <NavigationMenuPrimitive.Root
       {...props}
       ref={ref}
-      className={`${styles.root} ${className}`}
+      className={cx(styles.root, className)}
     >
       {children}
       <div className={styles.viewportPosition}>
@@ -27,23 +29,11 @@ export const NavigationMenuRoot = ({
   );
 };
 
-export const NavigationMenuList = ({
-  className = "",
-  ref,
-  ...props
-}: NavigationMenuPrimitive.NavigationMenuListProps & { ref?: React.Ref<HTMLUListElement> }) => {
-  return (
-    <NavigationMenuPrimitive.List
-      {...props}
-      ref={ref}
-      className={`${styles.list} ${className}`}
-    />
-  );
-};
+export const NavigationMenuList = styled(NavigationMenuPrimitive.List, styles.list, "NavigationMenuList");
 
 export const NavigationMenuTrigger = ({
   children,
-  className = "",
+  className,
   ref,
   ...props
 }: NavigationMenuPrimitive.NavigationMenuTriggerProps & { ref?: React.Ref<HTMLButtonElement> }) => {
@@ -51,7 +41,7 @@ export const NavigationMenuTrigger = ({
     <NavigationMenuPrimitive.Trigger
       {...props}
       ref={ref}
-      className={`${styles.trigger} ${className}`}
+      className={cx(styles.trigger, className)}
     >
       <Text as="span" size="sm" weight="medium" color="inherit">
         {children}
@@ -63,23 +53,11 @@ export const NavigationMenuTrigger = ({
   );
 };
 
-export const NavigationMenuContent = ({
-  className = "",
-  ref,
-  ...props
-}: NavigationMenuPrimitive.NavigationMenuContentProps & { ref?: React.Ref<HTMLDivElement> }) => {
-  return (
-    <NavigationMenuPrimitive.Content
-      {...props}
-      ref={ref}
-      className={`${styles.content} ${className}`}
-    />
-  );
-};
+export const NavigationMenuContent = styled(NavigationMenuPrimitive.Content, styles.content, "NavigationMenuContent");
 
 export const NavigationMenuLink = ({
   children,
-  className = "",
+  className,
   ref,
   ...props
 }: NavigationMenuPrimitive.NavigationMenuLinkProps & { ref?: React.Ref<HTMLAnchorElement> }) => {
@@ -87,7 +65,7 @@ export const NavigationMenuLink = ({
     <NavigationMenuPrimitive.Link
       {...props}
       ref={ref}
-      className={`${styles.link} ${className}`}
+      className={cx(styles.link, className)}
     >
       <Text as="span" size="sm" color="inherit">
         {children}

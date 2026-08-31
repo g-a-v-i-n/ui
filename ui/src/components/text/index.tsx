@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./styles.module.css";
+import { cx } from "../../lib/cx";
 
 type Size = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl" | "5xl";
 type Weight = "regular" | "medium" | "semibold" | "bold";
@@ -22,7 +23,7 @@ type As =
 type Transform = "uppercase" | "lowercase" | "capitalize" | "none";
 type Decoration = "underline" | "line-through" | "none";
 
-type TextProps = {
+export type TextProps = {
   as?: As;
   size?: Size;
   weight?: Weight;
@@ -50,7 +51,7 @@ export function Text({
   transform,
   decoration,
   lineHeight,
-  className = "",
+  className,
   style,
   children,
   ref,
@@ -66,10 +67,11 @@ export function Text({
       data-mono={mono || undefined}
       data-transform={transform}
       data-decoration={decoration}
-      className={`${styles.text} ${className}`}
+      className={cx(styles.text, className)}
       style={lineHeight !== undefined ? { ...style, lineHeight } : style}
-      // Cast: a single Ref<HTMLElement> can't satisfy every tag in the `As`
-      // union at once.
+      // SAFETY: a single Ref<HTMLElement> can't satisfy every tag in the `As`
+      // union at once; every tag Text renders is an HTMLElement, so the ref
+      // only ever receives what its own type promises.
       ref={ref as React.Ref<never>}
       {...props}
     >

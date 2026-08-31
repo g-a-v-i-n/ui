@@ -1,9 +1,10 @@
 import React from "react";
 import { Progress as ProgressPrimitive } from "radix-ui";
 import styles from "./styles.module.css";
+import { cx } from "../../lib/cx";
 
 export const Progress = ({
-  className = "",
+  className,
   animated = false,
   ref,
   ...props
@@ -19,7 +20,7 @@ export const Progress = ({
     <ProgressPrimitive.Root
       {...props}
       ref={ref}
-      className={`${styles.root} ${className}`}
+      className={cx(styles.root, className)}
     >
       <ProgressPrimitive.Indicator
         className={styles.indicator}

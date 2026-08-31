@@ -1,6 +1,7 @@
-import React, { Children } from "react";
-import { Text } from "../text";
+import React from "react";
 import styles from "./styles.module.css";
+import { wrapTextChildren } from "../text/wrap";
+import { cx } from "../../lib/cx";
 
 type Variant = "primary" | "secondary" | "destructive";
 type Width = "hug" | "fill" | "square";
@@ -24,7 +25,7 @@ export const Button = ({
   round = false,
   prefixSlot,
   suffixSlot,
-  className = "",
+  className,
   children,
   ref,
   ...props
@@ -36,22 +37,14 @@ export const Button = ({
       data-size={size}
       data-width={width}
       data-round={round || undefined}
-      className={`${styles.button} ${className}`}
+      className={cx(styles.button, className)}
       {...props}
     >
       {prefixSlot && <span className={styles.prefix}>{prefixSlot}</span>}
       {/* Only wrap plain text in Text — element children (icons) stay direct
           flex items so align-items centers them instead of baseline-sitting
           inside an inline text span. */}
-      {Children.map(children, (child) =>
-        typeof child === "string" || typeof child === "number" ? (
-          <Text as="span" size="md" weight="medium">
-            {child}
-          </Text>
-        ) : (
-          child
-        )
-      )}
+      {wrapTextChildren(children, "md")}
       {suffixSlot && <span className={styles.suffix}>{suffixSlot}</span>}
     </button>
   );

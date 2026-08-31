@@ -1,4 +1,6 @@
-export type IconSize = "xs" | "sm" | "md" | "lg" | "xl";
+import type { IconSize } from "../../lib/icon-sizes";
+
+export type { IconSize };
 export type IconWeight = "normal" | "bold";
 
 export type IconProps = {

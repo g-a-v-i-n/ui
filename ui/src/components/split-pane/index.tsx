@@ -8,6 +8,7 @@ import {
 } from "allotment";
 import "allotment/dist/style.css";
 import styles from "./styles.module.css";
+import { cx } from "../../lib/cx";
 
 export type SplitPaneHandle = AllotmentHandle;
 export type SplitPaneProps = AllotmentProps & { className?: string };
@@ -16,7 +17,7 @@ export type SplitPanePaneProps = React.ComponentProps<typeof Allotment.Pane>;
 export { LayoutPriority, setSashSize };
 
 export const SplitPane = ({
-  className = "",
+  className,
   ref,
   ...props
 }: SplitPaneProps & {
@@ -28,7 +29,7 @@ export const SplitPane = ({
     <Allotment
       {...props}
       ref={ref}
-      className={`${styles.root} ${className}`}
+      className={cx(styles.root, className)}
     />
   );
 };

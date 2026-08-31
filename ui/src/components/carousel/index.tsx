@@ -1,6 +1,7 @@
 import React from "react";
 import { SFSymbol } from "../sf-symbol";
 import styles from "./styles.module.css";
+import { cx } from "../../lib/cx";
 
 type CarouselProps = {
   /** Each direct child is one slide. */
@@ -23,7 +24,7 @@ export const Carousel = ({
   infinite = false,
   dots = false,
   arrows = true,
-  className = "",
+  className,
   ref,
 }: CarouselProps) => {
   const real = React.Children.toArray(children);
@@ -106,7 +107,7 @@ export const Carousel = ({
   return (
     <div
       ref={ref}
-      className={`${styles.root} ${className}`}
+      className={cx(styles.root, className)}
       role="region"
       aria-roledescription="carousel"
       onKeyDown={(e) => {
@@ -141,7 +142,7 @@ export const Carousel = ({
           <>
             <button
               type="button"
-              className={`${styles.arrow} ${styles.arrowPrev}`}
+              className={cx(styles.arrow, styles.arrowPrev)}
               aria-label="Previous slide"
               onClick={prev}
               disabled={atStart}
@@ -150,7 +151,7 @@ export const Carousel = ({
             </button>
             <button
               type="button"
-              className={`${styles.arrow} ${styles.arrowNext}`}
+              className={cx(styles.arrow, styles.arrowNext)}
               aria-label="Next slide"
               onClick={next}
               disabled={atEnd}

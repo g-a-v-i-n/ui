@@ -1,5 +1,6 @@
 import { useId } from "react";
 import styles from "./styles.module.css";
+import { cx } from "../../lib/cx";
 
 const SIZE = 48;
 const STROKE = 6;
@@ -8,7 +9,7 @@ const CIRCUMFERENCE = 15.91549430918952;
 export const PieChart = ({
   percent = 0,
   style,
-  className = "",
+  className,
 }: {
   percent: number;
   style?: React.CSSProperties;
@@ -20,7 +21,7 @@ export const PieChart = ({
       width="24"
       height="24"
       viewBox={`0 0 ${SIZE} ${SIZE}`}
-      className={`${styles.pie} ${className}`}
+      className={cx(styles.pie, className)}
       style={style}
     >
       {/* The fill arc's thicker silhouette is masked out of the track, so the

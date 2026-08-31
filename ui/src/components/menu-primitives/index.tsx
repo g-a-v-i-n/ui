@@ -1,11 +1,12 @@
 import React from "react";
 import { Text } from "../text";
 import styles from "./styles.module.css";
+import { cx } from "../../lib/cx";
 
 export const MenuContainer = ({
   children,
   width = "auto",
-  className = "",
+  className,
   ref,
   ...props
 }: {
@@ -20,7 +21,7 @@ export const MenuContainer = ({
       {...props}
       ref={ref}
       data-width={width}
-      className={`${styles.container} ${className}`}
+      className={cx(styles.container, className)}
     >
       {children}
     </div>
@@ -29,7 +30,7 @@ export const MenuContainer = ({
 
 export const MenuItem = ({
   children,
-  className = "",
+  className,
   suffixSlot,
   prefixSlot,
   ref,
@@ -46,7 +47,7 @@ export const MenuItem = ({
     <div
       {...props}
       ref={ref}
-      className={`${styles.item} ${className}`}
+      className={cx(styles.item, className)}
     >
       <div className={styles.left}>
         {prefixSlot && <div className={styles.prefix}>{prefixSlot}</div>}
@@ -71,7 +72,7 @@ export const MenuDivider = () => {
 
 export const MenuGroup = ({
   children,
-  className = "",
+  className,
   ref,
   ...props
 }: {
@@ -82,7 +83,7 @@ export const MenuGroup = ({
     <div
       {...props}
       ref={ref}
-      className={`${styles.group} ${className}`}
+      className={cx(styles.group, className)}
     >
       {children}
     </div>
@@ -91,7 +92,7 @@ export const MenuGroup = ({
 
 export const MenuLabel = ({
   children,
-  className = "",
+  className,
   ...props
 }: {
   children: React.ReactNode;
@@ -103,7 +104,7 @@ export const MenuLabel = ({
       size="xs"
       weight="medium"
       color="tertiary"
-      className={`${className} ${styles.label}`}
+      className={cx(className, styles.label)}
       {...props}
     >{children}</Text>
   );
@@ -111,7 +112,7 @@ export const MenuLabel = ({
 
 export const MenuTitle = ({
   children,
-  className = "",
+  className,
   ...props
 }: {
   children?: React.ReactNode;
@@ -122,7 +123,7 @@ export const MenuTitle = ({
       as="div"
       size="sm"
       weight="medium"
-      className={`${className} ${styles.title}`}
+      className={cx(className, styles.title)}
       {...props}
     >
       {children}
@@ -132,21 +133,21 @@ export const MenuTitle = ({
 
 export const MenuList = ({
   children,
-  className = "",
+  className,
   ...props
 }: {
   children?: React.ReactNode;
   className?: string;
 }) => {
   return (
-    <div className={`${className} ${styles.menuList}`} {...props}>
+    <div className={cx(className, styles.menuList)} {...props}>
       {children}
     </div>
   );
 };
 
 export const MenuListItem = ({
-  className = "",
+  className,
   label,
   value,
   ...props
@@ -156,7 +157,7 @@ export const MenuListItem = ({
   value?: string | number | null;
 }) => {
   return (
-    <div className={`${className} ${styles.listItem}`} {...props}>
+    <div className={cx(className, styles.listItem)} {...props}>
       <Text size="xs" color="secondary" className={styles.listItemLabel}>
         {label}
       </Text>
@@ -173,13 +174,13 @@ export const MenuListItem = ({
    Props spread first: Radix Arrow injects its default 10x5 width/height via
    asChild, and our fixed 28x9 size must win. */
 export const MenuArrow = ({
-  className = "",
+  className,
   ...props
 }: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
       {...props}
-      className={`${styles.arrow} ${className}`}
+      className={cx(styles.arrow, className)}
       width="28px"
       height="9px"
       viewBox="0 0 28 9"

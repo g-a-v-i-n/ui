@@ -1,57 +1,27 @@
 import React from "react";
 import { ScrollArea as ScrollAreaPrimitive } from "radix-ui";
 import styles from "./styles.module.css";
+import { styled } from "../../lib/styled";
 
 export const ScrollAreaCorner = ScrollAreaPrimitive.Corner;
 
-export const ScrollAreaRoot = ({ className = "", ref, ...props }: ScrollAreaPrimitive.ScrollAreaProps & { ref?: React.Ref<HTMLDivElement> }) => {
-  return (
-    <ScrollAreaPrimitive.Root
-      {...props}
-      ref={ref}
-      className={`${styles.root} ${className}`}
-    />
-  );
-};
-
-export const ScrollAreaViewport = ({ className = "", ref, ...props }: ScrollAreaPrimitive.ScrollAreaViewportProps & { ref?: React.Ref<HTMLDivElement> }) => {
-  return (
-    <ScrollAreaPrimitive.Viewport
-      {...props}
-      ref={ref}
-      className={`${styles.viewport} ${className}`}
-    />
-  );
-};
-
-export const ScrollAreaScrollbar = ({
-  className = "",
-  ref,
-  ...props
-}: ScrollAreaPrimitive.ScrollAreaScrollbarProps & { ref?: React.Ref<HTMLDivElement> }) => {
-  return (
-    <ScrollAreaPrimitive.Scrollbar
-      {...props}
-      ref={ref}
-      className={`${styles.scrollbar} ${className}`}
-    />
-  );
-};
-
-export const ScrollAreaThumb = ({ className = "", ref, ...props }: ScrollAreaPrimitive.ScrollAreaThumbProps & { ref?: React.Ref<HTMLDivElement> }) => {
-  return (
-    <ScrollAreaPrimitive.Thumb
-      {...props}
-      ref={ref}
-      className={`${styles.thumb} ${className}`}
-    />
-  );
-};
+export const ScrollAreaRoot = styled(ScrollAreaPrimitive.Root, styles.root, "ScrollAreaRoot");
+export const ScrollAreaViewport = styled(
+  ScrollAreaPrimitive.Viewport,
+  styles.viewport,
+  "ScrollAreaViewport"
+);
+export const ScrollAreaScrollbar = styled(
+  ScrollAreaPrimitive.Scrollbar,
+  styles.scrollbar,
+  "ScrollAreaScrollbar"
+);
+export const ScrollAreaThumb = styled(ScrollAreaPrimitive.Thumb, styles.thumb, "ScrollAreaThumb");
 
 export const ScrollArea = ({
   children,
-  className = "",
-  viewportClassName = "",
+  className,
+  viewportClassName,
   ...props
 }: ScrollAreaPrimitive.ScrollAreaProps & {
   viewportClassName?: string;

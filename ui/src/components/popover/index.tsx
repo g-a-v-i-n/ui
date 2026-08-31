@@ -4,6 +4,7 @@ import { Popover as PopoverPrimitive } from "radix-ui";
 import { MenuArrow } from "../menu-primitives";
 import { POPOVER_OFFSET } from "../../offsets";
 import styles from "./styles.module.css";
+import { cx } from "../../lib/cx";
 
 export const PopoverRoot = PopoverPrimitive.Root;
 export const PopoverPortal = PopoverPrimitive.Portal;
@@ -27,7 +28,7 @@ export const PopoverArrow = ({
 
 export const PopoverContent = ({
   children,
-  className = "",
+  className,
   sideOffset = POPOVER_OFFSET,
   collisionPadding = 12,
   ref,
@@ -41,7 +42,7 @@ export const PopoverContent = ({
         arrowPadding={6}
         {...props}
         ref={ref}
-        className={`${styles.content} ${className}`}
+        className={cx(styles.content, className)}
       >
         {children}
         <PopoverArrow />

@@ -1,11 +1,12 @@
-import React, { Children } from "react";
+import React from "react";
 import { Toggle as TogglePrimitive } from "radix-ui";
-import { Text } from "../text";
 import styles from "./styles.module.css";
+import { wrapTextChildren } from "../text/wrap";
+import { cx } from "../../lib/cx";
 
 export const Toggle = ({
   children,
-  className = "",
+  className,
   width = "hug",
   ref,
   ...props
@@ -15,17 +16,9 @@ export const Toggle = ({
       {...props}
       ref={ref}
       data-width={width}
-      className={`${styles.toggle} ${className}`}
+      className={cx(styles.toggle, className)}
     >
-      {Children.map(children, (child) =>
-        typeof child === "string" || typeof child === "number" ? (
-          <Text as="span" size="sm" weight="medium">
-            {child}
-          </Text>
-        ) : (
-          child
-        )
-      )}
+      {wrapTextChildren(children)}
     </TogglePrimitive.Root>
   );
 };

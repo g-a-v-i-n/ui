@@ -3,50 +3,20 @@ import { Collapsible as CollapsiblePrimitive } from "radix-ui";
 import { Text } from "../text";
 import { SFSymbol } from "../sf-symbol";
 import styles from "./styles.module.css";
+import { cx } from "../../lib/cx";
+import { styled } from "../../lib/styled";
 
-export const Sidebar = ({ className = "", ref, ...props }: React.HTMLAttributes<HTMLElement> & { ref?: React.Ref<HTMLElement> }) => {
-  return (
-    <aside
-      {...props}
-      ref={ref}
-      className={`${styles.root} ${className}`}
-    />
-  );
-};
+export const Sidebar = styled("aside", styles.root, "Sidebar");
 
-export const SidebarHeader = ({ className = "", ref, ...props }: React.HTMLAttributes<HTMLDivElement> & { ref?: React.Ref<HTMLDivElement> }) => {
-  return (
-    <div
-      {...props}
-      ref={ref}
-      className={`${styles.header} ${className}`}
-    />
-  );
-};
+export const SidebarHeader = styled("div", styles.header, "SidebarHeader");
 
-export const SidebarContent = ({ className = "", ref, ...props }: React.HTMLAttributes<HTMLDivElement> & { ref?: React.Ref<HTMLDivElement> }) => {
-  return (
-    <div
-      {...props}
-      ref={ref}
-      className={`${styles.content} ${className}`}
-    />
-  );
-};
+export const SidebarContent = styled("div", styles.content, "SidebarContent");
 
-export const SidebarFooter = ({ className = "", ref, ...props }: React.HTMLAttributes<HTMLDivElement> & { ref?: React.Ref<HTMLDivElement> }) => {
-  return (
-    <div
-      {...props}
-      ref={ref}
-      className={`${styles.footer} ${className}`}
-    />
-  );
-};
+export const SidebarFooter = styled("div", styles.footer, "SidebarFooter");
 
 export const SidebarSectionLabel = ({
   children,
-  className = "",
+  className,
   ...props
 }: {
   children: React.ReactNode;
@@ -58,7 +28,7 @@ export const SidebarSectionLabel = ({
       size="xs"
       weight="medium"
       color="tertiary"
-      className={`${styles.sectionLabel} ${className}`}
+      className={cx(styles.sectionLabel, className)}
       {...props}
     >
       {children}
@@ -69,7 +39,7 @@ export const SidebarSectionLabel = ({
 export const SidebarSection = ({
   label,
   children,
-  className = "",
+  className,
   ref,
   ...props
 }: React.HTMLAttributes<HTMLDivElement> & { label?: React.ReactNode } & { ref?: React.Ref<HTMLDivElement> }) => {
@@ -77,7 +47,7 @@ export const SidebarSection = ({
     <div
       {...props}
       ref={ref}
-      className={`${styles.section} ${className}`}
+      className={cx(styles.section, className)}
     >
       {label != null && <SidebarSectionLabel>{label}</SidebarSectionLabel>}
       {children}
@@ -103,7 +73,7 @@ export const SidebarItem = ({
   prefixSlot,
   suffixSlot,
   children,
-  className = "",
+  className,
   ref,
   ...props
 }: SidebarItemProps & { ref?: React.Ref<HTMLElement> }) => {
@@ -117,7 +87,7 @@ export const SidebarItem = ({
       href={href}
       ref={ref}
       data-active={active || undefined}
-      className={`${styles.item} ${className}`}
+      className={cx(styles.item, className)}
     >
       {prefixSlot && <span className={styles.prefix}>{prefixSlot}</span>}
       <Text as="span" size="sm" truncate className={styles.itemLabel}>
@@ -129,10 +99,10 @@ export const SidebarItem = ({
 };
 
 export const SidebarSeparator = ({
-  className = "",
+  className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => {
-  return <div {...props} className={`${styles.separator} ${className}`} />;
+  return <div {...props} className={cx(styles.separator, className)} />;
 };
 
 export const SidebarCollapsibleSection = ({
@@ -141,7 +111,7 @@ export const SidebarCollapsibleSection = ({
   open,
   onOpenChange,
   children,
-  className = "",
+  className,
 }: {
   label: React.ReactNode;
   defaultOpen?: boolean;
@@ -155,7 +125,7 @@ export const SidebarCollapsibleSection = ({
       defaultOpen={defaultOpen}
       open={open}
       onOpenChange={onOpenChange}
-      className={`${styles.section} ${className}`}
+      className={cx(styles.section, className)}
     >
       <CollapsiblePrimitive.Trigger className={styles.collapsibleTrigger}>
         <Text as="span" size="xs" weight="medium" color="tertiary">

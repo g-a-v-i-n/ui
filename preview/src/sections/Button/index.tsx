@@ -9,7 +9,7 @@ export function ButtonSection() {
       <Button>Primary</Button>
       <Button variant="secondary">Secondary</Button>
       <Button variant="destructive">Delete</Button>
-      <Button variant="destructive" prefixSlot={<Icon icon="xmark" size="sm" />}>
+      <Button variant="destructive" prefixSlot={<Icon icon="xmark" size="md" />}>
         Delete with icon
       </Button>
       <Button variant="destructive" disabled>

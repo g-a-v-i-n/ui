@@ -1,13 +1,7 @@
 import { AccessibleIcon as AccessibleIconPrimitive } from "radix-ui";
 import styles from "./styles.module.css";
-
-const sizes = {
-  xs: 11,
-  sm: 13,
-  md: 15,
-  lg: 18,
-  xl: 22,
-} as const;
+import { cx } from "../../lib/cx";
+import { iconSizes, type IconSize } from "../../lib/icon-sizes";
 
 const weights = {
   ultralight: 100,
@@ -25,7 +19,7 @@ type SFSymbolProps = {
   symbol: string;
   /** Accessible name, announced by screen readers. Omit for decorative glyphs. */
   label?: string;
-  size?: keyof typeof sizes;
+  size?: IconSize;
   weight?: keyof typeof weights;
   className?: string;
   style?: React.CSSProperties;
@@ -39,11 +33,11 @@ export function SFSymbol({
   className,
   style,
 }: SFSymbolProps) {
-  const px = sizes[size];
+  const px = iconSizes[size];
   const glyph = (
     <span
       aria-hidden="true"
-      className={`${styles.symbol} ${className ?? ""}`}
+      className={cx(styles.symbol, className)}
       style={{
         width: px,
         height: px,

@@ -174,6 +174,14 @@
   width: 100%;
 }
 
+/* Check/radio menu items: pad unchecked rows so their labels stay aligned
+   with the checked row's indicator. */
+.checkboxItem {
+  &[data-state="unchecked"] > div {
+    padding-left: 28px;
+  }
+}
+
 /* Popup arrow — Radix positions it inside a wrapper span we can't class
    directly, so lift that span (and the svg) above sibling card content. */
 .arrow {

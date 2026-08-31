@@ -2,6 +2,7 @@ import React from "react";
 import { Label as LabelPrimitive } from "radix-ui";
 import { Text } from "../text";
 import styles from "./styles.module.css";
+import { cx } from "../../lib/cx";
 
 type LabelProps = LabelPrimitive.LabelProps & {
   size?: "xs" | "sm" | "md";
@@ -11,7 +12,7 @@ type LabelProps = LabelPrimitive.LabelProps & {
 
 export const Label = ({
   children,
-  className = "",
+  className,
   size = "sm",
   weight = "medium",
   color = "primary",
@@ -25,7 +26,7 @@ export const Label = ({
         size={size}
         weight={weight}
         color={color}
-        className={`${styles.label} ${className}`}
+        className={cx(styles.label, className)}
       >
         {children}
       </Text>

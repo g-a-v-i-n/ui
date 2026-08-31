@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./styles.module.css";
+import { cx } from "../../lib/cx";
 
 type Variant = "primary" | "secondary";
 
@@ -11,7 +12,7 @@ type CardProps = React.ComponentPropsWithoutRef<"div"> & {
 
 export const Card = ({
   variant = "primary",
-  className = "",
+  className,
   ref,
   ...props
 }: CardProps) => {
@@ -20,7 +21,7 @@ export const Card = ({
       {...props}
       ref={ref}
       data-variant={variant}
-      className={`${styles.card} ${className}`}
+      className={cx(styles.card, className)}
     />
   );
 };

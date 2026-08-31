@@ -1,4 +1,5 @@
 import styles from "./styles.module.css";
+import { cx } from "../../lib/cx";
 import { SFSymbol } from "../sf-symbol";
 import { Text } from "../text";
 import { Checkbox as CheckboxPrimitive } from "radix-ui";
@@ -18,10 +19,10 @@ export const CheckboxRow = ({
   id,
   checked,
   onCheckedChange,
-  className = "",
+  className,
 }: CheckboxRowProps) => {
   return (
-    <label className={`${styles.container} ${className}`}>
+    <label className={cx(styles.container, className)}>
       <CheckboxPrimitive.Root
         className={styles.box}
         checked={checked}

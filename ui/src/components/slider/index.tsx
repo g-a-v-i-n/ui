@@ -1,15 +1,16 @@
 import React from "react";
 import { Slider as SliderPrimitive } from "radix-ui";
 import styles from "./styles.module.css";
+import { cx } from "../../lib/cx";
 
-export const Slider = ({ className = "", ref, ...props }: SliderPrimitive.SliderProps & { ref?: React.Ref<HTMLSpanElement> }) => {
+export const Slider = ({ className, ref, ...props }: SliderPrimitive.SliderProps & { ref?: React.Ref<HTMLSpanElement> }) => {
   const thumbCount = (props.value ?? props.defaultValue ?? [0]).length;
 
   return (
     <SliderPrimitive.Root
       {...props}
       ref={ref}
-      className={`${styles.root} ${className}`}
+      className={cx(styles.root, className)}
     >
       <SliderPrimitive.Track className={styles.track}>
         <SliderPrimitive.Range className={styles.range} />

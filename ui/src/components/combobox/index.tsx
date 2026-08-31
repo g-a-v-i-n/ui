@@ -4,6 +4,7 @@ import { TextInput } from "../text-input";
 import { Text } from "../text";
 import { SFSymbol } from "../sf-symbol";
 import styles from "./styles.module.css";
+import { cx } from "../../lib/cx";
 
 export type ComboboxItem = {
   value: string;
@@ -40,8 +41,8 @@ export const Combobox = ({
   filter = defaultFilter,
   width = "hug",
   disabled,
-  className = "",
-  containerClassName = "",
+  className,
+  containerClassName,
 }: ComboboxProps) => {
   const baseId = React.useId();
   const listId = `${baseId}-list`;
@@ -155,7 +156,7 @@ export const Combobox = ({
       <PopoverPrimitive.Anchor asChild>
         <div
           ref={anchorRef}
-          className={`${styles.anchor} ${containerClassName}`}
+          className={cx(styles.anchor, containerClassName)}
           data-width={typeof width === "number" ? "number" : width}
         >
           <TextInput

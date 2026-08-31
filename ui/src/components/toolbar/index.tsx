@@ -1,6 +1,6 @@
-import React, { Children } from "react";
+import React from "react";
 import { Toolbar as ToolbarPrimitive } from "radix-ui";
-import { Text } from "../text";
+import { wrapTextChildren } from "../text/wrap";
 import { SFSymbol } from "../sf-symbol";
 import { Tooltip } from "../tooltip";
 import {
@@ -10,32 +10,16 @@ import {
   DropdownMenuArrow,
 } from "../dropdown-menu";
 import { POPOVER_OFFSET } from "../../offsets";
+import { TextInput } from "../text-input";
 import styles from "./styles.module.css";
+import { cx } from "../../lib/cx";
+import { styled } from "../../lib/styled";
 
-const wrapText = (children: React.ReactNode) =>
-  Children.map(children, (child) =>
-    typeof child === "string" || typeof child === "number" ? (
-      <Text as="span" size="sm" weight="medium">
-        {child}
-      </Text>
-    ) : (
-      child
-    )
-  );
-
-export const ToolbarRoot = ({ className = "", ref, ...props }: ToolbarPrimitive.ToolbarProps & { ref?: React.Ref<HTMLDivElement> }) => {
-  return (
-    <ToolbarPrimitive.Root
-      {...props}
-      ref={ref}
-      className={`${styles.root} ${className}`}
-    />
-  );
-};
+export const ToolbarRoot = styled(ToolbarPrimitive.Root, styles.root, "ToolbarRoot");
 
 export const ToolbarButton = ({
   children,
-  className = "",
+  className,
   width = "hug",
   ref,
   ...props
@@ -45,56 +29,41 @@ export const ToolbarButton = ({
       {...props}
       ref={ref}
       data-width={width}
-      className={`${styles.button} ${className}`}
+      className={cx(styles.button, className)}
     >
-      {wrapText(children)}
+      {wrapTextChildren(children)}
     </ToolbarPrimitive.Button>
   );
 };
 
-export const ToolbarLink = ({ children, className = "", ref, ...props }: ToolbarPrimitive.ToolbarLinkProps & { ref?: React.Ref<HTMLAnchorElement> }) => {
+export const ToolbarLink = ({ children, className, ref, ...props }: ToolbarPrimitive.ToolbarLinkProps & { ref?: React.Ref<HTMLAnchorElement> }) => {
   return (
     <ToolbarPrimitive.Link
       {...props}
       ref={ref}
-      className={`${styles.link} ${className}`}
+      className={cx(styles.link, className)}
     >
-      {wrapText(children)}
+      {wrapTextChildren(children)}
     </ToolbarPrimitive.Link>
   );
 };
 
-export const ToolbarSeparator = ({ className = "", ref, ...props }: ToolbarPrimitive.ToolbarSeparatorProps & { ref?: React.Ref<HTMLDivElement> }) => {
-  return (
-    <ToolbarPrimitive.Separator
-      {...props}
-      ref={ref}
-      className={`${styles.separator} ${className}`}
-    />
-  );
-};
+export const ToolbarSeparator = styled(
+  ToolbarPrimitive.Separator,
+  styles.separator,
+  "ToolbarSeparator"
+);
 
-export const ToolbarToggleGroup = ({
-  className = "",
-  ref,
-  ...props
-}: (
-  | ToolbarPrimitive.ToolbarToggleGroupSingleProps
-  | ToolbarPrimitive.ToolbarToggleGroupMultipleProps
-) & { ref?: React.Ref<HTMLDivElement> }) => {
-  return (
-    <ToolbarPrimitive.ToggleGroup
-      {...props}
-      ref={ref}
-      className={`${styles.toggleGroup} ${className}`}
-    />
-  );
-};
+export const ToolbarToggleGroup = styled(
+  ToolbarPrimitive.ToggleGroup,
+  styles.toggleGroup,
+  "ToolbarToggleGroup"
+);
 
 export const ToolbarToggleItem = ({
   children,
   tooltip,
-  className = "",
+  className,
   ref,
   ...props
 }: ToolbarPrimitive.ToolbarToggleItemProps & {
@@ -105,9 +74,9 @@ export const ToolbarToggleItem = ({
     <ToolbarPrimitive.ToggleItem
       {...props}
       ref={ref}
-      className={`${styles.button} ${className}`}
+      className={cx(styles.button, className)}
     >
-      {wrapText(children)}
+      {wrapTextChildren(children)}
     </ToolbarPrimitive.ToggleItem>
   );
 
@@ -123,69 +92,18 @@ export const ToolbarToggleItem = ({
 };
 
 /* Plain layout grouping for related toolbar controls. */
-export const ToolbarGroup = ({
-  className = "",
-  ref,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement> & {
-  ref?: React.Ref<HTMLDivElement>;
-}) => {
-  return (
-    <div
-      {...props}
-      ref={ref}
-      className={`${styles.group} ${className}`}
-    />
-  );
-};
+export const ToolbarGroup = styled("div", styles.group, "ToolbarGroup");
 
 export type ToolbarInputProps = Omit<
-  React.ComponentPropsWithoutRef<"input">,
-  "width" | "prefix"
-> & {
-  width?: "hug" | "fill" | number;
-  prefixSlot?: React.ReactNode;
-  suffixSlot?: React.ReactNode;
-  containerClassName?: string;
-  containerStyle?: React.CSSProperties;
-  ref?: React.Ref<HTMLInputElement>;
-};
+  React.ComponentProps<typeof TextInput>,
+  "variant"
+>;
 
-/* An input dressed like a quiet toolbar button — same height, radius, and
-   hover treatment as ToolbarButton. Hug width sizes to content via CSS
-   field-sizing. */
-export const ToolbarInput = ({
-  className = "",
-  containerClassName = "",
-  containerStyle,
-  width = "hug",
-  type = "text",
-  prefixSlot,
-  suffixSlot,
-  ref,
-  ...props
-}: ToolbarInputProps) => {
-  const widthMode = typeof width === "number" ? "number" : width;
-  const numberStyle =
-    typeof width === "number" ? { width: `${width}px` } : undefined;
-
-  return (
-    <div
-      data-width={widthMode}
-      className={`${styles.inputContainer} ${containerClassName}`}
-      style={{ ...containerStyle, ...numberStyle }}
-    >
-      {prefixSlot && <span className={styles.inputSlot}>{prefixSlot}</span>}
-      <input
-        {...props}
-        ref={ref}
-        type={type}
-        className={`${styles.input} ${className}`}
-      />
-      {suffixSlot && <span className={styles.inputSlot}>{suffixSlot}</span>}
-    </div>
-  );
-};
+/* An input dressed like a quiet toolbar button — TextInput's toolbar variant
+   under a toolbar-flavored name. */
+export const ToolbarInput = (props: ToolbarInputProps) => (
+  <TextInput variant="toolbar" {...props} />
+);
 
 export type ToolbarSplitButtonProps = {
   prefixSlot?: React.ReactNode;
@@ -207,7 +125,7 @@ export const ToolbarSplitButton = ({
   dropdownWidth = "auto",
   square = false,
   disabled,
-  className = "",
+  className,
   ref,
   ...props
 }: ToolbarSplitButtonProps & { ref?: React.Ref<HTMLButtonElement> }) => {
@@ -220,12 +138,12 @@ export const ToolbarSplitButton = ({
       className={styles.splitPrimary}
     >
       {prefixSlot && <span className={styles.splitPrefix}>{prefixSlot}</span>}
-      {wrapText(children)}
+      {wrapTextChildren(children)}
     </ToolbarPrimitive.Button>
   );
 
   return (
-    <div className={`${styles.split} ${className}`}>
+    <div className={cx(styles.split, className)}>
       {tooltip ? (
         <Tooltip content={tooltip}>{primaryButton}</Tooltip>
       ) : (

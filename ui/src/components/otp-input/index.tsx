@@ -3,6 +3,7 @@ import React from "react";
 // change across Radix versions. Keep that dependency isolated to this wrapper.
 import { unstable_OneTimePasswordField as OTPField } from "radix-ui";
 import styles from "./styles.module.css";
+import { cx } from "../../lib/cx";
 
 type OTPInputProps = {
   /** Number of digit slots. */
@@ -24,7 +25,7 @@ export const OTPInput = ({
   onValueChange,
   name,
   disabled,
-  className = "",
+  className,
   ref,
 }: OTPInputProps) => {
   return (
@@ -34,7 +35,7 @@ export const OTPInput = ({
       defaultValue={defaultValue}
       onValueChange={onValueChange}
       disabled={disabled}
-      className={`${styles.root} ${className}`}
+      className={cx(styles.root, className)}
     >
       {Array.from({ length }, (_, i) => (
         <OTPField.Input key={i} className={styles.slot} />

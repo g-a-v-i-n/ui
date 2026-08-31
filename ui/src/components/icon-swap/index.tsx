@@ -1,6 +1,7 @@
 import React from "react";
 import { AnimatePresence, motion } from "motion/react";
 import styles from "./styles.module.css";
+import { cx } from "../../lib/cx";
 
 export type IconSwapProps = {
   /** Identifies the current state; changing it animates children out and in. */
@@ -24,7 +25,7 @@ export const IconSwap = ({
   scale = 0.5,
   duration = 0.08,
   mode = "wait",
-  className = "",
+  className,
   style,
 }: IconSwapProps) => {
   return (
@@ -35,7 +36,7 @@ export const IconSwap = ({
         animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
         exit={{ opacity: 0, scale, filter: "blur(3px)" }}
         transition={{ duration, ease: [0.25, 0.46, 0.45, 0.94] }}
-        className={`${styles.swap} ${className}`}
+        className={cx(styles.swap, className)}
         style={style}
       >
         {children}

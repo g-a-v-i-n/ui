@@ -3,6 +3,8 @@ import { Tabs as TabsPrimitive } from "radix-ui";
 import { motion } from "motion/react";
 import { Text } from "../text";
 import styles from "./styles.module.css";
+import { cx } from "../../lib/cx";
+import { styled } from "../../lib/styled";
 
 /* The active trigger renders the underline as a motion element with an
    instance-scoped layoutId, so it glides between tabs on change. */
@@ -17,7 +19,7 @@ const transition = {
 };
 
 export const TabsRoot = ({
-  className = "",
+  className,
   value,
   defaultValue,
   onValueChange,
@@ -41,7 +43,7 @@ export const TabsRoot = ({
       defaultValue={defaultValue}
       onValueChange={handleValueChange}
       ref={ref}
-      className={`${styles.root} ${className}`}
+      className={cx(styles.root, className)}
     >
       <TabsContext.Provider value={{ value: currentValue, baseId }}>
         {children}
@@ -50,20 +52,12 @@ export const TabsRoot = ({
   );
 };
 
-export const TabsList = ({ className = "", ref, ...props }: TabsPrimitive.TabsListProps & { ref?: React.Ref<HTMLDivElement> }) => {
-  return (
-    <TabsPrimitive.List
-      {...props}
-      ref={ref}
-      className={`${styles.list} ${className}`}
-    />
-  );
-};
+export const TabsList = styled(TabsPrimitive.List, styles.list, "TabsList");
 
 export const TabsTrigger = ({
   children,
   value,
-  className = "",
+  className,
   ref,
   ...props
 }: TabsPrimitive.TabsTriggerProps & { ref?: React.Ref<HTMLButtonElement> }) => {
@@ -75,7 +69,7 @@ export const TabsTrigger = ({
       {...props}
       value={value}
       ref={ref}
-      className={`${styles.trigger} ${className}`}
+      className={cx(styles.trigger, className)}
     >
       <Text as="span" size="md" weight="medium">
         {children}
@@ -91,12 +85,4 @@ export const TabsTrigger = ({
   );
 };
 
-export const TabsContent = ({ className = "", ref, ...props }: TabsPrimitive.TabsContentProps & { ref?: React.Ref<HTMLDivElement> }) => {
-  return (
-    <TabsPrimitive.Content
-      {...props}
-      ref={ref}
-      className={`${styles.content} ${className}`}
-    />
-  );
-};
+export const TabsContent = styled(TabsPrimitive.Content, styles.content, "TabsContent");

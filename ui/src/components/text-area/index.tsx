@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./styles.module.css";
+import { cx } from "../../lib/cx";
 
 export type TextAreaProps = Omit<
   React.ComponentPropsWithoutRef<"textarea">,
@@ -18,8 +19,8 @@ export type TextAreaProps = Omit<
 };
 
 export const TextArea = ({
-  className = "",
-  containerClassName = "",
+  className,
+  containerClassName,
   containerStyle,
   rows = 3,
   autoResize = false,
@@ -34,7 +35,7 @@ export const TextArea = ({
 
   return (
     <div
-      className={`${styles.container} ${containerClassName}`}
+      className={cx(styles.container, containerClassName)}
       style={containerStyle}
     >
       <textarea
@@ -43,7 +44,7 @@ export const TextArea = ({
         rows={autoResize ? undefined : rows}
         data-auto-resize={autoResize || undefined}
         data-resize={resize}
-        className={`${styles.textarea} ${className}`}
+        className={cx(styles.textarea, className)}
         style={{
           minHeight: autoResize ? rows * rowHeight + padding : undefined,
           maxHeight:

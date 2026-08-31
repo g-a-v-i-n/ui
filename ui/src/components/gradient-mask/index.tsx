@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./styles.module.css";
+import { cx } from "../../lib/cx";
 
 export type GradientMaskProps = {
   direction?: "top" | "bottom" | "left" | "right";
@@ -20,7 +21,7 @@ export const GradientMask = ({
   size = 24,
   blur,
   color = "var(--bg-primary)",
-  className = "",
+  className,
   style,
   ref,
   ...props
@@ -31,7 +32,7 @@ export const GradientMask = ({
       ref={ref}
       aria-hidden="true"
       data-direction={direction}
-      className={`${styles.mask} ${className}`}
+      className={cx(styles.mask, className)}
       style={
         // SAFETY: CSS custom properties are valid inline styles but are missing
         // from the CSSProperties type.

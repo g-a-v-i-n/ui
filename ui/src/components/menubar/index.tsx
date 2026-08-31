@@ -1,15 +1,11 @@
 import React from "react";
 import { Menubar as MenubarPrimitive } from "radix-ui";
 import { Text } from "../text";
-import { SFSymbol } from "../sf-symbol";
-import {
-  MenuContainer,
-  MenuDivider,
-  MenuGroup,
-  MenuItem,
-  MenuLabel,
-} from "../menu-primitives";
+import { MenuContainer } from "../menu-primitives";
+import { createMenuParts } from "../menu-primitives/create-menu-parts";
 import styles from "./styles.module.css";
+import { cx } from "../../lib/cx";
+import { styled } from "../../lib/styled";
 
 export const MenubarMenu = (props: MenubarPrimitive.MenubarMenuProps) => (
   <MenubarPrimitive.Menu {...props} />
@@ -17,22 +13,24 @@ export const MenubarMenu = (props: MenubarPrimitive.MenubarMenuProps) => (
 export const MenubarPortal = MenubarPrimitive.Portal;
 export const MenubarSub = MenubarPrimitive.Sub;
 
-export const MenubarRoot = ({ className = "", ref, ...props }: MenubarPrimitive.MenubarProps & { ref?: React.Ref<HTMLDivElement> }) => {
-  return (
-    <MenubarPrimitive.Root
-      {...props}
-      ref={ref}
-      className={`${styles.root} ${className}`}
-    />
-  );
-};
+const parts = createMenuParts(MenubarPrimitive);
+export const MenubarItem = parts.Item;
+export const MenubarCheckboxItem = parts.CheckboxItem;
+export const MenubarRadioGroup = parts.RadioGroup;
+export const MenubarRadioItem = parts.RadioItem;
+export const MenubarGroup = parts.Group;
+export const MenubarLabel = parts.Label;
+export const MenubarSubTrigger = parts.SubTrigger;
+export const MenubarSeparator = parts.Separator;
 
-export const MenubarTrigger = ({ children, className = "", ref, ...props }: MenubarPrimitive.MenubarTriggerProps & { ref?: React.Ref<HTMLButtonElement> }) => {
+export const MenubarRoot = styled(MenubarPrimitive.Root, styles.root, "MenubarRoot");
+
+export const MenubarTrigger = ({ children, className, ref, ...props }: MenubarPrimitive.MenubarTriggerProps & { ref?: React.Ref<HTMLButtonElement> }) => {
   return (
     <MenubarPrimitive.Trigger
       {...props}
       ref={ref}
-      className={`${styles.trigger} ${className}`}
+      className={cx(styles.trigger, className)}
     >
       <Text as="span" size="sm" weight="medium" color="inherit">
         {children}
@@ -43,7 +41,7 @@ export const MenubarTrigger = ({ children, className = "", ref, ...props }: Menu
 
 export const MenubarContent = ({
   children,
-  className = "",
+  className,
   sideOffset = 4,
   collisionPadding = 8,
   width,
@@ -63,7 +61,7 @@ export const MenubarContent = ({
       >
         <MenuContainer
           width={width}
-          className={`${styles.animation} ${className}`}
+          className={cx(styles.animation, className)}
         >
           {children}
         </MenuContainer>
@@ -74,7 +72,7 @@ export const MenubarContent = ({
 
 export const MenubarSubContent = ({
   children,
-  className = "",
+  className,
   alignOffset = -5,
   width,
   ref,
@@ -93,151 +91,11 @@ export const MenubarSubContent = ({
       >
         <MenuContainer
           width={width}
-          className={`${styles.animation} ${className}`}
+          className={cx(styles.animation, className)}
         >
           {children}
         </MenuContainer>
       </MenubarPrimitive.SubContent>
     </MenubarPrimitive.Portal>
-  );
-};
-
-export const MenubarItem = ({
-  children,
-  suffixSlot,
-  prefixSlot,
-  ref,
-  ...props
-}: {
-  children: React.ReactNode;
-  suffixSlot?: React.ReactNode;
-  prefixSlot?: React.ReactNode;
-} & MenubarPrimitive.MenubarItemProps & { ref?: React.Ref<HTMLDivElement> }) => {
-  return (
-    <MenubarPrimitive.Item {...props} ref={ref} asChild>
-      <MenuItem suffixSlot={suffixSlot} prefixSlot={prefixSlot}>
-        {children}
-      </MenuItem>
-    </MenubarPrimitive.Item>
-  );
-};
-
-export const MenubarCheckboxItem = ({
-  children,
-  suffixSlot,
-  prefixSlot,
-  ref,
-  ...props
-}: {
-  children: React.ReactNode;
-  suffixSlot?: React.ReactNode;
-  prefixSlot?: React.ReactNode;
-} & MenubarPrimitive.MenubarCheckboxItemProps & { ref?: React.Ref<HTMLDivElement> }) => {
-  return (
-    <MenubarPrimitive.CheckboxItem {...props} ref={ref} asChild>
-      <MenuItem
-        prefixSlot={
-          <>
-            <MenubarPrimitive.ItemIndicator asChild>
-              <SFSymbol symbol="✓" data-check />
-            </MenubarPrimitive.ItemIndicator>
-            {prefixSlot ?? null}
-          </>
-        }
-        suffixSlot={suffixSlot ?? null}
-      >
-        {children}
-      </MenuItem>
-    </MenubarPrimitive.CheckboxItem>
-  );
-};
-
-export const MenubarRadioGroup = ({ children, ref, ...props }: MenubarPrimitive.MenubarRadioGroupProps & { ref?: React.Ref<HTMLDivElement> }) => {
-  return (
-    <MenubarPrimitive.RadioGroup {...props} ref={ref} asChild>
-      <MenuGroup>{children}</MenuGroup>
-    </MenubarPrimitive.RadioGroup>
-  );
-};
-
-export const MenubarRadioItem = ({
-  children,
-  suffixSlot,
-  prefixSlot,
-  ref,
-  ...props
-}: {
-  children: React.ReactNode;
-  suffixSlot?: React.ReactNode;
-  prefixSlot?: React.ReactNode;
-} & MenubarPrimitive.MenubarRadioItemProps & { ref?: React.Ref<HTMLDivElement> }) => {
-  return (
-    <MenubarPrimitive.RadioItem {...props} ref={ref} asChild>
-      <MenuItem
-        prefixSlot={
-          <>
-            <MenubarPrimitive.ItemIndicator asChild>
-              <SFSymbol symbol="✓" data-check />
-            </MenubarPrimitive.ItemIndicator>
-            {prefixSlot ?? null}
-          </>
-        }
-        suffixSlot={suffixSlot ?? null}
-      >
-        {children}
-      </MenuItem>
-    </MenubarPrimitive.RadioItem>
-  );
-};
-
-export const MenubarSubTrigger = ({
-  children,
-  suffixSlot,
-  prefixSlot,
-  ref,
-  ...props
-}: {
-  children: React.ReactNode;
-  suffixSlot?: React.ReactNode;
-  prefixSlot?: React.ReactNode;
-} & MenubarPrimitive.MenubarSubTriggerProps & { ref?: React.Ref<HTMLDivElement> }) => {
-  return (
-    <MenubarPrimitive.SubTrigger {...props} ref={ref} asChild>
-      <MenuItem
-        suffixSlot={suffixSlot ?? <SFSymbol symbol="􀆈" style={{ transform: "rotate(-90deg)" }} />}
-        prefixSlot={prefixSlot}
-      >
-        {children}
-      </MenuItem>
-    </MenubarPrimitive.SubTrigger>
-  );
-};
-
-export const MenubarLabel = ({ children, ref, ...props }: MenubarPrimitive.MenubarLabelProps & { ref?: React.Ref<HTMLDivElement> }) => {
-  return (
-    <MenubarPrimitive.Label {...props} ref={ref} asChild>
-      <MenuLabel>{children}</MenuLabel>
-    </MenubarPrimitive.Label>
-  );
-};
-
-export const MenubarGroup = ({ children, ref, ...props }: MenubarPrimitive.MenubarGroupProps & { ref?: React.Ref<HTMLDivElement> }) => {
-  return (
-    <MenubarPrimitive.Group {...props} ref={ref} asChild>
-      <MenuGroup>{children}</MenuGroup>
-    </MenubarPrimitive.Group>
-  );
-};
-
-export const MenubarSeparator = ({
-  ref,
-  ...props
-}: MenubarPrimitive.MenubarSeparatorProps & {
-  ref?: React.Ref<HTMLDivElement>;
-}) => {
-  return (
-    <MenubarPrimitive.Separator {...props} ref={ref} asChild>
-      <MenuDivider />
-    </MenubarPrimitive.Separator>
   );
 };

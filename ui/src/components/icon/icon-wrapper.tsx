@@ -1,16 +1,10 @@
 import styles from "./styles.module.css";
+import { cx } from "../../lib/cx";
+import { iconSizes } from "../../lib/icon-sizes";
 import type { IconWrapperProps } from "./types";
 
-const sizes = {
-  xs: 11,
-  sm: 13,
-  md: 15,
-  lg: 18,
-  xl: 22,
-} as const;
-
 export const IconWrapper = ({
-  className = "",
+  className,
   size,
   weight: _weight,
   width,
@@ -20,7 +14,7 @@ export const IconWrapper = ({
   ...props
 }: IconWrapperProps) => {
   // Explicit width/height win; otherwise fall back to the named size, then 20px.
-  const px = size != null ? sizes[size] : undefined;
+  const px = size != null ? iconSizes[size] : undefined;
   const resolvedWidth = width ?? px ?? "20px";
   const resolvedHeight = height ?? px ?? "20px";
   return (
@@ -30,7 +24,7 @@ export const IconWrapper = ({
       viewBox={viewBox}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={styles.icon + " " + className}
+      className={cx(styles.icon, className)}
       {...props}
     >
       {children}

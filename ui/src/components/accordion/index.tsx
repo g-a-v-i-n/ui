@@ -3,9 +3,11 @@ import { Accordion as AccordionPrimitive } from "radix-ui";
 import { Text } from "../text";
 import { SFSymbol } from "../sf-symbol";
 import styles from "./styles.module.css";
+import { cx } from "../../lib/cx";
+import { styled } from "../../lib/styled";
 
 export const AccordionRoot = ({
-  className = "",
+  className,
   ref,
   ...props
 }: (
@@ -16,24 +18,16 @@ export const AccordionRoot = ({
     <AccordionPrimitive.Root
       {...props}
       ref={ref}
-      className={`${styles.root} ${className}`}
+      className={cx(styles.root, className)}
     />
   );
 };
 
-export const AccordionItem = ({ className = "", ref, ...props }: AccordionPrimitive.AccordionItemProps & { ref?: React.Ref<HTMLDivElement> }) => {
-  return (
-    <AccordionPrimitive.Item
-      {...props}
-      ref={ref}
-      className={`${styles.item} ${className}`}
-    />
-  );
-};
+export const AccordionItem = styled(AccordionPrimitive.Item, styles.item, "AccordionItem");
 
 export const AccordionTrigger = ({
   children,
-  className = "",
+  className,
   ref,
   ...props
 }: AccordionPrimitive.AccordionTriggerProps & { ref?: React.Ref<HTMLButtonElement> }) => {
@@ -42,7 +36,7 @@ export const AccordionTrigger = ({
       <AccordionPrimitive.Trigger
         {...props}
         ref={ref}
-        className={`${styles.trigger} ${className}`}
+        className={cx(styles.trigger, className)}
       >
         <Text as="span" size="md" weight="medium" color="primary">
           {children}
@@ -57,7 +51,7 @@ export const AccordionTrigger = ({
 
 export const AccordionContent = ({
   children,
-  className = "",
+  className,
   ref,
   ...props
 }: AccordionPrimitive.AccordionContentProps & { ref?: React.Ref<HTMLDivElement> }) => {
@@ -65,7 +59,7 @@ export const AccordionContent = ({
     <AccordionPrimitive.Content
       {...props}
       ref={ref}
-      className={`${styles.content} ${className}`}
+      className={cx(styles.content, className)}
     >
       <div className={styles.contentInner}>
         <Text as="div" size="md" color="secondary">

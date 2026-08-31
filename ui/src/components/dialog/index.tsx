@@ -2,6 +2,8 @@ import React from "react";
 import { Dialog as DialogPrimitive } from "radix-ui";
 import { Text } from "../text";
 import styles from "./styles.module.css";
+import { cx } from "../../lib/cx";
+import { styled } from "../../lib/styled";
 
 export const DialogRoot = DialogPrimitive.Root;
 export const DialogPortal = DialogPrimitive.Portal;
@@ -11,19 +13,11 @@ export const DialogTrigger = (props: DialogPrimitive.DialogTriggerProps) => (
   <DialogPrimitive.Trigger asChild {...props} />
 );
 
-export const DialogOverlay = ({ className = "", ref, ...props }: DialogPrimitive.DialogOverlayProps & { ref?: React.Ref<HTMLDivElement> }) => {
-  return (
-    <DialogPrimitive.Overlay
-      {...props}
-      ref={ref}
-      className={`${styles.overlay} ${className}`}
-    />
-  );
-};
+export const DialogOverlay = styled(DialogPrimitive.Overlay, styles.overlay, "DialogOverlay");
 
 export const DialogContent = ({
   children,
-  className = "",
+  className,
   ref,
   ...props
 }: DialogPrimitive.DialogContentProps & { ref?: React.Ref<HTMLDivElement> }) => {
@@ -33,7 +27,7 @@ export const DialogContent = ({
       <DialogPrimitive.Content
         {...props}
         ref={ref}
-        className={`${styles.content} ${className}`}
+        className={cx(styles.content, className)}
       >
         {children}
       </DialogPrimitive.Content>
@@ -41,7 +35,7 @@ export const DialogContent = ({
   );
 };
 
-export const DialogTitle = ({ children, className = "", ref, ...props }: DialogPrimitive.DialogTitleProps & { ref?: React.Ref<HTMLHeadingElement> }) => {
+export const DialogTitle = ({ children, className, ref, ...props }: DialogPrimitive.DialogTitleProps & { ref?: React.Ref<HTMLHeadingElement> }) => {
   return (
     <DialogPrimitive.Title {...props} ref={ref} asChild>
       <Text
@@ -49,7 +43,7 @@ export const DialogTitle = ({ children, className = "", ref, ...props }: DialogP
         size="lg"
         weight="semibold"
         color="primary"
-        className={`${styles.title} ${className}`}
+        className={cx(styles.title, className)}
       >
         {children}
       </Text>
@@ -59,7 +53,7 @@ export const DialogTitle = ({ children, className = "", ref, ...props }: DialogP
 
 export const DialogDescription = ({
   children,
-  className = "",
+  className,
   ref,
   ...props
 }: DialogPrimitive.DialogDescriptionProps & { ref?: React.Ref<HTMLParagraphElement> }) => {
@@ -69,7 +63,7 @@ export const DialogDescription = ({
         as="p"
         size="sm"
         color="secondary"
-        className={`${styles.description} ${className}`}
+        className={cx(styles.description, className)}
       >
         {children}
       </Text>

@@ -2,6 +2,8 @@ import React from "react";
 import { Dialog as DialogPrimitive } from "radix-ui";
 import { Text } from "../text";
 import styles from "./styles.module.css";
+import { cx } from "../../lib/cx";
+import { styled } from "../../lib/styled";
 
 export const DrawerRoot = DialogPrimitive.Root;
 export const DrawerPortal = DialogPrimitive.Portal;
@@ -11,15 +13,7 @@ export const DrawerTrigger = (props: DialogPrimitive.DialogTriggerProps) => (
   <DialogPrimitive.Trigger asChild {...props} />
 );
 
-export const DrawerOverlay = ({ className = "", ref, ...props }: DialogPrimitive.DialogOverlayProps & { ref?: React.Ref<HTMLDivElement> }) => {
-  return (
-    <DialogPrimitive.Overlay
-      {...props}
-      ref={ref}
-      className={`${styles.overlay} ${className}`}
-    />
-  );
-};
+export const DrawerOverlay = styled(DialogPrimitive.Overlay, styles.overlay, "DrawerOverlay");
 
 type Side = "left" | "right" | "top" | "bottom";
 
@@ -28,7 +22,7 @@ export const DrawerContent = ({
   scrim = true,
   side = "right",
   elevated = false,
-  className = "",
+  className,
   ref,
   ...props
 }: DialogPrimitive.DialogContentProps & {
@@ -46,7 +40,7 @@ export const DrawerContent = ({
         ref={ref}
         data-side={side}
         data-elevated={elevated}
-        className={`${styles.content} ${className}`}
+        className={cx(styles.content, className)}
       >
         {children}
       </DialogPrimitive.Content>
@@ -54,7 +48,7 @@ export const DrawerContent = ({
   );
 };
 
-export const DrawerTitle = ({ children, className = "", ref, ...props }: DialogPrimitive.DialogTitleProps & { ref?: React.Ref<HTMLHeadingElement> }) => {
+export const DrawerTitle = ({ children, className, ref, ...props }: DialogPrimitive.DialogTitleProps & { ref?: React.Ref<HTMLHeadingElement> }) => {
   return (
     <DialogPrimitive.Title {...props} ref={ref} asChild>
       <Text
@@ -62,7 +56,7 @@ export const DrawerTitle = ({ children, className = "", ref, ...props }: DialogP
         size="sm"
         weight="medium"
         color="primary"
-        className={`${styles.title} ${className}`}
+        className={cx(styles.title, className)}
       >
         {children}
       </Text>
@@ -72,7 +66,7 @@ export const DrawerTitle = ({ children, className = "", ref, ...props }: DialogP
 
 export const DrawerDescription = ({
   children,
-  className = "",
+  className,
   ref,
   ...props
 }: DialogPrimitive.DialogDescriptionProps & { ref?: React.Ref<HTMLParagraphElement> }) => {
@@ -82,7 +76,7 @@ export const DrawerDescription = ({
         as="p"
         size="sm"
         color="secondary"
-        className={`${styles.description} ${className}`}
+        className={cx(styles.description, className)}
       >
         {children}
       </Text>
