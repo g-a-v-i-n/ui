@@ -19,9 +19,10 @@
   min-width: 0;
 }
 
-/* react-colorful sizing + theming to match the popover surface. */
+/* react-colorful sizing + theming to match the popover surface. The width
+   matches the library's own default (the size scale has no 200 step). */
 .content :global(.react-colorful) {
-  width: var(--size-200);
+  width: 200px;
   height: auto;
 }
 

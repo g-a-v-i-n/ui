@@ -28,6 +28,7 @@ export const CheckboxRow = ({
         onCheckedChange={onCheckedChange}
         id={id}
       >
+        <div className={styles.fill} aria-hidden />
         <CheckboxPrimitive.Indicator className={styles.indicator}>
           <SFSymbol symbol="✓" />
         </CheckboxPrimitive.Indicator>

@@ -1,8 +1,7 @@
 .root {
   --background: var(--gray-1);
-  --shadow: var(--shadow-button);
+  --shadow-unchecked: var(--shadow-button);
   --background-checked: var(--blue-9);
-  --shadow-checked: var(--shadow-none);
   --accent-gradient: var(--gradient-accent);
 
   --indicator-background: #fff;
@@ -21,7 +20,6 @@
   padding: 0;
   border: none;
   background-color: var(--background);
-  box-shadow: var(--shadow);
 
   transition:
     background-color var(--duration-120) var(--ease-out-quad),
@@ -41,9 +39,12 @@
     transition: opacity var(--duration-120) var(--ease-out-quad);
   }
 
+  &[data-state="unchecked"] {
+    box-shadow: var(--shadow-unchecked);
+  }
+
   &[data-state="checked"] {
     background-color: var(--background-checked);
-    box-shadow: var(--shadow-checked);
   }
 
   &[data-state="checked"]::before {

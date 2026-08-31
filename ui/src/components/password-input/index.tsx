@@ -106,7 +106,6 @@ export const PasswordInput = ({
   return (
     <TextInput
       {...props}
-      className={props.className + ' ' + styles.input}
       ref={setRefs}
       type="text"
       value={display}

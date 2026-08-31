@@ -29,6 +29,10 @@
   composes: root from "../checkbox/styles.module.css";
 }
 
+.fill {
+  composes: fill from "../checkbox/styles.module.css";
+}
+
 .indicator {
   composes: indicator from "../checkbox/styles.module.css";
 }
