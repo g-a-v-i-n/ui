@@ -1,4 +1,15 @@
 .root {
+  --arrow-background: var(--bg-base);
+  --arrow-color: var(--fg-primary);
+  --arrow-shadow: var(--shadow-button);
+  --arrow-background-hover: var(--bg-secondary);
+
+  --dot-background: var(--gray-a5);
+  --dot-background-hover: var(--gray-a7);
+  --dot-background-selected: var(--blue-9);
+}
+
+.root {
   display: flex;
   flex-direction: column;
   gap: var(--size-12);
@@ -46,9 +57,9 @@
   border: none;
   border-radius: 9999px;
   corner-shape: round;
-  background: var(--bg-base);
-  color: var(--fg-primary);
-  box-shadow: var(--shadow-button);
+  background: var(--arrow-background);
+  color: var(--arrow-color);
+  box-shadow: var(--arrow-shadow);
   cursor: pointer;
 
   transition:
@@ -56,11 +67,12 @@
     opacity var(--duration-120) var(--ease-out-quad);
 
   &:hover {
-    background: var(--bg-secondary);
+    background: var(--arrow-background-hover);
   }
 
   &:focus-visible {
     outline: 2px solid var(--focus-ring-color);
+    animation: var(--focus-ring-animation);
     outline-offset: 2px;
   }
 
@@ -92,7 +104,7 @@
   border: none;
   border-radius: 9999px;
   corner-shape: round;
-  background: var(--gray-a5);
+  background: var(--dot-background);
   cursor: pointer;
 
   transition:
@@ -100,16 +112,17 @@
     transform var(--duration-120) var(--ease-out-quad);
 
   &:hover {
-    background: var(--gray-a7);
+    background: var(--dot-background-hover);
   }
 
   &[data-active] {
-    background: var(--blue-9);
+    background: var(--dot-background-selected);
     transform: scale(1.15);
   }
 
   &:focus-visible {
     outline: 2px solid var(--focus-ring-color);
+    animation: var(--focus-ring-animation);
     outline-offset: 2px;
   }
 }

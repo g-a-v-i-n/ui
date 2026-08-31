@@ -1,28 +1,37 @@
 .table {
+  --foreground: var(--fg-primary);
+
+  --row-border-color: var(--gray-a3);
+  --row-background-hover: var(--gray-a2);
+  --row-background-selected: var(--gray-a3);
+
+  --head-color: var(--fg-tertiary);
+  --footer-color: var(--fg-secondary);
+  --caption-color: var(--fg-tertiary);
+}
+
+.table {
   width: 100%;
   border-collapse: collapse;
 
-  font-family: var(--font-sans);
-  font-size: var(--font-size-sm);
-  line-height: var(--line-height-sm);
-  color: var(--fg-primary);
+  color: var(--foreground);
   font-variant-numeric: tabular-nums;
   text-align: left;
 }
 
 .row {
-  border-bottom: 1px solid var(--gray-a3);
+  border-bottom: 1px solid var(--row-border-color);
 
   transition: background-color var(--duration-120) var(--ease-in-out-quad);
 
   &[data-selected] {
-    background-color: var(--gray-a3);
+    background-color: var(--row-background-selected);
   }
 }
 
 .body .row {
   &:hover {
-    background-color: var(--gray-a2);
+    background-color: var(--row-background-hover);
   }
 
   &:last-child {
@@ -30,11 +39,11 @@
   }
 }
 
-.head {
+/* Element-qualified: the cells ARE Text elements now, so these color rules
+   must outrank .text's own `color: currentColor` at equal class specificity. */
+th.head {
   padding: 6px 8px;
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-medium, 500);
-  color: var(--fg-tertiary);
+  color: var(--head-color);
 }
 
 .cell {
@@ -42,15 +51,14 @@
   vertical-align: middle;
 }
 
-.footer .cell {
-  color: var(--fg-secondary);
+.footer td.cell {
+  color: var(--footer-color);
   font-weight: var(--font-weight-medium, 500);
 }
 
-.caption {
+caption.caption {
   caption-side: bottom;
   padding-top: 8px;
-  font-size: var(--font-size-xs);
-  color: var(--fg-tertiary);
+  color: var(--caption-color);
   text-align: left;
 }

@@ -62,13 +62,26 @@ export const ToastDescription = ({
   );
 };
 
-export const ToastAction = ({ className = "", ref, ...props }: ToastPrimitive.ToastActionProps & { ref?: React.Ref<HTMLButtonElement> }) => {
+export const ToastAction = ({ className = "", asChild, children, ref, ...props }: ToastPrimitive.ToastActionProps & { ref?: React.Ref<HTMLButtonElement> }) => {
   return (
     <ToastPrimitive.Action
       {...props}
+      asChild={asChild}
       ref={ref}
       className={`${styles.action} ${className}`}
-    />
+    >
+      {asChild
+        ? children
+        : React.Children.map(children, (child) =>
+            typeof child === "string" || typeof child === "number" ? (
+              <Text as="span" size="sm" weight="medium">
+                {child}
+              </Text>
+            ) : (
+              child
+            )
+          )}
+    </ToastPrimitive.Action>
   );
 };
 

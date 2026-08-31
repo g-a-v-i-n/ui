@@ -1,4 +1,9 @@
 .root {
+  --trigger-foreground: var(--fg-primary);
+  --trigger-background-hover: var(--gray-a3);
+}
+
+.root {
   display: flex;
   align-items: center;
   gap: 2px;
@@ -15,7 +20,7 @@
   border-radius: 8px;
   corner-shape: var(--corner-shape);
   background: transparent;
-  color: var(--fg-primary);
+  color: var(--trigger-foreground);
   cursor: pointer;
   user-select: none;
 
@@ -23,11 +28,12 @@
 
   &:hover,
   &[data-state="open"] {
-    background: var(--gray-a3);
+    background: var(--trigger-background-hover);
   }
 
   &:focus-visible {
     outline: 2px solid var(--focus-ring-color);
+    animation: var(--focus-ring-animation);
     outline-offset: -1px;
   }
 

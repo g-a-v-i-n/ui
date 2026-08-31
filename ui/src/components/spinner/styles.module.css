@@ -1,7 +1,11 @@
 .spinner {
+  --color: var(--fg-primary);
+}
+
+.spinner {
   display: inline-flex;
   flex: none;
-  color: var(--fg-primary);
+  color: var(--color);
 
   svg {
     width: 100%;

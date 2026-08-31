@@ -1,3 +1,16 @@
+.anchor,
+.content {
+  --toggle-color: var(--fg-tertiary);
+
+  --content-background: var(--bg-elevated);
+  --content-shadow: var(--shadow-elevated);
+
+  --option-foreground: var(--fg-primary);
+  --option-background-highlighted: var(--gray-a3);
+
+  --indicator-color: var(--blue-9);
+}
+
 .anchor {
   display: inline-flex;
 
@@ -15,7 +28,7 @@
   margin: 0;
   border: none;
   background: transparent;
-  color: var(--fg-tertiary);
+  color: var(--toggle-color);
   cursor: pointer;
   flex: none;
 }
@@ -26,10 +39,11 @@
   min-width: var(--size-128);
   max-height: var(--radix-popper-available-height);
 
-  background: var(--bg-primary);
+  background: var(--content-background);
+  backdrop-filter: var(--blur-elevated);
   border-radius: var(--size-10);
   corner-shape: var(--corner-shape);
-  box-shadow: var(--shadow-modal);
+  box-shadow: var(--content-shadow);
 
   z-index: var(--layer-popover);
   overflow: hidden;
@@ -78,14 +92,14 @@
   border-radius: 8px;
   corner-shape: var(--corner-shape);
 
-  color: var(--fg-primary);
+  color: var(--option-foreground);
   user-select: none;
   cursor: pointer;
 
   transition: background-color var(--duration-120) var(--ease-in-out-quad);
 
   &[data-active] {
-    background-color: var(--gray-a3);
+    background-color: var(--option-background-highlighted);
     outline: none;
   }
 
@@ -101,7 +115,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--blue-9);
+  color: var(--indicator-color);
 }
 
 .empty {

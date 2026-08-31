@@ -1,6 +1,7 @@
 import React from "react";
 import { Tabs as TabsPrimitive } from "radix-ui";
 import { motion } from "motion/react";
+import { Text } from "../text";
 import styles from "./styles.module.css";
 
 /* The active trigger renders the underline as a motion element with an
@@ -76,8 +77,9 @@ export const TabsTrigger = ({
       ref={ref}
       className={`${styles.trigger} ${className}`}
     >
-      {children}
-      {/* <span className={styles.label}>{children}</span> */}
+      <Text as="span" size="md" weight="medium">
+        {children}
+      </Text>
       {isActive && (
         <motion.span
           layoutId={`${ctx.baseId}-underline`}

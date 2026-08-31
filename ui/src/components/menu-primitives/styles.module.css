@@ -1,6 +1,42 @@
+/* Every part here is an independently mountable primitive (labels, items, and
+   lists can render outside .container), so the vars are declared on each
+   top-level part class. */
+.container,
+.label,
+.item,
+.divider,
+.menuList,
+.title,
+.listItem,
+.arrow {
+  --container-background: var(--bg-elevated);
+  --container-shadow: var(--shadow-elevated);
+
+  /* The arrow sits against the container card: same surface, and its hairline
+     edge matches the card's --shadow-elevated rim in both modes. */
+  --arrow-background: var(--bg-elevated);
+  --arrow-edge-color: var(--border-elevated);
+
+  --label-color: var(--fg-tertiary);
+
+  --item-foreground: var(--fg-primary);
+  --item-background-highlighted: var(--highlight);
+  --item-foreground-highlighted: var(--fg-primary);
+  --item-background-active: var(--highlight-active);
+  --item-icon-color: var(--fg-secondary);
+  --item-check-color: var(--blue-9);
+
+  --divider-background: var(--gray-4);
+
+  --list-background: var(--bg-tertiary);
+  --title-color: var(--fg-primary);
+  --list-item-label-color: var(--fg-secondary);
+  --list-item-value-color: var(--fg-primary);
+}
+
 /* Container — the floating menu card.
-   Matches the Figma menu/dropdown surface: white, 1px hairline + soft drop shadow,
-   1px-gap stack of items with 4px outer padding. */
+   Matches the Figma menu/dropdown surface: gray-2 with a white rim + soft drop
+   shadow (--shadow-elevated), 1px-gap stack of items with 4px outer padding. */
 .container {
   display: flex;
   flex-direction: column;
@@ -8,10 +44,11 @@
   gap: 1px;
   padding: 4px;
 
-  background: var(--bg-primary);
+  background: var(--container-background);
+  backdrop-filter: var(--blur-elevated);
   border-radius: 12px;
   corner-shape: var(--corner-shape);
-  box-shadow: var(--shadow-modal);
+  box-shadow: var(--container-shadow);
 
   z-index: var(--layer-popover);
   position: relative;
@@ -58,36 +95,52 @@
 /* Section header (above a list of items inside a menu) */
 .label {
   padding: 4px 8px;
-  color: var(--fg-tertiary);
+  color: var(--label-color);
 }
 
-/* Menu item — 6px × 8px padding, 8px radius, regular 13px text. */
+/* Menu item — 6px × 8px padding, 8px radius, regular 12px text on a 1.25
+   leading (content-sized, no fixed height). Highlight is the macOS-style
+   solid blue with white text. */
 .item {
+  position: relative;
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 8px 8px;
+  padding: 6px 8px;
   gap: 6px;
   border-radius: 8px;
-  height: var(--control-height-md);
   corner-shape: var(--corner-shape);
 
-  color: var(--fg-primary);
+  color: var(--item-foreground);
+  line-height: 1.25;
   user-select: none;
   cursor: pointer;
   outline: none;
 
   transition: background-color var(--duration-120) var(--ease-in-out-quad);
 
+
+  /* transition: background-color var(--duration-120) var(--ease-in-out-quad); */
+
   &:hover,
   &:focus,
   &[data-state="open"],
   &[data-highlighted] {
-    background-color: var(--gray-a3);
+    background-color: var(--item-background-highlighted);
+
+    .left,
+    .suffix,
+    .prefix svg,
+    .prefix div,
+    .prefix svg[data-check],
+    .suffix svg,
+    .suffix div {
+      color: var(--item-foreground-highlighted);
+    }
   }
 
   &:active {
-    background-color: var(--gray-a4);
+    background-color: var(--item-background-active);
   }
 
   .left {
@@ -96,7 +149,12 @@
     min-width: var(--size-0);
     align-items: center;
     gap: 6px;
-    color: var(--fg-primary);
+    color: var(--item-foreground);
+
+    /* The Text child sets its own line-height token; the menu leading wins. */
+    > :not(.prefix) {
+      line-height: 1.25;
+    }
   }
 
   .prefix {
@@ -107,11 +165,11 @@
     div {
       width: var(--size-16);
       height: var(--size-16);
-      color: var(--fg-secondary);
+      color: var(--item-icon-color);
       transition: color var(--duration-120) var(--ease-in-out-quad);
     }
     svg[data-check] {
-      color: var(--blue-9);
+      color: var(--item-check-color);
     }
   }
 
@@ -119,37 +177,27 @@
     display: flex;
     align-items: center;
     gap: 6px;
+    line-height: 1.25;
 
     svg,
     div {
       width: var(--size-16);
       height: var(--size-16);
-      color: var(--fg-secondary);
+      color: var(--item-icon-color);
       transition: color var(--duration-120) var(--ease-in-out-quad);
     }
   }
-
-  &:hover .prefix svg,
-  &:hover .prefix div,
-  &:hover .suffix svg,
-  &:hover .suffix div,
-  &[data-state="open"] .prefix svg,
-  &[data-state="open"] .prefix div,
-  &[data-state="open"] .suffix svg,
-  &[data-state="open"] .suffix div {
-    color: var(--color-text-1);
-  }
 }
 
-/* Divider — 4px vertical pad, 1px hairline at ~6% black. */
+/* Divider — 4px vertical pad, full-bleed 1px gray-4 hairline. */
 * > .divider {
   width: 100%;
-  padding: 2px 4px;
+  padding: 4px 0;
 
   hr {
     width: 100%;
     height: var(--size-1);
-    background-color: var(--gray-a3);
+    background-color: var(--divider-background);
     border: none;
   }
 }
@@ -178,14 +226,14 @@ span:has(> .arrow) {
   padding: 6px 8px;
   width: 100%;
 
-  background: var(--bg-tertiary);
+  background: var(--list-background);
   border-radius: 8px;
   corner-shape: var(--corner-shape);
 }
 
 .title {
   padding: 4px 8px;
-  color: var(--fg-primary);
+  color: var(--title-color);
 }
 
 .listItem {
@@ -198,11 +246,11 @@ span:has(> .arrow) {
 }
 
 .listItemLabel {
-  color: var(--fg-secondary);
+  color: var(--list-item-label-color);
 }
 
 .listItemValue {
-  color: var(--fg-primary);
+  color: var(--list-item-value-color);
 
 }
 

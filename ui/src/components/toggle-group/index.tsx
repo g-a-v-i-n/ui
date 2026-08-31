@@ -13,7 +13,7 @@ const ToggleGroupContext = React.createContext<{
 }>({ value: undefined, baseId: "", highlightClassName: "" });
 
 const transition = {
-  duration: 0.18,
+  duration: 0.1,
   ease: [0.25, 0.46, 0.45, 0.94] as const,
 };
 

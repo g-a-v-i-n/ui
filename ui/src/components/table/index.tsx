@@ -1,4 +1,5 @@
 import React from "react";
+import { Text } from "../text";
 import styles from "./styles.module.css";
 
 export const TableRoot = ({ className = "", ref, ...props }: React.TableHTMLAttributes<HTMLTableElement> & { ref?: React.Ref<HTMLTableElement> }) => {
@@ -73,11 +74,14 @@ export const TableHead = ({
   className = "",
   ref,
   ...props
-}: React.ThHTMLAttributes<HTMLTableCellElement> & { ref?: React.Ref<HTMLTableCellElement> }) => {
+}: Omit<React.ThHTMLAttributes<HTMLTableCellElement>, "color"> & { ref?: React.Ref<HTMLTableCellElement> }) => {
   return (
-    <th
+    <Text
+      as="th"
+      size="xs"
+      weight="medium"
       {...props}
-      ref={ref}
+      ref={ref as React.Ref<HTMLElement>}
       className={`${styles.head} ${className}`}
     />
   );
@@ -87,21 +91,25 @@ export const TableCell = ({
   className = "",
   ref,
   ...props
-}: React.TdHTMLAttributes<HTMLTableCellElement> & { ref?: React.Ref<HTMLTableCellElement> }) => {
+}: Omit<React.TdHTMLAttributes<HTMLTableCellElement>, "color"> & { ref?: React.Ref<HTMLTableCellElement> }) => {
   return (
-    <td
+    <Text
+      as="td"
+      size="sm"
       {...props}
-      ref={ref}
+      ref={ref as React.Ref<HTMLElement>}
       className={`${styles.cell} ${className}`}
     />
   );
 };
 
-export const TableCaption = ({ className = "", ref, ...props }: React.HTMLAttributes<HTMLTableCaptionElement> & { ref?: React.Ref<HTMLTableCaptionElement> }) => {
+export const TableCaption = ({ className = "", ref, ...props }: Omit<React.HTMLAttributes<HTMLTableCaptionElement>, "color"> & { ref?: React.Ref<HTMLTableCaptionElement> }) => {
   return (
-    <caption
+    <Text
+      as="caption"
+      size="xs"
       {...props}
-      ref={ref}
+      ref={ref as React.Ref<HTMLElement>}
       className={`${styles.caption} ${className}`}
     />
   );

@@ -46,8 +46,8 @@ export const DialogTitle = ({ children, className = "", ref, ...props }: DialogP
     <DialogPrimitive.Title {...props} ref={ref} asChild>
       <Text
         as="h2"
-        size="sm"
-        weight="medium"
+        size="lg"
+        weight="semibold"
         color="primary"
         className={`${styles.title} ${className}`}
       >

@@ -1,4 +1,12 @@
 .root {
+  --background: var(--bg-tertiary);
+  --rim-color: var(--gray-a2);
+
+  --fallback-color: var(--fg-secondary);
+}
+
+.root {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -7,8 +15,7 @@
   user-select: none;
 
   border-radius: 50%;
-  background: var(--bg-tertiary);
-  box-shadow: inset 0 0 0 1px var(--gray-a4);
+  background: var(--background);
 
   &[data-size="sm"] {
     width: var(--size-20);
@@ -37,5 +44,15 @@
   justify-content: center;
   width: 100%;
   height: 100%;
-  color: var(--fg-secondary);
+  color: var(--fallback-color);
+}
+
+/* Hairline rim drawn over the image (an inset shadow on the root would be
+   painted under it). */
+.rim {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid var(--rim-color);
+  pointer-events: none;
 }

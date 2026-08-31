@@ -1,4 +1,13 @@
 .root {
+  --item-foreground: var(--fg-primary);
+  --item-background-hover: var(--gray-a3);
+  --chevron-color: var(--fg-tertiary);
+
+  --viewport-background: var(--bg-elevated);
+  --viewport-shadow: var(--shadow-elevated);
+}
+
+.root {
   position: relative;
   display: flex;
   justify-content: center;
@@ -25,7 +34,7 @@
   border-radius: 8px;
   corner-shape: var(--corner-shape);
   background: transparent;
-  color: var(--fg-primary);
+  color: var(--item-foreground);
   text-decoration: none;
   cursor: pointer;
   user-select: none;
@@ -34,11 +43,12 @@
 
   &:hover,
   &[data-state="open"] {
-    background: var(--gray-a3);
+    background: var(--item-background-hover);
   }
 
   &:focus-visible {
     outline: 2px solid var(--focus-ring-color);
+    animation: var(--focus-ring-animation);
     outline-offset: -1px;
   }
 }
@@ -47,7 +57,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--fg-tertiary);
+  color: var(--chevron-color);
   transition: transform var(--duration-180) var(--ease-out-quad);
 }
 
@@ -99,10 +109,11 @@
   height: var(--radix-navigation-menu-viewport-height);
   overflow: hidden;
 
-  background: var(--bg-primary);
+  background: var(--viewport-background);
+  backdrop-filter: var(--blur-elevated);
   border-radius: 12px;
   corner-shape: var(--corner-shape);
-  box-shadow: var(--shadow-modal);
+  box-shadow: var(--viewport-shadow);
 
   z-index: var(--layer-popover);
 

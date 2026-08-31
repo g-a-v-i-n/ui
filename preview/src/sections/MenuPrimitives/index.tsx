@@ -1,4 +1,3 @@
-import { Icon } from 'ui/components/icon';
 import {
   MenuContainer,
   MenuItem,
@@ -16,9 +15,11 @@ export function MenuPrimitivesSection() {
       <MenuContainer width="md">
         <MenuTitle>Settings</MenuTitle>
         <MenuLabel>Section</MenuLabel>
-        <MenuItem prefixSlot={<Icon icon="check" size="md" />}>Selected item</MenuItem>
-        <MenuItem suffixSlot={<span>⌘K</span>}>With shortcut</MenuItem>
+        <MenuItem>Item 1</MenuItem>
+        <MenuItem>Item 2</MenuItem>
+        <MenuItem>Item 3</MenuItem>
         <MenuDivider />
+        <MenuItem suffixSlot="⌘K">With shortcut</MenuItem>
         <MenuList>
           <MenuListItem label="Width" value={120} />
           <MenuListItem label="Height" value={80} />

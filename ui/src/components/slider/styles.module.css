@@ -1,4 +1,16 @@
 .root {
+  --track-background: var(--gray-3);
+
+  --range-background: var(--blue-9);
+  --range-background-disabled: var(--gray-8);
+
+  --thumb-background: #fff;
+  --thumb-shadow:
+    0 0 0 1px var(--gray-a5),
+    0 var(--size-1) var(--size-2) var(--gray-a5);
+}
+
+.root {
   position: relative;
   display: flex;
   align-items: center;
@@ -21,7 +33,7 @@
 .track {
   position: relative;
   flex-grow: 1;
-  background: var(--gray-3);
+  background: var(--track-background);
   border-radius: 999px;
   height: var(--size-4);
 
@@ -33,7 +45,7 @@
 
 .range {
   position: absolute;
-  background: var(--blue-9);
+  background: var(--range-background);
   border-radius: 999px;
   height: 100%;
 
@@ -43,7 +55,7 @@
   }
 
   &[data-disabled] {
-    background: var(--gray-8);
+    background: var(--range-background-disabled);
   }
 }
 
@@ -51,16 +63,15 @@
   display: block;
   width: var(--size-16);
   height: var(--size-16);
-  background: #fff;
+  background: var(--thumb-background);
   border-radius: 50%;
-  box-shadow:
-    0 0 0 1px var(--gray-a5),
-    0 var(--size-1) var(--size-2) var(--gray-a5);
+  box-shadow: var(--thumb-shadow);
 
   transition: box-shadow var(--duration-120) var(--ease-out-quad);
 
   &:focus-visible {
     outline: 2px solid var(--focus-ring-color);
+    animation: var(--focus-ring-animation);
     outline-offset: var(--focus-ring-offset);
   }
 

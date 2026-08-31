@@ -1,4 +1,14 @@
 .toggle {
+  --foreground: var(--fg-secondary);
+
+  --background-hover: var(--gray-a3);
+  --foreground-hover: var(--fg-primary);
+
+  --background-checked: var(--gray-a4);
+  --foreground-checked: var(--fg-primary);
+}
+
+.toggle {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -10,7 +20,7 @@
   border-radius: 8px;
   corner-shape: var(--corner-shape);
   background: transparent;
-  color: var(--fg-secondary);
+  color: var(--foreground);
   cursor: pointer;
   user-select: none;
 
@@ -19,17 +29,18 @@
     color var(--duration-120) var(--ease-in-out-quad);
 
   &:hover {
-    background: var(--gray-a3);
-    color: var(--fg-primary);
+    background: var(--background-hover);
+    color: var(--foreground-hover);
   }
 
   &[aria-pressed="true"] {
-    background: var(--gray-a4);
-    color: var(--fg-primary);
+    background: var(--background-checked);
+    color: var(--foreground-checked);
   }
 
   &:focus-visible {
     outline: 2px solid var(--focus-ring-color);
+    animation: var(--focus-ring-animation);
     outline-offset: var(--focus-ring-offset);
   }
 

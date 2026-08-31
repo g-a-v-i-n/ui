@@ -1,5 +1,9 @@
 .root {
-  background: var(--gray-a3);
+  --background: var(--gray-a3);
+}
+
+.root {
+  background: var(--background);
   flex: none;
 
   &[data-orientation="horizontal"] {

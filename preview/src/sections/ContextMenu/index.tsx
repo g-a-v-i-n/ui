@@ -8,6 +8,7 @@ import {
   ContextMenuSubTrigger,
   ContextMenuSubContent,
 } from 'ui/components/context-menu';
+import { Text } from 'ui/components/text';
 import { Section } from '../../Section';
 
 export function ContextMenuSection() {
@@ -15,12 +16,14 @@ export function ContextMenuSection() {
     <Section title="Context menu">
       <ContextMenuRoot>
         <ContextMenuTrigger>
-          <div className="context-target">Right-click here</div>
+          <Text as="div" size="sm" color="secondary">
+            Right-click here
+          </Text>
         </ContextMenuTrigger>
         <ContextMenuContent>
           <ContextMenuItem>Cut</ContextMenuItem>
-          <ContextMenuItem suffixSlot={<span>⌘C</span>}>Copy</ContextMenuItem>
-          <ContextMenuItem suffixSlot={<span>⌘V</span>}>Paste</ContextMenuItem>
+          <ContextMenuItem suffixSlot="⌘C">Copy</ContextMenuItem>
+          <ContextMenuItem suffixSlot="⌘V">Paste</ContextMenuItem>
           <ContextMenuSeparator />
           <ContextMenuSub>
             <ContextMenuSubTrigger>More</ContextMenuSubTrigger>

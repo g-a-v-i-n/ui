@@ -1,7 +1,15 @@
+.overlay,
+.content {
+  --overlay-background: var(--scrim);
+
+  --content-background: var(--bg-elevated);
+  --content-shadow: var(--shadow-elevated);
+}
+
 .overlay {
   position: fixed;
   inset: 0;
-  background-color: var(--scrim);
+  background-color: var(--overlay-background);
   z-index: var(--layer-dialog-overlay);
 
   animation-duration: var(--duration-180);
@@ -24,10 +32,16 @@
   transform: translate(-50%, -50%);
   z-index: var(--layer-dialog);
 
-  background: var(--bg-secondary);
-  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  background: var(--content-background);
+  backdrop-filter: var(--blur-elevated);
+  border-radius: 16px;
   corner-shape: var(--corner-shape);
-  box-shadow: var(--shadow-modal);
+  box-shadow: var(--content-shadow);
+  padding: 20px;
 
   max-width: calc(100vw - 16px);
   max-height: 85vh;

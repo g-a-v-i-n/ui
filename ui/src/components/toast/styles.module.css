@@ -15,6 +15,19 @@
 }
 
 .root {
+  --background: var(--bg-elevated);
+  --shadow: var(--shadow-elevated);
+
+  --action-color: var(--fg-primary);
+  --action-shadow: var(--shadow-hairline-2);
+  --action-background-hover: var(--gray-a3);
+
+  --close-color: var(--fg-tertiary);
+  --close-color-hover: var(--fg-primary);
+  --close-background-hover: var(--gray-a3);
+}
+
+.root {
   position: relative;
   display: grid;
   grid-template-areas:
@@ -26,10 +39,11 @@
   padding: 12px 16px;
   padding-right: 32px;
 
-  background: var(--bg-primary);
+  background: var(--background);
+  backdrop-filter: var(--blur-elevated);
   border-radius: 12px;
   corner-shape: var(--corner-shape);
-  box-shadow: var(--shadow-modal);
+  box-shadow: var(--shadow);
 
   &[data-state="open"] {
     animation: toastSlideIn var(--duration-260) var(--ease-out-quint);
@@ -74,23 +88,20 @@
   border-radius: 8px;
   corner-shape: var(--corner-shape);
   background: transparent;
-  color: var(--fg-primary);
-  box-shadow: var(--shadow-hairline-2);
+  color: var(--action-color);
+  box-shadow: var(--action-shadow);
   cursor: pointer;
   user-select: none;
-
-  font-family: var(--font-sans);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium, 500);
 
   transition: background-color var(--duration-120) var(--ease-in-out-quad);
 
   &:hover {
-    background: var(--gray-a3);
+    background: var(--action-background-hover);
   }
 
   &:focus-visible {
     outline: 2px solid var(--focus-ring-color);
+    animation: var(--focus-ring-animation);
     outline-offset: var(--focus-ring-offset);
   }
 }
@@ -109,7 +120,7 @@
   border-radius: 6px;
   corner-shape: var(--corner-shape);
   background: transparent;
-  color: var(--fg-tertiary);
+  color: var(--close-color);
   cursor: pointer;
 
   transition:
@@ -117,12 +128,13 @@
     background-color var(--duration-120) var(--ease-in-out-quad);
 
   &:hover {
-    color: var(--fg-primary);
-    background: var(--gray-a3);
+    color: var(--close-color-hover);
+    background: var(--close-background-hover);
   }
 
   &:focus-visible {
     outline: 2px solid var(--focus-ring-color);
+    animation: var(--focus-ring-animation);
     outline-offset: -1px;
   }
 }

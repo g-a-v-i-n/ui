@@ -36,6 +36,12 @@
     margin: 0;
   }
 
+  /* Alpha fill so selected text keeps its color and the tint composites
+     over any surface. */
+  ::selection {
+    background-color: var(--blue-a6);
+  }
+
 
 img,
 picture,

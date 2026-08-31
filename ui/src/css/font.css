@@ -61,13 +61,13 @@
     --letter-spacing-h4: 0;
 
     /* Scale — token names match the Text size prop (xs..5xl). */
-    --font-size-xs: 12px;
+    --font-size-xs: 11px;
     --line-height-xs: 1.4;
-    --letter-spacing-xs: 0px;
+    --letter-spacing-xs: 0.08px;
 
-    --font-size-sm: 13px;
+    --font-size-sm: 12px;
     --line-height-sm: 1.4;
-    --letter-spacing-sm: -0.08px;
+    --letter-spacing-sm: 0px;
 
     --font-size-md: 14px;
     --line-height-md: 1.5;

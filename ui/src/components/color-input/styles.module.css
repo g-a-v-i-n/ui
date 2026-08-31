@@ -1,11 +1,15 @@
 .swatch {
+  /* A subtle inset hairline so light swatches stay legible on light surfaces. */
+  --swatch-shadow: inset 0 0 0 1px var(--gray-a4);
+}
+
+.swatch {
   display: inline-block;
   width: var(--size-16);
   height: var(--size-16);
   border-radius: var(--size-4);
   corner-shape: var(--corner-shape);
-  /* A subtle inset hairline so light swatches stay legible on light surfaces. */
-  box-shadow: inset 0 0 0 1px var(--gray-a4);
+  box-shadow: var(--swatch-shadow);
   cursor: pointer;
   flex: none;
 }

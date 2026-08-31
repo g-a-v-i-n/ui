@@ -1,4 +1,36 @@
 .button {
+  --primary-background: var(--fg-primary);
+  --primary-foreground: var(--bg-base);
+  --primary-shadow: var(--shadow-sm);
+  --primary-background-hover: var(--gray-11);
+  --primary-background-active: var(--gray-10);
+
+  --secondary-background: var(--bg-base);
+  --secondary-foreground: var(--fg-primary);
+  --secondary-shadow: var(--shadow-button);
+  /* Hairline steps through the tiers (1/2/3) as the state deepens. */
+  --secondary-hairline-color: var(--gray-a3);
+  --secondary-hairline-color-hover: var(--gray-a4);
+  --secondary-hairline-color-active: var(--gray-a6);
+  --secondary-background-hover: var(--gray-a2);
+  --secondary-background-active: var(--gray-a4);
+
+  --destructive-background: var(--bg-base);
+  --destructive-foreground: var(--tomato-9);
+  --destructive-shadow: var(--shadow-button);
+  /* Red-tinted shadow via the shadow.css color slots. */
+  --destructive-shadow-color: var(--tomato-a3);
+  --destructive-hairline-color: var(--tomato-a3);
+  --destructive-hairline-color-hover: var(--tomato-a4);
+  --destructive-hairline-color-active: var(--tomato-a6);
+  --destructive-background-hover: var(--tomato-a2);
+  --destructive-background-active: var(--tomato-a4);
+
+  --menu-trigger-icon-color: var(--fg-secondary);
+  --menu-trigger-icon-color-hover: var(--fg-primary);
+}
+
+.button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -38,42 +70,49 @@
     color var(--duration-120) var(--ease-in-out-quad);
 
   &[data-variant="primary"] {
-    background: var(--fg-primary);
-    color: var(--bg-base);
-    box-shadow: var(--shadow-small);
+    background: var(--primary-background);
+    color: var(--primary-foreground);
+    box-shadow: var(--primary-shadow);
 
     &:hover {
-      background: var(--gray-11);
+      background: var(--primary-background-hover);
     }
     &:active {
-      background: var(--gray-10);
+      background: var(--primary-background-active);
     }
   }
 
   &[data-variant="secondary"] {
-    background: var(--bg-primary);
-    color: var(--fg-primary);
-    box-shadow: var(--shadow-button);
+    background: var(--secondary-background);
+    color: var(--secondary-foreground);
+    --hairline-color: var(--secondary-hairline-color);
+    box-shadow: var(--secondary-shadow);
 
     &:hover {
-      background: var(--gray-2);
+      background: var(--secondary-background-hover);
+      --hairline-color: var(--secondary-hairline-color-hover);
     }
-    
+
     &:active {
-      background: var(--gray-4);
+      background: var(--secondary-background-active);
+      --hairline-color: var(--secondary-hairline-color-active);
     }
   }
 
   &[data-variant="destructive"] {
-    background: var(--bg-primary);
-    color: var(--tomato-9);
-    box-shadow: var(--shadow-button);
+    background: var(--destructive-background);
+    color: var(--destructive-foreground);
+    --shadow-color: var(--destructive-shadow-color);
+    --hairline-color: var(--destructive-hairline-color);
+    box-shadow: var(--destructive-shadow);
 
     &:hover {
-      background: var(--gray-3);
+      background: var(--destructive-background-hover);
+      --hairline-color: var(--destructive-hairline-color-hover);
     }
     &:active {
-      background: var(--gray-4);
+      background: var(--destructive-background-active);
+      --hairline-color: var(--destructive-hairline-color-active);
     }
   }
 
@@ -84,6 +123,7 @@
 
   &:focus-visible {
     outline: 2px solid var(--focus-ring-color);
+    animation: var(--focus-ring-animation);
     outline-offset: var(--focus-ring-offset);
   }
 
@@ -127,10 +167,10 @@
    icons to fg-secondary, brightening to fg-primary on hover. */
 .button[aria-haspopup] .prefix,
 .button[aria-haspopup] .suffix {
-  color: var(--fg-secondary);
+  color: var(--menu-trigger-icon-color);
   transition: color var(--duration-120) var(--ease-in-out-quad);
 }
 .button[aria-haspopup]:hover .prefix,
 .button[aria-haspopup]:hover .suffix {
-  color: var(--fg-primary);
+  color: var(--menu-trigger-icon-color-hover);
 }

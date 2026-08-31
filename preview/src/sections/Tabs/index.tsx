@@ -20,12 +20,12 @@ export function TabsSection() {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="account">
-          <Text size="sm" color="secondary">
+          <Text size="md" color="secondary">
             Manage your account details and profile information.
           </Text>
         </TabsContent>
         <TabsContent value="password">
-          <Text size="sm" color="secondary">
+          <Text size="md" color="secondary">
             Change your password and security settings.
           </Text>
         </TabsContent>

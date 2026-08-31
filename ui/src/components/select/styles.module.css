@@ -1,3 +1,23 @@
+.trigger,
+.content {
+  --trigger-background: var(--bg-primary);
+  --trigger-foreground: var(--fg-primary);
+  --trigger-shadow: var(--shadow-button);
+  --trigger-background-hover: var(--gray-3);
+  --trigger-foreground-placeholder: var(--fg-tertiary);
+  --trigger-icon-color: var(--fg-tertiary);
+
+  --content-background: var(--bg-elevated);
+  --content-shadow: var(--shadow-elevated);
+
+  --item-foreground: var(--fg-primary);
+  --item-background-highlighted: var(--gray-a3);
+  --indicator-color: var(--blue-9);
+
+  --separator-background: var(--gray-a3);
+  --scroll-button-color: var(--fg-tertiary);
+}
+
 .trigger {
   display: inline-flex;
   align-items: center;
@@ -9,31 +29,27 @@
   border: none;
   border-radius: var(--size-10);
   corner-shape: var(--corner-shape);
-  background: var(--bg-primary);
-  color: var(--fg-primary);
-  box-shadow: var(--shadow-button);
+  background: var(--trigger-background);
+  color: var(--trigger-foreground);
+  box-shadow: var(--trigger-shadow);
   cursor: pointer;
   user-select: none;
-
-  font-family: var(--font-sans);
-  font-size: var(--font-size-sm);
-  line-height: var(--line-height-sm);
-  font-weight: var(--font-weight-medium, 500);
 
   transition:
     background-color var(--duration-120) var(--ease-in-out-quad),
     box-shadow var(--duration-120) var(--ease-in-out-quad);
 
   &:hover {
-    background: var(--gray-3);
+    background: var(--trigger-background-hover);
   }
 
   &[data-placeholder] {
-    color: var(--fg-tertiary);
+    color: var(--trigger-foreground-placeholder);
   }
 
   &:focus-visible {
     outline: 2px solid var(--focus-ring-color);
+    animation: var(--focus-ring-animation);
     outline-offset: var(--focus-ring-offset);
   }
 
@@ -47,7 +63,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--fg-tertiary);
+  color: var(--trigger-icon-color);
 }
 
 .content {
@@ -57,10 +73,11 @@
   min-width: var(--size-128);
   max-height: var(--radix-select-content-available-height);
 
-  background: var(--bg-primary);
+  background: var(--content-background);
+  backdrop-filter: var(--blur-elevated);
   border-radius: 12px;
   corner-shape: var(--corner-shape);
-  box-shadow: var(--shadow-modal);
+  box-shadow: var(--content-shadow);
 
   z-index: var(--layer-select);
   position: relative;
@@ -107,10 +124,7 @@
   border-radius: 8px;
   corner-shape: var(--corner-shape);
 
-  color: var(--fg-primary);
-  font-family: var(--font-sans);
-  font-size: var(--font-size-sm);
-  line-height: var(--line-height-sm);
+  color: var(--item-foreground);
 
   user-select: none;
   cursor: pointer;
@@ -118,7 +132,7 @@
   transition: background-color var(--duration-120) var(--ease-in-out-quad);
 
   &[data-highlighted] {
-    background-color: var(--gray-a3);
+    background-color: var(--item-background-highlighted);
     outline: none;
   }
 
@@ -134,7 +148,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--blue-9);
+  color: var(--indicator-color);
 }
 
 .label {
@@ -143,7 +157,7 @@
 
 .separator {
   height: var(--size-1);
-  background-color: var(--gray-a3);
+  background-color: var(--separator-background);
   margin: 2px 4px;
 }
 
@@ -152,7 +166,7 @@
   align-items: center;
   justify-content: center;
   height: var(--control-height-xs);
-  color: var(--fg-tertiary);
+  color: var(--scroll-button-color);
   cursor: default;
 }
 

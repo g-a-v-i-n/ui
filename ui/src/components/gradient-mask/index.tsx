@@ -33,6 +33,8 @@ export const GradientMask = ({
       data-direction={direction}
       className={`${styles.mask} ${className}`}
       style={
+        // SAFETY: CSS custom properties are valid inline styles but are missing
+        // from the CSSProperties type.
         {
           "--mask-size": `${size}px`,
           "--mask-blur": `${blur ?? size / 4}px`,

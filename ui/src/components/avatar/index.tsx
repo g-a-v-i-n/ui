@@ -8,6 +8,7 @@ type Size = "sm" | "md" | "lg";
 export const AvatarRoot = ({
   className = "",
   size = "md",
+  children,
   ref,
   ...props
 }: AvatarPrimitive.AvatarProps & { size?: Size } & { ref?: React.Ref<HTMLSpanElement> }) => {
@@ -17,7 +18,12 @@ export const AvatarRoot = ({
       ref={ref}
       data-size={size}
       className={`${styles.root} ${className}`}
-    />
+    >
+      {children}
+      {/* span, not div — the Radix root renders a <span>. Last child so it
+          paints over the image/fallback. */}
+      <span className={styles.rim} aria-hidden="true" />
+    </AvatarPrimitive.Root>
   );
 };
 

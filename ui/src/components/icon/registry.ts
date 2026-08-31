@@ -70,6 +70,7 @@ import { ChevronRight as NormalChevronRight } from "./static/normal/chevron-righ
 import { ChevronUp as NormalChevronUp } from "./static/normal/chevron-up";
 import { Circle as NormalCircle } from "./static/normal/circle";
 import { CircleFill as NormalCircleFill } from "./static/normal/circle-fill";
+import { CircleGrid as NormalCircleGrid } from "./static/normal/circle-grid";
 import { CircleXmark as NormalCircleXmark } from "./static/normal/circle-xmark";
 import { Crosshairs as NormalCrosshairs } from "./static/normal/crosshairs";
 import { Document as NormalDocument } from "./static/normal/document";
@@ -104,8 +105,11 @@ import { Plus as NormalPlus } from "./static/normal/plus";
 import { Rectangle as NormalRectangle } from "./static/normal/rectangle";
 import { RectangleFill as NormalRectangleFill } from "./static/normal/rectangle-fill";
 import { RulerSquare as NormalRulerSquare } from "./static/normal/ruler-square";
+import { SidebarLeft as NormalSidebarLeft } from "./static/normal/sidebar-left";
+import { SidebarRight as NormalSidebarRight } from "./static/normal/sidebar-right";
 import { SliderHorizontal as NormalSliderHorizontal } from "./static/normal/slider-horizontal";
 import { SliderVertical as NormalSliderVertical } from "./static/normal/slider-vertical";
+import { SquareGrid as NormalSquareGrid } from "./static/normal/square-grid";
 import { Star as NormalStar } from "./static/normal/star";
 import { StarFill as NormalStarFill } from "./static/normal/star-fill";
 import { Sun as NormalSun } from "./static/normal/sun";
@@ -187,6 +191,7 @@ export const icons = {
     "chevron-up": NormalChevronUp,
     circle: NormalCircle,
     "circle-fill": NormalCircleFill,
+    "circle-grid": NormalCircleGrid,
     "circle-xmark": NormalCircleXmark,
     crosshairs: NormalCrosshairs,
     document: NormalDocument,
@@ -221,8 +226,11 @@ export const icons = {
     rectangle: NormalRectangle,
     "rectangle-fill": NormalRectangleFill,
     "ruler-square": NormalRulerSquare,
+    "sidebar-left": NormalSidebarLeft,
+    "sidebar-right": NormalSidebarRight,
     "slider-horizontal": NormalSliderHorizontal,
     "slider-vertical": NormalSliderVertical,
+    "square-grid": NormalSquareGrid,
     star: NormalStar,
     "star-fill": NormalStarFill,
     sun: NormalSun,

@@ -1,27 +1,34 @@
 .root {
+  --track-background: var(--gray-3);
+
+  --indicator-background: var(--blue-9);
+  --indicator-sweep-gradient: linear-gradient(
+    90deg,
+    var(--blue-9),
+    var(--blue-4),
+    var(--blue-9)
+  );
+}
+
+.root {
   position: relative;
   overflow: hidden;
   width: 100%;
   height: var(--size-6);
-  background: var(--gray-3);
+  background: var(--track-background);
   border-radius: 999px;
 }
 
 .indicator {
   width: 100%;
   height: 100%;
-  background: var(--blue-9);
+  background: var(--indicator-background);
   border-radius: 999px;
   transition: transform var(--duration-260) var(--ease-out-quad);
 
   /* Continuously sweep a left-to-right gradient across the fill. */
   &[data-animated="true"] {
-    background-image: linear-gradient(
-      90deg,
-      var(--blue-9),
-      var(--blue-4),
-      var(--blue-9)
-    );
+    background-image: var(--indicator-sweep-gradient);
     background-size: 200% 100%;
     animation: progressSweep 1400ms linear infinite;
   }

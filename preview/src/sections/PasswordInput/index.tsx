@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SFSymbol } from 'ui/components/sf-symbol';
+import { Icon } from 'ui/components/icon';
 import { PasswordInput } from 'ui/components/password-input';
 import { Section } from '../../Section';
 import styles from './styles.module.css';
@@ -20,7 +20,7 @@ export function PasswordInputSection() {
           width="fill"
           placeholder="With prefix…"
           defaultValue="hunter2"
-          prefixSlot={<SFSymbol symbol="􀎠" size="sm" />}
+          prefixSlot={<Icon icon="lock-locked" size="sm" />}
         />
       </div>
     </Section>

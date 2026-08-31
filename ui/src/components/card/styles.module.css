@@ -1,16 +1,23 @@
 .card {
+  /* Raised: sits above the page surface with a soft shadow. */
+  --primary-background: var(--bg-primary);
+  --primary-shadow: var(--shadow-card);
+
+  /* Flat: depth comes from the darker background, no shadow. */
+  --secondary-background: var(--bg-secondary);
+}
+
+.card {
   border-radius: var(--size-12);
   corner-shape: var(--corner-shape);
   padding: var(--size-16);
 
-  /* Raised: sits above the page surface with a soft shadow. */
   &[data-variant="primary"] {
-    background-color: var(--bg-primary);
-    box-shadow: var(--shadow-card);
+    background-color: var(--primary-background);
+    box-shadow: var(--primary-shadow);
   }
 
-  /* Flat: depth comes from the darker background, no shadow. */
   &[data-variant="secondary"] {
-    background-color: var(--bg-secondary);
+    background-color: var(--secondary-background);
   }
 }

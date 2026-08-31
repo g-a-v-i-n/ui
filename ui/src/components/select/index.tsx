@@ -15,7 +15,9 @@ export const SelectTrigger = ({ children, className = "", ref, ...props }: Selec
       ref={ref}
       className={`${styles.trigger} ${className}`}
     >
-      {children}
+      <Text as="span" size="sm" weight="medium">
+        {children}
+      </Text>
       <SelectPrimitive.Icon className={styles.triggerIcon}>
         <SFSymbol symbol="􀆈" size="sm" />
       </SelectPrimitive.Icon>
@@ -94,7 +96,9 @@ export const SelectItem = ({ children, className = "", ref, ...props }: SelectPr
       <SelectPrimitive.ItemIndicator className={styles.indicator}>
         <SFSymbol symbol="✓" size="sm" />
       </SelectPrimitive.ItemIndicator>
-      <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
+      <Text as="span" size="sm">
+        <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
+      </Text>
     </SelectPrimitive.Item>
   );
 };

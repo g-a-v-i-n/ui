@@ -36,7 +36,7 @@ export const ColorInput = ({
 }: ColorInputProps) => {
   const isControlled = value !== undefined;
   const [internal, setInternal] = React.useState(defaultValue);
-  const current = isControlled ? (value as string) : internal;
+  const current = isControlled ? value : internal;
 
   const commit = (next: string) => {
     if (!isControlled) setInternal(next);

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { SFSymbol } from 'ui/components/sf-symbol';
 import { Icon } from 'ui/components/icon';
 import { Tag } from 'ui/components/tag';
 import { DropdownMenuItem } from 'ui/components/dropdown-menu';
@@ -29,7 +28,7 @@ export function ToolbarSection() {
           onChange={(e) => setInputToolbar(e.target.value)}
           placeholder="Untitled"
           aria-label="Document title"
-          prefixSlot={<SFSymbol symbol="􀈎" size="sm" />}
+          prefixSlot={<Icon icon="document" size="sm" />}
           suffixSlot={<Tag mono>⌘1</Tag>}
         />
         <ToolbarSeparator />
@@ -72,7 +71,7 @@ export function ToolbarSection() {
             <>
               <DropdownMenuItem>Run all</DropdownMenuItem>
               <DropdownMenuItem>Run selection</DropdownMenuItem>
-              <DropdownMenuItem suffixSlot={<span>⌘R</span>}>Run again</DropdownMenuItem>
+              <DropdownMenuItem suffixSlot="⌘R">Run again</DropdownMenuItem>
             </>
           }
         >
@@ -88,7 +87,7 @@ export function ToolbarSection() {
             <>
               <DropdownMenuItem>Run all</DropdownMenuItem>
               <DropdownMenuItem>Run selection</DropdownMenuItem>
-              <DropdownMenuItem suffixSlot={<span>⌘R</span>}>Run again</DropdownMenuItem>
+              <DropdownMenuItem suffixSlot="⌘R">Run again</DropdownMenuItem>
             </>
           }
         />

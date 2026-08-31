@@ -1,5 +1,6 @@
 import React from "react";
 import { AlertDialog as AlertDialogPrimitive } from "radix-ui";
+import { motion, useAnimationControls } from "motion/react";
 import { Button, type ButtonProps } from "../button";
 import { Text } from "../text";
 import styles from "./styles.module.css";
@@ -27,44 +28,32 @@ export const AlertDialogContent = ({
   ref,
   ...props
 }: AlertDialogPrimitive.AlertDialogContentProps & { ref?: React.Ref<HTMLDivElement> }) => {
-  const innerRef = React.useRef<HTMLDivElement | null>(null);
-  const shakeAnim = React.useRef<Animation | null>(null);
-
-  const setRefs = (node: HTMLDivElement | null) => {
-    innerRef.current = node;
-    if (typeof ref === "function") ref(node);
-    else if (ref) (ref as React.RefObject<HTMLDivElement | null>).current = node;
-  };
+  const controls = useAnimationControls();
 
   // An alert dialog never dismisses on an outside click — shake "no" to make
-  // that refusal felt. Animate the independent `translate` property so it
-  // composes on top of the centering `transform`, not against it.
+  // that refusal felt. Animate the independent `translate` property (not
+  // motion's `x`, which writes `transform`): the CSS enter/exit keyframes own
+  // `transform` via fill-mode both, so a transform-based shake would never
+  // paint. `translate` composes on top of the centering transform instead.
   const shakeNo = () => {
-    const el = innerRef.current;
-    if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    shakeAnim.current?.cancel();
-    shakeAnim.current = el.animate(
-      [
-        { translate: "0" },
-        { translate: "-8px" },
-        { translate: "7px" },
-        { translate: "-5px" },
-        { translate: "3px" },
-        { translate: "0" },
-      ],
-      { duration: 360, easing: "ease-in-out" }
-    );
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    controls.stop();
+    controls.start({
+      translate: ["0px", "-8px", "7px", "-5px", "3px", "0px"],
+      transition: { duration: 0.36, ease: "easeInOut" },
+    });
   };
 
   return (
     <AlertDialogPrimitive.Portal>
       <AlertDialogOverlay onPointerDown={shakeNo} />
-      <AlertDialogPrimitive.Content
-        {...props}
-        ref={setRefs}
-        className={`${styles.content} ${className}`}
-      >
-        {children}
+      <AlertDialogPrimitive.Content {...props} ref={ref} asChild>
+        <motion.div
+          animate={controls}
+          className={`${styles.content} ${className}`}
+        >
+          {children}
+        </motion.div>
       </AlertDialogPrimitive.Content>
     </AlertDialogPrimitive.Portal>
   );
@@ -80,8 +69,8 @@ export const AlertDialogTitle = ({
     <AlertDialogPrimitive.Title {...props} ref={ref} asChild>
       <Text
         as="h2"
-        size="sm"
-        weight="medium"
+        size="lg"
+        weight="semibold"
         color="primary"
         className={`${styles.title} ${className}`}
       >

@@ -46,7 +46,9 @@ export const FormMessage = ({ children, className = "", ref, ...props }: FormPri
       ref={ref}
       className={`${styles.message} ${className}`}
     >
-      {children}
+      <Text as="span" size="xs">
+        {children}
+      </Text>
     </FormPrimitive.Message>
   );
 };

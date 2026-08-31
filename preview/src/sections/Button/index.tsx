@@ -1,5 +1,4 @@
 import { Button } from 'ui/components/button';
-import { SFSymbol } from 'ui/components/sf-symbol';
 import { Icon } from 'ui/components/icon';
 import { Section } from '../../Section';
 import styles from './styles.module.css';
@@ -10,7 +9,7 @@ export function ButtonSection() {
       <Button>Primary</Button>
       <Button variant="secondary">Secondary</Button>
       <Button variant="destructive">Delete</Button>
-      <Button variant="destructive" prefixSlot={<SFSymbol symbol="􀈑" size="sm" />}>
+      <Button variant="destructive" prefixSlot={<Icon icon="xmark" size="sm" />}>
         Delete with icon
       </Button>
       <Button variant="destructive" disabled>

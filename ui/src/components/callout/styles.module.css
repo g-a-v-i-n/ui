@@ -1,4 +1,14 @@
 .callout {
+  --foreground: var(--fg-primary);
+  --shadow: var(--shadow-hairline-1);
+
+  --info-icon-color: var(--blue-9);
+  --success-icon-color: var(--grass-9);
+  --warning-icon-color: var(--amber-9);
+  --error-icon-color: var(--tomato-9);
+}
+
+.callout {
   display: flex;
   align-items: flex-start;
   gap: var(--size-8);
@@ -6,21 +16,21 @@
   border-radius: var(--size-12);
   corner-shape: var(--corner-shape);
 
-  color: var(--fg-primary);
+  color: var(--foreground);
   background-color: transparent;
-  box-shadow: var(--shadow-hairline-1);
+  box-shadow: var(--shadow);
 
   &[data-variant="info"] {
-    --callout-icon: var(--blue-10);
+    --icon-color: var(--info-icon-color);
   }
   &[data-variant="success"] {
-    --callout-icon: var(--lime-9);
+    --icon-color: var(--success-icon-color);
   }
   &[data-variant="warning"] {
-    --callout-icon: var(--amber-9);
+    --icon-color: var(--warning-icon-color);
   }
   &[data-variant="error"] {
-    --callout-icon: var(--tomato-9);
+    --icon-color: var(--error-icon-color);
   }
 }
 
@@ -30,7 +40,7 @@
   /* Match the line-box of the first small-text line so the icon sits on its
      cap height rather than floating above it. */
   min-height: calc(var(--font-size-sm) * var(--line-height-sm));
-  color: var(--callout-icon);
+  color: var(--icon-color);
   flex: none;
 }
 
@@ -51,7 +61,7 @@
   margin: 0;
   border: none;
   background: transparent;
-  color: var(--callout-icon);
+  color: var(--fg-1);
   cursor: pointer;
   opacity: 0.7;
   flex: none;
@@ -63,6 +73,7 @@
 
   &:focus-visible {
     outline: 2px solid var(--focus-ring-color);
+    animation: var(--focus-ring-animation);
     outline-offset: 2px;
     border-radius: var(--size-4);
   }

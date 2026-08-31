@@ -1,7 +1,16 @@
+.overlay,
+.content {
+  --overlay-background: var(--scrim);
+
+  --content-background: var(--bg-elevated);
+  --content-shadow: var(--shadow-elevated);
+  --content-shadow-flat: var(--shadow-hairline-1);
+}
+
 .overlay {
   position: fixed;
   inset: 0;
-  background-color: var(--scrim);
+  background-color: var(--overlay-background);
   z-index: var(--layer-dialog-overlay);
 
   animation-duration: var(--duration-180);
@@ -25,8 +34,13 @@
   gap: var(--size-8);
   padding: var(--size-20);
 
-  background: var(--bg-secondary);
-  box-shadow: var(--shadow-modal);
+  background: var(--content-background);
+  backdrop-filter: var(--blur-elevated);
+  box-shadow: var(--content-shadow);
+
+  &[data-elevated="false"] {
+    box-shadow: var(--content-shadow-flat);
+  }
 
   animation-duration: var(--duration-180);
   animation-timing-function: var(--ease-out-quad);

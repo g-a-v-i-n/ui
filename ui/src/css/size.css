@@ -76,7 +76,7 @@
     --container-page: 56rem; /* 896px */
     --container-sidebar: 11.25rem; /* 180px */
     --container-prose: 40rem; /* 640px */
-    --container-small: 30rem; /* 480px */
-    --container-normal: 40rem; /* 640px */
-    --container-large: 50rem; /* 800px */
+    --container-sm: 30rem; /* 480px */
+    --container-md: 40rem; /* 640px */
+    --container-lg: 50rem; /* 800px */
 }

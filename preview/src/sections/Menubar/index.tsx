@@ -22,8 +22,8 @@ export function MenubarSection() {
         <MenubarMenu>
           <MenubarTrigger>File</MenubarTrigger>
           <MenubarContent width="sm">
-            <MenubarItem suffixSlot={<span>⌘N</span>}>New file</MenubarItem>
-            <MenubarItem suffixSlot={<span>⌘O</span>}>Open…</MenubarItem>
+            <MenubarItem suffixSlot="⌘N">New file</MenubarItem>
+            <MenubarItem suffixSlot="⌘O">Open…</MenubarItem>
             <MenubarSeparator />
             <MenubarSub>
               <MenubarSubTrigger>Export</MenubarSubTrigger>
@@ -37,8 +37,8 @@ export function MenubarSection() {
         <MenubarMenu>
           <MenubarTrigger>Edit</MenubarTrigger>
           <MenubarContent width="sm">
-            <MenubarItem suffixSlot={<span>⌘Z</span>}>Undo</MenubarItem>
-            <MenubarItem suffixSlot={<span>⇧⌘Z</span>}>Redo</MenubarItem>
+            <MenubarItem suffixSlot="⌘Z">Undo</MenubarItem>
+            <MenubarItem suffixSlot="⇧⌘Z">Redo</MenubarItem>
           </MenubarContent>
         </MenubarMenu>
         <MenubarMenu>

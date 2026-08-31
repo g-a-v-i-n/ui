@@ -34,4 +34,26 @@
     --transition-fast: var(--duration-120);
     --transition-medium: var(--duration-180);
     --transition-slow: var(--duration-260);
+
+    /* Focus ring entrance: a wide transparent halo contracting into the
+       component's own ring. Only `from` is declared — `to` resolves to the
+       element's focus styles, so every ring variant (offset, inset) lands on
+       its own final look. Rings must be drawn with `outline` (never
+       box-shadow — on inputs the hairline shares box-shadow and an animated
+       shadow ring wipes it for the first frames). Applied via var() so CSS
+       modules can't rename the global keyframes. */
+    --focus-ring-animation: focus-ring-in var(--duration-180) var(--ease-out-quad);
+}
+
+@keyframes focus-ring-in {
+    from {
+        outline-color: transparent;
+        outline-offset: 8px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --focus-ring-animation: none;
+    }
 }

@@ -1,11 +1,18 @@
 .root {
+  --item-border-color: var(--gray-a3);
+
+  --chevron-color: var(--fg-tertiary);
+  --chevron-color-hover: var(--fg-secondary);
+}
+
+.root {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
 .item {
-  border-bottom: 1px solid var(--gray-a3);
+  border-bottom: 1px solid var(--item-border-color);
 
   &:last-child {
     border-bottom: none;
@@ -33,6 +40,7 @@
 
   &:focus-visible {
     outline: 2px solid var(--focus-ring-color);
+    animation: var(--focus-ring-animation);
     outline-offset: -1px;
   }
 
@@ -42,7 +50,7 @@
   }
 
   &:hover .chevron {
-    color: var(--fg-secondary);
+    color: var(--chevron-color-hover);
   }
 
   &[data-state="open"] .chevron {
@@ -54,7 +62,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--fg-tertiary);
+  color: var(--chevron-color);
   transition:
     transform var(--duration-180) var(--ease-out-quad),
     color var(--duration-120) var(--ease-in-out-quad);

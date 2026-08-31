@@ -1,4 +1,27 @@
 .root {
+  --button-foreground: var(--fg-secondary);
+  --button-background-hover: var(--gray-a3);
+  --button-foreground-hover: var(--fg-primary);
+  --button-background-selected: var(--gray-a4);
+  --button-foreground-selected: var(--fg-primary);
+  --button-background-active: var(--gray-a5);
+  --button-foreground-active: var(--fg-primary);
+
+  --link-color: var(--fg-secondary);
+  --link-color-hover: var(--fg-primary);
+
+  --input-container-background-hover: var(--gray-a3);
+  --input-slot-color: var(--fg-tertiary);
+  --input-color: var(--fg-primary);
+  --input-placeholder-color: var(--fg-tertiary);
+
+  --separator-background: var(--gray-a3);
+
+  --split-background-active: var(--gray-a4);
+  --split-foreground-active: var(--fg-primary);
+}
+
+.root {
   display: flex;
   align-items: center;
   gap: 4px;
@@ -23,7 +46,7 @@
   border-radius: 8px;
   corner-shape: var(--corner-shape);
   background: transparent;
-  color: var(--fg-secondary);
+  color: var(--button-foreground);
   cursor: pointer;
   user-select: none;
   flex: none;
@@ -33,17 +56,24 @@
     color var(--duration-120) var(--ease-in-out-quad);
 
   &:hover {
-    background: var(--gray-a3);
-    color: var(--fg-primary);
+    background: var(--button-background-hover);
+    color: var(--button-foreground-hover);
   }
 
   &[data-state="on"] {
-    background: var(--gray-a4);
-    color: var(--fg-primary);
+    background: var(--button-background-selected);
+    color: var(--button-foreground-selected);
+  }
+
+  /* After the on-state so pressing an already-on toggle still shows feedback. */
+  &:active {
+    background: var(--button-background-active);
+    color: var(--button-foreground-active);
   }
 
   &:focus-visible {
     outline: 2px solid var(--focus-ring-color);
+    animation: var(--focus-ring-animation);
     outline-offset: -1px;
   }
 
@@ -67,7 +97,7 @@
   height: var(--control-height-md);
   padding: 0 var(--size-8);
 
-  color: var(--fg-secondary);
+  color: var(--link-color);
   text-decoration: none;
   cursor: pointer;
   user-select: none;
@@ -75,12 +105,13 @@
   transition: color var(--duration-120) var(--ease-in-out-quad);
 
   &:hover {
-    color: var(--fg-primary);
+    color: var(--link-color-hover);
     text-decoration: underline;
   }
 
   &:focus-visible {
     outline: 2px solid var(--focus-ring-color);
+    animation: var(--focus-ring-animation);
     outline-offset: -1px;
     border-radius: 8px;
   }
@@ -103,11 +134,12 @@
 
   &:hover,
   &:focus-within {
-    background: var(--gray-a3);
+    background: var(--input-container-background-hover);
   }
 
   &:has(.input:focus-visible) {
     outline: 2px solid var(--focus-ring-color);
+    animation: var(--focus-ring-animation);
     outline-offset: -1px;
   }
 
@@ -131,7 +163,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--fg-tertiary);
+  color: var(--input-slot-color);
   flex: none;
 }
 
@@ -146,7 +178,7 @@
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium, 500);
   letter-spacing: var(--letter-spacing-sm);
-  color: var(--fg-primary);
+  color: var(--input-color);
 
   &[type="number"] {
     font-variant-numeric: tabular-nums;
@@ -163,7 +195,7 @@
   }
 
   &::placeholder {
-    color: var(--fg-tertiary);
+    color: var(--input-placeholder-color);
   }
 }
 
@@ -183,7 +215,7 @@
   width: var(--size-1);
   align-self: stretch;
   margin: 2px;
-  background: var(--gray-a3);
+  background: var(--separator-background);
 }
 
 .toggleGroup {
@@ -219,7 +251,7 @@
   border-radius: 8px 2px 2px 8px;
 
   &:active {
-    background: var(--gray-a4);
+    background: var(--split-background-active);
   }
 }
 
@@ -231,8 +263,8 @@
 
   &:active,
   &[data-state="open"] {
-    background: var(--gray-a4);
-    color: var(--fg-primary);
+    background: var(--split-background-active);
+    color: var(--split-foreground-active);
   }
 }
 

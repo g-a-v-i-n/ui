@@ -1,4 +1,13 @@
 .content {
+  --content-background: var(--gray-1);
+  --content-shadow: var(--shadow-modal);
+
+  --check-color: var(--blue-10);
+
+  --suffix-slot-color: var(--gray-11);
+}
+
+.content {
   display: flex;
   width: var(--size-180);
   padding: 4px;
@@ -9,12 +18,12 @@
   border-radius: 8px;
   corner-shape: var(--corner-shape);
 
-  background: var(--gray-1);
+  background: var(--content-background);
 
   z-index: var(--layer-context-menu);
   position: relative;
 
-  box-shadow: var(--shadow-modal);
+  box-shadow: var(--content-shadow);
 }
 
 .checkboxItem {
@@ -32,7 +41,7 @@
 .check {
   position: absolute;
   transform: translateX(-16px);
-  color: var(--blue-10);
+  color: var(--check-color);
   width: var(--size-10);
 }
 
@@ -46,7 +55,7 @@
 
 .suffixSlot {
   path {
-    color: var(--gray-11);
+    color: var(--suffix-slot-color);
   }
   width: var(--size-12);
 }

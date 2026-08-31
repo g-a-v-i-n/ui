@@ -1,4 +1,22 @@
 .container {
+  --default-shadow: var(--shadow-hairline-2);
+  --default-shadow-hover: var(--shadow-hairline-3);
+
+  --toolbar-background-hover: var(--gray-a3);
+  --toolbar-background-focus: var(--gray-a3);
+
+  --input-color: var(--fg-primary);
+  --placeholder-color: var(--fg-tertiary);
+
+  --slot-color: var(--fg-secondary);
+
+  /* Disabled treatment shared with TextArea: gray-a2 fill, text one shade
+     down, resting hairline pinned. */
+  --background-disabled: var(--gray-a2);
+  --input-color-disabled: var(--fg-secondary);
+}
+
+.container {
   position: relative;
   display: inline-flex;
   height: var(--control-height-lg);
@@ -22,15 +40,20 @@
 
   &[data-variant="default"] {
     background-color: transparent;
-    box-shadow: var(--shadow-hairline-2);
+    box-shadow: var(--default-shadow);
     transition: box-shadow var(--duration-120) var(--ease-out-quad);
 
     &:hover {
-      box-shadow: var(--shadow-hairline-3);
+      box-shadow: var(--default-shadow-hover);
     }
 
+    /* Outline, not box-shadow: the hairline lives in box-shadow, and an
+       animated shadow ring would wipe it for the first frames (border
+       blink). Outline overlays it, same as the button's ring. */
     &:focus-within {
-      box-shadow: 0 0 0 2px var(--focus-ring-color);
+      outline: 2px solid var(--focus-ring-color);
+      outline-offset: 0;
+      animation: var(--focus-ring-animation);
     }
   }
 
@@ -39,17 +62,21 @@
     transition: background-color var(--duration-120) var(--ease-out-quad);
 
     &:hover {
-      background-color: var(--gray-a3);
+      background-color: var(--toolbar-background-hover);
     }
 
     &:focus-within {
-      background-color: var(--gray-a3);
+      background-color: var(--toolbar-background-focus);
     }
   }
 
+  /* Last so it outranks the equal-specificity variant hover/focus rules.
+     The pinned hairline is default-variant only — toolbar has no shadow. */
   &:has(.input:disabled) {
-    opacity: 0.5;
-    pointer-events: none;
+    background-color: var(--background-disabled);
+  }
+  &[data-variant="default"]:has(.input:disabled) {
+    box-shadow: var(--default-shadow);
   }
 }
 
@@ -74,7 +101,7 @@
   font-weight: var(--font-weight-normal);
   line-height: var(--line-height-md);
   letter-spacing: var(--letter-spacing-md);
-  color: var(--fg-primary);
+  color: var(--input-color);
   text-box-trim: var(--text-box-trim);
 
   &[type="number"] {
@@ -93,7 +120,12 @@
   }
 
   &::placeholder {
-    color: var(--fg-tertiary);
+    color: var(--placeholder-color);
+  }
+
+  &:disabled {
+    color: var(--input-color-disabled);
+    cursor: not-allowed;
   }
 
   &::-ms-clear {
@@ -119,7 +151,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--fg-secondary);
+  color: var(--slot-color);
 }
 
 .prefix {

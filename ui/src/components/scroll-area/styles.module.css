@@ -1,4 +1,11 @@
 .root {
+  --scrollbar-background-hover: var(--gray-a3);
+
+  --thumb-background: var(--gray-a5);
+  --thumb-background-hover: var(--gray-a6);
+}
+
+.root {
   position: relative;
   overflow: hidden;
 }
@@ -19,7 +26,7 @@
   transition: background-color var(--duration-120) var(--ease-out-quad);
 
   &:hover {
-    background: var(--gray-a3);
+    background: var(--scrollbar-background-hover);
   }
 
   &[data-orientation="vertical"] {
@@ -35,13 +42,13 @@
 .thumb {
   position: relative;
   flex: 1;
-  background: var(--gray-a5);
+  background: var(--thumb-background);
   border-radius: 999px;
 
   transition: background-color var(--duration-120) var(--ease-out-quad);
 
   &:hover {
-    background: var(--gray-a6);
+    background: var(--thumb-background-hover);
   }
 
   /* Expand the touch target to a 44px minimum. */

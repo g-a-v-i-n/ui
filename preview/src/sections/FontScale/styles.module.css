@@ -7,15 +7,13 @@
 
 .token,
 .value {
-  font-family: var(--font-mono, ui-monospace, monospace);
-  font-size: 13px;
   white-space: nowrap;
 }
 
-.token {
-  color: var(--fg-primary);
-}
-
-.value {
+/* The plain td cells aren't mono-prop Texts, so the class still carries mono +
+   tint for them; element-qualified to outrank .text's color/family rules. */
+td.value,
+code.value {
+  font-family: var(--font-mono, ui-monospace, monospace);
   color: var(--fg-tertiary);
 }

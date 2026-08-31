@@ -1,3 +1,4 @@
+import { Text } from 'ui/components/text';
 import { Section } from '../../Section';
 import styles from './styles.module.css';
 
@@ -17,7 +18,9 @@ export function ColorScaleExperimentSection() {
 function ScaleRow({ title, prefix }: { title: string; prefix: string }) {
   return (
     <div className={styles.row}>
-      <div className={styles.title}>{title}</div>
+      <Text as="div" size="sm" color="secondary">
+        {title}
+      </Text>
       <div className={styles.scale}>
         {STEPS.map((step) => (
           <div key={step} className={styles.cell}>
@@ -25,7 +28,9 @@ function ScaleRow({ title, prefix }: { title: string; prefix: string }) {
               className={styles.swatch}
               style={{ background: `var(--${prefix}-${step})` }}
             />
-            <code className={styles.label}>{step}</code>
+            <Text as="code" size="xs" mono color="tertiary" className={styles.label}>
+              {step}
+            </Text>
           </div>
         ))}
       </div>

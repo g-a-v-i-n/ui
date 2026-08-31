@@ -17,12 +17,12 @@ type CalloutProps = Omit<React.ComponentPropsWithoutRef<"div">, "title"> & {
 };
 
 // Default leading icon per variant, from the icon set.
-const defaultIcon: Record<Variant, IconName> = {
-  info: "info-circle-fill",
-  success: "check-circle-fill",
-  warning: "triangle-exclamation-fill",
+const defaultIcon = {
+  info: "info-circle",
+  success: "check-circle",
+  warning: "triangle-exclamation",
   error: "circle-xmark",
-};
+} satisfies Record<Variant, IconName>;
 
 export const Callout = ({
   variant = "info",
@@ -47,12 +47,12 @@ export const Callout = ({
       </span>
       <div className={styles.content}>
         {title && (
-          <Text as="div" size="sm" weight="semibold" color="inherit">
+          <Text as="div" size="md" weight="semibold" color="inherit">
             {title}
           </Text>
         )}
         {children && (
-          <Text as="div" size="xs" color="inherit">
+          <Text as="div" size="md" color="inherit">
             {children}
           </Text>
         )}
@@ -64,7 +64,7 @@ export const Callout = ({
           aria-label="Dismiss"
           onClick={onClose}
         >
-          <Icon icon="x-mark" size="sm" />
+          <Icon icon="x-mark" size="md" />
         </button>
       )}
     </div>

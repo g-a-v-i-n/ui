@@ -1,4 +1,5 @@
 import React from 'react';
+import { Text } from 'ui/components/text';
 
 export function Section({
   title,
@@ -9,7 +10,16 @@ export function Section({
 }) {
   return (
     <section className="section">
-      <h2 className="section-title">{title}</h2>
+      <Text
+        as="h2"
+        size="sm"
+        weight="semibold"
+        transform="uppercase"
+        color="secondary"
+        className="section-title"
+      >
+        {title}
+      </Text>
       <div className="section-body">{children}</div>
     </section>
   );

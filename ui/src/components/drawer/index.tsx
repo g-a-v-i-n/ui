@@ -27,12 +27,15 @@ export const DrawerContent = ({
   children,
   scrim = true,
   side = "right",
+  elevated = false,
   className = "",
   ref,
   ...props
 }: DialogPrimitive.DialogContentProps & {
   scrim?: boolean;
   side?: Side;
+  /** Full elevated shadow (rim + drop); false draws only the hairline. */
+  elevated?: boolean;
   ref?: React.Ref<HTMLDivElement>;
 }) => {
   return (
@@ -42,6 +45,7 @@ export const DrawerContent = ({
         {...props}
         ref={ref}
         data-side={side}
+        data-elevated={elevated}
         className={`${styles.content} ${className}`}
       >
         {children}

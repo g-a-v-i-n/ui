@@ -1,9 +1,18 @@
 .track {
+  --track-background: var(--gray-4);
+  --track-background-checked: var(--blue-9);
+  --track-gradient-checked: var(--gradient-accent);
+
+  --thumb-background: #fff;
+  --thumb-shadow: 0 var(--size-1) var(--size-2) var(--gray-a5);
+}
+
+.track {
   position: relative;
   width: var(--size-30);
   height: var(--control-height-xs);
   border-radius: 999px;
-  background: var(--gray-3);
+  background: var(--track-background);
   border: none;
   padding: 0;
   cursor: pointer;
@@ -19,14 +28,14 @@
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background-color: var(--blue-9);
-  background-image: var(--gradient-accent);
+  background-color: var(--track-background-checked);
+  background-image: var(--track-gradient-checked);
   opacity: 0;
   transition: opacity var(--duration-120) var(--ease-in-out-cubic);
 }
 
 .track[data-state="checked"] {
-  background-color: var(--blue-9);
+  background-color: var(--track-background-checked);
 }
 
 .track[data-state="checked"]::before {
@@ -46,8 +55,8 @@
   width: var(--size-16);
   height: var(--size-16);
   border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 var(--size-1) var(--size-2) var(--gray-a5);
+  background: var(--thumb-background);
+  box-shadow: var(--thumb-shadow);
   transition: transform var(--duration-120) var(--ease-in-out-cubic);
   will-change: transform;
 }

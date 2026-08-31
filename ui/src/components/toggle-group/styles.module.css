@@ -1,6 +1,16 @@
 .root {
+  --background: var(--bg-quaternary);
+
+  --item-foreground: var(--gray-9);
+  --item-foreground-hover: var(--gray-12);
+  --item-foreground-selected: var(--gray-12);
+
+  --highlight-background: var(--bg-base);
+}
+
+.root {
   display: inline-flex;
-  background-color: var(--bg-tertiary);
+  background-color: var(--background);
   border-radius: 12px;
   corner-shape: var(--corner-shape);
   padding: 2px;
@@ -12,12 +22,12 @@
 /* Pill variant — fully round the group, items, and the sliding highlight. */
 .root[data-round] {
   border-radius: 999px;
-  corner-shape: rounded;
-
+  corner-shape: round;
 
   & .item,
   & .highlight {
     border-radius: 999px;
+    corner-shape: round;
   }
 }
 
@@ -36,23 +46,24 @@
   user-select: none;
   white-space: nowrap;
 
-  color: var(--gray-9);
+  color: var(--item-foreground);
   border-radius: 10px;
   corner-shape: var(--corner-shape);
 
   transition: color var(--transition-fast) var(--ease-out-quad);
 
   &:hover {
-    color: var(--gray-12);
+    color: var(--item-foreground-hover);
     background-color: transparent;
   }
 
   &[data-state="on"] {
-    color: var(--gray-12);
+    color: var(--item-foreground-selected);
   }
 
   &:focus-visible {
     outline: 2px solid var(--focus-ring-color);
+    animation: var(--focus-ring-animation);
     outline-offset: -1px;
   }
 
@@ -76,7 +87,7 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-color: var(--gray-0);
+  background-color: var(--highlight-background);
   border-radius: 10px;
   corner-shape: var(--corner-shape);
 }

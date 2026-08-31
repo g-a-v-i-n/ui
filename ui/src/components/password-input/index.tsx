@@ -1,5 +1,6 @@
 import React from "react";
 import { TextInput } from "../text-input";
+import { Text } from "../text";
 import styles from "./styles.module.css";
 
 // Self-masked password field. Native type=password renders UA-defined bullets
@@ -73,7 +74,7 @@ export const PasswordInput = ({
   const setRefs = (node: HTMLInputElement | null) => {
     inputRef.current = node;
     if (typeof ref === "function") ref(node);
-    else if (ref) (ref as React.RefObject<HTMLInputElement | null>).current = node;
+    else if (ref) ref.current = node;
   };
 
   const display = visible ? real : MASK.repeat(real.length);
@@ -96,7 +97,9 @@ export const PasswordInput = ({
       onMouseDown={(e) => e.preventDefault()}
       onClick={() => setVisible((v) => !v)}
     >
-      {visible ? "Hide" : "Show"}
+      <Text as="span" size="sm" weight="medium">
+        {visible ? "Hide" : "Show"}
+      </Text>
     </button>
   );
 

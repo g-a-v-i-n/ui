@@ -18,6 +18,7 @@ export const Checkbox = ({
       onCheckedChange={onCheckedChange}
       id={id}
     >
+      <div className={styles.fill} aria-hidden />
       <CheckboxPrimitive.Indicator className={styles.indicator}>
         <SFSymbol symbol="✓" size="md" weight="semibold" />
       </CheckboxPrimitive.Indicator>

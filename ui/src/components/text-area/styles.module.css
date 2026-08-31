@@ -1,19 +1,41 @@
 .container {
+  --background: var(--bg-base);
+  --shadow: var(--shadow-hairline-2);
+  --shadow-hover: var(--shadow-hairline-3);
+
+  --foreground: var(--fg-primary);
+  --placeholder-color: var(--fg-tertiary);
+
+  --background-disabled: var(--gray-a2);
+  --foreground-disabled: var(--fg-secondary);
+}
+
+.container {
   display: flex;
   width: 100%;
   border-radius: var(--size-10);
   corner-shape: var(--corner-shape);
 
-  background-color: var(--bg-base);
-  box-shadow: var(--shadow-hairline-2);
+  background-color: var(--background);
+  box-shadow: var(--shadow);
   transition: box-shadow var(--duration-120) var(--ease-out-quad);
 
   &:hover {
-    box-shadow: var(--shadow-hairline-3);
+    box-shadow: var(--shadow-hover);
   }
 
+  /* Outline, not box-shadow — see text-input: keeps the hairline (also a
+     box-shadow) intact under the animated ring. */
   &:focus-within {
-    box-shadow: 0 0 0 2px var(--focus-ring-color);
+    outline: 2px solid var(--focus-ring-color);
+    outline-offset: 0;
+    animation: var(--focus-ring-animation);
+  }
+
+  /* After :hover so the disabled fill also pins the resting hairline. */
+  &:has(.textarea:disabled) {
+    background-color: var(--background-disabled);
+    box-shadow: var(--shadow);
   }
 }
 
@@ -34,11 +56,11 @@
   font-weight: var(--font-weight-normal);
   line-height: var(--line-height-md);
   letter-spacing: var(--letter-spacing-md);
-  color: var(--fg-primary);
+  color: var(--foreground);
   text-box-trim: var(--text-box-trim);
 
   &::placeholder {
-    color: var(--fg-tertiary);
+    color: var(--placeholder-color);
   }
 
   &[data-resize="none"] {
@@ -57,7 +79,7 @@
   }
 
   &:disabled {
-    opacity: 0.5;
+    color: var(--foreground-disabled);
     cursor: not-allowed;
   }
 }

@@ -192,6 +192,8 @@ export const Combobox = ({
           // The input/toggle live outside the content, so clicking or focusing
           // them would otherwise trip the dismiss layer and close immediately.
           onInteractOutside={(e) => {
+            // SAFETY: DOM event targets are always Nodes (or null), though
+            // typed as the wider EventTarget.
             const target = e.detail.originalEvent.target as Node | null;
             if (target && anchorRef.current?.contains(target)) {
               e.preventDefault();

@@ -9,6 +9,11 @@
 }
 
 .toggle {
+  --toggle-color: var(--fg-tertiary);
+  --toggle-color-hover: var(--fg-secondary);
+}
+
+.toggle {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -16,20 +21,17 @@
   margin: 0;
   border: none;
   background: transparent;
-  color: var(--fg-tertiary);
+  color: var(--toggle-color);
   cursor: pointer;
   transition: color var(--duration-120) var(--ease-out-quad);
 
-  font-size:    var(--font-size-sm);
-  letter-spacing: var(--letter-spacing-sm);
-  font-weight: 500;
-
   &:hover {
-    color: var(--fg-secondary);
+    color: var(--toggle-color-hover);
   }
 
   &:focus-visible {
     outline: 2px solid var(--focus-ring-color);
+    animation: var(--focus-ring-animation);
     outline-offset: 2px;
     border-radius: var(--size-4);
   }

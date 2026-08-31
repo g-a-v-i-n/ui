@@ -1,12 +1,18 @@
 .content {
+  --background: var(--bg-elevated);
+  --shadow: var(--shadow-elevated);
+}
+
+.content {
   padding: 12px;
   min-width: var(--size-128);
   max-width: calc(100vw - 16px);
 
-  background: var(--bg-primary);
+  background: var(--background);
+  backdrop-filter: var(--blur-elevated);
   border-radius: 12px;
   corner-shape: var(--corner-shape);
-  box-shadow: var(--shadow-modal);
+  box-shadow: var(--shadow);
 
   z-index: var(--layer-popover);
   position: relative;

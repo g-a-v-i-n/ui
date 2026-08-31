@@ -1,4 +1,10 @@
 .text {
+  --primary-foreground: var(--gray-12);
+  --secondary-foreground: var(--gray-11);
+  --tertiary-foreground: var(--gray-10);
+}
+
+.text {
   font-family: var(--font-sans);
   text-box-trim: var(--text-box-trim);
   margin: 0;
@@ -6,7 +12,7 @@
 
   color: currentColor;
 
-  /* Sizes come from the css/font.css scale (token names match these: xs..4xl). */
+  /* Sizes come from the css/font.css scale (token names match these: xs..5xl). */
   &[data-size="xs"] {
     font-size: var(--font-size-xs);
     line-height: var(--line-height-xs);
@@ -67,13 +73,13 @@
   }
 
   &[data-color="primary"] {
-    color: var(--gray-12);
+    color: var(--primary-foreground);
   }
   &[data-color="secondary"] {
-    color: var(--gray-11);
+    color: var(--secondary-foreground);
   }
   &[data-color="tertiary"] {
-    color: var(--gray-10);
+    color: var(--tertiary-foreground);
   }
 
   &[data-truncate="true"] {

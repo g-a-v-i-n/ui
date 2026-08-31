@@ -1,42 +1,70 @@
-:root {
-    --shadow-small: 0px 1px 1px 0px var(--black-a1);
-    --shadow-medium: 0px 1px 4px 0px var(--black-a2);
-    --shadow-large: 0px 2px 8px 0px var(--black-a3);
-    --shadow-x-large: 0px 12px 24px 0px var(--black-a3);
+/* Per-element color "arguments" for the shadow tokens: set --shadow-color
+   (drop shadows) or --hairline-color (rims) on an element and its shadow
+   tokens re-tint; unset, the var() fallbacks below carry the defaults.
+   Registered as non-inheriting so a slot tints only the element it's set on,
+   never the subtree. syntax "*" rather than <color>: a typed registration
+   requires an initial-value, which would always win over the fallbacks. */
+@property --shadow-color {
+    syntax: "*";
+    inherits: false;
+}
+@property --hairline-color {
+    syntax: "*";
+    inherits: false;
+}
+
+/* Tokens are assembled on every element (`*`) instead of :root on purpose:
+   a var() inside a custom property is substituted where that property is
+   DEFINED, so :root-level tokens would lock in :root's slot resolution and
+   per-element slots would be inert. Consequence: overriding a whole token
+   (e.g. --shadow-button) for a subtree needs `.scope, .scope *`, as the
+   dark block does. */
+* {
+    --shadow-sm: 0px 1px 1px 0px var(--shadow-color, var(--black-a1));
+    --shadow-md: 0px 2px 4px 0px var(--shadow-color, var(--black-a2));
+    --shadow-lg: 0px 4px 8px 0px var(--shadow-color, var(--black-a3));
+    --shadow-xl: 0px 0px 48px 0px var(--shadow-color, var(--black-a1));
     --shadow-debug: 0 10px 10px 0px var(--black-a11);
 
-    --shadow-hairline-1: 0 0 0 1px var(--gray-a4);
-    --shadow-hairline-2: 0 0 0 1px var(--gray-a5);
-    --shadow-hairline-3: 0 0 0 1px var(--gray-a7);
+    --shadow-hairline-1: 0 0 0 1px var(--hairline-color, var(--gray-a4));
+    --shadow-hairline-2: 0 0 0 1px var(--hairline-color, var(--gray-a5));
+    --shadow-hairline-3: 0 0 0 1px var(--hairline-color, var(--gray-a7));
 
     /* Inset mirrors of the hairlines — same widths/colors, drawn inward. */
-    --shadow-hairline-inset-1: inset 0 0 0 1px var(--gray-a4);
-    --shadow-hairline-inset-2: inset 0 0 0 1px var(--gray-a5);
-    --shadow-hairline-inset-3: inset 0 0 0 1px var(--gray-a7);
+    --shadow-hairline-inset-1: inset 0 0 0 1px var(--hairline-color, var(--gray-a4));
+    --shadow-hairline-inset-2: inset 0 0 0 1px var(--hairline-color, var(--gray-a5));
+    --shadow-hairline-inset-3: inset 0 0 0 1px var(--hairline-color, var(--gray-a7));
 
-    --shadow-button: var(--shadow-hairline-1), var(--shadow-small);
-    --shadow-card: var(--shadow-hairline-1), var(--shadow-small);
-    --shadow-modal: var(--shadow-hairline-1), var(--shadow-x-large);
+    --shadow-button: var(--shadow-hairline-1), var(--shadow-sm);
+    --shadow-card: var(--shadow-hairline-1), var(--shadow-sm);
+    --shadow-modal: var(--shadow-hairline-1), var(--shadow-xl);
+    /* Elevated surfaces (menus, popovers, dialogs, tooltips): rim + soft drop.
+       The rim is the surface's own edge (--border-elevated), not a hairline,
+       so only the drop takes the --shadow-color slot. */
+    --shadow-elevated: 0 0 0 1px var(--border-elevated), 0px 10px 40px 0px var(--shadow-color, var(--black-a3));
 }
 
 
-.dark {
-    --shadow-small: 0px 1px 2px 0px var(--black-a2);
-    --shadow-medium: 0px 1px 4px 0px var(--black-a3);
-    --shadow-large: 0px 2px 8px 0px var(--black-a3);
-    --shadow-x-large: 0px 8px 18px 0px var(--black-a8);
+.dark,
+.dark * {
+    --shadow-sm: 0px 1px 2px 0px var(--shadow-color, var(--black-a2));
+    --shadow-md: 0px 1px 4px 0px var(--shadow-color, var(--black-a3));
+    --shadow-lg: 0px 2px 8px 0px var(--shadow-color, var(--black-a3));
+    --shadow-xl: 0px 8px 18px 0px var(--shadow-color, var(--black-a8));
     --shadow-debug: 0 10px 10px 0px var(--black-a11);
 
-    --shadow-hairline-1: 0 0 0 1px var(--gray-a3);
-    --shadow-hairline-2: 0 0 0 1px var(--gray-a4);
-    --shadow-hairline-3: 0 0 0 1px var(--gray-a6);
+    --shadow-hairline-1: 0 0 0 1px var(--hairline-color, var(--gray-a3));
+    --shadow-hairline-2: 0 0 0 1px var(--hairline-color, var(--gray-a4));
+    --shadow-hairline-3: 0 0 0 1px var(--hairline-color, var(--gray-a6));
 
     /* Inset mirrors of the hairlines — same widths/colors, drawn inward. */
-    --shadow-hairline-inset-1: inset 0 0 0 1px var(--gray-a3);
-    --shadow-hairline-inset-2: inset 0 0 0 1px var(--gray-a4);
-    --shadow-hairline-inset-3: inset 0 0 0 1px var(--gray-a6);
+    --shadow-hairline-inset-1: inset 0 0 0 1px var(--hairline-color, var(--gray-a3));
+    --shadow-hairline-inset-2: inset 0 0 0 1px var(--hairline-color, var(--gray-a4));
+    --shadow-hairline-inset-3: inset 0 0 0 1px var(--hairline-color, var(--gray-a6));
 
-    --shadow-button: var(--shadow-hairline-1), var(--shadow-small);
-    --shadow-card: var(--shadow-hairline-1), var(--shadow-large);
-    --shadow-modal: var(--shadow-hairline-1), var(--shadow-x-large);
+    --shadow-button: var(--shadow-hairline-1), var(--shadow-sm);
+    --shadow-card: var(--shadow-hairline-1), var(--shadow-lg);
+    --shadow-modal: var(--shadow-hairline-1), var(--shadow-xl);
+    /* Elevated surfaces: gray-3 rim (via --border-elevated) + deeper drop. */
+    --shadow-elevated: 0 0 0 1px var(--border-elevated), 0px 16px 32px 0px var(--shadow-color, var(--black-a4));
 }

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SFSymbol } from 'ui/components/sf-symbol';
+import { Icon } from 'ui/components/icon';
 import { Text } from 'ui/components/text';
 import { Tag } from 'ui/components/tag';
 import { Avatar } from 'ui/components/avatar';
@@ -34,7 +34,7 @@ export function SidebarSection() {
               <SidebarItem
                 active={sidebarItem === 'inbox'}
                 onClick={() => setSidebarItem('inbox')}
-                prefixSlot={<SFSymbol symbol="􀈕" size="sm" />}
+                prefixSlot={<Icon icon="folder" size="sm" />}
                 suffixSlot={<Tag>3</Tag>}
               >
                 Inbox
@@ -42,14 +42,14 @@ export function SidebarSection() {
               <SidebarItem
                 active={sidebarItem === 'drafts'}
                 onClick={() => setSidebarItem('drafts')}
-                prefixSlot={<SFSymbol symbol="􀈎" size="sm" />}
+                prefixSlot={<Icon icon="document" size="sm" />}
               >
                 Drafts
               </SidebarItem>
               <SidebarItem
                 active={sidebarItem === 'sent'}
                 onClick={() => setSidebarItem('sent')}
-                prefixSlot={<SFSymbol symbol="􀈟" size="sm" />}
+                prefixSlot={<Icon icon="arrow-up" size="sm" />}
               >
                 Sent
               </SidebarItem>
@@ -81,7 +81,7 @@ export function SidebarSection() {
             </SidebarCollapsibleSection>
           </SidebarContent>
           <SidebarFooter>
-            <SidebarItem prefixSlot={<SFSymbol symbol="􀍟" size="sm" />}>
+            <SidebarItem prefixSlot={<Icon icon="slider-horizontal" size="sm" />}>
               Settings
             </SidebarItem>
           </SidebarFooter>

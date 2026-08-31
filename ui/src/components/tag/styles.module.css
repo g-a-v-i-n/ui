@@ -1,4 +1,47 @@
 .tag {
+  --default-background: var(--gray-11);
+  --default-foreground: var(--gray-0);
+
+  --success-background: var(--grass-10);
+  --success-foreground: var(--bg-base);
+
+  --warning-background: var(--amber-10);
+  --warning-foreground: var(--bg-base);
+
+  --error-background: var(--tomato-10);
+  --error-foreground: var(--bg-base);
+
+  --blue-background: var(--blue-10);
+  --blue-foreground: var(--bg-base);
+
+  /* Secondary: softer tonal fills sharing the Callout background palette. */
+  --secondary-default-background: var(--gray-a3);
+  --secondary-default-foreground: var(--gray-11);
+  --secondary-success-background: var(--grass-a3);
+  --secondary-success-foreground: var(--grass-11);
+  --secondary-warning-background: var(--amber-a3);
+  --secondary-warning-foreground: var(--amber-11);
+  --secondary-error-background: var(--tomato-a3);
+  --secondary-error-foreground: var(--tomato-11);
+  --secondary-blue-background: var(--blue-a3);
+  --secondary-blue-foreground: var(--blue-11);
+
+  /* Outline: the secondary button's hairline ring, no fill. The default ring
+     color comes from the shadow token's own fallback; colored variants tint it
+     through the --hairline-color slot (as the destructive button does). */
+  --outline-shadow: var(--shadow-hairline-1);
+  --outline-default-foreground: var(--gray-11);
+  --outline-success-foreground: var(--grass-11);
+  --outline-success-hairline-color: var(--grass-a4);
+  --outline-warning-foreground: var(--amber-11);
+  --outline-warning-hairline-color: var(--amber-a4);
+  --outline-error-foreground: var(--tomato-11);
+  --outline-error-hairline-color: var(--tomato-a4);
+  --outline-blue-foreground: var(--blue-11);
+  --outline-blue-hairline-color: var(--blue-a4);
+}
+
+.tag {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -13,42 +56,75 @@
   }
 
   &[data-variant="default"] {
-    background-color: var(--gray-a4);
-    color: var(--gray-12);
+    background-color: var(--default-background);
+    color: var(--default-foreground);
   }
 
   &[data-variant="success"] {
-    background-color: var(--lime-10);
-    color: var(--bg-base);
+    background-color: var(--success-background);
+    color: var(--success-foreground);
   }
 
   &[data-variant="warning"] {
-    background-color: var(--amber-10);
-    color: var(--bg-base);
+    background-color: var(--warning-background);
+    color: var(--warning-foreground);
   }
 
   &[data-variant="error"] {
-    background-color: var(--tomato-10);
-    color: var(--bg-base);
+    background-color: var(--error-background);
+    color: var(--error-foreground);
   }
 
-  /* Secondary: softer tonal fills sharing the Callout background palette. */
+  &[data-variant="blue"] {
+    background-color: var(--blue-background);
+    color: var(--blue-foreground);
+  }
+
   &[data-secondary="true"] {
     &[data-variant="default"] {
-      background-color: var(--gray-a3);
-      color: var(--gray-12);
+      background-color: var(--secondary-default-background);
+      color: var(--secondary-default-foreground);
     }
     &[data-variant="success"] {
-      background-color: var(--lime-a3);
-      color: var(--lime-10);
+      background-color: var(--secondary-success-background);
+      color: var(--secondary-success-foreground);
     }
     &[data-variant="warning"] {
-      background-color: var(--amber-a3);
-      color: var(--amber-10);
+      background-color: var(--secondary-warning-background);
+      color: var(--secondary-warning-foreground);
     }
     &[data-variant="error"] {
-      background-color: var(--tomato-a3);
-      color: var(--tomato-10);
+      background-color: var(--secondary-error-background);
+      color: var(--secondary-error-foreground);
+    }
+    &[data-variant="blue"] {
+      background-color: var(--secondary-blue-background);
+      color: var(--secondary-blue-foreground);
+    }
+  }
+
+  &[data-outline="true"] {
+    background-color: transparent;
+    box-shadow: var(--outline-shadow);
+
+    &[data-variant="default"] {
+      color: var(--outline-default-foreground);
+    }
+    &[data-variant="success"] {
+      color: var(--outline-success-foreground);
+      --hairline-color: var(--outline-success-hairline-color);
+    }
+    &[data-variant="warning"] {
+      color: var(--outline-warning-foreground);
+      --hairline-color: var(--outline-warning-hairline-color);
+    }
+    &[data-variant="error"] {
+      color: var(--outline-error-foreground);
+      --hairline-color: var(--outline-error-hairline-color);
+    }
+    &[data-variant="blue"] {
+      color: var(--outline-blue-foreground);
+      --hairline-color: var(--outline-blue-hairline-color);
     }
   }
 }

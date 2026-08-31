@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Children } from "react";
 import { Text } from "../text";
 import styles from "./styles.module.css";
 
@@ -40,10 +40,17 @@ export const Button = ({
       {...props}
     >
       {prefixSlot && <span className={styles.prefix}>{prefixSlot}</span>}
-      {children != null && (
-        <Text as="span" size="md" weight="medium">
-          {children}
-        </Text>
+      {/* Only wrap plain text in Text — element children (icons) stay direct
+          flex items so align-items centers them instead of baseline-sitting
+          inside an inline text span. */}
+      {Children.map(children, (child) =>
+        typeof child === "string" || typeof child === "number" ? (
+          <Text as="span" size="md" weight="medium">
+            {child}
+          </Text>
+        ) : (
+          child
+        )
       )}
       {suffixSlot && <span className={styles.suffix}>{suffixSlot}</span>}
     </button>

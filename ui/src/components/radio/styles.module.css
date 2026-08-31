@@ -1,4 +1,14 @@
 .root {
+  --background: var(--gray-1);
+  --shadow: var(--shadow-button);
+  --background-checked: var(--blue-9);
+  --shadow-checked: var(--shadow-none);
+  --accent-gradient: var(--gradient-accent);
+
+  --indicator-background: #fff;
+}
+
+.root {
   position: relative;
   width: var(--size-18);
   height: var(--size-18);
@@ -10,8 +20,8 @@
   flex: none;
   padding: 0;
   border: none;
-  background-color: var(--gray-1);
-  box-shadow: var(--shadow-button);
+  background-color: var(--background);
+  box-shadow: var(--shadow);
 
   transition:
     background-color var(--duration-120) var(--ease-out-quad),
@@ -25,15 +35,15 @@
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    background-color: var(--blue-9);
-    background-image: var(--gradient-accent);
+    background-color: var(--background-checked);
+    background-image: var(--accent-gradient);
     opacity: 0;
     transition: opacity var(--duration-120) var(--ease-out-quad);
   }
 
   &[data-state="checked"] {
-    background-color: var(--blue-9);
-    box-shadow: var(--shadow-none);
+    background-color: var(--background-checked);
+    box-shadow: var(--shadow-checked);
   }
 
   &[data-state="checked"]::before {
@@ -53,7 +63,7 @@
   width: var(--size-8);
   height: var(--size-8);
   border-radius: 50%;
-  background-color: #fff;
+  background-color: var(--indicator-background);
 
   animation-timing-function: var(--ease-out-quad);
   animation-fill-mode: both;

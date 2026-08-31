@@ -1,9 +1,14 @@
 /* Fullscreen takeover — the "overlay" is an opaque app-background surface
    rather than a scrim, with the content layered above it. */
 .overlay {
+  --overlay-background: var(--bg-elevated);
+}
+
+.overlay {
   position: fixed;
   inset: 0;
-  background: var(--bg-base);
+  background: var(--overlay-background);
+  backdrop-filter: var(--blur-elevated);
   z-index: var(--layer-dialog-overlay);
 
   animation-duration: var(--duration-180);

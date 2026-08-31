@@ -26,13 +26,6 @@
   align-items: center;
 }
 
-.title {
-  font-family: var(--font-sans);
-  font-size: var(--font-size-sm);
-  line-height: var(--line-height-sm);
-  color: var(--fg-secondary);
-}
-
 .scale {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -55,10 +48,6 @@
   display: block;
   margin-top: var(--size-4);
   overflow: hidden;
-  font-family: var(--font-mono, ui-monospace, monospace);
-  font-size: var(--font-size-xs);
-  line-height: var(--line-height-xs);
-  color: var(--fg-tertiary);
   text-align: center;
   text-overflow: ellipsis;
 }

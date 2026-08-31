@@ -1,14 +1,33 @@
 /* Sidebar — a column surface with a hairline edge, header/footer, and
    menu-style nav items grouped into (optionally collapsible) sections. */
 .root {
+  --background: var(--bg-secondary);
+  --edge-shadow: inset -1px 0 0 var(--gray-a3);
+  --footer-shadow: inset 0 1px 0 var(--gray-a3);
+
+  --item-foreground: var(--fg-secondary);
+  --item-background-hover: var(--gray-a3);
+  --item-foreground-hover: var(--fg-primary);
+  --item-background-selected: var(--gray-a4);
+  --item-foreground-selected: var(--fg-primary);
+  --item-icon-color: var(--fg-tertiary);
+  --item-icon-color-hover: var(--fg-primary);
+
+  --separator-background: var(--gray-a3);
+
+  --collapsible-trigger-background-hover: var(--gray-a3);
+  --chevron-color: var(--fg-tertiary);
+}
+
+.root {
   display: flex;
   flex-direction: column;
   width: var(--size-256);
   height: 100%;
   flex: none;
 
-  background: var(--bg-secondary);
-  box-shadow: inset -1px 0 0 var(--gray-a3);
+  background: var(--background);
+  box-shadow: var(--edge-shadow);
 }
 
 .header {
@@ -30,7 +49,7 @@
 
 .footer {
   padding: var(--size-8);
-  box-shadow: inset 0 1px 0 var(--gray-a3);
+  box-shadow: var(--footer-shadow);
 }
 
 .section {
@@ -55,7 +74,7 @@
   border-radius: 8px;
   corner-shape: var(--corner-shape);
   background: transparent;
-  color: var(--fg-secondary);
+  color: var(--item-foreground);
   text-decoration: none;
   text-align: left;
   cursor: pointer;
@@ -67,17 +86,18 @@
     color var(--duration-120) var(--ease-in-out-quad);
 
   &:hover {
-    background: var(--gray-a3);
-    color: var(--fg-primary);
+    background: var(--item-background-hover);
+    color: var(--item-foreground-hover);
   }
 
   &[data-active] {
-    background: var(--gray-a4);
-    color: var(--fg-primary);
+    background: var(--item-background-selected);
+    color: var(--item-foreground-selected);
   }
 
   &:focus-visible {
     outline: 2px solid var(--focus-ring-color);
+    animation: var(--focus-ring-animation);
     outline-offset: -1px;
   }
 
@@ -105,7 +125,7 @@
   span {
     width: var(--size-16);
     height: var(--size-16);
-    color: var(--fg-tertiary);
+    color: var(--item-icon-color);
     transition: color var(--duration-120) var(--ease-in-out-quad);
   }
 }
@@ -114,12 +134,12 @@
 .item:hover .prefix svg,
 .item[data-active] .prefix span,
 .item[data-active] .prefix svg {
-  color: var(--fg-primary);
+  color: var(--item-icon-color-hover);
 }
 
 .separator {
   height: var(--size-1);
-  background: var(--gray-a3);
+  background: var(--separator-background);
   margin: 4px 8px;
   flex: none;
 }
@@ -142,11 +162,12 @@
   transition: background-color var(--duration-120) var(--ease-in-out-quad);
 
   &:hover {
-    background: var(--gray-a3);
+    background: var(--collapsible-trigger-background-hover);
   }
 
   &:focus-visible {
     outline: 2px solid var(--focus-ring-color);
+    animation: var(--focus-ring-animation);
     outline-offset: -1px;
   }
 
@@ -159,7 +180,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--fg-tertiary);
+  color: var(--chevron-color);
   transform: rotate(-90deg);
   transition: transform var(--duration-180) var(--ease-out-quad);
 }

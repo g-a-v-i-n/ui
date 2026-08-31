@@ -2,13 +2,15 @@ import type { ReactNode } from "react";
 import { Text } from "../text";
 import styles from "./styles.module.css";
 
-type Variant = "default" | "success" | "warning" | "error";
+type Variant = "default" | "success" | "warning" | "error" | "blue";
 
 type TagProps = {
   children: ReactNode;
   variant?: Variant;
   /** Softer, tonal styling using the Callout background palette. */
   secondary?: boolean;
+  /** No fill, hairline ring — mirrors the secondary button's outline. */
+  outline?: boolean;
   round?: boolean;
   mono?: boolean;
   className?: string;
@@ -18,6 +20,7 @@ export const Tag = ({
   children,
   variant = "default",
   secondary = false,
+  outline = false,
   round = false,
   mono = false,
   className = "",
@@ -26,6 +29,7 @@ export const Tag = ({
     <span
       data-variant={variant}
       data-secondary={secondary || undefined}
+      data-outline={outline || undefined}
       data-round={round || undefined}
       className={`${styles.tag} ${className}`}
     >

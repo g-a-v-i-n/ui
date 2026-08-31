@@ -6,11 +6,12 @@ import {
   TableHead,
   TableCell,
 } from 'ui/components/table';
+import { Text } from 'ui/components/text';
 import { Section } from '../../Section';
 import styles from './styles.module.css';
 
 // The font-size scale, largest → smallest. Token names match the `Text` size
-// prop one-to-one (xs..4xl). Values mirror css/font.css.
+// prop one-to-one (xs..5xl). Values mirror css/font.css.
 const SCALE = [
   { token: '5xl', fontSize: '64px', lineHeight: '1.05', letterSpacing: '-1.5px' },
   { token: '4xl', fontSize: '48px', lineHeight: '1.1', letterSpacing: '-1px' },
@@ -19,8 +20,8 @@ const SCALE = [
   { token: 'xl', fontSize: '20px', lineHeight: '1.4', letterSpacing: '-0.4px' },
   { token: 'lg', fontSize: '16px', lineHeight: '1.4', letterSpacing: '-0.32px' },
   { token: 'md', fontSize: '14px', lineHeight: '1.5', letterSpacing: '-0.15px' },
-  { token: 'sm', fontSize: '13px', lineHeight: '1.4', letterSpacing: '-0.08px' },
-  { token: 'xs', fontSize: '12px', lineHeight: '1.4', letterSpacing: '0px' },
+  { token: 'sm', fontSize: '12px', lineHeight: '1.4', letterSpacing: '0px' },
+  { token: 'xs', fontSize: '11px', lineHeight: '1.4', letterSpacing: '0.08px' },
 ];
 
 export function FontScaleSection() {
@@ -41,10 +42,14 @@ export function FontScaleSection() {
           {SCALE.map(({ token, fontSize, lineHeight, letterSpacing }) => (
             <TableRow key={token}>
               <TableCell>
-                <code className={styles.token}>{token}</code>
+                <Text as="code" size="sm" mono className={styles.token}>
+                  {token}
+                </Text>
               </TableCell>
               <TableCell>
-                <code className={styles.value}>--font-size-{token}</code>
+                <Text as="code" size="sm" mono className={styles.value}>
+                  --font-size-{token}
+                </Text>
               </TableCell>
               <TableCell>
                 <span

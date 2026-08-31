@@ -1,3 +1,7 @@
+.message {
+  --message-color: var(--tomato-9);
+}
+
 .field {
   display: flex;
   flex-direction: column;
@@ -12,10 +16,7 @@
   overflow: hidden;
   interpolate-size: allow-keywords;
 
-  font-family: var(--font-sans);
-  font-size: var(--font-size-xs);
-  line-height: var(--line-height-xs);
-  color: var(--red-9);
+  color: var(--message-color);
 
   animation: formMessageIn var(--duration-180) var(--ease-out-quad);
 }

@@ -44,7 +44,7 @@ export const AccordionTrigger = ({
         ref={ref}
         className={`${styles.trigger} ${className}`}
       >
-        <Text as="span" size="sm" weight="medium" color="primary">
+        <Text as="span" size="md" weight="medium" color="primary">
           {children}
         </Text>
         <span className={styles.chevron} aria-hidden="true">
@@ -68,7 +68,7 @@ export const AccordionContent = ({
       className={`${styles.content} ${className}`}
     >
       <div className={styles.contentInner}>
-        <Text as="div" size="sm" color="secondary">
+        <Text as="div" size="md" color="secondary">
           {children}
         </Text>
       </div>

@@ -20,8 +20,8 @@ export function ToastSection() {
       <ToastRoot open={toastOpen} onOpenChange={setToastOpen} duration={4000}>
         <ToastTitle>File saved</ToastTitle>
         <ToastDescription>Your changes have been saved.</ToastDescription>
-        <ToastAction altText="Undo save" asChild>
-          <button onClick={() => setToastOpen(false)}>Undo</button>
+        <ToastAction altText="Undo save" onClick={() => setToastOpen(false)}>
+          Undo
         </ToastAction>
         <ToastClose />
       </ToastRoot>

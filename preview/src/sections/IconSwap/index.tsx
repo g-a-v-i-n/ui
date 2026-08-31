@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SFSymbol } from 'ui/components/sf-symbol';
+import { Icon } from 'ui/components/icon';
 import { Button } from 'ui/components/button';
 import { IconSwap } from 'ui/components/icon-swap';
 import { Section } from '../../Section';
@@ -17,7 +17,7 @@ export function IconSwapSection() {
         onClick={() => setPlaying((p) => !p)}
       >
         <IconSwap swapKey={playing}>
-          <SFSymbol symbol={playing ? '􀊆' : '􀊄'} size="sm" />
+          <Icon icon={playing ? 'pause-fill' : 'play-fill'} size="sm" />
         </IconSwap>
       </Button>
       <Button
@@ -25,8 +25,8 @@ export function IconSwapSection() {
         onClick={() => setStarred((s) => !s)}
         prefixSlot={
           <IconSwap swapKey={starred}>
-            <SFSymbol
-              symbol={starred ? '􀋃' : '􀋂'}
+            <Icon
+              icon={starred ? 'star-fill' : 'star'}
               size="sm"
               style={starred ? { color: 'var(--amber-10)' } : undefined}
             />
