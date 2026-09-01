@@ -19,7 +19,7 @@
  *   --out <dir>      (optional)  Output dir. Default: ui/src/components/icon/static.
  */
 
-import { writeFile, mkdir, readdir, readFile, rm, access } from "node:fs/promises";
+import { writeFile, mkdir, readdir, readFile, rm } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { fromHtml } from "hast-util-from-html";
@@ -263,14 +263,21 @@ ${children}
 
 /**
  * Alternate public names for the same glyph. The Figma pages carry both names,
- * so a full run regenerates the alias files; pruning deletes them and the
- * registry maps each alias name onto the canonical component instead, keeping
- * the public name union unchanged with one module per glyph.
+ * so a full run regenerates the alias files; pruning deletes an alias file
+ * only while its body still matches the canonical one (the frames can diverge
+ * in Figma), and the registry then maps the alias name onto the canonical
+ * component — same public name union, one module per glyph.
  */
 const ALIAS_NAMES: Record<string, string> = {
   "x-mark": "xmark",
   "info-circle-xmark": "circle-xmark",
 };
+
+/** Icon sources are equal when only the exported component name differs. */
+function sameGlyph(a: string, b: string): boolean {
+  const strip = (src: string) => src.replace(/export const \w+ =/, "export const _ =");
+  return strip(a) === strip(b);
+}
 
 /**
  * Remove redundant generated files before building the registry: alias-named
@@ -286,10 +293,19 @@ async function pruneRedundantIcons(staticDir: string) {
     const weightDir = path.join(staticDir, weight);
 
     for (const [alias, canonical] of Object.entries(ALIAS_NAMES)) {
-      const hasCanonical = await access(path.join(weightDir, `${canonical}.tsx`))
-        .then(() => true)
-        .catch(() => false);
-      if (hasCanonical) await rm(path.join(weightDir, `${alias}.tsx`), { force: true });
+      const aliasPath = path.join(weightDir, `${alias}.tsx`);
+      const aliasSrc = await readFile(aliasPath, "utf8").catch(() => null);
+      if (aliasSrc === null) continue;
+      const canonicalSrc = await readFile(path.join(weightDir, `${canonical}.tsx`), "utf8").catch(
+        () => null
+      );
+      if (canonicalSrc !== null && sameGlyph(aliasSrc, canonicalSrc)) {
+        await rm(aliasPath);
+      } else {
+        console.warn(
+          `  ! keeping ${weight}/${alias}.tsx — it no longer matches ${canonical}.tsx`
+        );
+      }
     }
 
     if (weight === "normal") continue;
