@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type ComponentType } from 'react';
 import { Text } from 'ui/components/text';
 import { Theme } from 'ui/components/theme';
 import { TooltipProvider } from 'ui/components/tooltip';
@@ -6,59 +6,97 @@ import { ToastProvider, ToastViewport } from 'ui/components/toast';
 
 import { TestDropdownMenuProvider } from './TestDropdownMenuProvider';
 
-import { TextSection } from './sections/Text';
-import { ColorScaleExperimentSection } from './sections/ColorScaleExperiment';
-import { FontScaleSection } from './sections/FontScale';
-import { IconSection } from './sections/Icon';
-import { ButtonSection } from './sections/Button';
-import { CheckboxSection } from './sections/Checkbox';
-import { SwitchSection } from './sections/Switch';
-import { RadioSection } from './sections/Radio';
-import { ToggleGroupSection } from './sections/ToggleGroup';
-import { TagSection } from './sections/Tag';
-import { MiddleDotSection } from './sections/MiddleDot';
-import { PieChartSection } from './sections/PieChart';
-import { TextInputSection } from './sections/TextInput';
-import { TextAreaSection } from './sections/TextArea';
-import { PasswordInputSection } from './sections/PasswordInput';
-import { OTPInputSection } from './sections/OTPInput';
-import { CalloutSection } from './sections/Callout';
-import { TooltipSection } from './sections/Tooltip';
-import { DialogSection } from './sections/Dialog';
-import { DrawerSection } from './sections/Drawer';
-import { MenuPrimitivesSection } from './sections/MenuPrimitives';
-import { ContextMenuSection } from './sections/ContextMenu';
-import { DropdownMenuSection } from './sections/DropdownMenu';
-import { LabelSection } from './sections/Label';
-import { ToggleSection } from './sections/Toggle';
-import { ToolbarSection } from './sections/Toolbar';
-import { TabsSection } from './sections/Tabs';
-import { AccordionSection } from './sections/Accordion';
-import { CollapsibleSection } from './sections/Collapsible';
-import { SelectSection } from './sections/Select';
-import { ComboboxSection } from './sections/Combobox';
-import { SliderSection } from './sections/Slider';
-import { SpinnerSection } from './sections/Spinner';
-import { ProgressSection } from './sections/Progress';
-import { AvatarSection } from './sections/Avatar';
-import { TableSection } from './sections/Table';
-import { SeparatorSection } from './sections/Separator';
-import { CardSection } from './sections/Card';
-import { CarouselSection } from './sections/Carousel';
-import { ScrollAreaSection } from './sections/ScrollArea';
-import { IconSwapSection } from './sections/IconSwap';
-import { GradientMaskSection } from './sections/GradientMask';
-import { PopoverSection } from './sections/Popover';
-import { HoverCardSection } from './sections/HoverCard';
-import { AlertDialogSection } from './sections/AlertDialog';
-import { FullscreenModalSection } from './sections/FullscreenModal';
-import { MenubarSection } from './sections/Menubar';
-import { NavigationMenuSection } from './sections/NavigationMenu';
-import { ToastSection } from './sections/Toast';
-import { SidebarSection } from './sections/Sidebar';
-import { SplitPaneSection } from './sections/SplitPane';
-import { AspectRatioSection } from './sections/AspectRatio';
-import { FormSection } from './sections/Form';
+/* Deliberate, non-alphabetical presentation order. Every folder under
+   ./sections must appear here and export `<Name>Section`; mismatches warn in
+   dev below so a new section can't silently vanish. */
+const ORDER = [
+  'Text',
+  'FontScale',
+  'ColorScaleExperiment',
+  'Icon',
+  'Button',
+  'Checkbox',
+  'Switch',
+  'Radio',
+  'ToggleGroup',
+  'Tag',
+  'MiddleDot',
+  'PieChart',
+  'TextInput',
+  'TextArea',
+  'PasswordInput',
+  'OTPInput',
+  'Callout',
+  'Tooltip',
+  'Dialog',
+  'Drawer',
+  'MenuPrimitives',
+  'ContextMenu',
+  'DropdownMenu',
+  'Label',
+  'Toggle',
+  'Toolbar',
+  'Tabs',
+  'Accordion',
+  'Collapsible',
+  'Select',
+  'Combobox',
+  'Slider',
+  'Spinner',
+  'Progress',
+  'Avatar',
+  'Table',
+  'Separator',
+  'Card',
+  'Carousel',
+  'ScrollArea',
+  'IconSwap',
+  'GradientMask',
+  'Popover',
+  'HoverCard',
+  'AlertDialog',
+  'FullscreenModal',
+  'Menubar',
+  'NavigationMenu',
+  'Toast',
+  'Sidebar',
+  'SplitPane',
+  'AspectRatio',
+  'Form',
+];
+
+const modules = import.meta.glob<Record<string, ComponentType>>(
+  './sections/*/index.tsx',
+  { eager: true }
+);
+
+const sectionsByName = new Map<string, ComponentType>();
+for (const [path, mod] of Object.entries(modules)) {
+  const name = path.split('/')[2];
+  const component = mod[`${name}Section`];
+  if (!component) {
+    throw new Error(`sections/${name}/index.tsx must export ${name}Section`);
+  }
+  sectionsByName.set(name, component);
+}
+
+if (import.meta.env.DEV) {
+  for (const name of ORDER) {
+    if (!sectionsByName.has(name)) {
+      console.warn(`ORDER lists "${name}" but sections/${name}/ doesn't exist`);
+    }
+  }
+  for (const name of sectionsByName.keys()) {
+    if (!ORDER.includes(name)) {
+      console.warn(`sections/${name}/ is not listed in ORDER and won't render`);
+    }
+  }
+}
+
+const sections = ORDER.flatMap((name) => {
+  const Component = sectionsByName.get(name);
+  return Component ? [{ name, Component }] : [];
+});
 
 function App() {
   const [theme, setTheme] = useState<'light' | 'dark' | 'system'>('system');
@@ -92,59 +130,9 @@ function App() {
                 </label>
               </header>
 
-              <TextSection />
-              <FontScaleSection />
-              <ColorScaleExperimentSection />
-              <IconSection />
-              <ButtonSection />
-              <CheckboxSection />
-              <SwitchSection />
-              <RadioSection />
-              <ToggleGroupSection />
-              <TagSection />
-              <MiddleDotSection />
-              <PieChartSection />
-              <TextInputSection />
-              <TextAreaSection />
-              <PasswordInputSection />
-              <OTPInputSection />
-              <CalloutSection />
-              <TooltipSection />
-              <DialogSection />
-              <DrawerSection />
-              <MenuPrimitivesSection />
-              <ContextMenuSection />
-              <DropdownMenuSection />
-              <LabelSection />
-              <ToggleSection />
-              <ToolbarSection />
-              <TabsSection />
-              <AccordionSection />
-              <CollapsibleSection />
-              <SelectSection />
-              <ComboboxSection />
-              <SliderSection />
-              <SpinnerSection />
-              <ProgressSection />
-              <AvatarSection />
-              <TableSection />
-              <SeparatorSection />
-              <CardSection />
-              <CarouselSection />
-              <ScrollAreaSection />
-              <IconSwapSection />
-              <GradientMaskSection />
-              <PopoverSection />
-              <HoverCardSection />
-              <AlertDialogSection />
-              <FullscreenModalSection />
-              <MenubarSection />
-              <NavigationMenuSection />
-              <ToastSection />
-              <SidebarSection />
-              <SplitPaneSection />
-              <AspectRatioSection />
-              <FormSection />
+              {sections.map(({ name, Component }) => (
+                <Component key={name} />
+              ))}
             </main>
           </TestDropdownMenuProvider>
           <ToastViewport />

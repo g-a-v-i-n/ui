@@ -15,6 +15,14 @@ import {
 } from 'ui/components/toolbar';
 import { Section } from '../../Section';
 
+const runMenu = (
+  <>
+    <DropdownMenuItem>Run all</DropdownMenuItem>
+    <DropdownMenuItem>Run selection</DropdownMenuItem>
+    <DropdownMenuItem suffixSlot="⌘R">Run again</DropdownMenuItem>
+  </>
+);
+
 export function ToolbarSection() {
   const [inputToolbar, setInputToolbar] = useState('Untitled');
   const [toolbarMarks, setToolbarMarks] = useState<string[]>(['bold']);
@@ -67,13 +75,7 @@ export function ToolbarSection() {
           tooltip="Run"
           prefixSlot={<Icon icon="play-fill" size="md" />}
           onClick={() => console.log('run')}
-          dropdownContent={
-            <>
-              <DropdownMenuItem>Run all</DropdownMenuItem>
-              <DropdownMenuItem>Run selection</DropdownMenuItem>
-              <DropdownMenuItem suffixSlot="⌘R">Run again</DropdownMenuItem>
-            </>
-          }
+          dropdownContent={runMenu}
         >
           Run
         </ToolbarSplitButton>
@@ -83,13 +85,7 @@ export function ToolbarSection() {
           aria-label="Run"
           prefixSlot={<Icon icon="play-fill" size="md" />}
           onClick={() => console.log('run')}
-          dropdownContent={
-            <>
-              <DropdownMenuItem>Run all</DropdownMenuItem>
-              <DropdownMenuItem>Run selection</DropdownMenuItem>
-              <DropdownMenuItem suffixSlot="⌘R">Run again</DropdownMenuItem>
-            </>
-          }
+          dropdownContent={runMenu}
         />
         </ToolbarGroup>
         <ToolbarLink href="#" target="_blank">

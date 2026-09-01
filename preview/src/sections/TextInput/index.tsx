@@ -13,8 +13,7 @@ export function TextInputSection() {
   const [inputToolbar, setInputToolbar] = useState('Untitled');
 
   return (
-    <Section title="TextInput">
-      <div className={styles.column}>
+    <Section title="TextInput" layout="column" gap={12}>
         <TextInput
           value={inputDefault}
           onChange={(e) => setInputDefault(e.target.value)}
@@ -94,7 +93,6 @@ export function TextInputSection() {
             </Text>
           }
         />
-      </div>
     </Section>
   );
 }

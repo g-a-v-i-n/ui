@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Checkbox } from 'ui/components/checkbox';
 import { CheckboxRow } from 'ui/components/checkbox-row';
 import { Section } from '../../Section';
-import styles from './styles.module.css';
 
 export function CheckboxSection() {
   const [cbA, setCbA] = useState(false);
@@ -15,7 +14,7 @@ export function CheckboxSection() {
       <Checkbox id="cb-b" checked={cbB} onCheckedChange={(v) => setCbB(Boolean(v))} />
       <Checkbox id="cb-disabled" disabled />
       <Checkbox id="cb-disabled-checked" checked disabled />
-      <div className={styles.rowBox}>
+      <div style={{ minWidth: 240 }}>
         <CheckboxRow
           id="cb-row"
           label="Subscribe to updates"

@@ -5,12 +5,11 @@ import {
   AccordionContent,
 } from 'ui/components/accordion';
 import { Section } from '../../Section';
-import styles from './styles.module.css';
 
 export function AccordionSection() {
   return (
     <Section title="Accordion">
-      <div className={styles.wrap}>
+      <div style={{ width: 360 }}>
         <AccordionRoot type="single" collapsible defaultValue="item-1">
           <AccordionItem value="item-1">
             <AccordionTrigger>Is it accessible?</AccordionTrigger>

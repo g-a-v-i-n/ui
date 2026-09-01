@@ -1,11 +1,18 @@
 import React from 'react';
 import { Text } from 'ui/components/text';
 
+/* layout="column" stacks the body (children stretch full width — content
+   that shouldn't fill sets its own width); gap overrides the 16px default
+   so sections keep their tighter spacing. */
 export function Section({
   title,
+  layout = 'row',
+  gap,
   children,
 }: {
   title: string;
+  layout?: 'row' | 'column';
+  gap?: number;
   children: React.ReactNode;
 }) {
   return (
@@ -20,7 +27,12 @@ export function Section({
       >
         {title}
       </Text>
-      <div className="section-body">{children}</div>
+      <div
+        className={layout === 'column' ? 'section-body section-body-column' : 'section-body'}
+        style={gap !== undefined ? { gap } : undefined}
+      >
+        {children}
+      </div>
     </section>
   );
 }

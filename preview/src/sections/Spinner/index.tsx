@@ -1,7 +1,6 @@
 import { Spinner } from 'ui/components/spinner';
 import { Button } from 'ui/components/button';
 import { Section } from '../../Section';
-import styles from './styles.module.css';
 
 export function SpinnerSection() {
   return (
@@ -9,7 +8,7 @@ export function SpinnerSection() {
       <Spinner size="sm" />
       <Spinner />
       <Spinner size="lg" />
-      <span className={styles.blueSpinner}>
+      <span style={{ color: 'var(--blue-9)', display: 'inline-flex' }}>
         <Spinner />
       </span>
       <Button disabled prefixSlot={<Spinner size="sm" />}>

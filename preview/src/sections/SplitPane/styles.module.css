@@ -6,26 +6,11 @@
   overflow: hidden;
 }
 
-.paneSecondary {
+/* One pane look, tinted per slot via --pane-background. */
+.pane {
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--bg-secondary);
-}
-
-.panePrimary {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--bg-primary);
-}
-
-.paneTertiary {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--bg-tertiary);
+  background: var(--pane-background);
 }

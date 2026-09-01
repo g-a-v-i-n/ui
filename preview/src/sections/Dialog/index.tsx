@@ -17,7 +17,7 @@ export function DialogSection() {
         <DialogTrigger>
           <Button variant="secondary">Open dialog</Button>
         </DialogTrigger>
-        <DialogContent className={styles.content}>
+        <DialogContent>
           <DialogTitle>Confirm action</DialogTitle>
           <DialogDescription>
             This is a dialog rendered from the ui package. Press escape or click outside to

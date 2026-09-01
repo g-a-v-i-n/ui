@@ -1,7 +1,6 @@
 import { Button } from 'ui/components/button';
 import { Tooltip } from 'ui/components/tooltip';
 import { Section } from '../../Section';
-import styles from './styles.module.css';
 
 export function TooltipSection() {
   return (
@@ -15,7 +14,7 @@ export function TooltipSection() {
       <Tooltip content="On the right" side="right">
         <Button variant="secondary">Side right</Button>
       </Tooltip>
-      <div className={styles.padded}>
+      <div style={{ paddingTop: 48 }}>
         <Tooltip content="Always visible" open>
           <Button variant="secondary">Static (always open)</Button>
         </Tooltip>

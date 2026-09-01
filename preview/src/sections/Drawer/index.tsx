@@ -8,7 +8,6 @@ import {
   DrawerClose,
 } from 'ui/components/drawer';
 import { Section } from '../../Section';
-import styles from './styles.module.css';
 
 export function DrawerSection() {
   return (
@@ -24,7 +23,7 @@ export function DrawerSection() {
               A slide-in panel anchored to the {side} edge. Press escape or
               click the overlay to dismiss.
             </DrawerDescription>
-            <div className={styles.footer}>
+            <div style={{ marginTop: 'auto', display: 'flex', justifyContent: 'flex-end' }}>
               <DrawerClose asChild>
                 <Button variant="secondary">Close</Button>
               </DrawerClose>

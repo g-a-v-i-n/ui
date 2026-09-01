@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   TableRoot,
   TableHeader,
@@ -11,20 +12,24 @@ import { Section } from '../../Section';
 import styles from './styles.module.css';
 
 // The font-size scale, largest → smallest. Token names match the `Text` size
-// prop one-to-one (xs..5xl). Values mirror css/font.css.
-const SCALE = [
-  { token: '5xl', fontSize: '64px', lineHeight: '1.05', letterSpacing: '-1.5px' },
-  { token: '4xl', fontSize: '48px', lineHeight: '1.1', letterSpacing: '-1px' },
-  { token: '3xl', fontSize: '32px', lineHeight: '1.2', letterSpacing: '-0.6px' },
-  { token: '2xl', fontSize: '24px', lineHeight: '1.3', letterSpacing: '-0.5px' },
-  { token: 'xl', fontSize: '20px', lineHeight: '1.4', letterSpacing: '-0.4px' },
-  { token: 'lg', fontSize: '16px', lineHeight: '1.4', letterSpacing: '-0.32px' },
-  { token: 'md', fontSize: '14px', lineHeight: '1.5', letterSpacing: '-0.15px' },
-  { token: 'sm', fontSize: '12px', lineHeight: '1.4', letterSpacing: '0px' },
-  { token: 'xs', fontSize: '11px', lineHeight: '1.4', letterSpacing: '0.08px' },
-];
+// prop one-to-one (xs..5xl).
+const TOKENS = ['5xl', '4xl', '3xl', '2xl', 'xl', 'lg', 'md', 'sm', 'xs'] as const;
+
+/* Resolve the values from the live custom properties so the table can never
+   drift from css/font.css. */
+function readScale() {
+  const cs = getComputedStyle(document.documentElement);
+  const read = (name: string) => cs.getPropertyValue(name).trim() || '—';
+  return TOKENS.map((token) => ({
+    token,
+    fontSize: read(`--font-size-${token}`),
+    lineHeight: read(`--line-height-${token}`),
+    letterSpacing: read(`--letter-spacing-${token}`),
+  }));
+}
 
 export function FontScaleSection() {
+  const [scale] = useState(readScale);
   return (
     <Section title="Font scale">
       <TableRoot>
@@ -39,7 +44,7 @@ export function FontScaleSection() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {SCALE.map(({ token, fontSize, lineHeight, letterSpacing }) => (
+          {scale.map(({ token, fontSize, lineHeight, letterSpacing }) => (
             <TableRow key={token}>
               <TableCell>
                 <Text as="code" size="sm" mono className={styles.token}>

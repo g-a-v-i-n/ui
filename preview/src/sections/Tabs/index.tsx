@@ -6,12 +6,11 @@ import {
   TabsContent,
 } from 'ui/components/tabs';
 import { Section } from '../../Section';
-import styles from './styles.module.css';
 
 export function TabsSection() {
   return (
     <Section title="Tabs">
-      <TabsRoot defaultValue="account" className={styles.tabs}>
+      <TabsRoot defaultValue="account" style={{ width: 360 }}>
         <TabsList>
           <TabsTrigger value="account">Account</TabsTrigger>
           <TabsTrigger value="password">Password</TabsTrigger>

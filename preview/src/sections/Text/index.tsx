@@ -1,12 +1,11 @@
 import { Text } from 'ui/components/text';
+import styles from './styles.module.css';
 import { Link } from 'ui/components/link';
 import { Section } from '../../Section';
-import styles from './styles.module.css';
 
 export function TextSection() {
   return (
-    <Section title="Text">
-      <div className={styles.column}>
+    <Section title="Text" layout="column" gap={8}>
         <Text as="h1" size="2xl" weight="semibold">
           Heading 2xl semibold
         </Text>
@@ -70,7 +69,6 @@ export function TextSection() {
         <Text size="sm" mono color="secondary">
           mono: const version = "0.0.1";
         </Text>
-      </div>
     </Section>
   );
 }
