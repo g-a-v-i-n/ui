@@ -1,5 +1,5 @@
 .root {
-  --background: var(--bg-quaternary);
+  --background: var(--bg-tertiary);
 
   --item-foreground: var(--gray-9);
   --item-foreground-hover: var(--gray-12);

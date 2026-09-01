@@ -1,5 +1,5 @@
 .tag {
-  --default-background: var(--gray-11);
+  --default-background: var(--gray-12);
   --default-foreground: var(--gray-0);
 
   --success-background: var(--grass-10);
@@ -16,7 +16,7 @@
 
   /* Secondary: softer tonal fills sharing the Callout background palette. */
   --secondary-default-background: var(--gray-a3);
-  --secondary-default-foreground: var(--gray-11);
+  --secondary-default-foreground: var(--gray-12);
   --secondary-success-background: var(--grass-a3);
   --secondary-success-foreground: var(--grass-11);
   --secondary-warning-background: var(--amber-a3);
