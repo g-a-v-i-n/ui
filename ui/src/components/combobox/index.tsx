@@ -169,7 +169,9 @@ export const Combobox = ({
             aria-expanded={open}
             aria-controls={listId}
             aria-autocomplete="list"
-            aria-activedescendant={open ? optionId(clampedActive) : undefined}
+            aria-activedescendant={
+              open && filtered[clampedActive] ? optionId(clampedActive) : undefined
+            }
             onChange={(e) => {
               setInputValue(e.target.value);
               setActiveIndex(0);

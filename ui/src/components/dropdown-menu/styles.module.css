@@ -1,3 +1,0 @@
-.animation {
-  composes: popAnimation from "../../css/recipes.module.css";
-}

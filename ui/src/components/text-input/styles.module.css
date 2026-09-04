@@ -49,10 +49,13 @@
 
     /* Outline, not box-shadow: the hairline lives in box-shadow, and an
        animated shadow ring would wipe it for the first frames (border
-       blink). Outline overlays it, same as the button's ring. */
-    &:focus-within {
+       blink). The token offset keeps the ring clear of the hairline, so it
+       reads as the same halo as the button. Keyed to the input's own
+       :focus-visible (not :focus-within) so a focused slot button rings
+       itself, not the field. */
+    &:has(.input:focus-visible) {
       outline: var(--focus-ring-width) solid var(--focus-ring-color);
-      outline-offset: 0;
+      outline-offset: var(--focus-ring-offset);
       animation: var(--focus-ring-animation);
     }
   }

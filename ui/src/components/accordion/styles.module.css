@@ -32,7 +32,7 @@
   gap: var(--size-8);
   padding: 16px 0;
 
-  background: transparent !important;
+  background: transparent;
   border: none;
   cursor: pointer;
   user-select: none;

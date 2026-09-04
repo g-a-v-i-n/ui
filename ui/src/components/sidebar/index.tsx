@@ -77,12 +77,15 @@ export const SidebarItem = ({
   ref,
   ...props
 }: SidebarItemProps & { ref?: React.Ref<HTMLElement> }) => {
+  const isLink = href != null;
   // SAFETY: widen the literal tag union so anchor-only props like `href` can be
   // spread; when rendering a button, `href` is undefined and inert.
-  const Tag = (href != null ? "a" : "button") as React.ElementType;
+  const Tag = (isLink ? "a" : "button") as React.ElementType;
 
   return (
     <Tag
+      type={isLink ? undefined : "button"}
+      aria-current={active ? (isLink ? "page" : "true") : undefined}
       {...props}
       href={href}
       ref={ref}

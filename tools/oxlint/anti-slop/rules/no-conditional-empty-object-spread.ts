@@ -13,12 +13,22 @@ function isEmptyObjectExpression(node: ESTree.Expression): boolean {
   return node.type === "ObjectExpression" && node.properties.length === 0;
 }
 
+/** `{}`, `undefined`, or `null`: a branch that spreads nothing. */
+function isEmptySpreadBranch(node: ESTree.Expression): boolean {
+  const branch = unwrapParentheses(node);
+  return (
+    isEmptyObjectExpression(branch) ||
+    (branch.type === "Literal" && branch.value === null) ||
+    (branch.type === "Identifier" && branch.name === "undefined")
+  );
+}
+
 function isConditionalEmptyObjectSpread(node: ESTree.Expression): boolean {
   const conditional = unwrapParentheses(node);
+  if (conditional.type === "LogicalExpression") return conditional.operator === "&&";
   return (
     conditional.type === "ConditionalExpression" &&
-    (isEmptyObjectExpression(conditional.consequent) ||
-      isEmptyObjectExpression(conditional.alternate))
+    (isEmptySpreadBranch(conditional.consequent) || isEmptySpreadBranch(conditional.alternate))
   );
 }
 
@@ -28,11 +38,11 @@ export const noConditionalEmptyObjectSpreadRule = defineRule({
     type: "suggestion",
     docs: {
       description:
-        "Disallow object spreads that conditionally spread an empty object to omit fields.",
+        "Disallow object spreads that conditionally spread an empty object, `undefined`, `null`, or `cond && obj` to omit fields.",
     },
     messages: {
       avoid:
-        "This conditional spread hides property omission behind an empty object. Build the object in separate statements and add the property only when present.",
+        "This conditional spread hides property omission behind an empty or nullish value. Build the object in separate statements and add the property only when present.",
     },
   },
   createOnce(context) {

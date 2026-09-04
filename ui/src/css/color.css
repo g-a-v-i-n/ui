@@ -69,6 +69,8 @@
 
 
 :root {
+    color-scheme: light;
+
     --gray-0: white;
 
     /* Surfaces — the page sits on --bg-base; every floating "modal" surface
@@ -119,7 +121,13 @@
 
 
 .dark {
+    color-scheme: dark;
+
     --gray-0: #0a0a0a;
+
+    /* black-a* is not mode-aware, so the light scrim (20% black) barely dims a
+       near-black surface; deepen it here. */
+    --scrim: var(--black-a8);
 
     --bg-base: var(--gray-1);
     --bg-elevated: color-mix(in oklab, var(--gray-2) 80%, transparent);

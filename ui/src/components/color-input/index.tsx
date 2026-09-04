@@ -49,6 +49,7 @@ export const ColorInput = ({
   React.useEffect(() => setText(current), [current]);
 
   const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef<HTMLDivElement>(null);
 
   const handleText = (e: React.ChangeEvent<HTMLInputElement>) => {
     const raw = e.target.value;
@@ -62,7 +63,7 @@ export const ColorInput = ({
 
   return (
     <PopoverRoot open={open} onOpenChange={setOpen}>
-      <PopoverAnchor>
+      <PopoverAnchor ref={anchorRef}>
         <TextInput
           {...props}
           ref={ref}
@@ -89,9 +90,20 @@ export const ColorInput = ({
         />
       </PopoverAnchor>
       <PopoverContent
+        align="start"
         className={styles.content}
         // Keep focus in the input so the user can keep typing while picking.
         onOpenAutoFocus={(e) => e.preventDefault()}
+        // The field lives outside the content, so clicking back into it would
+        // otherwise trip the dismiss layer and close (then reopen) the picker.
+        onInteractOutside={(e) => {
+          // SAFETY: DOM event targets are always Nodes (or null), though
+          // typed as the wider EventTarget.
+          const target = e.detail.originalEvent.target as Node | null;
+          if (target && anchorRef.current?.contains(target)) {
+            e.preventDefault();
+          }
+        }}
       >
         <HexColorPicker color={color} onChange={commit} />
       </PopoverContent>

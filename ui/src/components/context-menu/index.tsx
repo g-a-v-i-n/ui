@@ -30,7 +30,6 @@ export const ContextMenuContent = ({
   return (
     <ContextMenuPrimitive.Portal>
       <ContextMenuPrimitive.Content
-        data-side={"bottom"}
         {...props}
         ref={ref}
         asChild

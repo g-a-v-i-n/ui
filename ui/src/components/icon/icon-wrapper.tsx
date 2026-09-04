@@ -10,6 +10,10 @@ export const IconWrapper = ({
   width,
   height,
   viewBox = "0 0 18 18",
+  "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledBy,
+  "aria-hidden": ariaHidden,
+  role,
   children,
   ...props
 }: IconWrapperProps) => {
@@ -17,6 +21,8 @@ export const IconWrapper = ({
   const px = size != null ? iconSizes[size] : undefined;
   const resolvedWidth = width ?? px ?? "20px";
   const resolvedHeight = height ?? px ?? "20px";
+  // Unlabelled icons are decorative; a labelled one is announced as an image.
+  const labelled = ariaLabel != null || ariaLabelledBy != null;
   return (
     <svg
       width={resolvedWidth}
@@ -25,6 +31,10 @@ export const IconWrapper = ({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       className={cx(styles.icon, className)}
+      aria-label={ariaLabel}
+      aria-labelledby={ariaLabelledBy}
+      aria-hidden={ariaHidden ?? (labelled ? undefined : true)}
+      role={role ?? (labelled ? "img" : undefined)}
       {...props}
     >
       {children}

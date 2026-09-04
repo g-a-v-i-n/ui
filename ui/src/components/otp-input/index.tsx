@@ -5,36 +5,25 @@ import { unstable_OneTimePasswordField as OTPField } from "radix-ui";
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
 
-type OTPInputProps = {
+type OTPInputProps = OTPField.OneTimePasswordFieldProps & {
   /** Number of digit slots. */
   length?: number;
-  value?: string;
-  defaultValue?: string;
-  onValueChange?: (value: string) => void;
   /** When set, renders a hidden input so the value submits with a form. */
   name?: string;
-  disabled?: boolean;
-  className?: string;
-  ref?: React.Ref<HTMLDivElement>;
 };
 
 export const OTPInput = ({
   length = 6,
-  value,
-  defaultValue,
-  onValueChange,
   name,
-  disabled,
   className,
   ref,
+  ...props
 }: OTPInputProps) => {
   return (
     <OTPField.Root
+      {...props}
       ref={ref}
-      value={value}
-      defaultValue={defaultValue}
-      onValueChange={onValueChange}
-      disabled={disabled}
+      name={name}
       className={cx(styles.root, className)}
     >
       {Array.from({ length }, (_, i) => (

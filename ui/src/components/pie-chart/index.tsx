@@ -8,21 +8,26 @@ const CIRCUMFERENCE = 15.91549430918952;
 
 export const PieChart = ({
   percent = 0,
-  style,
   className,
-}: {
+  ...props
+}: Omit<React.ComponentProps<"svg">, "children"> & {
   percent: number;
-  style?: React.CSSProperties;
-  className?: string;
 }) => {
   const maskId = useId();
+  const pct = Math.min(100, Math.max(0, percent || 0));
+  // Round caps paint a dot even for a zero-length dash; square them at 0%.
+  const linecap = pct === 0 ? "butt" : "round";
+  const decorative =
+    props["aria-hidden"] === true || props["aria-hidden"] === "true";
   return (
     <svg
+      role={decorative ? undefined : "img"}
+      aria-label={decorative ? undefined : `${pct}%`}
       width="24"
       height="24"
+      {...props}
       viewBox={`0 0 ${SIZE} ${SIZE}`}
       className={cx(styles.pie, className)}
-      style={style}
     >
       {/* The fill arc's thicker silhouette is masked out of the track, so the
           gap around the arc is real transparency — no background-matched
@@ -36,9 +41,9 @@ export const PieChart = ({
           fill="none"
           stroke="black"
           strokeWidth={STROKE + 4}
-          strokeDasharray={`${percent} ${100 - percent}`}
+          strokeDasharray={`${pct} ${100 - pct}`}
           strokeDashoffset="25"
-          strokeLinecap="round"
+          strokeLinecap={linecap}
           className={styles.cutout}
         />
       </mask>
@@ -57,9 +62,9 @@ export const PieChart = ({
         r={CIRCUMFERENCE}
         fill="transparent"
         strokeWidth={STROKE}
-        strokeDasharray={`${percent} ${100 - percent}`}
+        strokeDasharray={`${pct} ${100 - pct}`}
         strokeDashoffset="25"
-        strokeLinecap="round"
+        strokeLinecap={linecap}
         className={styles.fill}
       />
     </svg>

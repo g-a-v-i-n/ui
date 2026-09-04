@@ -15,14 +15,14 @@ const weights = {
   black: 900,
 } as const;
 
-type SFSymbolProps = {
+/* Rest props (data-*, ref, …) land on the glyph span so the symbol works as a
+   Slot child — e.g. a menu ItemIndicator rendered `asChild`. */
+type SFSymbolProps = Omit<React.ComponentProps<"span">, "children"> & {
   symbol: string;
   /** Accessible name, announced by screen readers. Omit for decorative glyphs. */
   label?: string;
   size?: IconSize;
   weight?: keyof typeof weights;
-  className?: string;
-  style?: React.CSSProperties;
 };
 
 export function SFSymbol({
@@ -32,11 +32,15 @@ export function SFSymbol({
   weight = "medium",
   className,
   style,
+  ref,
+  ...props
 }: SFSymbolProps) {
   const px = iconSizes[size];
   const glyph = (
     <span
       aria-hidden="true"
+      {...props}
+      ref={ref}
       className={cx(styles.symbol, className)}
       style={{
         width: px,

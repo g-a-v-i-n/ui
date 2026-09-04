@@ -52,7 +52,7 @@ export const AvatarFallback = ({
 
 export const Avatar = ({
   src,
-  alt,
+  alt = "",
   fallback,
   delayMs,
   ...rootProps

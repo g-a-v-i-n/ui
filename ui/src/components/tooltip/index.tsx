@@ -19,7 +19,12 @@ export type TooltipProps = {
   sideOffset?: number;
   onEscapeKeyDown?: () => void;
   onPointerDownOutside?: () => void;
-} & TooltipPrimitive.TooltipProps;
+} & Pick<
+  TooltipPrimitive.TooltipProps,
+  "delayDuration" | "disableHoverableContent"
+> &
+  // `content` is also an HTML attribute; ours is the tooltip body.
+  Omit<TooltipPrimitive.TooltipContentProps, "content">;
 
 export function Tooltip({
   children,
@@ -27,6 +32,8 @@ export function Tooltip({
   open,
   defaultOpen,
   onOpenChange,
+  delayDuration,
+  disableHoverableContent,
   side = "top",
   align = "center",
   collisionPadding = 12,
@@ -41,6 +48,8 @@ export function Tooltip({
       open={open}
       defaultOpen={defaultOpen}
       onOpenChange={onOpenChange}
+      delayDuration={delayDuration}
+      disableHoverableContent={disableHoverableContent}
     >
       <TooltipPrimitive.Trigger asChild>{children}</TooltipPrimitive.Trigger>
       <TooltipPrimitive.Content

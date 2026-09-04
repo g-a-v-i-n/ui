@@ -29,9 +29,20 @@
   }
 }
 
+/* Row-group hook. Collapses into the last header .row's own hairline, and
+   stands in for it when the header holds plain <tr>s. */
+.header {
+  border-bottom: 1px solid var(--row-border-color);
+}
+
 .body .row {
   &:hover {
     background-color: var(--row-background-hover);
+  }
+
+  /* Outranks the hover rule above so a selected row keeps its fill. */
+  &[data-selected]:hover {
+    background-color: var(--row-background-selected);
   }
 
   &:last-child {

@@ -26,12 +26,20 @@ export const TextArea = ({
   autoResize = false,
   maxRows,
   resize = "none",
+  style,
   ref,
   ...props
 }: TextAreaProps) => {
-  /* line-height 1.5 at 15px ≈ 22.5px per row, plus 10px vertical padding. */
-  const rowHeight = 22.5;
-  const padding = 20;
+  /* Mirrors styles.module.css: one row is --font-size-md (14px) ×
+     --line-height-md (1.5) = 21px, and the vertical padding is --size-6 top
+     and bottom. */
+  const rowHeight = 21;
+  const padding = 12;
+  const minHeight = autoResize ? rows * rowHeight + padding : style?.minHeight;
+  const maxHeight =
+    autoResize && maxRows != null
+      ? maxRows * rowHeight + padding
+      : style?.maxHeight;
 
   return (
     <div
@@ -45,13 +53,7 @@ export const TextArea = ({
         data-auto-resize={autoResize || undefined}
         data-resize={resize}
         className={cx(styles.textarea, className)}
-        style={{
-          minHeight: autoResize ? rows * rowHeight + padding : undefined,
-          maxHeight:
-            autoResize && maxRows != null
-              ? maxRows * rowHeight + padding
-              : undefined,
-        }}
+        style={{ ...style, minHeight, maxHeight }}
       />
     </div>
   );

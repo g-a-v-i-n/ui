@@ -1,7 +1,5 @@
 import React from "react";
 import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
-import styles from "./styles.module.css";
-import { cx } from "../../lib/cx";
 
 import { MenuArrow, MenuContainer } from "../menu-primitives";
 import { createMenuParts } from "../menu-primitives/create-menu-parts";
@@ -49,10 +47,7 @@ export const DropdownMenuContent = ({
         ref={ref}
         asChild
       >
-        <MenuContainer
-          width={width}
-          className={cx(styles.animation, className)}
-        >
+        <MenuContainer width={width} className={className}>
           {children}
         </MenuContainer>
       </DropdownMenuPrimitive.Content>
@@ -86,10 +81,7 @@ export const DropdownMenuSubContent = ({
         ref={ref}
         asChild
       >
-        <MenuContainer
-          width={width}
-          className={cx(styles.animation, className)}
-        >
+        <MenuContainer width={width} className={className}>
           {children}
         </MenuContainer>
       </DropdownMenuPrimitive.SubContent>

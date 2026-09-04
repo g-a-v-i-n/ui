@@ -3,7 +3,7 @@ import { SFSymbol } from "../sf-symbol";
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
 
-type CarouselProps = {
+type CarouselProps = Omit<React.ComponentPropsWithoutRef<"div">, "children"> & {
   /** Each direct child is one slide. */
   children: React.ReactNode;
   /** Loop seamlessly past the last/first slide. */
@@ -25,7 +25,9 @@ export const Carousel = ({
   dots = false,
   arrows = true,
   className,
+  onKeyDown,
   ref,
+  ...props
 }: CarouselProps) => {
   const real = React.Children.toArray(children);
   const count = real.length;
@@ -81,6 +83,9 @@ export const Carousel = ({
     const width = viewportRef.current?.offsetWidth ?? 1;
     dragStart.current = { x: e.clientX, width };
     setDragging(true);
+    // Dragging switches the transition to none, which cancels (rather than
+    // ends) any slide in flight — release the guard so it can't stick.
+    animating.current = false;
     e.currentTarget.setPointerCapture(e.pointerId);
   };
 
@@ -106,11 +111,13 @@ export const Carousel = ({
 
   return (
     <div
+      {...props}
       ref={ref}
       className={cx(styles.root, className)}
       role="region"
       aria-roledescription="carousel"
       onKeyDown={(e) => {
+        onKeyDown?.(e);
         if (e.key === "ArrowLeft") prev();
         else if (e.key === "ArrowRight") next();
       }}
@@ -123,6 +130,7 @@ export const Carousel = ({
             transition: dragging || !animate ? "none" : undefined,
           }}
           onTransitionEnd={handleTransitionEnd}
+          onTransitionCancel={handleTransitionEnd}
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
           onPointerUp={onPointerUp}

@@ -62,9 +62,12 @@ export const MenuItem = ({
   );
 };
 
-export const MenuDivider = () => {
+export const MenuDivider = ({
+  className,
+  ...props
+}: React.ComponentProps<"div">) => {
   return (
-    <div className={styles.divider}>
+    <div {...props} className={cx(styles.divider, className)}>
       <hr />
     </div>
   );

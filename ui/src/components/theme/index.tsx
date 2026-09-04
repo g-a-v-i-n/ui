@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export function Theme({
   theme,
@@ -9,17 +9,26 @@ export function Theme({
   setResolvedTheme: (theme: "light" | "dark") => void;
   children: React.ReactNode;
 }) {
+  // Latest callback for the media-query listener, so a new function identity
+  // never re-runs the theme effect (and re-applies the theme) on its own.
+  const setResolvedThemeRef = useRef(setResolvedTheme);
+  useEffect(() => {
+    setResolvedThemeRef.current = setResolvedTheme;
+  });
+
   useEffect(() => {
     const root = document.documentElement;
+    const setResolved = (resolved: "light" | "dark") =>
+      setResolvedThemeRef.current(resolved);
 
     if (theme === "light") {
       root.classList.remove("dark");
       root.classList.add("light");
-      setResolvedTheme("light");
+      setResolved("light");
     } else if (theme === "dark") {
       root.classList.remove("light");
       root.classList.add("dark");
-      setResolvedTheme("dark");
+      setResolved("dark");
     } else {
       // System theme
       const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
@@ -29,11 +38,11 @@ export function Theme({
         if (matchesDarkMode) {
           root.classList.remove("light");
           root.classList.add("dark");
-          setResolvedTheme("dark");
+          setResolved("dark");
         } else {
           root.classList.remove("dark");
           root.classList.add("light");
-          setResolvedTheme("light");
+          setResolved("light");
         }
       };
 
@@ -44,7 +53,6 @@ export function Theme({
         mediaQuery.removeEventListener("change", setSystemTheme);
       };
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [theme]);
   return <>{children}</>;
 }

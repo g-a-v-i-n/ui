@@ -234,5 +234,23 @@
 @media (prefers-reduced-motion: reduce) {
     :root {
         --focus-ring-animation: none;
+
+        /* Every enter/exit/collapse animation is wired through these slots, so
+           nulling them here disables motion library-wide. Radix Presence sees
+           animation-name: none and unmounts exit content immediately. */
+        --kf-enter-pop: none;
+        --kf-exit-pop: none;
+        --kf-fade-in: none;
+        --kf-fade-out: none;
+        --kf-slide-up-to-open: none;
+        --kf-slide-up-to-closed: none;
+        --kf-slide-down-to-open: none;
+        --kf-slide-down-to-closed: none;
+        --kf-dialog-content-enter: none;
+        --kf-dialog-content-exit: none;
+        --kf-check-in: none;
+        --kf-check-out: none;
+        --kf-collapse-open: none;
+        --kf-collapse-closed: none;
     }
 }

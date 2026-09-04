@@ -53,6 +53,12 @@
     opacity: 1;
   }
 
+  &:focus-visible {
+    outline: var(--focus-ring-width) solid var(--focus-ring-color);
+    animation: var(--focus-ring-animation);
+    outline-offset: var(--focus-ring-offset);
+  }
+
   &[data-disabled] {
     opacity: 0.5;
     cursor: not-allowed;

@@ -14,6 +14,6 @@
    tint for them; element-qualified to outrank .text's color/family rules. */
 td.value,
 code.value {
-  font-family: var(--font-mono, ui-monospace, monospace);
+  font-family: var(--font-monospace, ui-monospace, monospace);
   color: var(--fg-tertiary);
 }

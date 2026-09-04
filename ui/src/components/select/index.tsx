@@ -10,19 +10,26 @@ export const SelectRoot = SelectPrimitive.Root;
 export const SelectValue = SelectPrimitive.Value;
 export const SelectGroup = SelectPrimitive.Group;
 
-export const SelectTrigger = ({ children, className, ref, ...props }: SelectPrimitive.SelectTriggerProps & { ref?: React.Ref<HTMLButtonElement> }) => {
+export const SelectTrigger = ({ children, className, asChild, ref, ...props }: SelectPrimitive.SelectTriggerProps & { ref?: React.Ref<HTMLButtonElement> }) => {
   return (
     <SelectPrimitive.Trigger
       {...props}
+      asChild={asChild}
       ref={ref}
       className={cx(styles.trigger, className)}
     >
-      <Text as="span" size="sm" weight="medium">
-        {children}
-      </Text>
-      <SelectPrimitive.Icon className={styles.triggerIcon}>
-        <SFSymbol symbol="􀆈" size="sm" />
-      </SelectPrimitive.Icon>
+      {asChild ? (
+        children
+      ) : (
+        <>
+          <Text as="span" size="sm" weight="medium">
+            {children}
+          </Text>
+          <SelectPrimitive.Icon className={styles.triggerIcon}>
+            <SFSymbol symbol="􀆈" size="sm" />
+          </SelectPrimitive.Icon>
+        </>
+      )}
     </SelectPrimitive.Trigger>
   );
 };
@@ -52,7 +59,7 @@ export const SelectScrollDownButton = ({
     <SelectPrimitive.ScrollDownButton
       {...props}
       ref={ref}
-      className={cx(styles.scrollButton, styles.scrollButtonDown, className)}
+      className={cx(styles.scrollButton, className)}
     >
       <SFSymbol symbol="􀆈" size="sm" />
     </SelectPrimitive.ScrollDownButton>
@@ -88,7 +95,9 @@ export const SelectContent = ({
   );
 };
 
-export const SelectItem = ({ children, className, ref, ...props }: SelectPrimitive.SelectItemProps & { ref?: React.Ref<HTMLDivElement> }) => {
+// No asChild: the item owns its ItemIndicator/ItemText markup, which Select
+// needs to mirror the chosen label into the trigger.
+export const SelectItem = ({ children, className, ref, ...props }: Omit<SelectPrimitive.SelectItemProps, "asChild"> & { ref?: React.Ref<HTMLDivElement> }) => {
   return (
     <SelectPrimitive.Item
       {...props}
@@ -105,16 +114,21 @@ export const SelectItem = ({ children, className, ref, ...props }: SelectPrimiti
   );
 };
 
-export const SelectLabel = ({ children, className, ref, ...props }: SelectPrimitive.SelectLabelProps & { ref?: React.Ref<HTMLDivElement> }) => {
+export const SelectLabel = ({ children, className, asChild, ref, ...props }: SelectPrimitive.SelectLabelProps & { ref?: React.Ref<HTMLDivElement> }) => {
   return (
     <SelectPrimitive.Label
       {...props}
+      asChild={asChild}
       ref={ref}
       className={cx(styles.label, className)}
     >
-      <Text as="span" size="xs" weight="medium" color="tertiary">
-        {children}
-      </Text>
+      {asChild ? (
+        children
+      ) : (
+        <Text as="span" size="xs" weight="medium" color="tertiary">
+          {children}
+        </Text>
+      )}
     </SelectPrimitive.Label>
   );
 };

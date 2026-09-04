@@ -64,15 +64,16 @@ export const ToastAction = ({ className, asChild, children, ref, ...props }: Toa
   );
 };
 
-export const ToastClose = ({ className, ref, ...props }: ToastPrimitive.ToastCloseProps & { ref?: React.Ref<HTMLButtonElement> }) => {
+export const ToastClose = ({ className, asChild, children, ref, ...props }: ToastPrimitive.ToastCloseProps & { ref?: React.Ref<HTMLButtonElement> }) => {
   return (
     <ToastPrimitive.Close
       aria-label="Dismiss"
       {...props}
+      asChild={asChild}
       ref={ref}
       className={cx(styles.close, className)}
     >
-      <SFSymbol symbol="✕" size="sm" />
+      {asChild ? children : <SFSymbol symbol="✕" size="sm" />}
     </ToastPrimitive.Close>
   );
 };

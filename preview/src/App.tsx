@@ -7,8 +7,9 @@ import { ToastProvider, ToastViewport } from 'ui/components/toast';
 import { TestDropdownMenuProvider } from './TestDropdownMenuProvider';
 
 /* Deliberate, non-alphabetical presentation order. Every folder under
-   ./sections must appear here and export `<Name>Section`; mismatches warn in
-   dev below so a new section can't silently vanish. */
+   ./sections should appear here and export `<Name>Section`; mismatches warn
+   in dev below, and unlisted sections still render (last, alphabetically) so
+   a new section can't silently vanish. */
 const ORDER = [
   'Text',
   'FontScale',
@@ -75,10 +76,14 @@ for (const [path, mod] of Object.entries(modules)) {
   const name = path.split('/')[2];
   const component = mod[`${name}Section`];
   if (!component) {
-    throw new Error(`sections/${name}/index.tsx must export ${name}Section`);
+    console.warn(`sections/${name}/index.tsx must export ${name}Section; skipping it`);
+    continue;
   }
   sectionsByName.set(name, component);
 }
+
+/* Sections missing from ORDER still render, appended alphabetically. */
+const unordered = [...sectionsByName.keys()].filter((name) => !ORDER.includes(name)).sort();
 
 if (import.meta.env.DEV) {
   for (const name of ORDER) {
@@ -86,14 +91,12 @@ if (import.meta.env.DEV) {
       console.warn(`ORDER lists "${name}" but sections/${name}/ doesn't exist`);
     }
   }
-  for (const name of sectionsByName.keys()) {
-    if (!ORDER.includes(name)) {
-      console.warn(`sections/${name}/ is not listed in ORDER and won't render`);
-    }
+  for (const name of unordered) {
+    console.warn(`sections/${name}/ is not listed in ORDER; rendering it last`);
   }
 }
 
-const sections = ORDER.flatMap((name) => {
+const sections = [...ORDER, ...unordered].flatMap((name) => {
   const Component = sectionsByName.get(name);
   return Component ? [{ name, Component }] : [];
 });

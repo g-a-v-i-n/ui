@@ -13,8 +13,12 @@ export const Progress = ({
   animated?: boolean;
   ref?: React.Ref<HTMLDivElement>;
 }) => {
-  const max = props.max ?? 100;
-  const pct = Math.min(100, Math.max(0, ((props.value ?? 0) / max) * 100));
+  const max = props.max != null && props.max > 0 ? props.max : 100;
+  // No value means indeterminate: leave the indicator untransformed.
+  const pct =
+    props.value == null
+      ? null
+      : Math.min(100, Math.max(0, (props.value / max) * 100));
 
   return (
     <ProgressPrimitive.Root
@@ -25,7 +29,9 @@ export const Progress = ({
       <ProgressPrimitive.Indicator
         className={styles.indicator}
         data-animated={animated || undefined}
-        style={{ transform: `translateX(-${100 - pct}%)` }}
+        style={
+          pct == null ? undefined : { transform: `translateX(-${100 - pct}%)` }
+        }
       />
     </ProgressPrimitive.Root>
   );

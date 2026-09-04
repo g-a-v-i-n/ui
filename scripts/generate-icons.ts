@@ -1,7 +1,7 @@
 /**
  * Generate icon React components from Figma pages.
  *
- * Each target page is expected to contain only 14x14 icon frames. Each frame is
+ * Each target page is expected to contain only 18x18 icon frames. Each frame is
  * exported from Figma as SVG, parsed to a hast tree, converted to a JSX estree
  * via `hast-util-to-estree`, serialized back to source with `estree-util-to-js`,
  * and written as a weighted component whose SVG shapes live inside `<IconWrapper>`.
@@ -14,6 +14,7 @@
  *   FIGMA_FILE_KEY   (required)  File key (the part after /file/ or /design/ in the URL).
  *   FIGMA_PAGES      (optional)  Comma-separated weight=page pairs. Default: "normal=normal,bold=bold".
  *                                Example: "normal=Icons,bold=Icons Bold".
+ *   FIGMA_PAGE       (legacy)    Ignored with a warning; use FIGMA_PAGES.
  *   --keep-colors    (optional)  Keep Figma's literal fill/stroke colors instead of
  *                                rewriting them to `currentColor`.
  *   --out <dir>      (optional)  Output dir. Default: ui/src/components/icon/static.
@@ -29,12 +30,15 @@ import { toJs, jsx } from "estree-util-to-js";
 const FIGMA_API = "https://api.figma.com/v1";
 const DEFAULT_VIEWBOX = "0 0 18 18"; // IconWrapper's default; omit the prop when it matches
 const EXPORT_CHUNK = 100; // max node ids per /images request
+const DOWNLOAD_CONCURRENCY = 8; // SVG downloads in flight per page
+const FETCH_TIMEOUT_MS = 30_000;
+const FETCH_ATTEMPTS = 4; // total tries per request on 429 / 5xx / network errors
 const DEFAULT_WEIGHTS = ["normal", "bold"] as const;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(__dirname, "..");
 
-// Load FIGMA_TOKEN / FIGMA_FILE_KEY / FIGMA_PAGE from .env at the repo root.
+// Load FIGMA_TOKEN / FIGMA_FILE_KEY / FIGMA_PAGES from .env at the repo root.
 try {
   process.loadEnvFile(path.join(REPO_ROOT, ".env"));
 } catch {
@@ -53,7 +57,15 @@ function parseArgs() {
   let keepColors = false;
   let indexOnly = false;
   let out = path.join(REPO_ROOT, "ui/src/components/icon/static");
-  let pagesArg = process.env.FIGMA_PAGES ?? "normal=normal,bold=bold";
+  let pagesArg = process.env.FIGMA_PAGES;
+  if (pagesArg === undefined && process.env.FIGMA_PAGE) {
+    // A stale single-page variable must not silently change which pages are
+    // exported; surface it and keep the defaults.
+    console.warn(
+      `Warning: FIGMA_PAGE is set but ignored. Use FIGMA_PAGES (weight=page pairs), e.g. FIGMA_PAGES="normal=${process.env.FIGMA_PAGE}".`
+    );
+  }
+  pagesArg ??= "normal=normal,bold=bold";
 
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i];
@@ -104,8 +116,76 @@ function parsePages(input: string) {
   return pages;
 }
 
-async function figma(token: string, url: string) {
-  const res = await fetch(url, { headers: { "X-Figma-Token": token } });
+function errorMessage(err: unknown): string {
+  return err instanceof Error ? err.message : String(err);
+}
+
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+/** `Retry-After` as milliseconds, from either a delay-seconds or an HTTP-date value. */
+function retryAfterMs(res: Response): number | null {
+  const header = res.headers.get("retry-after");
+  if (!header) return null;
+  const seconds = Number(header);
+  if (Number.isFinite(seconds)) return Math.max(0, seconds * 1000);
+  const date = Date.parse(header);
+  return Number.isNaN(date) ? null : Math.max(0, date - Date.now());
+}
+
+/**
+ * `fetch` with a per-request timeout, retrying 429 / 5xx responses and network
+ * errors with exponential backoff (honouring `Retry-After` when present).
+ */
+async function fetchWithRetry(url: string, init: RequestInit = {}): Promise<Response> {
+  for (let attempt = 1; ; attempt++) {
+    let res: Response | undefined;
+    let failure: string;
+    try {
+      res = await fetch(url, { ...init, signal: AbortSignal.timeout(FETCH_TIMEOUT_MS) });
+      if (res.status !== 429 && res.status < 500) return res;
+      failure = `HTTP ${res.status}`;
+    } catch (err) {
+      failure = errorMessage(err);
+    }
+    if (attempt === FETCH_ATTEMPTS) {
+      if (res) return res; // the caller reports the final status
+      throw new Error(`${failure} after ${FETCH_ATTEMPTS} attempts: ${url}`);
+    }
+    const delay = (res && retryAfterMs(res)) ?? 500 * 2 ** (attempt - 1);
+    await res?.body?.cancel(); // release the connection before retrying
+    console.warn(
+      `  ! ${failure} from ${new URL(url).host}; retrying in ${delay}ms (${attempt}/${FETCH_ATTEMPTS})`
+    );
+    await sleep(delay);
+  }
+}
+
+/** Run `task` over `items` with at most `limit` in flight; settles like `Promise.allSettled`. */
+async function mapPool<T, R>(
+  items: T[],
+  limit: number,
+  task: (item: T) => Promise<R>
+): Promise<PromiseSettledResult<R>[]> {
+  const results: PromiseSettledResult<R>[] = [];
+  let next = 0;
+  const worker = async () => {
+    while (next < items.length) {
+      const index = next++;
+      try {
+        results[index] = { status: "fulfilled", value: await task(items[index]) };
+      } catch (reason) {
+        results[index] = { status: "rejected", reason };
+      }
+    }
+  };
+  await Promise.all(Array.from({ length: Math.min(limit, items.length) }, worker));
+  return results;
+}
+
+async function figma(token: string, url: string): Promise<any> {
+  const res = await fetchWithRetry(url, { headers: { "X-Figma-Token": token } });
   if (!res.ok) {
     throw new Error(`Figma API ${res.status} ${res.statusText}: ${await res.text()}`);
   }
@@ -202,7 +282,7 @@ function isBlankChild(c: any): boolean {
 }
 
 /** Serialize a single estree JSX node to source, dropping the trailing `;`. */
-function serializeJsx(expression: any) {
+function serializeJsx(expression: any): string {
   const program = {
     type: "Program",
     sourceType: "module",
@@ -225,7 +305,7 @@ function svgToJsx(svg: string, keepColors: boolean): { viewBox: string; children
   if (!keepColors) recolor(svgEl);
 
   // Convert only the children of <svg> (the wrapper is provided by IconWrapper).
-  const inner = { type: "root", children: svgEl.children };
+  const inner: any = { type: "root", children: svgEl.children };
   const estree: any = toEstree(inner, { space: "svg" });
   const expression = estree.body[0].expression;
   const childNodes =
@@ -435,46 +515,74 @@ async function main() {
   }
 
   await mkdir(out, { recursive: true });
+  const failures: string[] = [];
 
-  for (const page of pages) {
-    const weightDir = path.join(out, page.weight);
-    await mkdir(weightDir, { recursive: true });
+  try {
+    for (const page of pages) {
+      const weightDir = path.join(out, page.weight);
+      await mkdir(weightDir, { recursive: true });
 
-    console.log(`Fetching page "${page.pageName}" as "${page.weight}" from file ${fileKey}…`);
-    const frames = await getIconFrames(token!, fileKey!, page.pageName);
-    console.log(`Found ${frames.length} icon frame(s). Requesting SVG export…`);
+      console.log(`Fetching page "${page.pageName}" as "${page.weight}" from file ${fileKey}…`);
+      const frames = await getIconFrames(token!, fileKey!, page.pageName);
+      console.log(`Found ${frames.length} icon frame(s). Requesting SVG export…`);
 
-    const urls = await getSvgUrls(token!, fileKey!, frames.map((f) => f.id));
+      // Resolve file names up front so two frames can't silently overwrite one file.
+      const icons: { frame: FigmaNode; kebab: string; pascal: string }[] = [];
+      const framesByKebab = new Map<string, FigmaNode[]>();
+      for (const frame of frames) {
+        try {
+          const { kebab, pascal } = names(frame.name);
+          icons.push({ frame, kebab, pascal });
+          framesByKebab.set(kebab, [...(framesByKebab.get(kebab) ?? []), frame]);
+        } catch (err) {
+          failures.push(`${page.weight}: "${frame.name}" — ${errorMessage(err)}`);
+        }
+      }
+      const collisions = [...framesByKebab].filter(([, group]) => group.length > 1);
+      if (collisions.length > 0) {
+        const list = collisions
+          .map(([kebab, group]) => `  ${kebab}.tsx <- ${group.map((f) => `"${f.name}"`).join(", ")}`)
+          .join("\n");
+        throw new Error(
+          `Page "${page.pageName}" (${page.weight}): several frames normalize to the same file name. Rename them in Figma:\n${list}`
+        );
+      }
 
-    // Download + transform each icon. Parallel within a single page.
-    await Promise.all(
-      frames.map(async (frame) => {
+      const urls = await getSvgUrls(token!, fileKey!, icons.map((i) => i.frame.id));
+
+      // Download + transform each icon, a few at a time; one failure doesn't stop the rest.
+      const results = await mapPool(icons, DOWNLOAD_CONCURRENCY, async ({ frame, kebab, pascal }) => {
         const url = urls[frame.id];
-        if (!url) {
-          console.warn(`  ! No export URL for "${frame.name}" (${frame.id}); skipping`);
-          return;
-        }
+        if (!url) throw new Error("Figma returned no export URL");
 
-        const res = await fetch(url);
-        if (!res.ok) {
-          console.warn(`  ! Failed to download "${frame.name}": ${res.status}; skipping`);
-          return;
-        }
+        const res = await fetchWithRetry(url);
+        if (!res.ok) throw new Error(`download failed: HTTP ${res.status}`);
         const svg = await res.text();
 
-        const { kebab, pascal } = names(frame.name);
         const { viewBox, children } = svgToJsx(svg, keepColors);
         const file = path.join(weightDir, `${kebab}.tsx`);
         await writeFile(file, componentSource(pascal, viewBox, children), "utf8");
 
         console.log(`  ✓ ${page.weight}/${kebab}.tsx  (${pascal})`);
-      })
-    );
+      });
+      results.forEach((result, i) => {
+        if (result.status === "rejected") {
+          const { frame, kebab } = icons[i];
+          failures.push(`${page.weight}/${kebab}.tsx ("${frame.name}") — ${errorMessage(result.reason)}`);
+        }
+      });
+    }
+  } finally {
+    // Whatever happened above, leave ./static and registry.ts consistent with each other.
+    await pruneRedundantIcons(out);
+    await writeRegistry(out);
   }
 
-  // Rebuild the registry from everything now in ./static (newly written + existing).
-  await pruneRedundantIcons(out);
-  await writeRegistry(out);
+  if (failures.length > 0) {
+    console.error(`\n${failures.length} icon(s) failed; any previous file for them was kept and re-registered:`);
+    for (const failure of failures) console.error(`  ✗ ${failure}`);
+    process.exit(1);
+  }
 }
 
 main().catch((err) => {

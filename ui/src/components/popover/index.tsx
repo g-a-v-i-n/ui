@@ -11,8 +11,11 @@ export const PopoverPortal = PopoverPrimitive.Portal;
 export const PopoverAnchor = PopoverPrimitive.Anchor;
 export const PopoverClose = PopoverPrimitive.Close;
 
-export const PopoverTrigger = (props: PopoverPrimitive.PopoverTriggerProps) => (
-  <PopoverPrimitive.Trigger asChild {...props} />
+export const PopoverTrigger = ({
+  ref,
+  ...props
+}: PopoverPrimitive.PopoverTriggerProps & { ref?: React.Ref<HTMLButtonElement> }) => (
+  <PopoverPrimitive.Trigger asChild {...props} ref={ref} />
 );
 
 export const PopoverArrow = ({

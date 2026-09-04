@@ -25,16 +25,21 @@ export const MenubarSeparator = parts.Separator;
 
 export const MenubarRoot = styled(MenubarPrimitive.Root, styles.root, "MenubarRoot");
 
-export const MenubarTrigger = ({ children, className, ref, ...props }: MenubarPrimitive.MenubarTriggerProps & { ref?: React.Ref<HTMLButtonElement> }) => {
+export const MenubarTrigger = ({ children, className, asChild, ref, ...props }: MenubarPrimitive.MenubarTriggerProps & { ref?: React.Ref<HTMLButtonElement> }) => {
   return (
     <MenubarPrimitive.Trigger
       {...props}
+      asChild={asChild}
       ref={ref}
       className={cx(styles.trigger, className)}
     >
-      <Text as="span" size="sm" weight="medium" color="inherit">
-        {children}
-      </Text>
+      {asChild ? (
+        children
+      ) : (
+        <Text as="span" size="sm" weight="medium" color="inherit">
+          {children}
+        </Text>
+      )}
     </MenubarPrimitive.Trigger>
   );
 };

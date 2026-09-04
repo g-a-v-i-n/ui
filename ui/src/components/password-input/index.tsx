@@ -20,9 +20,35 @@ type PasswordInputProps = Omit<
 };
 
 // Recover the real value after the browser edited the masked string. The masked
-// string is all MASK chars, so a leading/trailing run of MASK in `displayed` is
-// unchanged text; the middle is freshly typed/pasted real characters.
-const reconstruct = (oldReal: string, displayed: string) => {
+// string is all MASK chars, so a run of MASK in `displayed` is unchanged text;
+// the middle is freshly typed/pasted real characters. Every MASK looks alike,
+// so a diff of the two strings can't place a pure deletion — the post-edit
+// caret anchors it: whatever the browser did, the edit ends at the caret, and
+// everything after it is the untouched tail of the old value.
+const reconstruct = (
+  oldReal: string,
+  displayed: string,
+  caret: number | null
+) => {
+  if (caret == null) return reconstructByDiff(oldReal, displayed);
+
+  const oldLength = oldReal.length;
+  const c = Math.min(Math.max(caret, 0), displayed.length);
+  const suffix = Math.min(displayed.length - c, oldLength);
+
+  let lead = 0;
+  while (lead < displayed.length && displayed[lead] === MASK) lead++;
+
+  // Unchanged prefix: bounded by the old chars not claimed by the suffix, by
+  // the run of MASK at the front of `displayed`, and by the caret itself.
+  const p = Math.max(0, Math.min(oldLength - suffix, lead, c));
+  const inserted = displayed.slice(p, c);
+  return oldReal.slice(0, p) + inserted + oldReal.slice(oldLength - suffix);
+};
+
+// Caret-less fallback: diff the masked strings from both ends. A pure deletion
+// is ambiguous here and lands at the end of the value.
+const reconstructByDiff = (oldReal: string, displayed: string) => {
   const oldMask = MASK.repeat(oldReal.length);
   const max = Math.min(oldMask.length, displayed.length);
 
@@ -82,7 +108,9 @@ export const PasswordInput = ({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const typed = e.target.value;
     caretRef.current = e.target.selectionStart;
-    const next = visible ? typed : reconstruct(real, typed);
+    const next = visible
+      ? typed
+      : reconstruct(real, typed, e.target.selectionStart);
     if (!isControlled) setInternal(next);
     onValueChange?.(next);
   };

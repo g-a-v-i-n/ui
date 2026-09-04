@@ -57,7 +57,7 @@
     width: var(--size-212);
   }
   &[data-width="lg"] {
-    width: var(--size-212);
+    width: var(--size-256);
   }
 }
 
@@ -98,7 +98,7 @@
     .suffix,
     .prefix svg,
     .prefix div,
-    .prefix svg[data-check],
+    .prefix [data-check],
     .suffix svg,
     .suffix div {
       color: var(--item-foreground-highlighted);
@@ -107,6 +107,11 @@
 
   &:active {
     background-color: var(--item-background-active);
+  }
+
+  &[data-disabled] {
+    opacity: 0.5;
+    pointer-events: none;
   }
 
   .left {
@@ -134,8 +139,10 @@
       color: var(--item-icon-color);
       transition: color var(--duration-120) var(--ease-in-out-quad);
     }
-    svg[data-check] {
+    /* The check indicator is an SFSymbol span (it sizes itself inline). */
+    [data-check] {
       color: var(--item-check-color);
+      transition: color var(--duration-120) var(--ease-in-out-quad);
     }
   }
 
@@ -174,11 +181,13 @@
   width: 100%;
 }
 
-/* Check/radio menu items: pad unchecked rows so their labels stay aligned
-   with the checked row's indicator. */
+/* Check/radio menu items: the indicator only mounts when checked, leaving an
+   empty .prefix behind — still a flex item, so the 6px gap before the label
+   remains. Pad the left column by the check glyph alone (SFSymbol md, 15px)
+   so unchecked labels line up with checked ones; the suffix is untouched. */
 .checkboxItem {
-  &[data-state="unchecked"] > div {
-    padding-left: 28px;
+  &[data-state="unchecked"] > .left {
+    padding-left: 15px;
   }
 }
 

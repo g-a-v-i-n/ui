@@ -1,9 +1,13 @@
 import type { IconSize } from "../../lib/icon-sizes";
+import type { icons } from "./registry";
 
 export type { IconSize };
-export type IconWeight = "normal" | "bold";
+export type IconWeight = keyof typeof icons;
 
-export type IconProps = {
+export type IconProps = Pick<
+  React.SVGAttributes<SVGSVGElement>,
+  "aria-label" | "aria-labelledby" | "aria-hidden" | "role"
+> & {
   className?: string;
   style?: React.CSSProperties;
   /** Named size in px (matches the SFSymbol scale). Overridden by width/height. */

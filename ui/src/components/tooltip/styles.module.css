@@ -78,6 +78,20 @@
     }
   }
 
+  /* No horizontal slide keyframes: left/right fall back to the scale pop the
+     popper recipe uses when a side has no slide (see recipes.module.css). */
+  &[data-side="left"],
+  &[data-side="right"] {
+    transform-origin: var(--radix-popper-transform-origin);
+    &[data-state="delayed-open"],
+    &[data-state="instant-open"] {
+      animation-name: var(--kf-enter-pop);
+    }
+    &[data-state="closed"] {
+      animation-name: var(--kf-exit-pop);
+    }
+  }
+
   &[data-state="instant-open"] {
     animation-duration: var(--duration-0);
   }

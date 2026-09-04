@@ -146,12 +146,23 @@ export const noKnownValueWideningRule = defineRule({
 	createOnce(context) {
 		let environment: TypeEnvironment | null = null;
 
+		// `const x: unknown = {} as unknown` widens twice; the assertion visitor reports it once.
+		const isReportedAsAssertion = (expression: ESTree.Expression): boolean => {
+			let current = expression;
+			while (current.type === "ParenthesizedExpression") current = current.expression;
+			return (
+				(current.type === "TSAsExpression" || current.type === "TSTypeAssertion") &&
+				environment !== null &&
+				classifyWideningTarget(current.typeAnnotation, environment) !== null
+			);
+		};
+
 		const reportFlow = (
 			expression: ESTree.Expression,
 			destination: WideningTarget | null,
 			subject: string,
 		) => {
-			if (destination === null) return;
+			if (destination === null || isReportedAsAssertion(expression)) return;
 			if (
 				isDictionaryAccumulatorTarget(destination) &&
 				isEmptyObjectExpression(expression)

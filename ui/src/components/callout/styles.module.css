@@ -37,9 +37,9 @@
 .icon {
   display: inline-flex;
   align-items: center;
-  /* Match the line-box of the first small-text line so the icon sits on its
-     cap height rather than floating above it. */
-  min-height: calc(var(--font-size-sm) * var(--line-height-sm));
+  /* Match the line-box of the first text line so the icon sits on its cap
+     height rather than floating above it. */
+  min-height: calc(var(--font-size-md) * var(--line-height-md));
   color: var(--icon-color);
   flex: none;
 }
@@ -61,7 +61,7 @@
   margin: 0;
   border: none;
   background: transparent;
-  color: var(--fg-1);
+  color: var(--fg-primary);
   cursor: pointer;
   opacity: 0.7;
   flex: none;
