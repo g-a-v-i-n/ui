@@ -19,14 +19,6 @@
     --font-monospace: var(--font-monospace-fallback);
     --font-emoji: var(--font-emoji-fallback);
 
-    /* SF Symbols are Private Use Area glyphs; browsers do NOT font-fallback for
-       PUA, so the FIRST matched font must contain them. Lead with the live
-       system font (carries the symbols on macOS/iOS) — Safari resolves a quoted
-       "SF Pro" to a symbol-less face and shows tofu. */
-    --font-symbol:
-      -apple-system, BlinkMacSystemFont, system-ui, "SF Pro", "SF Pro Text",
-      sans-serif;
-
     /* Weights */
     --font-weight-light: 300;
     --font-weight-normal: 400;

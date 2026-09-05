@@ -1,5 +1,5 @@
 import React from "react";
-import { SFSymbol } from "../sf-symbol";
+import { Icon } from "../icon";
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
 
@@ -155,7 +155,7 @@ export const Carousel = ({
               onClick={prev}
               disabled={atStart}
             >
-              <SFSymbol symbol="􀆉" size="sm" weight="semibold" />
+              <Icon icon="chevron-left" size="sm" weight="bold" />
             </button>
             <button
               type="button"
@@ -164,7 +164,7 @@ export const Carousel = ({
               onClick={next}
               disabled={atEnd}
             >
-              <SFSymbol symbol="􀆊" size="sm" weight="semibold" />
+              <Icon icon="chevron-right" size="sm" weight="bold" />
             </button>
           </>
         )}

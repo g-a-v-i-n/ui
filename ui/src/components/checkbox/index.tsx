@@ -1,5 +1,5 @@
 import styles from "./styles.module.css";
-import { SFSymbol } from "../sf-symbol";
+import { Icon } from "../icon";
 import { Checkbox as CheckboxPrimitive } from "radix-ui";
 import { cx } from "../../lib/cx";
 
@@ -22,7 +22,7 @@ export const Checkbox = ({
     >
       <div className={styles.fill} aria-hidden />
       <CheckboxPrimitive.Indicator className={styles.indicator}>
-        <SFSymbol symbol="✓" size="md" weight="semibold" />
+        <Icon icon="check" size="md" weight="bold" />
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>
   );

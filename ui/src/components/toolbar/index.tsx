@@ -1,7 +1,7 @@
 import React from "react";
 import { Toolbar as ToolbarPrimitive } from "radix-ui";
 import { wrapTextChildren } from "../text/wrap";
-import { SFSymbol } from "../sf-symbol";
+import { Icon } from "../icon";
 import { Tooltip } from "../tooltip";
 import {
   DropdownMenuRoot,
@@ -157,7 +157,7 @@ export const ToolbarSplitButton = ({
             className={styles.splitTrigger}
           >
             <span className={styles.splitChevron} aria-hidden="true">
-              <SFSymbol symbol="􀆈" size="xs" weight="semibold" />
+              <Icon icon="chevron-down" size="xs" weight="bold" />
             </span>
           </ToolbarPrimitive.Button>
         </DropdownMenuTrigger>

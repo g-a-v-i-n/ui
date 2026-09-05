@@ -1,7 +1,7 @@
 import React from "react";
 import { NavigationMenu as NavigationMenuPrimitive } from "radix-ui";
 import { Text } from "../text";
-import { SFSymbol } from "../sf-symbol";
+import { Icon } from "../icon";
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
 import { styled } from "../../lib/styled";
@@ -53,7 +53,7 @@ export const NavigationMenuTrigger = ({
             {children}
           </Text>
           <span className={styles.chevron} aria-hidden="true">
-            <SFSymbol symbol="􀆈" size="sm" />
+            <Icon icon="chevron-down" size="sm" />
           </span>
         </>
       )}

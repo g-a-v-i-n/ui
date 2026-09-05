@@ -1,7 +1,7 @@
 import React from "react";
 import { Accordion as AccordionPrimitive } from "radix-ui";
 import { Text } from "../text";
-import { SFSymbol } from "../sf-symbol";
+import { Icon } from "../icon";
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
 import { styled } from "../../lib/styled";
@@ -42,7 +42,7 @@ export const AccordionTrigger = ({
           {children}
         </Text>
         <span className={styles.chevron} aria-hidden="true">
-          <SFSymbol symbol="􀆈" size="sm" />
+          <Icon icon="chevron-down" size="sm" />
         </span>
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>

@@ -2,7 +2,7 @@ import React from "react";
 import { Popover as PopoverPrimitive } from "radix-ui";
 import { TextInput } from "../text-input";
 import { Text } from "../text";
-import { SFSymbol } from "../sf-symbol";
+import { Icon } from "../icon";
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
 
@@ -147,7 +147,7 @@ export const Combobox = ({
       onMouseDown={(e) => e.preventDefault()}
       onClick={() => handleOpenChange(!open)}
     >
-      <SFSymbol symbol="􀆈" size="sm" />
+      <Icon icon="chevron-down" size="sm" />
     </button>
   );
 
@@ -228,7 +228,7 @@ export const Combobox = ({
                     onClick={() => commit(item)}
                   >
                     <span className={styles.indicator} aria-hidden="true">
-                      {selected && <SFSymbol symbol="✓" size="sm" />}
+                      {selected && <Icon icon="check" size="sm" />}
                     </span>
                     <Text as="span" size="sm" color="inherit">
                       {item.label}

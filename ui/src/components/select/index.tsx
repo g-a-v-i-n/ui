@@ -1,7 +1,7 @@
 import React from "react";
 import { Select as SelectPrimitive } from "radix-ui";
 import { Text } from "../text";
-import { SFSymbol } from "../sf-symbol";
+import { Icon } from "../icon";
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
 import { styled } from "../../lib/styled";
@@ -26,7 +26,7 @@ export const SelectTrigger = ({ children, className, asChild, ref, ...props }: S
             {children}
           </Text>
           <SelectPrimitive.Icon className={styles.triggerIcon}>
-            <SFSymbol symbol="􀆈" size="sm" />
+            <Icon icon="chevron-down" size="sm" />
           </SelectPrimitive.Icon>
         </>
       )}
@@ -43,9 +43,9 @@ export const SelectScrollUpButton = ({
     <SelectPrimitive.ScrollUpButton
       {...props}
       ref={ref}
-      className={cx(styles.scrollButton, styles.scrollButtonUp, className)}
+      className={cx(styles.scrollButton, className)}
     >
-      <SFSymbol symbol="􀆈" size="sm" />
+      <Icon icon="chevron-up" size="sm" />
     </SelectPrimitive.ScrollUpButton>
   );
 };
@@ -61,7 +61,7 @@ export const SelectScrollDownButton = ({
       ref={ref}
       className={cx(styles.scrollButton, className)}
     >
-      <SFSymbol symbol="􀆈" size="sm" />
+      <Icon icon="chevron-down" size="sm" />
     </SelectPrimitive.ScrollDownButton>
   );
 };
@@ -105,7 +105,7 @@ export const SelectItem = ({ children, className, ref, ...props }: Omit<SelectPr
       className={cx(styles.item, className)}
     >
       <SelectPrimitive.ItemIndicator className={styles.indicator}>
-        <SFSymbol symbol="✓" size="sm" />
+        <Icon icon="check" size="sm" />
       </SelectPrimitive.ItemIndicator>
       <Text as="span" size="sm">
         <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>

@@ -1,5 +1,5 @@
 import React from "react";
-import { SFSymbol } from "../sf-symbol";
+import { Icon } from "../icon";
 import { MenuDivider, MenuGroup, MenuItem, MenuLabel } from "./index";
 import styles from "./styles.module.css";
 
@@ -67,7 +67,7 @@ export function createMenuParts<
       prefixSlot={
         <>
           <primitive.ItemIndicator asChild>
-            <SFSymbol symbol="✓" data-check />
+            <Icon icon="check" size="md" data-check />
           </primitive.ItemIndicator>
           {slots.prefixSlot ?? null}
         </>
@@ -129,7 +129,7 @@ export function createMenuParts<
       <primitive.SubTrigger {...rest} asChild>
         <MenuItem
           suffixSlot={
-            slots.suffixSlot ?? <SFSymbol symbol="􀆊" size="xs" weight="semibold" />
+            slots.suffixSlot ?? <Icon icon="chevron-right" size="xs" weight="bold" />
           }
           prefixSlot={slots.prefixSlot}
         >

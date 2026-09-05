@@ -1,4 +1,4 @@
-/** Named glyph point sizes shared by Icon and SFSymbol. */
+/** Named glyph sizes in px for Icon. */
 export const iconSizes = {
   xs: 11,
   sm: 13,

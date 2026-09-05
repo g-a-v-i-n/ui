@@ -1,7 +1,7 @@
 import React from "react";
 import { Collapsible as CollapsiblePrimitive } from "radix-ui";
 import { Text } from "../text";
-import { SFSymbol } from "../sf-symbol";
+import { Icon } from "../icon";
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
 import { styled } from "../../lib/styled";
@@ -135,7 +135,7 @@ export const SidebarCollapsibleSection = ({
           {label}
         </Text>
         <span className={styles.collapsibleChevron} aria-hidden="true">
-          <SFSymbol symbol="􀆈" size="sm" />
+          <Icon icon="chevron-down" size="sm" />
         </span>
       </CollapsiblePrimitive.Trigger>
       <CollapsiblePrimitive.Content className={styles.collapsibleContent}>

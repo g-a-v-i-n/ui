@@ -1,7 +1,7 @@
 import React from "react";
 import { Dialog as DialogPrimitive, VisuallyHidden } from "radix-ui";
 import { Button } from "../button";
-import { SFSymbol } from "../sf-symbol";
+import { Icon } from "../icon";
 import { Tooltip } from "../tooltip";
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
@@ -77,7 +77,7 @@ export const FullscreenModal = ({
                 round
                 aria-label="Close"
                 className={styles.close}
-                prefixSlot={<SFSymbol symbol="✕" size="sm" />}
+                prefixSlot={<Icon icon="xmark" size="sm" />}
               />
             </DialogPrimitive.Close>
           )}

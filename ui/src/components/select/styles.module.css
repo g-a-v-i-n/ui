@@ -139,6 +139,3 @@
   cursor: default;
 }
 
-.scrollButtonUp > span {
-  transform: rotate(180deg);
-}

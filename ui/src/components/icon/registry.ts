@@ -19,6 +19,7 @@ import { Document as BoldDocument } from "./static/bold/document";
 import { Folder as BoldFolder } from "./static/bold/folder";
 import { GridSquare as BoldGridSquare } from "./static/bold/grid-square";
 import { Hexagon as BoldHexagon } from "./static/bold/hexagon";
+import { HexagonDot as BoldHexagonDot } from "./static/bold/hexagon-dot";
 import { HexagonFill as BoldHexagonFill } from "./static/bold/hexagon-fill";
 import { InfoCircle as BoldInfoCircle } from "./static/bold/info-circle";
 import { Link as BoldLink } from "./static/bold/link";
@@ -71,6 +72,7 @@ import { Folder as NormalFolder } from "./static/normal/folder";
 import { FolderFill as NormalFolderFill } from "./static/normal/folder-fill";
 import { GridSquare as NormalGridSquare } from "./static/normal/grid-square";
 import { Hexagon as NormalHexagon } from "./static/normal/hexagon";
+import { HexagonDot as NormalHexagonDot } from "./static/normal/hexagon-dot";
 import { HexagonFill as NormalHexagonFill } from "./static/normal/hexagon-fill";
 import { InfoCircle as NormalInfoCircle } from "./static/normal/info-circle";
 import { InfoCircleFill as NormalInfoCircleFill } from "./static/normal/info-circle-fill";
@@ -126,6 +128,7 @@ export const icons = {
     folder: BoldFolder,
     "grid-square": BoldGridSquare,
     hexagon: BoldHexagon,
+    "hexagon-dot": BoldHexagonDot,
     "hexagon-fill": BoldHexagonFill,
     "info-circle": BoldInfoCircle,
     "info-circle-xmark": BoldCircleXmark,
@@ -182,6 +185,7 @@ export const icons = {
     "folder-fill": NormalFolderFill,
     "grid-square": NormalGridSquare,
     hexagon: NormalHexagon,
+    "hexagon-dot": NormalHexagonDot,
     "hexagon-fill": NormalHexagonFill,
     "info-circle": NormalInfoCircle,
     "info-circle-fill": NormalInfoCircleFill,

@@ -1,7 +1,7 @@
 import React from "react";
 import { Toast as ToastPrimitive } from "radix-ui";
 import { Text } from "../text";
-import { SFSymbol } from "../sf-symbol";
+import { Icon } from "../icon";
 import styles from "./styles.module.css";
 import { wrapTextChildren } from "../text/wrap";
 import { cx } from "../../lib/cx";
@@ -73,7 +73,7 @@ export const ToastClose = ({ className, asChild, children, ref, ...props }: Toas
       ref={ref}
       className={cx(styles.close, className)}
     >
-      {asChild ? children : <SFSymbol symbol="✕" size="sm" />}
+      {asChild ? children : <Icon icon="xmark" size="sm" />}
     </ToastPrimitive.Close>
   );
 };

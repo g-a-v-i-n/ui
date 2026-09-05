@@ -139,7 +139,7 @@
       color: var(--item-icon-color);
       transition: color var(--duration-120) var(--ease-in-out-quad);
     }
-    /* The check indicator is an SFSymbol span (it sizes itself inline). */
+    /* The check indicator is an Icon svg, sized by the svg rule above. */
     [data-check] {
       color: var(--item-check-color);
       transition: color var(--duration-120) var(--ease-in-out-quad);
@@ -183,11 +183,11 @@
 
 /* Check/radio menu items: the indicator only mounts when checked, leaving an
    empty .prefix behind — still a flex item, so the 6px gap before the label
-   remains. Pad the left column by the check glyph alone (SFSymbol md, 15px)
+   remains. Pad the left column by the check glyph alone (the 16px .prefix svg)
    so unchecked labels line up with checked ones; the suffix is untouched. */
 .checkboxItem {
   &[data-state="unchecked"] > .left {
-    padding-left: 15px;
+    padding-left: var(--size-16);
   }
 }
 
