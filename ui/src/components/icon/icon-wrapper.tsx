@@ -6,7 +6,6 @@ import type { IconWrapperProps } from "./types";
 export const IconWrapper = ({
   className,
   size,
-  weight: _weight,
   width,
   height,
   viewBox = "0 0 18 18",

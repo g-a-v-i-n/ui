@@ -22,7 +22,7 @@ export const Checkbox = ({
     >
       <div className={styles.fill} aria-hidden />
       <CheckboxPrimitive.Indicator className={styles.indicator}>
-        <Icon icon="check" size="md" weight="bold" />
+        <Icon icon="check" size="md" />
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>
   );

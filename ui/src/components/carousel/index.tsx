@@ -155,7 +155,7 @@ export const Carousel = ({
               onClick={prev}
               disabled={atStart}
             >
-              <Icon icon="chevron-left" size="sm" weight="bold" />
+              <Icon icon="chevron-left" size="sm" />
             </button>
             <button
               type="button"
@@ -164,7 +164,7 @@ export const Carousel = ({
               onClick={next}
               disabled={atEnd}
             >
-              <Icon icon="chevron-right" size="sm" weight="bold" />
+              <Icon icon="chevron-right" size="sm" />
             </button>
           </>
         )}
