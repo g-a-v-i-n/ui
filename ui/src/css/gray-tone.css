@@ -1,0 +1,162 @@
+/* Gray tone — swap the neutral gray scale for one of Radix's tinted grays.
+
+   Every component reads --gray-1…12 / --gray-a1…12. With no data-gray
+   attribute those resolve to the neutral Radix gray imported in color.css
+   (the default). Setting data-gray on the root — or on any subtree — points
+   them at a tinted scale instead:
+
+     <html data-gray="slate">           <Theme gray="slate">
+
+   Tones: mauve (violet-ish), slate (blue-ish), sage (green-ish),
+   olive (yellow-green), sand (warm). The tinted --<tone>-* variables are
+   themselves mode-aware (their -dark imports redefine them under .dark), so
+   one remap serves light and dark.
+
+   The `[data-gray] :is(.dark, …)` half keeps the remap winning inside a
+   nested .light/.dark subtree, where Radix's own `.dark { --gray-1: … }`
+   would otherwise override the inherited alias. */
+
+[data-gray="mauve"],
+[data-gray="mauve"] :is(.light, .light-theme, .dark, .dark-theme) {
+  --gray-1: var(--mauve-1);
+  --gray-2: var(--mauve-2);
+  --gray-3: var(--mauve-3);
+  --gray-4: var(--mauve-4);
+  --gray-5: var(--mauve-5);
+  --gray-6: var(--mauve-6);
+  --gray-7: var(--mauve-7);
+  --gray-8: var(--mauve-8);
+  --gray-9: var(--mauve-9);
+  --gray-10: var(--mauve-10);
+  --gray-11: var(--mauve-11);
+  --gray-12: var(--mauve-12);
+
+  --gray-a1: var(--mauve-a1);
+  --gray-a2: var(--mauve-a2);
+  --gray-a3: var(--mauve-a3);
+  --gray-a4: var(--mauve-a4);
+  --gray-a5: var(--mauve-a5);
+  --gray-a6: var(--mauve-a6);
+  --gray-a7: var(--mauve-a7);
+  --gray-a8: var(--mauve-a8);
+  --gray-a9: var(--mauve-a9);
+  --gray-a10: var(--mauve-a10);
+  --gray-a11: var(--mauve-a11);
+  --gray-a12: var(--mauve-a12);
+}
+
+[data-gray="slate"],
+[data-gray="slate"] :is(.light, .light-theme, .dark, .dark-theme) {
+  --gray-1: var(--slate-1);
+  --gray-2: var(--slate-2);
+  --gray-3: var(--slate-3);
+  --gray-4: var(--slate-4);
+  --gray-5: var(--slate-5);
+  --gray-6: var(--slate-6);
+  --gray-7: var(--slate-7);
+  --gray-8: var(--slate-8);
+  --gray-9: var(--slate-9);
+  --gray-10: var(--slate-10);
+  --gray-11: var(--slate-11);
+  --gray-12: var(--slate-12);
+
+  --gray-a1: var(--slate-a1);
+  --gray-a2: var(--slate-a2);
+  --gray-a3: var(--slate-a3);
+  --gray-a4: var(--slate-a4);
+  --gray-a5: var(--slate-a5);
+  --gray-a6: var(--slate-a6);
+  --gray-a7: var(--slate-a7);
+  --gray-a8: var(--slate-a8);
+  --gray-a9: var(--slate-a9);
+  --gray-a10: var(--slate-a10);
+  --gray-a11: var(--slate-a11);
+  --gray-a12: var(--slate-a12);
+}
+
+[data-gray="sage"],
+[data-gray="sage"] :is(.light, .light-theme, .dark, .dark-theme) {
+  --gray-1: var(--sage-1);
+  --gray-2: var(--sage-2);
+  --gray-3: var(--sage-3);
+  --gray-4: var(--sage-4);
+  --gray-5: var(--sage-5);
+  --gray-6: var(--sage-6);
+  --gray-7: var(--sage-7);
+  --gray-8: var(--sage-8);
+  --gray-9: var(--sage-9);
+  --gray-10: var(--sage-10);
+  --gray-11: var(--sage-11);
+  --gray-12: var(--sage-12);
+
+  --gray-a1: var(--sage-a1);
+  --gray-a2: var(--sage-a2);
+  --gray-a3: var(--sage-a3);
+  --gray-a4: var(--sage-a4);
+  --gray-a5: var(--sage-a5);
+  --gray-a6: var(--sage-a6);
+  --gray-a7: var(--sage-a7);
+  --gray-a8: var(--sage-a8);
+  --gray-a9: var(--sage-a9);
+  --gray-a10: var(--sage-a10);
+  --gray-a11: var(--sage-a11);
+  --gray-a12: var(--sage-a12);
+}
+
+[data-gray="olive"],
+[data-gray="olive"] :is(.light, .light-theme, .dark, .dark-theme) {
+  --gray-1: var(--olive-1);
+  --gray-2: var(--olive-2);
+  --gray-3: var(--olive-3);
+  --gray-4: var(--olive-4);
+  --gray-5: var(--olive-5);
+  --gray-6: var(--olive-6);
+  --gray-7: var(--olive-7);
+  --gray-8: var(--olive-8);
+  --gray-9: var(--olive-9);
+  --gray-10: var(--olive-10);
+  --gray-11: var(--olive-11);
+  --gray-12: var(--olive-12);
+
+  --gray-a1: var(--olive-a1);
+  --gray-a2: var(--olive-a2);
+  --gray-a3: var(--olive-a3);
+  --gray-a4: var(--olive-a4);
+  --gray-a5: var(--olive-a5);
+  --gray-a6: var(--olive-a6);
+  --gray-a7: var(--olive-a7);
+  --gray-a8: var(--olive-a8);
+  --gray-a9: var(--olive-a9);
+  --gray-a10: var(--olive-a10);
+  --gray-a11: var(--olive-a11);
+  --gray-a12: var(--olive-a12);
+}
+
+[data-gray="sand"],
+[data-gray="sand"] :is(.light, .light-theme, .dark, .dark-theme) {
+  --gray-1: var(--sand-1);
+  --gray-2: var(--sand-2);
+  --gray-3: var(--sand-3);
+  --gray-4: var(--sand-4);
+  --gray-5: var(--sand-5);
+  --gray-6: var(--sand-6);
+  --gray-7: var(--sand-7);
+  --gray-8: var(--sand-8);
+  --gray-9: var(--sand-9);
+  --gray-10: var(--sand-10);
+  --gray-11: var(--sand-11);
+  --gray-12: var(--sand-12);
+
+  --gray-a1: var(--sand-a1);
+  --gray-a2: var(--sand-a2);
+  --gray-a3: var(--sand-a3);
+  --gray-a4: var(--sand-a4);
+  --gray-a5: var(--sand-a5);
+  --gray-a6: var(--sand-a6);
+  --gray-a7: var(--sand-a7);
+  --gray-a8: var(--sand-a8);
+  --gray-a9: var(--sand-a9);
+  --gray-a10: var(--sand-a10);
+  --gray-a11: var(--sand-a11);
+  --gray-a12: var(--sand-a12);
+}

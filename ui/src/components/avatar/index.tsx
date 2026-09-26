@@ -1,11 +1,21 @@
 import React from "react";
 import { Avatar as AvatarPrimitive } from "radix-ui";
-import { Text } from "../text";
+import { Text, type TextProps } from "../text";
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
 import { styled } from "../../lib/styled";
 
 type Size = "sm" | "md" | "lg";
+
+/* The fallback is composed separately from the root, so the root shares its
+   size through context and the fallback picks a matching text size. */
+const AvatarContext = React.createContext<{ size: Size }>({ size: "md" });
+
+const fallbackTextSize = {
+  sm: "xs",
+  md: "sm",
+  lg: "md",
+} satisfies Record<Size, TextProps["size"]>;
 
 export const AvatarRoot = ({
   className,
@@ -15,17 +25,19 @@ export const AvatarRoot = ({
   ...props
 }: AvatarPrimitive.AvatarProps & { size?: Size } & { ref?: React.Ref<HTMLSpanElement> }) => {
   return (
-    <AvatarPrimitive.Root
-      {...props}
-      ref={ref}
-      data-size={size}
-      className={cx(styles.root, className)}
-    >
-      {children}
-      {/* span, not div — the Radix root renders a <span>. Last child so it
-          paints over the image/fallback. */}
-      <span className={styles.rim} aria-hidden="true" />
-    </AvatarPrimitive.Root>
+    <AvatarContext.Provider value={{ size }}>
+      <AvatarPrimitive.Root
+        {...props}
+        ref={ref}
+        data-size={size}
+        className={cx(styles.root, className)}
+      >
+        {children}
+        {/* span, not div — the Radix root renders a <span>. Last child so it
+            paints over the image/fallback. */}
+        <span className={styles.rim} aria-hidden="true" />
+      </AvatarPrimitive.Root>
+    </AvatarContext.Provider>
   );
 };
 
@@ -37,13 +49,14 @@ export const AvatarFallback = ({
   ref,
   ...props
 }: AvatarPrimitive.AvatarFallbackProps & { ref?: React.Ref<HTMLSpanElement> }) => {
+  const { size } = React.useContext(AvatarContext);
   return (
     <AvatarPrimitive.Fallback
       {...props}
       ref={ref}
       className={cx(styles.fallback, className)}
     >
-      <Text as="span" size="md" weight="medium" color="inherit">
+      <Text as="span" size={fallbackTextSize[size]} weight="semibold" color="inherit">
         {children}
       </Text>
     </AvatarPrimitive.Fallback>

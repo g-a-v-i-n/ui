@@ -231,6 +231,19 @@
     }
 }
 
+/* Instant theme swap. <Theme> puts this on <html> around a change to the
+   theme class or data-gray and takes it off once a frame has rendered, so
+   every color lands at once instead of each component cross-fading at its own
+   duration. Transitions only — animations stay, since cancelling an in-flight
+   exit animation would make Radix Presence unmount mid-flight. !important on
+   purpose: it must beat component, third-party, and consumer declarations. */
+.no-transitions,
+.no-transitions *,
+.no-transitions *::before,
+.no-transitions *::after {
+    transition: none !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
     :root {
         --focus-ring-animation: none;
