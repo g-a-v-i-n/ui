@@ -16,12 +16,6 @@
   color: var(--fg-primary);
 }
 
-.weights {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
 .label {
   text-align: center;
   word-break: break-word;

@@ -12,6 +12,12 @@
   margin-bottom: 16px;
 }
 
+.page-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
 .theme-picker {
   display: inline-flex;
   align-items: center;

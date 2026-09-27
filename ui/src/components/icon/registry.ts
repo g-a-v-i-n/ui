@@ -6,6 +6,7 @@ import { ArrowDown } from "./static/arrow-down";
 import { ArrowLeft } from "./static/arrow-left";
 import { ArrowRight } from "./static/arrow-right";
 import { ArrowUp } from "./static/arrow-up";
+import { AtSymbol } from "./static/at-symbol";
 import { Check } from "./static/check";
 import { CheckCircle } from "./static/check-circle";
 import { CheckCircleFill } from "./static/check-circle-fill";
@@ -36,6 +37,7 @@ import { FolderFill } from "./static/folder-fill";
 import { Gear } from "./static/gear";
 import { GearFill } from "./static/gear-fill";
 import { GridSquare } from "./static/grid-square";
+import { HashSymbol } from "./static/hash-symbol";
 import { Hexagon } from "./static/hexagon";
 import { HexagonDot } from "./static/hexagon-dot";
 import { HexagonFill } from "./static/hexagon-fill";
@@ -82,6 +84,7 @@ export const icons = {
   "arrow-left": ArrowLeft,
   "arrow-right": ArrowRight,
   "arrow-up": ArrowUp,
+  "at-symbol": AtSymbol,
   check: Check,
   "check-circle": CheckCircle,
   "check-circle-fill": CheckCircleFill,
@@ -112,6 +115,7 @@ export const icons = {
   gear: Gear,
   "gear-fill": GearFill,
   "grid-square": GridSquare,
+  "hash-symbol": HashSymbol,
   hexagon: Hexagon,
   "hexagon-dot": HexagonDot,
   "hexagon-fill": HexagonFill,

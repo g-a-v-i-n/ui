@@ -1,6 +1,6 @@
 import { useState, type ComponentType } from 'react';
 import { Text } from 'ui/components/text';
-import { Theme } from 'ui/components/theme';
+import { GRAY_TONES, Theme, type GrayTone } from 'ui/components/theme';
 import { TooltipProvider } from 'ui/components/tooltip';
 import { ToastProvider, ToastViewport } from 'ui/components/toast';
 
@@ -101,12 +101,17 @@ const sections = [...ORDER, ...unordered].flatMap((name) => {
   return Component ? [{ name, Component }] : [];
 });
 
+function isGrayTone(value: string): value is GrayTone {
+  return (GRAY_TONES as readonly string[]).includes(value);
+}
+
 function App() {
   const [theme, setTheme] = useState<'light' | 'dark' | 'system'>('system');
   const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>('light');
+  const [gray, setGray] = useState<GrayTone>('gray');
 
   return (
-    <Theme theme={theme} setResolvedTheme={setResolvedTheme}>
+    <Theme theme={theme} gray={gray} setResolvedTheme={setResolvedTheme}>
       <TooltipProvider delayDuration={200}>
         <ToastProvider swipeDirection="right">
           <TestDropdownMenuProvider>
@@ -115,22 +120,42 @@ function App() {
                 <Text as="h1" size="2xl" weight="semibold">
                   UI component preview
                 </Text>
-                <label className="theme-picker">
-                  <Text as="span" size="sm">
-                    Theme
-                  </Text>
-                  <select
-                    value={theme}
-                    onChange={(e) => setTheme(e.target.value as 'light' | 'dark' | 'system')}
-                  >
-                    <option value="light">light</option>
-                    <option value="dark">dark</option>
-                    <option value="system">system</option>
-                  </select>
-                  <Text as="span" size="sm" className="resolved">
-                    (resolved: {resolvedTheme})
-                  </Text>
-                </label>
+                <div className="page-controls">
+                  <label className="theme-picker">
+                    <Text as="span" size="sm">
+                      Theme
+                    </Text>
+                    <select
+                      value={theme}
+                      onChange={(e) => setTheme(e.target.value as 'light' | 'dark' | 'system')}
+                    >
+                      <option value="light">light</option>
+                      <option value="dark">dark</option>
+                      <option value="system">system</option>
+                    </select>
+                    <Text as="span" size="sm" className="resolved">
+                      (resolved: {resolvedTheme})
+                    </Text>
+                  </label>
+                  <label className="theme-picker">
+                    <Text as="span" size="sm">
+                      Gray
+                    </Text>
+                    <select
+                      value={gray}
+                      onChange={(e) => {
+                        const next = e.target.value;
+                        if (isGrayTone(next)) setGray(next);
+                      }}
+                    >
+                      {GRAY_TONES.map((tone) => (
+                        <option key={tone} value={tone}>
+                          {tone === 'gray' ? 'gray (neutral)' : tone}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                </div>
               </header>
 
               {sections.map(({ name, Component }) => (
