@@ -4,6 +4,7 @@ import { Text } from "../text";
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
 import { styled } from "../../lib/styled";
+import { useAnimatedSize } from "../../lib/use-animated-size";
 
 export const DialogRoot = DialogPrimitive.Root;
 export const DialogPortal = DialogPrimitive.Portal;
@@ -15,12 +16,15 @@ export const DialogTrigger = (props: DialogPrimitive.DialogTriggerProps) => (
 
 export const DialogOverlay = styled(DialogPrimitive.Overlay, styles.overlay, "DialogOverlay");
 
+/** The modal surface, centered over the scrim. It sizes to its content and
+    tweens between sizes when that content changes. */
 export const DialogContent = ({
   children,
   className,
   ref,
   ...props
 }: DialogPrimitive.DialogContentProps & { ref?: React.Ref<HTMLDivElement> }) => {
+  const inner = useAnimatedSize();
   return (
     <DialogPrimitive.Portal>
       <DialogOverlay />
@@ -29,7 +33,11 @@ export const DialogContent = ({
         ref={ref}
         className={cx(styles.content, className)}
       >
-        {children}
+        <div>
+          <div ref={inner} className={styles.inner}>
+            {children}
+          </div>
+        </div>
       </DialogPrimitive.Content>
     </DialogPrimitive.Portal>
   );

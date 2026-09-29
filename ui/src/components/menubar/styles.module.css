@@ -13,18 +13,20 @@
 .trigger {
   display: inline-flex;
   align-items: center;
-  height: var(--control-height-md);
+  height: var(--control-height-chrome);
   padding: 0 var(--size-8);
 
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   corner-shape: var(--corner-shape);
   background: transparent;
   color: var(--trigger-foreground);
   cursor: pointer;
   user-select: none;
 
-  transition: background-color var(--duration-120) var(--ease-in-out-quad);
+  transition:
+    background-color var(--duration-120) var(--ease-in-out-quad),
+    box-shadow var(--duration-120) var(--ease-in-out-quad);
 
   &:hover,
   &[data-state="open"] {
@@ -32,9 +34,8 @@
   }
 
   &:focus-visible {
-    outline: var(--focus-ring-width) solid var(--focus-ring-color);
-    animation: var(--focus-ring-animation);
-    outline-offset: -1px;
+    outline: none;
+    box-shadow: var(--focus-shadow-inset);
   }
 
   &[data-disabled] {

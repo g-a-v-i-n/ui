@@ -76,7 +76,7 @@ function PropsTable({ name, component }: { name: string; component: ComponentPro
             </TableHeader>
             <TableBody>
               {component.props.map((prop) => (
-                <TableRow key={prop.name}>
+                <TableRow key={prop.name} hoverable={false}>
                   <TableCell>
                     <span className={styles.propName}>
                       <Text as="code" size="sm" mono weight="medium">

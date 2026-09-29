@@ -22,7 +22,7 @@ export const doc = defineDoc({
         width={width === '200px' ? 200 : width}
         disabled={disabled}
         aria-label="Search"
-        prefixSlot={prefixIcon ? <Icon icon="magnifying-glass" size="md" /> : undefined}
+        prefixSlot={prefixIcon ? <Icon icon="magnifying-glass" size="lg" /> : undefined}
         suffixSlot={suffixTag ? <Tag mono>⌘K</Tag> : undefined}
       />
     </div>

@@ -3,3 +3,12 @@
   gap: 8px;
   justify-content: flex-end;
 }
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--gray-a2);
+}

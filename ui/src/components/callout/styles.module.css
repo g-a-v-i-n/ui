@@ -13,7 +13,7 @@
   align-items: flex-start;
   gap: var(--size-8);
   padding: var(--size-12);
-  border-radius: var(--size-12);
+  border-radius: var(--radius-lg);
   corner-shape: var(--corner-shape);
 
   color: var(--foreground);
@@ -53,6 +53,12 @@
   flex: 1;
 }
 
+/* Optical nudge: the semibold title sits high in its line box next to the
+   centred leading icon, so drop it a touch. */
+.title {
+  padding-top: 2px;
+}
+
 .close {
   display: inline-flex;
   align-items: center;
@@ -65,16 +71,17 @@
   cursor: pointer;
   opacity: 0.7;
   flex: none;
-  transition: opacity var(--duration-120) var(--ease-out-quad);
+  transition:
+    opacity var(--duration-120) var(--ease-out-quad),
+    box-shadow var(--duration-120) var(--ease-out-quad);
 
   &:hover {
     opacity: 1;
   }
 
   &:focus-visible {
-    outline: var(--focus-ring-width) solid var(--focus-ring-color);
-    animation: var(--focus-ring-animation);
-    outline-offset: 2px;
-    border-radius: var(--size-4);
+    outline: none;
+    box-shadow: var(--focus-shadow);
+    border-radius: var(--radius-xs);
   }
 }

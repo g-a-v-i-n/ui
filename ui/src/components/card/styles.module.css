@@ -8,7 +8,7 @@
 }
 
 .card {
-  border-radius: var(--size-12);
+  border-radius: var(--radius-lg);
   corner-shape: var(--corner-shape);
   padding: var(--size-16);
 

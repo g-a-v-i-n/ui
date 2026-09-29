@@ -157,7 +157,7 @@ export const ToolbarSplitButton = ({
             className={styles.splitTrigger}
           >
             <span className={styles.splitChevron} aria-hidden="true">
-              <Icon icon="chevron-down" size="xs" />
+              <Icon icon="chevron-down-mini-bold" size="lg" />
             </span>
           </ToolbarPrimitive.Button>
         </DropdownMenuTrigger>

@@ -14,7 +14,7 @@ export function CollapsibleSection() {
     <Section title="Collapsible">
       <CollapsibleRoot className={styles.root}>
         <CollapsibleTrigger>
-          <Button variant="secondary" suffixSlot={<Icon icon="chevron-down" size="md" />}>
+          <Button variant="secondary" suffixSlot={<Icon icon="chevron-down" size="lg" />}>
             Toggle details
           </Button>
         </CollapsibleTrigger>

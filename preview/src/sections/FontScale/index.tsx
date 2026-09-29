@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   TableRoot,
   TableHeader,
@@ -16,20 +16,48 @@ import styles from './styles.module.css';
 const TOKENS = ['5xl', '4xl', '3xl', '2xl', 'xl', 'lg', 'md', 'sm', 'xs'] as const;
 
 /* Resolve the values from the live custom properties so the table can never
-   drift from css/font.css. */
+   drift from css/font.css. Font size and tracking are calc() expressions on
+   --font-scaling, so they're measured on a probe element rather than read
+   back as text; line-height is a plain ratio and can be read directly. */
 function readScale() {
-  const cs = getComputedStyle(document.documentElement);
-  const read = (name: string) => cs.getPropertyValue(name).trim() || '—';
-  return TOKENS.map((token) => ({
-    token,
-    fontSize: read(`--font-size-${token}`),
-    lineHeight: read(`--line-height-${token}`),
-    letterSpacing: read(`--letter-spacing-${token}`),
-  }));
+  const root = getComputedStyle(document.documentElement);
+  const probe = document.createElement('span');
+  document.body.append(probe);
+  const rows = TOKENS.map((token) => {
+    probe.style.fontSize = `var(--font-size-${token})`;
+    probe.style.letterSpacing = `var(--letter-spacing-${token})`;
+    const cs = getComputedStyle(probe);
+    return {
+      token,
+      fontSize: cs.fontSize,
+      lineHeight: root.getPropertyValue(`--line-height-${token}`).trim() || '—',
+      // Chrome serialises a zero letter-spacing as "normal".
+      letterSpacing: cs.letterSpacing === 'normal' ? '0px' : cs.letterSpacing,
+    };
+  });
+  probe.remove();
+  return rows;
 }
 
 export function FontScaleSection() {
-  const [scale] = useState(readScale);
+  const [scale, setScale] = useState(readScale);
+
+  /* Re-measure when the ramp changes: the sidebar's Font scale picker flips
+     data-font-scale on <html>, and crossing the small-screen breakpoint
+     changes --font-scaling. */
+  useEffect(() => {
+    const update = () => setScale(readScale());
+    const observer = new MutationObserver(update);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-font-scale'],
+    });
+    window.addEventListener('resize', update);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('resize', update);
+    };
+  }, []);
   return (
     <Section title="Font scale">
       <TableRoot>

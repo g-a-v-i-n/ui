@@ -4,9 +4,9 @@ import { defineDoc } from '../types';
 
 export const doc = defineDoc({
   description:
-    'An indeterminate loading indicator in three sizes. It inherits the text color, so it fits inside buttons as well as on its own.',
+    'An indeterminate loading indicator in the five icon sizes. It inherits the text color, so it fits inside buttons as well as on its own.',
   controls: {
-    size: { type: 'segmented', options: ['sm', 'md', 'lg'], default: 'md' },
+    size: { type: 'segmented', options: ['xs', 'sm', 'md', 'lg', 'xl'], default: 'md' },
     label: { type: 'text', default: 'Loading' },
     color: { type: 'segmented', options: ['default', 'blue', 'tomato'], default: 'default' },
     inButton: { type: 'boolean', label: 'Inside a button', default: false },

@@ -27,7 +27,7 @@ export function IconSwapSection() {
           <IconSwap swapKey={starred}>
             <Icon
               icon={starred ? 'star-fill' : 'star'}
-              size="sm"
+              size="md"
               style={starred ? { color: 'var(--amber-10)' } : undefined}
             />
           </IconSwap>

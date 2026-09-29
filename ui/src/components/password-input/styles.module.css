@@ -19,16 +19,17 @@
   background: transparent;
   color: var(--toggle-color);
   cursor: pointer;
-  transition: color var(--duration-120) var(--ease-out-quad);
+  transition:
+    color var(--duration-120) var(--ease-out-quad),
+    box-shadow var(--duration-120) var(--ease-out-quad);
 
   &:hover {
     color: var(--toggle-color-hover);
   }
 
   &:focus-visible {
-    outline: var(--focus-ring-width) solid var(--focus-ring-color);
-    animation: var(--focus-ring-animation);
-    outline-offset: 2px;
-    border-radius: var(--size-4);
+    outline: none;
+    box-shadow: var(--focus-shadow);
+    border-radius: var(--radius-xs);
   }
 }

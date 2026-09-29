@@ -5,6 +5,7 @@ import { Button, type ButtonProps } from "../button";
 import { Text } from "../text";
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
+import { useAnimatedSize } from "../../lib/use-animated-size";
 import { styled } from "../../lib/styled";
 
 export const AlertDialogRoot = AlertDialogPrimitive.Root;
@@ -16,6 +17,9 @@ export const AlertDialogTrigger = (
 
 export const AlertDialogOverlay = styled(AlertDialogPrimitive.Overlay, styles.overlay, "AlertDialogOverlay");
 
+/** The modal surface, centered over the scrim. It sizes to its content and
+    tweens between sizes when that content changes; an outside click shakes
+    it instead of dismissing. */
 export const AlertDialogContent = ({
   children,
   className,
@@ -23,6 +27,7 @@ export const AlertDialogContent = ({
   ...props
 }: AlertDialogPrimitive.AlertDialogContentProps & { ref?: React.Ref<HTMLDivElement> }) => {
   const controls = useAnimationControls();
+  const inner = useAnimatedSize();
 
   // An alert dialog never dismisses on an outside click — shake "no" to make
   // that refusal felt. Animate the independent `translate` property (not
@@ -46,7 +51,11 @@ export const AlertDialogContent = ({
           animate={controls}
           className={cx(styles.content, className)}
         >
-          {children}
+          <div>
+            <div ref={inner} className={styles.inner}>
+              {children}
+            </div>
+          </div>
         </motion.div>
       </AlertDialogPrimitive.Content>
     </AlertDialogPrimitive.Portal>
@@ -84,7 +93,7 @@ export const AlertDialogDescription = ({
     <AlertDialogPrimitive.Description {...props} ref={ref} asChild>
       <Text
         as="p"
-        size="sm"
+        size="md"
         color="secondary"
         className={cx(styles.description, className)}
       >

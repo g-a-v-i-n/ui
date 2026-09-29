@@ -13,7 +13,7 @@
 .container {
   display: flex;
   width: 100%;
-  border-radius: var(--size-10);
+  border-radius: var(--radius-md);
   corner-shape: var(--corner-shape);
 
   background-color: var(--background);
@@ -24,12 +24,11 @@
     box-shadow: var(--shadow-hover);
   }
 
-  /* Outline, not box-shadow — see text-input: keeps the hairline (also a
-     box-shadow) intact under the animated ring, offset clear of it. */
+  /* No separate ring — see text-input: focus thickens the hairline into a
+     band of the ring color, tweened by the box-shadow transition. */
   &:has(.textarea:focus-visible) {
-    outline: var(--focus-ring-width) solid var(--focus-ring-color);
-    outline-offset: var(--focus-ring-offset);
-    animation: var(--focus-ring-animation);
+    outline: none;
+    box-shadow: var(--focus-shadow);
   }
 
   /* After :hover so the disabled fill also pins the resting hairline. */

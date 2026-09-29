@@ -30,7 +30,7 @@ export const doc = defineDoc({
           </Text>
           <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
             <PopoverClose asChild>
-              <Button variant="secondary" size="sm">
+              <Button variant="secondary" size="xs">
                 Done
               </Button>
             </PopoverClose>

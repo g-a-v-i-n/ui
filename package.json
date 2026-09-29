@@ -8,6 +8,7 @@
   "scripts": {
     "lint": "oxlint ui/src",
     "agentation": "agentation-mcp server",
+    "dev": "node scripts/dev.ts",
     "build": "pnpm --filter ui run build",
     "build:all": "pnpm generate-icons && pnpm generate-custom-colors && pnpm --filter ui run build && pnpm --filter preview run build",
     "typecheck": "pnpm -r --no-bail run typecheck && pnpm typecheck:scripts",

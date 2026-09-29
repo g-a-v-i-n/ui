@@ -20,7 +20,7 @@ export const doc = defineDoc({
   render: ({ label, open, disabled }) => (
     <CollapsibleRoot key={String(open)} defaultOpen={open} disabled={disabled} style={{ width: 360 }}>
       <CollapsibleTrigger>
-        <Button variant="secondary" suffixSlot={<Icon icon="chevron-down" size="md" />}>
+        <Button variant="secondary" suffixSlot={<Icon icon="chevron-down" size="lg" />}>
           {label}
         </Button>
       </CollapsibleTrigger>

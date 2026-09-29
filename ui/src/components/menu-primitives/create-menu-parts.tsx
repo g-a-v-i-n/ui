@@ -67,7 +67,7 @@ export function createMenuParts<
       prefixSlot={
         <>
           <primitive.ItemIndicator asChild>
-            <Icon icon="check" size="md" data-check />
+            <Icon icon="check" size="lg" data-check />
           </primitive.ItemIndicator>
           {slots.prefixSlot ?? null}
         </>
@@ -129,7 +129,7 @@ export function createMenuParts<
       <primitive.SubTrigger {...rest} asChild>
         <MenuItem
           suffixSlot={
-            slots.suffixSlot ?? <Icon icon="chevron-right" size="xs" />
+            slots.suffixSlot ?? <Icon icon="chevron-right-mini-bold" size="sm" />
           }
           prefixSlot={slots.prefixSlot}
         >

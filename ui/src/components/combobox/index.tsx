@@ -147,7 +147,7 @@ export const Combobox = ({
       onMouseDown={(e) => e.preventDefault()}
       onClick={() => handleOpenChange(!open)}
     >
-      <Icon icon="chevron-down" size="sm" />
+      <Icon icon="chevron-down" size="lg" />
     </button>
   );
 

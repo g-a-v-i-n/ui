@@ -26,14 +26,14 @@
     --shadow-xl: 0px 0px 48px 0px var(--shadow-color, var(--black-a1));
     --shadow-debug: 0 10px 10px 0px var(--black-a11);
 
-    --shadow-hairline-1: 0 0 0 1px var(--hairline-color, var(--gray-a4));
-    --shadow-hairline-2: 0 0 0 1px var(--hairline-color, var(--gray-a5));
-    --shadow-hairline-3: 0 0 0 1px var(--hairline-color, var(--gray-a7));
+    --shadow-hairline-1: 0 0 0 0.75px var(--hairline-color, var(--gray-a4));
+    --shadow-hairline-2: 0 0 0 0.75px var(--hairline-color, var(--gray-a5));
+    --shadow-hairline-3: 0 0 0 0.75px var(--hairline-color, var(--gray-a7));
 
     /* Inset mirrors of the hairlines — same widths/colors, drawn inward. */
-    --shadow-hairline-inset-1: inset 0 0 0 1px var(--hairline-color, var(--gray-a4));
-    --shadow-hairline-inset-2: inset 0 0 0 1px var(--hairline-color, var(--gray-a5));
-    --shadow-hairline-inset-3: inset 0 0 0 1px var(--hairline-color, var(--gray-a7));
+    --shadow-hairline-inset-1: inset 0 0 0 0.75px var(--hairline-color, var(--gray-a4));
+    --shadow-hairline-inset-2: inset 0 0 0 0.75px var(--hairline-color, var(--gray-a5));
+    --shadow-hairline-inset-3: inset 0 0 0 0.75px var(--hairline-color, var(--gray-a7));
 
     --shadow-button: var(--shadow-hairline-1), var(--shadow-sm);
     --shadow-card: var(--shadow-hairline-1), var(--shadow-sm);

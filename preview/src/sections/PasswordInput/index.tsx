@@ -20,7 +20,7 @@ export function PasswordInputSection() {
           width="fill"
           placeholder="With prefix…"
           defaultValue="hunter2"
-          prefixSlot={<Icon icon="lock-locked" size="sm" />}
+          prefixSlot={<Icon icon="lock-locked" size="md" />}
         />
       </div>
     </Section>

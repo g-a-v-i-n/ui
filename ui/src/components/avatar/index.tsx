@@ -5,16 +5,20 @@ import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
 import { styled } from "../../lib/styled";
 
-type Size = "sm" | "md" | "lg";
+/* Sized on the control height scale (the Button size prop), so an avatar
+   lines up with a button or input of the same size. */
+type Size = "xs" | "sm" | "md" | "lg" | "xl";
 
 /* The fallback is composed separately from the root, so the root shares its
    size through context and the fallback picks a matching text size. */
 const AvatarContext = React.createContext<{ size: Size }>({ size: "md" });
 
 const fallbackTextSize = {
-  sm: "xs",
-  md: "sm",
-  lg: "md",
+  xs: "xs",
+  sm: "sm",
+  md: "md",
+  lg: "lg",
+  xl: "xl",
 } satisfies Record<Size, TextProps["size"]>;
 
 export const AvatarRoot = ({
@@ -23,7 +27,10 @@ export const AvatarRoot = ({
   children,
   ref,
   ...props
-}: AvatarPrimitive.AvatarProps & { size?: Size } & { ref?: React.Ref<HTMLSpanElement> }) => {
+}: AvatarPrimitive.AvatarProps & {
+  /** Control height, on the same scale as the Button size prop. */
+  size?: Size;
+} & { ref?: React.Ref<HTMLSpanElement> }) => {
   return (
     <AvatarContext.Provider value={{ size }}>
       <AvatarPrimitive.Root
@@ -70,6 +77,7 @@ export const Avatar = ({
   delayMs,
   ...rootProps
 }: AvatarPrimitive.AvatarProps & {
+  /** Control height, on the same scale as the Button size prop. */
   size?: Size;
   src?: string;
   alt?: string;

@@ -16,7 +16,7 @@ import {
 } from 'ui/components/sidebar';
 import { Tag } from 'ui/components/tag';
 import { Text } from 'ui/components/text';
-import { GRAY_TONES, type GrayTone } from 'ui/components/theme';
+import { FONT_SCALES, GRAY_TONES, type FontScale, type GrayTone } from 'ui/components/theme';
 import uiPackage from 'ui/package.json';
 import { groups, type Page } from './registry';
 import { useLinkProps } from './navigation';
@@ -30,6 +30,9 @@ function isTheme(value: string): value is ThemeChoice {
 }
 function isGrayTone(value: string): value is GrayTone {
   return (GRAY_TONES as readonly string[]).includes(value);
+}
+function isFontScale(value: string): value is FontScale {
+  return (FONT_SCALES as readonly string[]).includes(value);
 }
 
 function NavItem({ page }: { page: Page }) {
@@ -56,12 +59,16 @@ export function DocsSidebar({
   resolvedTheme,
   gray,
   onGrayChange,
+  fontScale,
+  onFontScaleChange,
 }: {
   theme: ThemeChoice;
   onThemeChange: (theme: ThemeChoice) => void;
   resolvedTheme: 'light' | 'dark';
   gray: GrayTone;
   onGrayChange: (gray: GrayTone) => void;
+  fontScale: FontScale;
+  onFontScaleChange: (fontScale: FontScale) => void;
 }) {
   return (
     <Sidebar>
@@ -124,6 +131,28 @@ export function DocsSidebar({
                 {GRAY_TONES.map((tone) => (
                   <SelectItem key={tone} value={tone}>
                     {tone === 'gray' ? 'neutral' : tone}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </SelectRoot>
+          </div>
+          <div className={styles.controlInline}>
+            <Label htmlFor="docs-font-scale" size="xs" color="secondary">
+              Font scale
+            </Label>
+            <SelectRoot
+              value={fontScale}
+              onValueChange={(next) => {
+                if (isFontScale(next)) onFontScaleChange(next);
+              }}
+            >
+              <SelectTrigger id="docs-font-scale" aria-label="Font scale">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {FONT_SCALES.map((scale) => (
+                  <SelectItem key={scale} value={scale}>
+                    {scale}
                   </SelectItem>
                 ))}
               </SelectContent>

@@ -26,7 +26,7 @@ export const SelectTrigger = ({ children, className, asChild, ref, ...props }: S
             {children}
           </Text>
           <SelectPrimitive.Icon className={styles.triggerIcon}>
-            <Icon icon="chevron-down" size="sm" />
+            <Icon icon="chevron-down-mini-bold" size="lg" />
           </SelectPrimitive.Icon>
         </>
       )}

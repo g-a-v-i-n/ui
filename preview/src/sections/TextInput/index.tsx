@@ -24,7 +24,7 @@ export function TextInputSection() {
           value={inputFill}
           onChange={(e) => setInputFill(e.target.value)}
           placeholder="Fill-width input"
-          prefixSlot={<Icon icon="magnifying-glass" size="md" />}
+          prefixSlot={<Icon icon="magnifying-glass" size="lg" />}
         />
         <TextInput
           variant="toolbar"
@@ -36,7 +36,7 @@ export function TextInputSection() {
         <TextInput
           placeholder="Disabled with slots…"
           disabled
-          prefixSlot={<Icon icon="magnifying-glass" size="md" />}
+          prefixSlot={<Icon icon="magnifying-glass" size="lg" />}
           suffixSlot={<Tag mono>⌘K</Tag>}
         />
         <TextInput
@@ -52,7 +52,7 @@ export function TextInputSection() {
         <div className={styles.slotRow}>
           <TextInput
             defaultValue="hug + prefix"
-            prefixSlot={<Icon icon="magnifying-glass" size="md" />}
+            prefixSlot={<Icon icon="magnifying-glass" size="lg" />}
           />
           <TextInput
             defaultValue="42"
@@ -64,7 +64,7 @@ export function TextInputSection() {
           />
           <TextInput
             placeholder="Both slots…"
-            prefixSlot={<Icon icon="magnifying-glass" size="md" />}
+            prefixSlot={<Icon icon="magnifying-glass" size="lg" />}
             suffixSlot={<Tag mono>⌘K</Tag>}
           />
           <TextInput
@@ -76,7 +76,7 @@ export function TextInputSection() {
         <TextInput
           width="fill"
           placeholder="Fill with both slots…"
-          prefixSlot={<Icon icon="magnifying-glass" size="md" />}
+          prefixSlot={<Icon icon="magnifying-glass" size="lg" />}
           suffixSlot={<Tag>12 results</Tag>}
         />
         <TextInput

@@ -5,17 +5,17 @@
   --primary-background-hover: var(--gray-11);
   --primary-background-active: var(--gray-10);
 
-  --secondary-background: var(--bg-base);
+  --secondary-background: var(--bg-control);
   --secondary-foreground: var(--fg-primary);
   --secondary-shadow: var(--shadow-button);
   /* Hairline steps through the tiers (1/2/3) as the state deepens. */
   --secondary-hairline-color: var(--gray-a3);
   --secondary-hairline-color-hover: var(--gray-a4);
   --secondary-hairline-color-active: var(--gray-a6);
-  --secondary-background-hover: var(--gray-a2);
-  --secondary-background-active: var(--gray-a4);
+  --secondary-background-hover: var(--bg-control-hover);
+  --secondary-background-active: var(--bg-control-active);
 
-  --destructive-background: var(--bg-base);
+  --destructive-background: var(--bg-control);
   --destructive-foreground: var(--tomato-9);
   --destructive-shadow: var(--shadow-button);
   /* Red-tinted shadow via the shadow.css color slots. */
@@ -23,8 +23,8 @@
   --destructive-hairline-color: var(--tomato-a3);
   --destructive-hairline-color-hover: var(--tomato-a4);
   --destructive-hairline-color-active: var(--tomato-a6);
-  --destructive-background-hover: var(--tomato-a2);
-  --destructive-background-active: var(--tomato-a4);
+  --destructive-background-hover: var(--bg-control-destructive-hover);
+  --destructive-background-active: var(--bg-control-destructive-active);
 
   --menu-trigger-icon-color: var(--fg-secondary);
   --menu-trigger-icon-color-hover: var(--fg-primary);
@@ -37,26 +37,41 @@
   gap: var(--size-6);
   corner-shape: var(--corner-shape);
 
+  &[data-size="xs"] {
+    height: var(--control-height-xs);
+    --pad: var(--size-8);
+    border-radius: var(--radius-md);
+    gap: var(--size-4);
+  }
   &[data-size="sm"] {
     height: var(--control-height-sm);
-    padding: 0 var(--size-8);
-    border-radius: var(--size-10);
-    gap: var(--size-4);
+    --pad: var(--size-10);
+    border-radius: var(--radius-md);
   }
   &[data-size="md"] {
     height: var(--control-height-md);
-    padding: 0 var(--size-10);
-    border-radius: var(--size-10);
+    --pad: var(--size-12);
+    border-radius: var(--radius-md);
   }
   &[data-size="lg"] {
     height: var(--control-height-lg);
-    padding: 0 var(--size-12);
-    border-radius: var(--size-10);
+    --pad: var(--size-16);
+    border-radius: var(--radius-xl);
   }
   &[data-size="xl"] {
     height: var(--control-height-xl);
-    padding: 0 var(--size-16);
-    border-radius: var(--size-14);
+    --pad: var(--size-20);
+    border-radius: var(--radius-2xl);
+  }
+
+  /* Inline padding per size. A slot pulls its side in by 4px so the icon
+     sits closer to the edge than text would. */
+  padding: 0 var(--pad);
+  &:has(> .prefix) {
+    padding-left: calc(var(--pad) - var(--size-4));
+  }
+  &:has(> .suffix) {
+    padding-right: calc(var(--pad) - var(--size-4));
   }
 
   border: none;
@@ -122,9 +137,8 @@
   }
 
   &:focus-visible {
-    outline: var(--focus-ring-width) solid var(--focus-ring-color);
-    animation: var(--focus-ring-animation);
-    outline-offset: var(--focus-ring-offset);
+    outline: none;
+    box-shadow: var(--focus-shadow), var(--shadow-sm);
   }
 
   &[data-width="hug"] {
@@ -136,6 +150,9 @@
   &[data-width="square"] {
     padding: 0;
     flex: none;
+  }
+  &[data-size="xs"][data-width="square"] {
+    width: var(--control-height-xs);
   }
   &[data-size="sm"][data-width="square"] {
     width: var(--control-height-sm);
@@ -152,7 +169,7 @@
 
   &[data-round="true"] {
     corner-shape: round;
-    border-radius: 9999px;
+    border-radius: var(--radius-full);
   }
 }
 

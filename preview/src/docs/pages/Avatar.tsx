@@ -3,9 +3,9 @@ import { defineDoc } from '../types';
 
 export const doc = defineDoc({
   description:
-    'A user or entity image with initials as the fallback. The fallback text scales with the size.',
+    'A user or entity image with initials as the fallback. Sizes follow the control height scale, so an avatar lines up with a button of the same size, and the fallback text scales with it.',
   controls: {
-    size: { type: 'segmented', options: ['sm', 'md', 'lg'], default: 'md' },
+    size: { type: 'segmented', options: ['xs', 'sm', 'md', 'lg', 'xl'], default: 'md' },
     fallback: { type: 'text', default: 'GA' },
     image: { type: 'boolean', label: 'Show image', default: true },
   },
@@ -13,7 +13,7 @@ export const doc = defineDoc({
     <Avatar
       size={size}
       fallback={fallback}
-      src={image ? 'https://i.pravatar.cc/80?img=32' : undefined}
+      src={image ? 'https://i.pravatar.cc/112?img=32' : undefined}
       alt=""
     />
   ),

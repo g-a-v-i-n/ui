@@ -35,7 +35,7 @@
   composes: floatingSurface popperAnimation from "../../css/recipes.module.css";
 
   /* The field's radius, not the menu default. */
-  --surface-radius: var(--size-10);
+  --surface-radius: var(--radius-md);
 
   /* Match the menu width to the anchored field. */
   width: var(--radix-popper-anchor-width);

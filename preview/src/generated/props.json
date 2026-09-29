@@ -215,7 +215,8 @@
           "description": "Event handler called when auto-focusing on close.\nCan be prevented."
         }
       ],
-      "acceptsHtmlAttributes": true
+      "acceptsHtmlAttributes": true,
+      "description": "The modal surface, centered over the scrim. It sizes to its content and\ntweens between sizes when that content changes; an outside click shakes\nit instead of dismissing."
     },
     "AlertDialogTitle": {
       "props": [
@@ -278,9 +279,10 @@
         },
         {
           "name": "size",
-          "type": "\"sm\" | \"md\" | \"lg\"",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
           "required": false,
-          "default": "\"md\""
+          "default": "\"md\"",
+          "description": "Control height, on the same scale as the Button size prop."
         }
       ],
       "acceptsHtmlAttributes": true
@@ -324,8 +326,9 @@
         },
         {
           "name": "size",
-          "type": "\"sm\" | \"md\" | \"lg\"",
-          "required": false
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Control height, on the same scale as the Button size prop."
         },
         {
           "name": "src",
@@ -363,10 +366,10 @@
         },
         {
           "name": "size",
-          "type": "\"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
           "required": false,
-          "default": "\"lg\"",
-          "description": "Control height: sm 24 / md 28 / lg 32 / xl 40."
+          "default": "\"md\"",
+          "description": "Control height: xs 24 / sm 28 / md 34 / lg 40 / xl 48."
         },
         {
           "name": "width",
@@ -1368,7 +1371,8 @@
           "description": "Event handler called when auto-focusing on close.\nCan be prevented."
         }
       ],
-      "acceptsHtmlAttributes": true
+      "acceptsHtmlAttributes": true,
+      "description": "The modal surface, centered over the scrim. It sizes to its content and\ntweens between sizes when that content changes."
     },
     "DialogTitle": {
       "props": [
@@ -2520,7 +2524,7 @@
         },
         {
           "name": "size",
-          "type": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"xs\"",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
           "required": false,
           "description": "Named size in px. Overridden by width/height."
         },
@@ -2562,7 +2566,7 @@
         },
         {
           "name": "size",
-          "type": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"xs\"",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
           "required": false,
           "description": "Named size in px. Overridden by width/height."
         },
@@ -2649,7 +2653,7 @@
         },
         {
           "name": "size",
-          "type": "\"sm\" | \"md\" | \"xs\"",
+          "type": "\"xs\" | \"sm\" | \"md\"",
           "required": false,
           "default": "\"sm\""
         },
@@ -4678,9 +4682,10 @@
       "props": [
         {
           "name": "size",
-          "type": "\"sm\" | \"md\" | \"lg\"",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
           "required": false,
-          "default": "\"md\""
+          "default": "\"md\"",
+          "description": "Named size in px, on the same scale as Icon."
         },
         {
           "name": "label",
@@ -4912,6 +4917,13 @@
           "type": "boolean",
           "required": false,
           "default": "false"
+        },
+        {
+          "name": "hoverable",
+          "type": "boolean",
+          "required": false,
+          "default": "true",
+          "description": "Set false to drop the hover fill on body rows that are not interactive."
         }
       ],
       "acceptsHtmlAttributes": true
@@ -5090,7 +5102,7 @@
         },
         {
           "name": "size",
-          "type": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"xs\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
           "required": false,
           "default": "\"md\""
         },
@@ -5250,6 +5262,13 @@
           "required": false,
           "default": "\"gray\"",
           "description": "Which gray scale --gray-* resolves to. Defaults to the neutral gray."
+        },
+        {
+          "name": "fontScale",
+          "type": "\"default\" | \"compact\"",
+          "required": false,
+          "default": "\"default\"",
+          "description": "Which font-size ramp --font-size-* resolves to."
         },
         {
           "name": "setResolvedTheme",

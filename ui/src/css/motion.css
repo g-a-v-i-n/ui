@@ -35,20 +35,11 @@
     --transition-medium: var(--duration-180);
     --transition-slow: var(--duration-260);
 
-    /* Focus ring entrance: a wide transparent halo contracting into the
-       component's own ring. Only `from` is declared — `to` resolves to the
-       element's focus styles, so every ring variant (offset, inset) lands on
-       its own final look. Rings must be drawn with `outline` (never
-       box-shadow — on inputs the hairline shares box-shadow and an animated
-       shadow ring wipes it for the first frames). Applied via var() so CSS
-       modules can't rename the global keyframes. */
-    --focus-ring-animation: focus-ring-in var(--duration-180) var(--ease-out-quad);
-
     /* Shared enter/exit keyframes for floating surfaces and controls, defined
        once below and applied via these vars so CSS modules can't rename the
-       global names (same trick as --focus-ring-animation). Components tune
-       distances through element-scoped custom props (--slide-*, --check-*,
-       --collapse-*) instead of keeping their own keyframe copies. */
+       global names. Components tune distances through element-scoped custom
+       props (--slide-*, --check-*, --collapse-*) instead of keeping their
+       own keyframe copies. */
     --kf-enter-pop: enter-pop;
     --kf-exit-pop: exit-pop;
     --kf-fade-in: fade-in;
@@ -224,13 +215,6 @@
     }
 }
 
-@keyframes focus-ring-in {
-    from {
-        outline-color: transparent;
-        outline-offset: 8px;
-    }
-}
-
 /* Instant theme swap. <Theme> puts this on <html> around a change to the
    theme class or data-gray and takes it off once a frame has rendered, so
    every color lands at once instead of each component cross-fading at its own
@@ -246,8 +230,6 @@
 
 @media (prefers-reduced-motion: reduce) {
     :root {
-        --focus-ring-animation: none;
-
         /* Every enter/exit/collapse animation is wired through these slots, so
            nulling them here disables motion library-wide. Radix Presence sees
            animation-name: none and unmounts exit content immediately. */

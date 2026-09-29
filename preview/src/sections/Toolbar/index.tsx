@@ -36,7 +36,7 @@ export function ToolbarSection() {
           onChange={(e) => setInputToolbar(e.target.value)}
           placeholder="Untitled"
           aria-label="Document title"
-          prefixSlot={<Icon icon="document" size="sm" />}
+          prefixSlot={<Icon icon="document" size="xl" />}
           suffixSlot={<Tag mono>⌘1</Tag>}
         />
         <ToolbarSeparator />
@@ -62,18 +62,18 @@ export function ToolbarSection() {
             aria-label="Toggle favorite"
             tooltip={toolbarFavorite ? 'Remove from favorites' : 'Add to favorites'}
           >
-            <Icon icon={toolbarFavorite ? 'star-fill' : 'star'} size="md" />
+            <Icon icon={toolbarFavorite ? 'star-fill' : 'star'} size="xl" />
           </ToolbarToggleItem>
         </ToolbarToggleGroup>
         <ToolbarSeparator />
         <ToolbarGroup>
         <ToolbarButton width="square" aria-label="Search">
-          <Icon icon="magnifying-glass" size="md" />
+          <Icon icon="magnifying-glass" size="xl" />
         </ToolbarButton>
         <ToolbarButton>Share</ToolbarButton>
         <ToolbarSplitButton
           tooltip="Run"
-          prefixSlot={<Icon icon="play-fill" size="md" />}
+          prefixSlot={<Icon icon="play-fill" size="xl" />}
           onClick={() => console.log('run')}
           dropdownContent={runMenu}
         >
@@ -83,7 +83,7 @@ export function ToolbarSection() {
           square
           tooltip="Run"
           aria-label="Run"
-          prefixSlot={<Icon icon="play-fill" size="md" />}
+          prefixSlot={<Icon icon="play-fill" size="xl" />}
           onClick={() => console.log('run')}
           dropdownContent={runMenu}
         />

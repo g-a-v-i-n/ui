@@ -2,12 +2,7 @@
 @import './color.css';
 @import './shadow.css';
 @import './size.css';
+@import './radius.css';
 @import './font.css';
 @import './motion.css';
 @import './layer.css';
-
-
-:root {
-    --corner-shape: superellipse(1.4);
-}
-

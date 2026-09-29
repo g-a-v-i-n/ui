@@ -10,6 +10,10 @@
   min-width: var(--size-256);
 }
 
+.inner {
+  composes: inner from "../dialog/styles.module.css";
+}
+
 .title {
   margin: 0;
 }

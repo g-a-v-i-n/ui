@@ -9,7 +9,7 @@
 .content {
   composes: floatingSurface from "../../css/recipes.module.css";
 
-  --surface-radius: var(--size-8);
+  --surface-radius: var(--radius-sm);
 
   z-index: var(--layer-tooltip);
   pointer-events: all;
@@ -29,7 +29,7 @@
     font-family: var(--font-monospace);
     background: var(--code-background);
     padding: var(--size-2) var(--size-4);
-    border-radius: var(--size-4);
+    border-radius: var(--radius-xs);
     corner-shape: var(--corner-shape);
   }
 

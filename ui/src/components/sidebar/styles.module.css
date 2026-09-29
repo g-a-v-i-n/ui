@@ -67,11 +67,11 @@
   align-items: center;
   gap: var(--size-6);
   width: 100%;
-  height: var(--control-height-md);
+  height: var(--size-32); /* fixed: sidebar items sit between the sm and md control heights */
   padding: 0 var(--size-8);
 
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   corner-shape: var(--corner-shape);
   background: transparent;
   color: var(--item-foreground);
@@ -83,7 +83,8 @@
 
   transition:
     background-color var(--duration-120) var(--ease-in-out-quad),
-    color var(--duration-120) var(--ease-in-out-quad);
+    color var(--duration-120) var(--ease-in-out-quad),
+    box-shadow var(--duration-120) var(--ease-in-out-quad);
 
   &:hover {
     background: var(--item-background-hover);
@@ -96,9 +97,8 @@
   }
 
   &:focus-visible {
-    outline: var(--focus-ring-width) solid var(--focus-ring-color);
-    animation: var(--focus-ring-animation);
-    outline-offset: -1px;
+    outline: none;
+    box-shadow: var(--focus-shadow-inset);
   }
 
   &:disabled,
@@ -123,8 +123,8 @@
   svg,
   div,
   span {
-    width: var(--size-16);
-    height: var(--size-16);
+    width: var(--size-18);
+    height: var(--size-18);
     color: var(--item-icon-color);
     transition: color var(--duration-120) var(--ease-in-out-quad);
   }
@@ -153,22 +153,23 @@
   padding: 4px 8px;
 
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   corner-shape: var(--corner-shape);
   background: transparent;
   cursor: pointer;
   user-select: none;
 
-  transition: background-color var(--duration-120) var(--ease-in-out-quad);
+  transition:
+    background-color var(--duration-120) var(--ease-in-out-quad),
+    box-shadow var(--duration-120) var(--ease-in-out-quad);
 
   &:hover {
     background: var(--collapsible-trigger-background-hover);
   }
 
   &:focus-visible {
-    outline: var(--focus-ring-width) solid var(--focus-ring-color);
-    animation: var(--focus-ring-animation);
-    outline-offset: -1px;
+    outline: none;
+    box-shadow: var(--focus-shadow-inset);
   }
 
   &[data-state="open"] .collapsibleChevron {

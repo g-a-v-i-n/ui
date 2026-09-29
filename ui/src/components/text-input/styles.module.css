@@ -19,13 +19,22 @@
 .container {
   position: relative;
   display: inline-flex;
-  height: var(--control-height-lg);
-  border-radius: var(--size-10);
+  height: var(--control-height-md);
+  border-radius: var(--radius-md);
   corner-shape: var(--corner-shape);
 
-  /* Base horizontal inset; slot widths (--prefix-w / --suffix-w) are added on
-     top by the input padding and set in JS from each slot's measured width. */
+  /* Base horizontal inset, per side; a slot pulls its side in by 4px. Slot
+     widths (--prefix-w / --suffix-w) are added on top by the input padding
+     and set in JS from each slot's measured width. */
   --input-pad: var(--size-10);
+  --pad-left: var(--input-pad);
+  --pad-right: var(--input-pad);
+  &:has(> .prefix) {
+    --pad-left: calc(var(--input-pad) - var(--size-4));
+  }
+  &:has(> .suffix) {
+    --pad-right: calc(var(--input-pad) - var(--size-4));
+  }
 
   &[data-width="fill"] {
     display: flex;
@@ -47,16 +56,13 @@
       box-shadow: var(--default-shadow-hover);
     }
 
-    /* Outline, not box-shadow: the hairline lives in box-shadow, and an
-       animated shadow ring would wipe it for the first frames (border
-       blink). The token offset keeps the ring clear of the hairline, so it
-       reads as the same halo as the button. Keyed to the input's own
-       :focus-visible (not :focus-within) so a focused slot button rings
-       itself, not the field. */
+    /* No separate ring: focus thickens the hairline itself into a band of the
+       ring color, and the box-shadow transition above tweens it from the gray
+       rim. Keyed to the input's own :focus-visible (not :focus-within) so a
+       focused slot button rings itself, not the field. */
     &:has(.input:focus-visible) {
-      outline: var(--focus-ring-width) solid var(--focus-ring-color);
-      outline-offset: var(--focus-ring-offset);
-      animation: var(--focus-ring-animation);
+      outline: none;
+      box-shadow: var(--focus-shadow);
     }
   }
 
@@ -96,8 +102,8 @@
   outline: none;
   background: transparent;
   padding-block: 0;
-  padding-left: calc(var(--input-pad) + var(--prefix-w, 0px));
-  padding-right: calc(var(--input-pad) + var(--suffix-w, 0px));
+  padding-left: calc(var(--pad-left) + var(--prefix-w, 0px));
+  padding-right: calc(var(--pad-right) + var(--suffix-w, 0px));
 
   font-family: var(--font-sans);
   font-size: var(--font-size-md);
@@ -158,9 +164,9 @@
 }
 
 .prefix {
-  left: var(--input-pad);
+  left: var(--pad-left);
 }
 
 .suffix {
-  right: var(--input-pad);
+  right: var(--pad-right);
 }

@@ -20,11 +20,15 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--size-6);
-  height: var(--control-height-lg);
+  height: var(--control-height-md);
   padding: 0 var(--size-12);
+  /* The chevron pulls its side in by 4px, as a Button's suffix slot does. */
+  &:has(> .triggerIcon) {
+    padding-right: calc(var(--size-12) - var(--size-4));
+  }
 
   border: none;
-  border-radius: var(--size-10);
+  border-radius: var(--radius-md);
   corner-shape: var(--corner-shape);
   background: var(--trigger-background);
   color: var(--trigger-foreground);
@@ -45,9 +49,8 @@
   }
 
   &:focus-visible {
-    outline: var(--focus-ring-width) solid var(--focus-ring-color);
-    animation: var(--focus-ring-animation);
-    outline-offset: var(--focus-ring-offset);
+    outline: none;
+    box-shadow: var(--focus-shadow), var(--shadow-sm);
   }
 
   &[data-disabled] {
@@ -88,9 +91,9 @@
   align-items: center;
   gap: var(--size-6);
   position: relative;
-  height: var(--control-height-md);
+  height: var(--control-height-chrome);
   padding: 0 var(--size-8) 0 var(--size-24);
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   corner-shape: var(--corner-shape);
 
   color: var(--item-foreground);
@@ -134,7 +137,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: var(--control-height-xs);
+  height: var(--control-height-inline);
   color: var(--scroll-button-color);
   cursor: default;
 }

@@ -11,6 +11,9 @@
 
   /* Edge-anchored panel: square corners. */
   --surface-radius: 0;
+  /* Solid like the dialog: a panel over the page, not frosted onto it. */
+  --surface-background: var(--bg-modal);
+  --surface-blur: none;
 
   position: fixed;
   z-index: var(--layer-dialog);

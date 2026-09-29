@@ -12,14 +12,14 @@
 }
 
 .slot {
-  width: var(--control-height-md);
-  height: var(--control-height-lg);
+  width: var(--control-height-sm);
+  height: var(--control-height-md);
   padding: 0;
   text-align: center;
 
   border: none;
   outline: none;
-  border-radius: var(--size-10);
+  border-radius: var(--radius-md);
   corner-shape: var(--corner-shape);
   background-color: var(--slot-background);
   box-shadow: var(--slot-shadow);
@@ -37,12 +37,11 @@
     box-shadow: var(--slot-shadow-hover);
   }
 
-  /* Outline, not box-shadow — see text-input: keeps the hairline (also a
-     box-shadow) intact under the animated ring, offset clear of it. */
+  /* No separate ring — see text-input: focus thickens the hairline into a
+     band of the ring color, tweened by the box-shadow transition. */
   &:focus-visible {
-    outline: var(--focus-ring-width) solid var(--focus-ring-color);
-    outline-offset: var(--focus-ring-offset);
-    animation: var(--focus-ring-animation);
+    outline: none;
+    box-shadow: var(--focus-shadow);
   }
 
   &:disabled {

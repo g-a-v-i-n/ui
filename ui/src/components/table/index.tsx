@@ -12,12 +12,18 @@ export const TableFooter = styled("tfoot", styles.footer, "TableFooter");
 export const TableRow = ({
   className,
   selected = false,
+  hoverable = true,
   ...props
-}: React.ComponentProps<"tr"> & { selected?: boolean }) => {
+}: React.ComponentProps<"tr"> & {
+  selected?: boolean;
+  /** Set false to drop the hover fill on body rows that are not interactive. */
+  hoverable?: boolean;
+}) => {
   return (
     <tr
       {...props}
       data-selected={selected || undefined}
+      data-hoverable={hoverable ? undefined : "false"}
       className={cx(styles.row, className)}
     />
   );

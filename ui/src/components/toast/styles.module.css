@@ -74,11 +74,11 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: var(--control-height-md);
+  height: var(--control-height-chrome);
   padding: 0 var(--size-8);
 
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   corner-shape: var(--corner-shape);
   background: transparent;
   color: var(--action-color);
@@ -86,16 +86,17 @@
   cursor: pointer;
   user-select: none;
 
-  transition: background-color var(--duration-120) var(--ease-in-out-quad);
+  transition:
+    background-color var(--duration-120) var(--ease-in-out-quad),
+    box-shadow var(--duration-120) var(--ease-in-out-quad);
 
   &:hover {
     background: var(--action-background-hover);
   }
 
   &:focus-visible {
-    outline: var(--focus-ring-width) solid var(--focus-ring-color);
-    animation: var(--focus-ring-animation);
-    outline-offset: var(--focus-ring-offset);
+    outline: none;
+    box-shadow: var(--focus-shadow);
   }
 }
 
@@ -106,11 +107,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--control-height-xs);
-  height: var(--control-height-xs);
+  width: var(--control-height-inline);
+  height: var(--control-height-inline);
 
   border: none;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   corner-shape: var(--corner-shape);
   background: transparent;
   color: var(--close-color);
@@ -118,7 +119,8 @@
 
   transition:
     color var(--duration-120) var(--ease-in-out-quad),
-    background-color var(--duration-120) var(--ease-in-out-quad);
+    background-color var(--duration-120) var(--ease-in-out-quad),
+    box-shadow var(--duration-120) var(--ease-in-out-quad);
 
   &:hover {
     color: var(--close-color-hover);
@@ -126,9 +128,8 @@
   }
 
   &:focus-visible {
-    outline: var(--focus-ring-width) solid var(--focus-ring-color);
-    animation: var(--focus-ring-animation);
-    outline-offset: -1px;
+    outline: none;
+    box-shadow: var(--focus-shadow-inset);
   }
 }
 

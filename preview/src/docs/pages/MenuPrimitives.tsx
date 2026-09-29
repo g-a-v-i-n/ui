@@ -23,7 +23,7 @@ export const doc = defineDoc({
     list: { type: 'boolean', label: 'Key/value list', default: true },
   },
   render: ({ width, title, label, icons, shortcuts, list }) => {
-    const icon = (name: IconName) => (icons ? <Icon icon={name} size="md" /> : undefined);
+    const icon = (name: IconName) => (icons ? <Icon icon={name} size="lg" /> : undefined);
     const shortcut = (keys: string) => (shortcuts ? keys : undefined);
     return (
       <MenuContainer width={width}>

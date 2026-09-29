@@ -16,7 +16,8 @@ pnpm --filter preview build   # type-check + bundle
 The preview imports the built library (`ui/dist`), not its sources, so run
 `pnpm build` from the repo root first — the `predev` hook does this for
 `pnpm --filter preview dev`, and also regenerates the props data. Edits under
-`ui/` need a rebuild to show up.
+`ui/` need a rebuild to show up; `pnpm dev` from the root watches for them and
+rebuilds automatically.
 
 ## Adding a component page
 

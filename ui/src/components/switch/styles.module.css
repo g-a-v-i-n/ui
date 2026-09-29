@@ -10,14 +10,16 @@
 .track {
   position: relative;
   width: var(--size-30);
-  height: var(--control-height-xs);
-  border-radius: 999px;
+  height: var(--control-height-inline);
+  border-radius: var(--radius-full);
   background: var(--track-background);
   border: none;
   padding: 0;
   cursor: pointer;
   flex-shrink: 0;
-  transition: background-color var(--duration-120) var(--ease-in-out-cubic);
+  transition:
+    background-color var(--duration-120) var(--ease-in-out-cubic),
+    box-shadow var(--duration-120) var(--ease-in-out-cubic);
 }
 
 /* The accent gradient lives on an overlay and fades via opacity — background-image
@@ -48,9 +50,8 @@
 }
 
 .track:focus-visible {
-  outline: var(--focus-ring-width) solid var(--focus-ring-color);
-  animation: var(--focus-ring-animation);
-  outline-offset: var(--focus-ring-offset);
+  outline: none;
+  box-shadow: var(--focus-shadow);
 }
 
 .thumb {

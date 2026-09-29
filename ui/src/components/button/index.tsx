@@ -5,11 +5,11 @@ import { cx } from "../../lib/cx";
 
 type Variant = "primary" | "secondary" | "destructive";
 type Width = "hug" | "fill" | "square";
-type Size = "sm" | "md" | "lg" | "xl";
+type Size = "xs" | "sm" | "md" | "lg" | "xl";
 
 export type ButtonProps = {
   variant?: Variant;
-  /** Control height: sm 24 / md 28 / lg 32 / xl 40. */
+  /** Control height: xs 24 / sm 28 / md 34 / lg 40 / xl 48. */
   size?: Size;
   width?: Width;
   round?: boolean;
@@ -20,7 +20,7 @@ export type ButtonProps = {
 
 export const Button = ({
   variant = "primary",
-  size = "lg",
+  size = "md",
   width = "hug",
   round = false,
   prefixSlot,
@@ -43,8 +43,9 @@ export const Button = ({
       {prefixSlot && <span className={styles.prefix}>{prefixSlot}</span>}
       {/* Only wrap plain text in Text — element children (icons) stay direct
           flex items so align-items centers them instead of baseline-sitting
-          inside an inline text span. */}
-      {wrapTextChildren(children, "md")}
+          inside an inline text span. The two shortest sizes drop the
+          label one text step to keep it in proportion. */}
+      {wrapTextChildren(children, size === "xs" || size === "sm" ? "sm" : "md")}
       {suffixSlot && <span className={styles.suffix}>{suffixSlot}</span>}
     </button>
   );

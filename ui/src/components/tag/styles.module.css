@@ -46,13 +46,13 @@
   align-items: center;
   justify-content: center;
   padding: var(--size-4) var(--size-8);
-  border-radius: var(--size-8);
+  border-radius: var(--radius-sm);
   corner-shape: var(--corner-shape);
   font-variant-numeric: tabular-nums;
 
   &[data-round="true"] {
     corner-shape: round;
-    border-radius: 9999px;
+    border-radius: var(--radius-full);
   }
 
   &[data-variant="default"] {

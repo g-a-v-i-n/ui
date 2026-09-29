@@ -37,11 +37,11 @@
   cursor: pointer;
   user-select: none;
   text-align: left;
+  transition: box-shadow var(--duration-120) var(--ease-out-quad);
 
   &:focus-visible {
-    outline: var(--focus-ring-width) solid var(--focus-ring-color);
-    animation: var(--focus-ring-animation);
-    outline-offset: -1px;
+    outline: none;
+    box-shadow: var(--focus-shadow-inset);
   }
 
   &[data-disabled] {

@@ -23,7 +23,7 @@ export const doc = defineDoc({
         width={width}
         disabled={disabled}
         aria-label="Password"
-        prefixSlot={prefixIcon ? <Icon icon="lock-locked" size="sm" /> : undefined}
+        prefixSlot={prefixIcon ? <Icon icon="lock-locked" size="md" /> : undefined}
       />
     </div>
   ),

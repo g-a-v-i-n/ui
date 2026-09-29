@@ -9,21 +9,21 @@ export function ButtonSection() {
       <Button>Primary</Button>
       <Button variant="secondary">Secondary</Button>
       <Button variant="destructive">Delete</Button>
-      <Button variant="destructive" prefixSlot={<Icon icon="xmark" size="md" />}>
+      <Button variant="destructive" prefixSlot={<Icon icon="xmark" size="lg" />}>
         Delete with icon
       </Button>
       <Button variant="destructive" disabled>
         Delete disabled
       </Button>
-      <Button prefixSlot={<Icon icon="check" size="md" />}>
+      <Button prefixSlot={<Icon icon="check" size="lg" />}>
         With prefix
       </Button>
-      <Button variant="secondary" suffixSlot={<Icon icon="chevron-right" size="md" />}>
+      <Button variant="secondary" suffixSlot={<Icon icon="chevron-right" size="lg" />}>
         With suffix
       </Button>
       <Button
-        prefixSlot={<Icon icon="check" size="md" />}
-        suffixSlot={<Icon icon="chevron-right" size="md" />}
+        prefixSlot={<Icon icon="check" size="lg" />}
+        suffixSlot={<Icon icon="chevron-right" size="lg" />}
       >
         Both slots
       </Button>
@@ -38,16 +38,17 @@ export function ButtonSection() {
         Pill
       </Button>
       <div className={styles.fillBox}>
-        <Button width="fill" suffixSlot={<Icon icon="chevron-right" size="md" />}>
+        <Button width="fill" suffixSlot={<Icon icon="chevron-right" size="lg" />}>
           Fill width
         </Button>
       </div>
       <div className={styles.sizeRow}>
+        <Button size="xs" variant="secondary">Extra small</Button>
         <Button size="sm" variant="secondary">Small</Button>
         <Button size="md" variant="secondary">Medium</Button>
         <Button size="lg" variant="secondary">Large</Button>
         <Button size="xl" variant="secondary">Extra large</Button>
-        <Button size="sm" width="square" variant="secondary" aria-label="Small square">
+        <Button size="xs" width="square" variant="secondary" aria-label="XS square">
           <Icon icon="check" size="md" />
         </Button>
         <Button size="xl" width="square" variant="secondary" aria-label="XL square">

@@ -82,10 +82,9 @@ button {
 }
 
 /* `all: unset` also wipes the UA focus outline. Library buttons draw their own
-   ring from their modules (higher specificity); this keeps a visible keyboard
-   focus indicator on any button the library does not style. */
+   focus band from their modules (higher specificity); this keeps a visible
+   keyboard focus indicator on any button the library does not style. */
 button:focus-visible {
-  outline: var(--focus-ring-width) solid var(--focus-ring-color);
-  outline-offset: var(--focus-ring-offset);
-  animation: var(--focus-ring-animation);
+  box-shadow: var(--focus-shadow);
+  transition: box-shadow var(--duration-120) var(--ease-out-quad);
 }

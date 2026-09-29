@@ -36,7 +36,8 @@
 }
 
 .body .row {
-  &:hover {
+  /* TableRow's `hoverable={false}` opts a non-interactive row out. */
+  &:not([data-hoverable="false"]):hover {
     background-color: var(--row-background-hover);
   }
 
@@ -60,6 +61,18 @@ th.head {
 .cell {
   padding: 8px;
   vertical-align: middle;
+}
+
+/* Flush edges: the table has no outer frame, so the first and last columns
+   share the edges of the content around it. */
+th.head,
+.cell {
+  &:first-child {
+    padding-left: 0;
+  }
+  &:last-child {
+    padding-right: 0;
+  }
 }
 
 .footer td.cell {

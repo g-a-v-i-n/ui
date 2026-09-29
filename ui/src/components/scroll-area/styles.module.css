@@ -43,7 +43,7 @@
   position: relative;
   flex: 1;
   background: var(--thumb-background);
-  border-radius: 999px;
+  border-radius: var(--radius-full);
 
   transition: background-color var(--duration-120) var(--ease-out-quad);
 

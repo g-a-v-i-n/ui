@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router';
-import { Theme, type GrayTone } from 'ui/components/theme';
+import { Theme, type FontScale, type GrayTone } from 'ui/components/theme';
 import { TooltipProvider } from 'ui/components/tooltip';
 import { ToastProvider, ToastViewport } from 'ui/components/toast';
 
@@ -15,6 +15,7 @@ function App() {
   const [theme, setTheme] = useState<'light' | 'dark' | 'system'>('system');
   const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>('light');
   const [gray, setGray] = useState<GrayTone>('gray');
+  const [fontScale, setFontScale] = useState<FontScale>('default');
 
   // The main column scrolls, not the window, so reset it on navigation.
   const mainRef = useRef<HTMLElement>(null);
@@ -24,7 +25,7 @@ function App() {
   }, [pathname]);
 
   return (
-    <Theme theme={theme} gray={gray} setResolvedTheme={setResolvedTheme}>
+    <Theme theme={theme} gray={gray} fontScale={fontScale} setResolvedTheme={setResolvedTheme}>
       <TooltipProvider delayDuration={200}>
         <ToastProvider swipeDirection="right">
           <TestDropdownMenuProvider>
@@ -35,6 +36,8 @@ function App() {
                 resolvedTheme={resolvedTheme}
                 gray={gray}
                 onGrayChange={setGray}
+                fontScale={fontScale}
+                onFontScaleChange={setFontScale}
               />
               <main ref={mainRef} className={styles.main}>
                 <Routes>

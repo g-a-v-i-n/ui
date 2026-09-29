@@ -6,6 +6,12 @@ import { useEffect, useRef } from "react";
 export const GRAY_TONES = ["gray", "mauve", "slate", "sage", "olive", "sand"] as const;
 export type GrayTone = (typeof GRAY_TONES)[number];
 
+/* Font scales from css/font.css. "default" is the 13/15/18 body ramp;
+   "compact" is one step smaller (12/14/16), switched in through the
+   data-font-scale attribute this component sets on <html>. */
+export const FONT_SCALES = ["default", "compact"] as const;
+export type FontScale = (typeof FONT_SCALES)[number];
+
 /* Apply a change to the root with color transitions suppressed (see
    .no-transitions in css/motion.css). The class comes off after the next
    frame has rendered with the change — the first rAF fires before that
@@ -27,12 +33,15 @@ function withoutTransitions(root: HTMLElement, apply: () => void) {
 export function Theme({
   theme,
   gray = "gray",
+  fontScale = "default",
   setResolvedTheme,
   children,
 }: {
   theme: "light" | "dark" | "system";
   /** Which gray scale --gray-* resolves to. Defaults to the neutral gray. */
   gray?: GrayTone;
+  /** Which font-size ramp --font-size-* resolves to. */
+  fontScale?: FontScale;
   setResolvedTheme: (theme: "light" | "dark") => void;
   children: React.ReactNode;
 }) {
@@ -84,6 +93,18 @@ export function Theme({
       }
     });
   }, [gray]);
+
+  // Likewise the default ramp is what font.css declares with no attribute.
+  useEffect(() => {
+    const root = document.documentElement;
+    withoutTransitions(root, () => {
+      if (fontScale === "default") {
+        root.removeAttribute("data-font-scale");
+      } else {
+        root.setAttribute("data-font-scale", fontScale);
+      }
+    });
+  }, [fontScale]);
 
   return <>{children}</>;
 }

@@ -19,7 +19,7 @@ function DismissibleCallout({
   const [open, setOpen] = useState(true);
   if (!open) {
     return (
-      <Button variant="secondary" size="md" onClick={() => setOpen(true)}>
+      <Button variant="secondary" size="sm" onClick={() => setOpen(true)}>
         Show callout again
       </Button>
     );

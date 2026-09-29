@@ -9,8 +9,8 @@
    with --shadow-elevated drawing its rim and drop shadow (see css/color.css). */
 .floatingSurface {
   background: var(--surface-background, var(--bg-elevated));
-  backdrop-filter: var(--blur-elevated);
-  border-radius: var(--surface-radius, 12px);
+  backdrop-filter: var(--surface-blur, var(--blur-elevated));
+  border-radius: var(--surface-radius, var(--radius-lg));
   corner-shape: var(--corner-shape);
   box-shadow: var(--surface-shadow, var(--shadow-elevated));
 }

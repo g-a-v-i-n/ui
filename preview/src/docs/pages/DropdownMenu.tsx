@@ -45,13 +45,13 @@ function Example({
 }: ControlValues<typeof controls>) {
   const [showToolbar, setShowToolbar] = useState(true);
   const [showSidebar, setShowSidebar] = useState(false);
-  const icon = (name: IconName) => (icons ? <Icon icon={name} size="md" /> : undefined);
+  const icon = (name: IconName) => (icons ? <Icon icon={name} size="lg" /> : undefined);
   const shortcut = (keys: string) => (shortcuts ? keys : undefined);
 
   return (
     <DropdownMenuRoot>
       <DropdownMenuTrigger>
-        <Button variant="secondary" suffixSlot={<Icon icon="chevron-down" size="md" />}>
+        <Button variant="secondary" suffixSlot={<Icon icon="chevron-down-mini-bold" size="lg" />}>
           Open menu
         </Button>
       </DropdownMenuTrigger>

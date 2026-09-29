@@ -48,7 +48,13 @@ export const Callout = ({
       </span>
       <div className={styles.content}>
         {title && (
-          <Text as="div" size="md" weight="semibold" color="inherit">
+          <Text
+            as="div"
+            size="md"
+            weight="semibold"
+            color="inherit"
+            className={styles.title}
+          >
             {title}
           </Text>
         )}
@@ -65,7 +71,7 @@ export const Callout = ({
           aria-label="Dismiss"
           onClick={onClose}
         >
-          <Icon icon="x-mark" size="md" />
+          <Icon icon="x-mark" size="lg" />
         </button>
       )}
     </div>

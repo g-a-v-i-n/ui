@@ -39,7 +39,7 @@ function Example({
     <SidebarItem
       active={selected === value}
       onClick={() => setSelected(value)}
-      prefixSlot={icons && icon ? <Icon icon={icon} size="sm" /> : undefined}
+      prefixSlot={icons && icon ? <Icon icon={icon} size="md" /> : undefined}
       suffixSlot={suffix}
     >
       {label}
@@ -92,7 +92,7 @@ function Example({
         </SidebarContent>
         {footer && (
           <SidebarFooter>
-            <SidebarItem prefixSlot={icons ? <Icon icon="gear" size="sm" /> : undefined}>
+            <SidebarItem prefixSlot={icons ? <Icon icon="gear" size="md" /> : undefined}>
               Settings
             </SidebarItem>
           </SidebarFooter>

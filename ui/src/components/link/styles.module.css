@@ -15,16 +15,17 @@
 
   cursor: pointer;
 
-  transition: color var(--duration-120) var(--ease-in-out-quad);
+  transition:
+    color var(--duration-120) var(--ease-in-out-quad),
+    box-shadow var(--duration-120) var(--ease-in-out-quad);
 
   &:hover {
     color: var(--foreground-hover);
   }
 
   &:focus-visible {
-    outline: var(--focus-ring-width) solid var(--focus-ring-color);
-    animation: var(--focus-ring-animation);
-    outline-offset: var(--focus-ring-offset);
+    outline: none;
+    box-shadow: var(--focus-shadow);
     border-radius: 2px;
   }
 }

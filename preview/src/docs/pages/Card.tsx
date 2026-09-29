@@ -22,10 +22,10 @@ export const doc = defineDoc({
       </Text>
       {footer && (
         <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8, paddingTop: 12 }}>
-          <Button variant="secondary" size="md">
+          <Button variant="secondary" size="sm">
             Cancel
           </Button>
-          <Button size="md">Save</Button>
+          <Button size="sm">Save</Button>
         </div>
       )}
     </Card>

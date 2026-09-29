@@ -17,17 +17,26 @@
   border-radius: 50%;
   background: var(--background);
 
+  /* Sized on the control height scale so it lines up with buttons and inputs. */
+  &[data-size="xs"] {
+    width: var(--control-height-xs);
+    height: var(--control-height-xs);
+  }
   &[data-size="sm"] {
-    width: var(--size-20);
-    height: var(--size-20);
+    width: var(--control-height-sm);
+    height: var(--control-height-sm);
   }
   &[data-size="md"] {
-    width: var(--size-28);
-    height: var(--size-28);
+    width: var(--control-height-md);
+    height: var(--control-height-md);
   }
   &[data-size="lg"] {
-    width: var(--size-40);
-    height: var(--size-40);
+    width: var(--control-height-lg);
+    height: var(--control-height-lg);
+  }
+  &[data-size="xl"] {
+    width: var(--control-height-xl);
+    height: var(--control-height-xl);
   }
 }
 

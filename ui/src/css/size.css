@@ -16,6 +16,7 @@
     --size-28: 28px;
     --size-30: 30px;
     --size-32: 32px;
+    --size-34: 34px;
     --size-36: 36px;
     --size-40: 40px;
     --size-44: 44px;
@@ -32,12 +33,18 @@
 
     --spacing: 0.25rem;
 
-    /* Control heights — the height of interactive elements. */
-    --control-height-xs: var(--size-20); /* inline controls: checkbox, radio, switch, slider */
-    --control-height-sm: var(--size-24); /* reserved for dense/compact variants */
-    --control-height-md: var(--size-28); /* chrome: toolbar/menubar/nav triggers, toggles, menu & sidebar items */
-    --control-height-lg: var(--size-32); /* form controls: Button, TextInput, Select trigger, ToggleGroup */
-    --control-height-xl: var(--size-40); /* large/prominent controls */
+    /* Control heights — the size scale for buttons and inputs, named like the
+       Button size prop. md is the default: Button, TextInput, Select trigger,
+       ToggleGroup, OtpInput and CheckboxRow all sit at 34px. */
+    --control-height-xs: var(--size-24);
+    --control-height-sm: var(--size-28);
+    --control-height-md: var(--size-34);
+    --control-height-lg: var(--size-40);
+    --control-height-xl: var(--size-48);
+
+    /* Fixed heights for controls outside that scale. */
+    --control-height-inline: var(--size-20); /* inline controls: switch, slider, toast close, select scroll buttons */
+    --control-height-chrome: var(--size-28); /* chrome: toolbar/menubar/nav triggers, toggles, menu items, carousel buttons */
 
     /* Negative spacing scale */
     ---size-0: -0px;
@@ -57,6 +64,7 @@
     ---size-28: -28px;
     ---size-30: -30px;
     ---size-32: -32px;
+    ---size-34: -34px;
     ---size-36: -36px;
     ---size-40: -40px;
     ---size-44: -44px;

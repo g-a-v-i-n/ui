@@ -23,7 +23,7 @@
 .viewport {
   position: relative;
   overflow: hidden;
-  border-radius: var(--size-12);
+  border-radius: var(--radius-lg);
   corner-shape: var(--corner-shape);
   /* Let vertical page scroll through; horizontal is the carousel's to handle. */
   touch-action: pan-y;
@@ -50,12 +50,12 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: var(--control-height-md);
-  height: var(--control-height-md);
+  width: var(--control-height-chrome);
+  height: var(--control-height-chrome);
   padding: 0;
 
   border: none;
-  border-radius: 9999px;
+  border-radius: var(--radius-full);
   corner-shape: round;
   background: var(--arrow-background);
   color: var(--arrow-color);
@@ -64,16 +64,16 @@
 
   transition:
     background-color var(--duration-120) var(--ease-out-quad),
-    opacity var(--duration-120) var(--ease-out-quad);
+    opacity var(--duration-120) var(--ease-out-quad),
+    box-shadow var(--duration-120) var(--ease-out-quad);
 
   &:hover {
     background: var(--arrow-background-hover);
   }
 
   &:focus-visible {
-    outline: var(--focus-ring-width) solid var(--focus-ring-color);
-    animation: var(--focus-ring-animation);
-    outline-offset: 2px;
+    outline: none;
+    box-shadow: var(--focus-shadow), var(--shadow-sm);
   }
 
   &:disabled {
@@ -102,14 +102,15 @@
   height: var(--size-6);
   padding: 0;
   border: none;
-  border-radius: 9999px;
+  border-radius: var(--radius-full);
   corner-shape: round;
   background: var(--dot-background);
   cursor: pointer;
 
   transition:
     background-color var(--duration-120) var(--ease-out-quad),
-    transform var(--duration-120) var(--ease-out-quad);
+    transform var(--duration-120) var(--ease-out-quad),
+    box-shadow var(--duration-120) var(--ease-out-quad);
 
   &:hover {
     background: var(--dot-background-hover);
@@ -121,8 +122,7 @@
   }
 
   &:focus-visible {
-    outline: var(--focus-ring-width) solid var(--focus-ring-color);
-    animation: var(--focus-ring-animation);
-    outline-offset: 2px;
+    outline: none;
+    box-shadow: var(--focus-shadow);
   }
 }

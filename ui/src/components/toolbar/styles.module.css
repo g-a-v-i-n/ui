@@ -29,11 +29,11 @@
   align-items: center;
   justify-content: center;
   gap: var(--size-6);
-  height: var(--control-height-md);
+  height: var(--control-height-chrome);
   padding: 0 var(--size-8);
 
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   corner-shape: var(--corner-shape);
   background: transparent;
   color: var(--button-foreground);
@@ -43,7 +43,8 @@
 
   transition:
     background-color var(--duration-120) var(--ease-in-out-quad),
-    color var(--duration-120) var(--ease-in-out-quad);
+    color var(--duration-120) var(--ease-in-out-quad),
+    box-shadow var(--duration-120) var(--ease-in-out-quad);
 
   &:hover {
     background: var(--button-background-hover);
@@ -62,9 +63,8 @@
   }
 
   &:focus-visible {
-    outline: var(--focus-ring-width) solid var(--focus-ring-color);
-    animation: var(--focus-ring-animation);
-    outline-offset: -1px;
+    outline: none;
+    box-shadow: var(--focus-shadow-inset);
   }
 
   &:disabled,
@@ -74,8 +74,8 @@
   }
 
   &[data-width="square"] {
-    width: var(--control-height-md);
-    max-width: var(--control-height-md);
+    width: var(--control-height-chrome);
+    max-width: var(--control-height-chrome);
     padding: 0;
     flex: none;
   }
@@ -84,7 +84,7 @@
 .link {
   display: inline-flex;
   align-items: center;
-  height: var(--control-height-md);
+  height: var(--control-height-chrome);
   padding: 0 var(--size-8);
 
   color: var(--link-color);
@@ -92,7 +92,9 @@
   cursor: pointer;
   user-select: none;
 
-  transition: color var(--duration-120) var(--ease-in-out-quad);
+  transition:
+    color var(--duration-120) var(--ease-in-out-quad),
+    box-shadow var(--duration-120) var(--ease-in-out-quad);
 
   &:hover {
     color: var(--link-color-hover);
@@ -100,10 +102,9 @@
   }
 
   &:focus-visible {
-    outline: var(--focus-ring-width) solid var(--focus-ring-color);
-    animation: var(--focus-ring-animation);
-    outline-offset: -1px;
-    border-radius: 8px;
+    outline: none;
+    box-shadow: var(--focus-shadow-inset);
+    border-radius: var(--radius-sm);
   }
 }
 
@@ -144,7 +145,7 @@
 
 .splitPrimary {
   composes: button;
-  border-radius: 8px 2px 2px 8px;
+  border-radius: var(--radius-sm) 2px 2px var(--radius-sm);
 
   &:active {
     background: var(--split-background-active);
@@ -153,9 +154,9 @@
 
 .splitTrigger {
   composes: button;
-  width: var(--size-16);
+  width: var(--size-20);
   padding: 0;
-  border-radius: 2px 8px 8px 2px;
+  border-radius: 2px var(--radius-sm) var(--radius-sm) 2px;
 
   &:active,
   &[data-state="open"] {

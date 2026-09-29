@@ -1,0 +1,13 @@
+:root {
+    /* Corners. Every square-but-rounded element reads one radius step and
+       draws it with --corner-shape, so a theme retunes the whole library by
+       redeclaring these. */
+    --corner-shape: superellipse(1.4);
+    --radius-xs: 4px; /* pieces inside a control: swatches, callout icon, password toggle, tooltip */
+    --radius-sm: 8px; /* chrome: toolbar/menubar/nav triggers, toggles, menu & select items, sidebar items, checkbox, tag, toast buttons */
+    --radius-md: 12px; /* controls: Button, TextInput, TextArea, Select trigger, OTP cells, segmented items */
+    --radius-lg: 14px; /* containers: Card, Callout, Carousel, ToggleGroup frame, CheckboxRow, floating surfaces */
+    --radius-xl: 16px; /* Button lg */
+    --radius-2xl: 20px; /* Button xl */
+    --radius-full: 9999px; /* pills and round controls */
+}

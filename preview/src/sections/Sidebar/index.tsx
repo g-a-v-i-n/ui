@@ -34,7 +34,7 @@ export function SidebarSection() {
               <SidebarItem
                 active={sidebarItem === 'inbox'}
                 onClick={() => setSidebarItem('inbox')}
-                prefixSlot={<Icon icon="folder" size="sm" />}
+                prefixSlot={<Icon icon="folder" size="md" />}
                 suffixSlot={<Tag>3</Tag>}
               >
                 Inbox
@@ -42,14 +42,14 @@ export function SidebarSection() {
               <SidebarItem
                 active={sidebarItem === 'drafts'}
                 onClick={() => setSidebarItem('drafts')}
-                prefixSlot={<Icon icon="document" size="sm" />}
+                prefixSlot={<Icon icon="document" size="md" />}
               >
                 Drafts
               </SidebarItem>
               <SidebarItem
                 active={sidebarItem === 'sent'}
                 onClick={() => setSidebarItem('sent')}
-                prefixSlot={<Icon icon="arrow-up" size="sm" />}
+                prefixSlot={<Icon icon="arrow-up" size="md" />}
               >
                 Sent
               </SidebarItem>
@@ -81,7 +81,7 @@ export function SidebarSection() {
             </SidebarCollapsibleSection>
           </SidebarContent>
           <SidebarFooter>
-            <SidebarItem prefixSlot={<Icon icon="slider-horizontal" size="sm" />}>
+            <SidebarItem prefixSlot={<Icon icon="slider-horizontal" size="md" />}>
               Settings
             </SidebarItem>
           </SidebarFooter>

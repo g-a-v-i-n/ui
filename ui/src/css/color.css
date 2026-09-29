@@ -122,19 +122,43 @@
     --blur-elevated: blur(10px);
     --border-elevated: var(--gray-0);
 
+    /* Modal surfaces (dialog, alert-dialog, drawer) sit behind --scrim, where
+       the frosted --bg-elevated lets the dimmed page bleed through and the
+       surface reads sunken (66% gray-2 over the 20%-black page lands near
+       gray-4). They get a solid fill: white in light, so controls inside sit
+       flush with it; one solid step up from the page in dark. */
+    --bg-modal: var(--gray-0);
+
     --bg-primary: var(--gray-0);
     --bg-secondary: var(--gray-2);
     --bg-tertiary: var(--gray-3);
     --bg-quaternary: var(--gray-4);
+
+    /* Raised controls (secondary and destructive buttons): the resting fill
+       and the hover/active fills that replace it. In light the fill is the
+       page white and the states are dark washes. In dark the fill itself is a
+       white wash, so the control lifts off whatever surface it sits on — a
+       solid --bg-base would sink into any elevated surface. */
+    --bg-control: var(--gray-0);
+    --bg-control-hover: var(--gray-a2);
+    --bg-control-active: var(--gray-a4);
+    --bg-control-destructive-hover: var(--tomato-a2);
+    --bg-control-destructive-active: var(--tomato-a4);
 
     --fg-primary: var(--gray-12);
     --fg-secondary: var(--gray-11);
     --fg-tertiary: var(--gray-10);
     --fg-quaternary: var(--gray-9);
 
+    /* Focus is a band of this color in place of a separate outline: it joins
+       or replaces the element's hairline, tweened by its box-shadow
+       transition. The inset variant is for controls packed edge to edge
+       (toolbar, menubar, tabs, sidebar items). */
     --focus-ring-color: var(--blue-a6);
-    --focus-ring-width: 2px;
-    --focus-ring-offset: 3px;
+    --focus-border-color: var(--focus-ring-color);
+    --focus-border-width: 3px;
+    --focus-shadow: 0 0 0 var(--focus-border-width) var(--focus-border-color);
+    --focus-shadow-inset: inset 0 0 0 var(--focus-border-width) var(--focus-border-color);
 
     /* Highlight fill for hovered/keyboard-highlighted rows (menu items),
        with its pressed step. blue-a* is mode-aware via the Radix dark
@@ -168,11 +192,20 @@
     --bg-base: var(--gray-1);
     --bg-elevated: color-mix(in oklab, var(--gray-2) 80%, transparent);
     --border-elevated: var(--gray-3);
+    --bg-modal: var(--gray-2);
 
     --bg-primary: var(--gray-1);
     --bg-secondary: var(--gray-2);
     --bg-tertiary: var(--gray-3);
     --bg-quaternary: var(--gray-4);
+
+    /* One alpha step above the light washes, so each state stays lighter
+       than the translucent resting fill. */
+    --bg-control: var(--gray-a3);
+    --bg-control-hover: var(--gray-a4);
+    --bg-control-active: var(--gray-a5);
+    --bg-control-destructive-hover: var(--tomato-a3);
+    --bg-control-destructive-active: var(--tomato-a5);
 
     --fg-primary: var(--gray-12);
     --fg-secondary: var(--gray-11);

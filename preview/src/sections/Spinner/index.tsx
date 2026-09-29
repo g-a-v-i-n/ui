@@ -5,9 +5,11 @@ import { Section } from '../../Section';
 export function SpinnerSection() {
   return (
     <Section title="Spinner">
+      <Spinner size="xs" />
       <Spinner size="sm" />
       <Spinner />
       <Spinner size="lg" />
+      <Spinner size="xl" />
       <span style={{ color: 'var(--blue-9)', display: 'inline-flex' }}>
         <Spinner />
       </span>

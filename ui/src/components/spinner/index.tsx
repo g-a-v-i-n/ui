@@ -1,15 +1,11 @@
 import React from "react";
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
-
-const sizes = {
-  sm: 12,
-  md: 16,
-  lg: 24,
-} as const;
+import { iconSizes, type IconSize } from "../../lib/icon-sizes";
 
 export type SpinnerProps = {
-  size?: keyof typeof sizes;
+  /** Named size in px, on the same scale as Icon. */
+  size?: IconSize;
   label?: string;
   className?: string;
   style?: React.CSSProperties;
@@ -21,7 +17,7 @@ export function Spinner({
   className,
   style,
 }: SpinnerProps) {
-  const px = sizes[size];
+  const px = iconSizes[size];
 
   return (
     <span

@@ -26,7 +26,7 @@ const controls = {
    "Show grid" state itself. */
 function Example({ width, icons, shortcuts, submenu, disableEdit }: ControlValues<typeof controls>) {
   const [showGrid, setShowGrid] = useState(true);
-  const icon = (name: IconName) => (icons ? <Icon icon={name} size="md" /> : undefined);
+  const icon = (name: IconName) => (icons ? <Icon icon={name} size="lg" /> : undefined);
   const shortcut = (keys: string) => (shortcuts ? keys : undefined);
 
   return (

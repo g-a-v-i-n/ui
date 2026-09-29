@@ -7,57 +7,33 @@
      import "ui/css/base.css";
      import "./theme.css";
 
-   This one bumps the three body sizes from 12/14/16 to 13/15/18 and scales
-   the whole ramp to 120% on small screens. Everything that reads the tokens
-   follows along: <Text size="sm" | "md" | "lg">, text inputs and text areas
-   (md), the OTP input (lg), and the callout's min-height, which is derived
-   from --font-size-md × --line-height-md. */
+   The library's default font scale is 13/15/18 for the sm/md/lg body sizes,
+   with the whole ramp read at 120% below 640px through --font-scaling. The
+   earlier 12/14/16 ramp is one attribute away — data-font-scale="compact" on
+   <html>, or <Theme fontScale="compact"> — so a theme file only needs to
+   step in for what neither preset covers. This one retunes the small-screen
+   scaling and nudges a single step. */
 
-:root {
-  /* One multiplier for the whole ramp. Every size and its tracking is
-     declared as calc(<px> * var(--font-scale)), so the media query at the
-     bottom scales all of them together. Scaling only some sizes would let lg
-     (18px × 1.2 = 21.6px) overtake an unscaled xl (20px). A token can't be
-     redefined in terms of itself, so the theme has to own every size it
-     wants scaled: the ones other than sm/md/lg are the library's defaults,
-     restated. Line-heights are unitless ratios and need no restating. */
-  --font-scale: 1;
-
-  /* The tracking is the library's own ramp (12px 0 · 14px -0.15px ·
-     16px -0.32px · 20px -0.4px) read off at the new sizes, so the bumped
-     sizes sit on the same curve as their neighbours. */
-  --font-size-xs: calc(11px * var(--font-scale));
-  --letter-spacing-xs: calc(0.08px * var(--font-scale));
-
-  --font-size-sm: calc(13px * var(--font-scale));
-  --letter-spacing-sm: calc(-0.08px * var(--font-scale));
-
-  --font-size-md: calc(15px * var(--font-scale));
-  --letter-spacing-md: calc(-0.24px * var(--font-scale));
-
-  --font-size-lg: calc(18px * var(--font-scale));
-  --letter-spacing-lg: calc(-0.36px * var(--font-scale));
-
-  --font-size-xl: calc(20px * var(--font-scale));
-  --letter-spacing-xl: calc(-0.4px * var(--font-scale));
-
-  --font-size-2xl: calc(24px * var(--font-scale));
-  --letter-spacing-2xl: calc(-0.5px * var(--font-scale));
-
-  --font-size-3xl: calc(32px * var(--font-scale));
-  --letter-spacing-3xl: calc(-0.6px * var(--font-scale));
-
-  --font-size-4xl: calc(48px * var(--font-scale));
-  --letter-spacing-4xl: calc(-1px * var(--font-scale));
-
-  --font-size-5xl: calc(64px * var(--font-scale));
-  --letter-spacing-5xl: calc(-1.5px * var(--font-scale));
-}
-
-/* Small screens: 120%. The library defines no breakpoints; 640px is the one
-   the preview app uses. Swap in your own. */
+/* Small-screen scaling. The library sets --font-scaling: 1.2 below 640px;
+   later declarations at the same width win, so restate its breakpoint to
+   neutralise it, then add your own. Media queries can't read custom
+   properties, which is why the breakpoint itself has to be repeated. */
 @media (max-width: 640px) {
   :root {
-    --font-scale: 1.2;
+    --font-scaling: 1;
   }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --font-scaling: 1.15;
+  }
+}
+
+/* A single step. Keep the multiplier in the expression so the override still
+   follows the small-screen scaling; the tracking is the library's curve
+   (16px -0.32px · 20px -0.4px) read off at the new size. */
+:root {
+  --font-size-lg: calc(17px * var(--font-scaling));
+  --letter-spacing-lg: calc(-0.34px * var(--font-scaling));
 }

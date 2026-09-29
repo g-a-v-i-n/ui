@@ -69,7 +69,7 @@ export const doc = defineDoc({
               defaultValue="Untitled"
               placeholder="Untitled"
               aria-label="Document title"
-              prefixSlot={<Icon icon="document" size="sm" />}
+              prefixSlot={<Icon icon="document" size="xl" />}
               suffixSlot={<Tag mono>⌘1</Tag>}
             />
             <ToolbarSeparator />
@@ -94,14 +94,14 @@ export const doc = defineDoc({
         <ToolbarGroup>
           {iconButton && (
             <ToolbarButton width="square" aria-label="Search">
-              <Icon icon="magnifying-glass" size="md" />
+              <Icon icon="magnifying-glass" size="xl" />
             </ToolbarButton>
           )}
           <ToolbarButton>Share</ToolbarButton>
           {splitButton && (
             <ToolbarSplitButton
               tooltip={tooltips ? 'Run' : undefined}
-              prefixSlot={<Icon icon="play-fill" size="md" />}
+              prefixSlot={<Icon icon="play-fill" size="xl" />}
               dropdownContent={runMenu}
             >
               Run

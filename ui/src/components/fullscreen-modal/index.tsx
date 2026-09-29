@@ -77,7 +77,7 @@ export const FullscreenModal = ({
                 round
                 aria-label="Close"
                 className={styles.close}
-                prefixSlot={<Icon icon="xmark" size="sm" />}
+                prefixSlot={<Icon icon="xmark" size="md" />}
               />
             </DialogPrimitive.Close>
           )}

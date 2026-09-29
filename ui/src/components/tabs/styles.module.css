@@ -37,7 +37,8 @@
   color: var(--trigger-color);
   transition:
     color var(--duration-120) var(--ease-in-out-quad),
-    background-color var(--duration-120) var(--ease-in-out-quad);
+    background-color var(--duration-120) var(--ease-in-out-quad),
+    box-shadow var(--duration-120) var(--ease-in-out-quad);
 
   &:hover {
     color: var(--trigger-color-hover);
@@ -49,9 +50,8 @@
   }
 
   &:focus-visible {
-    outline: var(--focus-ring-width) solid var(--focus-ring-color);
-    animation: var(--focus-ring-animation);
-    outline-offset: -1px;
+    outline: none;
+    box-shadow: var(--focus-shadow-inset);
   }
 
   &[data-disabled] {
@@ -60,8 +60,9 @@
   }
 }
 
-/* The active underline — rendered only in the active trigger and animated
-   between tabs by motion's layoutId. */
+/* The active underline — rendered only in the active trigger. On a tab
+   change it glides in from the previous trigger with a translate/scale
+   transform, so the origin must be its left edge. */
 .underline {
   position: absolute;
   left: 0;
@@ -69,15 +70,16 @@
   bottom: 0;
   height: 2px;
   background: var(--underline-background);
+  transform-origin: left center;
   z-index: 1;
 }
 
 .content {
   padding-top: 12px;
+  transition: box-shadow var(--duration-120) var(--ease-out-quad);
 
   &:focus-visible {
-    outline: var(--focus-ring-width) solid var(--focus-ring-color);
-    animation: var(--focus-ring-animation);
-    outline-offset: var(--focus-ring-offset);
+    outline: none;
+    box-shadow: var(--focus-shadow);
   }
 }

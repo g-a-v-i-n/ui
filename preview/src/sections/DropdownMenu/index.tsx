@@ -9,7 +9,7 @@ export function DropdownMenuSection() {
   return (
     <Section title="Dropdown menu">
       <DropdownMenuTrigger>
-        <Button variant="secondary" suffixSlot={<Icon icon="chevron-down" size="md" style={{ transform: 'translateY(1px)' }} />}>
+        <Button variant="secondary" suffixSlot={<Icon icon="chevron-down-mini-bold" size="lg" style={{ transform: 'translateY(1px)' }} />}>
           Open dropdown
         </Button>
       </DropdownMenuTrigger>
