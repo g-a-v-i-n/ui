@@ -1,167 +1,51 @@
-import { useState, type ComponentType } from 'react';
-import { Text } from 'ui/components/text';
-import { GRAY_TONES, Theme, type GrayTone } from 'ui/components/theme';
+import { useEffect, useRef, useState } from 'react';
+import { Navigate, Route, Routes, useLocation } from 'react-router';
+import { Theme, type GrayTone } from 'ui/components/theme';
 import { TooltipProvider } from 'ui/components/tooltip';
 import { ToastProvider, ToastViewport } from 'ui/components/toast';
 
 import { TestDropdownMenuProvider } from './TestDropdownMenuProvider';
-
-/* Deliberate, non-alphabetical presentation order. Every folder under
-   ./sections should appear here and export `<Name>Section`; mismatches warn
-   in dev below, and unlisted sections still render (last, alphabetically) so
-   a new section can't silently vanish. */
-const ORDER = [
-  'Text',
-  'FontScale',
-  'ColorScaleExperiment',
-  'Icon',
-  'Button',
-  'Checkbox',
-  'Switch',
-  'Radio',
-  'ToggleGroup',
-  'Tag',
-  'MiddleDot',
-  'PieChart',
-  'TextInput',
-  'TextArea',
-  'PasswordInput',
-  'OTPInput',
-  'Callout',
-  'Tooltip',
-  'Dialog',
-  'Drawer',
-  'MenuPrimitives',
-  'ContextMenu',
-  'DropdownMenu',
-  'Label',
-  'Toggle',
-  'Toolbar',
-  'Tabs',
-  'Accordion',
-  'Collapsible',
-  'Select',
-  'Combobox',
-  'Slider',
-  'Spinner',
-  'Progress',
-  'Avatar',
-  'Table',
-  'Separator',
-  'Card',
-  'Carousel',
-  'ScrollArea',
-  'IconSwap',
-  'GradientMask',
-  'Popover',
-  'HoverCard',
-  'AlertDialog',
-  'FullscreenModal',
-  'Menubar',
-  'NavigationMenu',
-  'Toast',
-  'Sidebar',
-  'SplitPane',
-  'AspectRatio',
-  'Form',
-];
-
-const modules = import.meta.glob<Record<string, ComponentType>>(
-  './sections/*/index.tsx',
-  { eager: true }
-);
-
-const sectionsByName = new Map<string, ComponentType>();
-for (const [path, mod] of Object.entries(modules)) {
-  const name = path.split('/')[2];
-  const component = mod[`${name}Section`];
-  if (!component) {
-    console.warn(`sections/${name}/index.tsx must export ${name}Section; skipping it`);
-    continue;
-  }
-  sectionsByName.set(name, component);
-}
-
-/* Sections missing from ORDER still render, appended alphabetically. */
-const unordered = [...sectionsByName.keys()].filter((name) => !ORDER.includes(name)).sort();
-
-if (import.meta.env.DEV) {
-  for (const name of ORDER) {
-    if (!sectionsByName.has(name)) {
-      console.warn(`ORDER lists "${name}" but sections/${name}/ doesn't exist`);
-    }
-  }
-  for (const name of unordered) {
-    console.warn(`sections/${name}/ is not listed in ORDER; rendering it last`);
-  }
-}
-
-const sections = [...ORDER, ...unordered].flatMap((name) => {
-  const Component = sectionsByName.get(name);
-  return Component ? [{ name, Component }] : [];
-});
-
-function isGrayTone(value: string): value is GrayTone {
-  return (GRAY_TONES as readonly string[]).includes(value);
-}
+import { ComponentPage } from './docs/ComponentPage';
+import { DocsSidebar } from './docs/DocsSidebar';
+import { Overview } from './docs/Overview';
+import { pages } from './docs/registry';
+import styles from './docs/docs.module.css';
 
 function App() {
   const [theme, setTheme] = useState<'light' | 'dark' | 'system'>('system');
   const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>('light');
   const [gray, setGray] = useState<GrayTone>('gray');
 
+  // The main column scrolls, not the window, so reset it on navigation.
+  const mainRef = useRef<HTMLElement>(null);
+  const { pathname } = useLocation();
+  useEffect(() => {
+    mainRef.current?.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <Theme theme={theme} gray={gray} setResolvedTheme={setResolvedTheme}>
       <TooltipProvider delayDuration={200}>
         <ToastProvider swipeDirection="right">
           <TestDropdownMenuProvider>
-            <main className="page">
-              <header className="page-header">
-                <Text as="h1" size="2xl" weight="semibold">
-                  UI component preview
-                </Text>
-                <div className="page-controls">
-                  <label className="theme-picker">
-                    <Text as="span" size="sm">
-                      Theme
-                    </Text>
-                    <select
-                      value={theme}
-                      onChange={(e) => setTheme(e.target.value as 'light' | 'dark' | 'system')}
-                    >
-                      <option value="light">light</option>
-                      <option value="dark">dark</option>
-                      <option value="system">system</option>
-                    </select>
-                    <Text as="span" size="sm" className="resolved">
-                      (resolved: {resolvedTheme})
-                    </Text>
-                  </label>
-                  <label className="theme-picker">
-                    <Text as="span" size="sm">
-                      Gray
-                    </Text>
-                    <select
-                      value={gray}
-                      onChange={(e) => {
-                        const next = e.target.value;
-                        if (isGrayTone(next)) setGray(next);
-                      }}
-                    >
-                      {GRAY_TONES.map((tone) => (
-                        <option key={tone} value={tone}>
-                          {tone === 'gray' ? 'gray (neutral)' : tone}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-                </div>
-              </header>
-
-              {sections.map(({ name, Component }) => (
-                <Component key={name} />
-              ))}
-            </main>
+            <div className={styles.shell}>
+              <DocsSidebar
+                theme={theme}
+                onThemeChange={setTheme}
+                resolvedTheme={resolvedTheme}
+                gray={gray}
+                onGrayChange={setGray}
+              />
+              <main ref={mainRef} className={styles.main}>
+                <Routes>
+                  <Route path="/" element={<Overview />} />
+                  {pages.map((page) => (
+                    <Route key={page.path} path={page.path} element={<ComponentPage page={page} />} />
+                  ))}
+                  <Route path="*" element={<Navigate to="/" replace />} />
+                </Routes>
+              </main>
+            </div>
           </TestDropdownMenuProvider>
           <ToastViewport />
         </ToastProvider>

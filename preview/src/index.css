@@ -1,46 +1,10 @@
-.page {
-  max-width: 880px;
-  margin: 0 auto;
-  padding: 32px 24px 64px;
+html,
+body,
+#root {
+  height: 100%;
 }
 
-.page-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 16px;
-}
-
-.page-controls {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.theme-picker {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
-}
-
-.theme-picker .resolved {
-  color: var(--gray-9, #888);
-}
-
-.section {
-  padding: 20px 0;
-  border-top: 1px solid var(--gray-5, #e5e5e5);
-}
-
-/* Typography now comes from the <Text> wrapper; the selector outranks
-   .text's own margin/letter-spacing rules. */
-.section h2.section-title {
-  margin: 0 0 12px;
-  letter-spacing: 0.04em;
-}
-
+/* Section bodies from ./sections, rendered as a page's Examples. */
 .section-body {
   display: flex;
   gap: 16px;

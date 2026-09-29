@@ -1,0 +1,5993 @@
+{
+  "accordion": {
+    "AccordionRoot": {
+      "props": [
+        {
+          "name": "type",
+          "type": "\"single\" | \"multiple\"",
+          "required": true
+        },
+        {
+          "name": "value",
+          "type": "string | string[]",
+          "required": false,
+          "description": "The controlled stateful value of the accordion item whose content is expanded.\nThe controlled stateful value of the accordion items whose contents are expanded."
+        },
+        {
+          "name": "defaultValue",
+          "type": "string | string[]",
+          "required": false,
+          "description": "The value of the item whose content is expanded when the accordion is initially rendered. Use\n`defaultValue` if you do not need to control the state of an accordion.\nThe value of the items whose contents are expanded when the accordion is initially rendered. Use\n`defaultValue` if you do not need to control the state of an accordion."
+        },
+        {
+          "name": "onValueChange",
+          "type": "((value: string) => void) | ((value: string[]) => void)",
+          "required": false,
+          "description": "The callback that fires when the state of the accordion changes."
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false,
+          "default": "false",
+          "description": "Whether or not an accordion is disabled from user interaction."
+        },
+        {
+          "name": "orientation",
+          "type": "\"horizontal\" | \"vertical\"",
+          "required": false,
+          "default": "vertical",
+          "description": "The layout in which the Accordion operates."
+        },
+        {
+          "name": "dir",
+          "type": "\"ltr\" | \"rtl\"",
+          "required": false,
+          "description": "The language read direction."
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "AccordionItem": {
+      "props": [
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false,
+          "default": "false",
+          "description": "Whether or not an accordion item is disabled from user interaction."
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "required": true,
+          "description": "A string value for the accordion item. All items within an accordion should use a unique value."
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "AccordionTrigger": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "AccordionContent": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "forceMount",
+          "type": "true",
+          "required": false,
+          "description": "Used to force mounting when more control is needed. Useful when\ncontrolling animation with React animation libraries."
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "alert-dialog": {
+    "AlertDialogRoot": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "defaultOpen",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "open",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "onOpenChange",
+          "type": "((open: boolean) => void)",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    },
+    "AlertDialogPortal": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "container",
+          "type": "Element | DocumentFragment | null",
+          "required": false,
+          "description": "Specify a container element to portal the content into."
+        },
+        {
+          "name": "forceMount",
+          "type": "true",
+          "required": false,
+          "description": "Used to force mounting when more control is needed. Useful when\ncontrolling animation with React animation libraries."
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    },
+    "AlertDialogTrigger": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "AlertDialogOverlay": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "forceMount",
+          "type": "true",
+          "required": false,
+          "description": "Used to force mounting when more control is needed. Useful when\ncontrolling animation with React animation libraries."
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "AlertDialogContent": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "forceMount",
+          "type": "true",
+          "required": false,
+          "description": "Used to force mounting when more control is needed. Useful when\ncontrolling animation with React animation libraries."
+        },
+        {
+          "name": "onEscapeKeyDown",
+          "type": "((event: KeyboardEvent) => void)",
+          "required": false,
+          "description": "Event handler called when the escape key is down.\nCan be prevented."
+        },
+        {
+          "name": "onFocusOutside",
+          "type": "((event: FocusOutsideEvent) => void)",
+          "required": false,
+          "description": "Event handler called when the focus moves outside of the `DismissableLayer`.\nCan be prevented."
+        },
+        {
+          "name": "onOpenAutoFocus",
+          "type": "((event: Event) => void)",
+          "required": false,
+          "description": "Event handler called when auto-focusing on open.\nCan be prevented."
+        },
+        {
+          "name": "onCloseAutoFocus",
+          "type": "((event: Event) => void)",
+          "required": false,
+          "description": "Event handler called when auto-focusing on close.\nCan be prevented."
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "AlertDialogTitle": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "AlertDialogDescription": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "AlertDialogAction": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "variant",
+          "type": "\"primary\" | \"secondary\" | \"destructive\"",
+          "required": false,
+          "default": "\"primary\""
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "AlertDialogCancel": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "AlertDialogFooter": {
+      "props": [],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "avatar": {
+    "AvatarRoot": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\"",
+          "required": false,
+          "default": "\"md\""
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "AvatarImage": {
+      "props": [
+        {
+          "name": "onLoadingStatusChange",
+          "type": "((status: ImageLoadingStatus) => void)",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "AvatarFallback": {
+      "props": [
+        {
+          "name": "delayMs",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "Avatar": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\"",
+          "required": false
+        },
+        {
+          "name": "src",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "alt",
+          "type": "string",
+          "required": false,
+          "default": "\"\""
+        },
+        {
+          "name": "fallback",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "delayMs",
+          "type": "number",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "button": {
+    "Button": {
+      "props": [
+        {
+          "name": "variant",
+          "type": "\"primary\" | \"secondary\" | \"destructive\"",
+          "required": false,
+          "default": "\"primary\""
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "default": "\"lg\"",
+          "description": "Control height: sm 24 / md 28 / lg 32 / xl 40."
+        },
+        {
+          "name": "width",
+          "type": "\"fill\" | \"hug\" | \"square\"",
+          "required": false,
+          "default": "\"hug\""
+        },
+        {
+          "name": "round",
+          "type": "boolean",
+          "required": false,
+          "default": "false"
+        },
+        {
+          "name": "prefixSlot",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "suffixSlot",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "callout": {
+    "Callout": {
+      "props": [
+        {
+          "name": "variant",
+          "type": "\"error\" | \"info\" | \"success\" | \"warning\"",
+          "required": false,
+          "default": "\"info\""
+        },
+        {
+          "name": "title",
+          "type": "ReactNode",
+          "required": false,
+          "description": "Optional bold heading rendered above the body."
+        },
+        {
+          "name": "icon",
+          "type": "ReactNode",
+          "required": false,
+          "description": "Override the default per-variant leading icon."
+        },
+        {
+          "name": "onClose",
+          "type": "(() => void)",
+          "required": false,
+          "description": "When provided, renders a trailing dismiss button."
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "card": {
+    "Card": {
+      "props": [
+        {
+          "name": "variant",
+          "type": "\"primary\" | \"secondary\"",
+          "required": false,
+          "default": "\"primary\"",
+          "description": "\"primary\" is raised (bg-primary + card shadow); \"secondary\" is flat (bg-secondary)."
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "carousel": {
+    "Carousel": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true,
+          "description": "Each direct child is one slide."
+        },
+        {
+          "name": "infinite",
+          "type": "boolean",
+          "required": false,
+          "default": "false",
+          "description": "Loop seamlessly past the last/first slide."
+        },
+        {
+          "name": "dots",
+          "type": "boolean",
+          "required": false,
+          "default": "false",
+          "description": "Show an Instagram-style row of dots below the slides."
+        },
+        {
+          "name": "arrows",
+          "type": "boolean",
+          "required": false,
+          "default": "true",
+          "description": "Show prev/next arrow buttons."
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "checkbox": {
+    "Checkbox": {
+      "props": [
+        {
+          "name": "checked",
+          "type": "\"indeterminate\" | boolean",
+          "required": false
+        },
+        {
+          "name": "defaultChecked",
+          "type": "\"indeterminate\" | boolean",
+          "required": false
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "onCheckedChange",
+          "type": "((checked: CheckedState) => void)",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "checkbox-row": {
+    "CheckboxRow": {
+      "props": [
+        {
+          "name": "label",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "checked",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "name": "onCheckedChange",
+          "type": "(isChecked: boolean) => void",
+          "required": true
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    }
+  },
+  "collapsible": {
+    "CollapsibleRoot": {
+      "props": [
+        {
+          "name": "defaultOpen",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "open",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "onOpenChange",
+          "type": "((open: boolean) => void)",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "CollapsibleTrigger": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "CollapsibleContent": {
+      "props": [
+        {
+          "name": "forceMount",
+          "type": "true",
+          "required": false,
+          "description": "Used to force mounting when more control is needed. Useful when\ncontrolling animation with React animation libraries."
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "color-input": {
+    "ColorInput": {
+      "props": [
+        {
+          "name": "value",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "defaultValue",
+          "type": "string",
+          "required": false,
+          "default": "\"#000000\""
+        },
+        {
+          "name": "onValueChange",
+          "type": "((value: string) => void)",
+          "required": false
+        },
+        {
+          "name": "width",
+          "type": "number | \"fill\" | \"hug\"",
+          "required": false,
+          "default": "\"hug\""
+        },
+        {
+          "name": "variant",
+          "type": "\"toolbar\" | \"default\"",
+          "required": false,
+          "default": "\"default\""
+        },
+        {
+          "name": "containerClassName",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "combobox": {
+    "Combobox": {
+      "props": [
+        {
+          "name": "items",
+          "type": "ComboboxItem[]",
+          "required": true
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "defaultValue",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "onValueChange",
+          "type": "((value: string) => void)",
+          "required": false
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "emptyMessage",
+          "type": "string",
+          "required": false,
+          "default": "\"No results\"",
+          "description": "Shown when the query matches no items."
+        },
+        {
+          "name": "filter",
+          "type": "((item: ComboboxItem, query: string) => boolean)",
+          "required": false,
+          "default": "defaultFilter",
+          "description": "Override the default case-insensitive substring match on `label`."
+        },
+        {
+          "name": "width",
+          "type": "number | \"fill\" | \"hug\"",
+          "required": false,
+          "default": "\"hug\""
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "containerClassName",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    }
+  },
+  "context-menu": {
+    "ContextMenuRoot": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "open",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "onOpenChange",
+          "type": "((open: boolean) => void)",
+          "required": false
+        },
+        {
+          "name": "dir",
+          "type": "\"ltr\" | \"rtl\"",
+          "required": false
+        },
+        {
+          "name": "modal",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    },
+    "ContextMenuPortal": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "container",
+          "type": "Element | DocumentFragment | null",
+          "required": false,
+          "description": "Specify a container element to portal the content into."
+        },
+        {
+          "name": "forceMount",
+          "type": "true",
+          "required": false,
+          "description": "Used to force mounting when more control is needed. Useful when\ncontrolling animation with React animation libraries."
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    },
+    "ContextMenuTrigger": {
+      "props": [
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ContextMenuSub": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "open",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "defaultOpen",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "onOpenChange",
+          "type": "((open: boolean) => void)",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    },
+    "ContextMenuItem": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "onSelect",
+          "type": "((event: Event) => void)",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "textValue",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "suffixSlot",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "prefixSlot",
+          "type": "ReactNode",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ContextMenuCheckboxItem": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "onSelect",
+          "type": "((event: Event) => void)",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "checked",
+          "type": "\"indeterminate\" | boolean",
+          "required": false
+        },
+        {
+          "name": "onCheckedChange",
+          "type": "((checked: boolean) => void)",
+          "required": false
+        },
+        {
+          "name": "textValue",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "suffixSlot",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "prefixSlot",
+          "type": "ReactNode",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ContextMenuRadioGroup": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "onValueChange",
+          "type": "((value: string) => void)",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ContextMenuRadioItem": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "onSelect",
+          "type": "((event: Event) => void)",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "textValue",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "suffixSlot",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "prefixSlot",
+          "type": "ReactNode",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ContextMenuGroup": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ContextMenuLabel": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ContextMenuSubTrigger": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "textValue",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "suffixSlot",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "prefixSlot",
+          "type": "ReactNode",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ContextMenuSeparator": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ContextMenuContent": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "forceMount",
+          "type": "true",
+          "required": false,
+          "description": "Used to force mounting when more control is needed. Useful when\ncontrolling animation with React animation libraries."
+        },
+        {
+          "name": "onEscapeKeyDown",
+          "type": "((event: KeyboardEvent) => void)",
+          "required": false
+        },
+        {
+          "name": "onPointerDownOutside",
+          "type": "((event: PointerDownOutsideEvent) => void)",
+          "required": false
+        },
+        {
+          "name": "onFocusOutside",
+          "type": "((event: FocusOutsideEvent) => void)",
+          "required": false
+        },
+        {
+          "name": "onInteractOutside",
+          "type": "((event: FocusOutsideEvent | PointerDownOutsideEvent) => void)",
+          "required": false
+        },
+        {
+          "name": "onCloseAutoFocus",
+          "type": "((event: Event) => void)",
+          "required": false,
+          "description": "Event handler called when auto-focusing on close.\nCan be prevented."
+        },
+        {
+          "name": "loop",
+          "type": "boolean",
+          "required": false,
+          "default": "false",
+          "description": "Whether keyboard navigation should loop around"
+        },
+        {
+          "name": "alignOffset",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "arrowPadding",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "avoidCollisions",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "collisionBoundary",
+          "type": "Boundary | Boundary[]",
+          "required": false
+        },
+        {
+          "name": "collisionPadding",
+          "type": "number | Partial<Record<\"top\" | \"right\" | \"bottom\" | \"left\", number>>",
+          "required": false
+        },
+        {
+          "name": "sticky",
+          "type": "\"partial\" | \"always\"",
+          "required": false
+        },
+        {
+          "name": "hideWhenDetached",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "updatePositionStrategy",
+          "type": "\"always\" | \"optimized\"",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ContextMenuSubContent": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "forceMount",
+          "type": "true",
+          "required": false,
+          "description": "Used to force mounting when more control is needed. Useful when\ncontrolling animation with React animation libraries."
+        },
+        {
+          "name": "onEscapeKeyDown",
+          "type": "((event: KeyboardEvent) => void)",
+          "required": false
+        },
+        {
+          "name": "onPointerDownOutside",
+          "type": "((event: PointerDownOutsideEvent) => void)",
+          "required": false
+        },
+        {
+          "name": "onFocusOutside",
+          "type": "((event: FocusOutsideEvent) => void)",
+          "required": false
+        },
+        {
+          "name": "onInteractOutside",
+          "type": "((event: FocusOutsideEvent | PointerDownOutsideEvent) => void)",
+          "required": false
+        },
+        {
+          "name": "loop",
+          "type": "boolean",
+          "required": false,
+          "default": "false",
+          "description": "Whether keyboard navigation should loop around"
+        },
+        {
+          "name": "sideOffset",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "align",
+          "type": "\"start\" | \"end\"",
+          "required": false,
+          "description": "Controls the direction the subcontent appears from its anchor menu item\nDefault: start"
+        },
+        {
+          "name": "alignOffset",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "arrowPadding",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "avoidCollisions",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "collisionBoundary",
+          "type": "Boundary | Boundary[]",
+          "required": false
+        },
+        {
+          "name": "collisionPadding",
+          "type": "number | Partial<Record<\"top\" | \"right\" | \"bottom\" | \"left\", number>>",
+          "required": false
+        },
+        {
+          "name": "sticky",
+          "type": "\"partial\" | \"always\"",
+          "required": false
+        },
+        {
+          "name": "hideWhenDetached",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "updatePositionStrategy",
+          "type": "\"always\" | \"optimized\"",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "dialog": {
+    "DialogRoot": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "open",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "defaultOpen",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "onOpenChange",
+          "type": "((open: boolean) => void)",
+          "required": false
+        },
+        {
+          "name": "modal",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    },
+    "DialogPortal": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "container",
+          "type": "Element | DocumentFragment | null",
+          "required": false,
+          "description": "Specify a container element to portal the content into."
+        },
+        {
+          "name": "forceMount",
+          "type": "true",
+          "required": false,
+          "description": "Used to force mounting when more control is needed. Useful when\ncontrolling animation with React animation libraries."
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    },
+    "DialogClose": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "DialogTrigger": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "DialogOverlay": {
+      "props": [
+        {
+          "name": "forceMount",
+          "type": "true",
+          "required": false,
+          "description": "Used to force mounting when more control is needed. Useful when\ncontrolling animation with React animation libraries."
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "DialogContent": {
+      "props": [
+        {
+          "name": "forceMount",
+          "type": "true",
+          "required": false,
+          "description": "Used to force mounting when more control is needed. Useful when\ncontrolling animation with React animation libraries."
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "onEscapeKeyDown",
+          "type": "((event: KeyboardEvent) => void)",
+          "required": false,
+          "description": "Event handler called when the escape key is down.\nCan be prevented."
+        },
+        {
+          "name": "onPointerDownOutside",
+          "type": "((event: PointerDownOutsideEvent) => void)",
+          "required": false,
+          "description": "Event handler called when the a `pointerdown` event happens outside of the `DismissableLayer`.\nCan be prevented."
+        },
+        {
+          "name": "onFocusOutside",
+          "type": "((event: FocusOutsideEvent) => void)",
+          "required": false,
+          "description": "Event handler called when the focus moves outside of the `DismissableLayer`.\nCan be prevented."
+        },
+        {
+          "name": "onInteractOutside",
+          "type": "((event: FocusOutsideEvent | PointerDownOutsideEvent) => void)",
+          "required": false,
+          "description": "Event handler called when an interaction happens outside the `DismissableLayer`.\nSpecifically, when a `pointerdown` event happens outside or focus moves outside of it.\nCan be prevented."
+        },
+        {
+          "name": "onOpenAutoFocus",
+          "type": "((event: Event) => void)",
+          "required": false,
+          "description": "Event handler called when auto-focusing on open.\nCan be prevented."
+        },
+        {
+          "name": "onCloseAutoFocus",
+          "type": "((event: Event) => void)",
+          "required": false,
+          "description": "Event handler called when auto-focusing on close.\nCan be prevented."
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "DialogTitle": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "DialogDescription": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "drawer": {
+    "DrawerRoot": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "open",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "defaultOpen",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "onOpenChange",
+          "type": "((open: boolean) => void)",
+          "required": false
+        },
+        {
+          "name": "modal",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    },
+    "DrawerPortal": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "container",
+          "type": "Element | DocumentFragment | null",
+          "required": false,
+          "description": "Specify a container element to portal the content into."
+        },
+        {
+          "name": "forceMount",
+          "type": "true",
+          "required": false,
+          "description": "Used to force mounting when more control is needed. Useful when\ncontrolling animation with React animation libraries."
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    },
+    "DrawerClose": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "DrawerTrigger": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "DrawerOverlay": {
+      "props": [
+        {
+          "name": "forceMount",
+          "type": "true",
+          "required": false,
+          "description": "Used to force mounting when more control is needed. Useful when\ncontrolling animation with React animation libraries."
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "DrawerContent": {
+      "props": [
+        {
+          "name": "forceMount",
+          "type": "true",
+          "required": false,
+          "description": "Used to force mounting when more control is needed. Useful when\ncontrolling animation with React animation libraries."
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "onEscapeKeyDown",
+          "type": "((event: KeyboardEvent) => void)",
+          "required": false,
+          "description": "Event handler called when the escape key is down.\nCan be prevented."
+        },
+        {
+          "name": "onPointerDownOutside",
+          "type": "((event: PointerDownOutsideEvent) => void)",
+          "required": false,
+          "description": "Event handler called when the a `pointerdown` event happens outside of the `DismissableLayer`.\nCan be prevented."
+        },
+        {
+          "name": "onFocusOutside",
+          "type": "((event: FocusOutsideEvent) => void)",
+          "required": false,
+          "description": "Event handler called when the focus moves outside of the `DismissableLayer`.\nCan be prevented."
+        },
+        {
+          "name": "onInteractOutside",
+          "type": "((event: FocusOutsideEvent | PointerDownOutsideEvent) => void)",
+          "required": false,
+          "description": "Event handler called when an interaction happens outside the `DismissableLayer`.\nSpecifically, when a `pointerdown` event happens outside or focus moves outside of it.\nCan be prevented."
+        },
+        {
+          "name": "onOpenAutoFocus",
+          "type": "((event: Event) => void)",
+          "required": false,
+          "description": "Event handler called when auto-focusing on open.\nCan be prevented."
+        },
+        {
+          "name": "onCloseAutoFocus",
+          "type": "((event: Event) => void)",
+          "required": false,
+          "description": "Event handler called when auto-focusing on close.\nCan be prevented."
+        },
+        {
+          "name": "scrim",
+          "type": "boolean",
+          "required": false,
+          "default": "true"
+        },
+        {
+          "name": "side",
+          "type": "\"top\" | \"right\" | \"bottom\" | \"left\"",
+          "required": false,
+          "default": "\"right\""
+        },
+        {
+          "name": "elevated",
+          "type": "boolean",
+          "required": false,
+          "default": "false",
+          "description": "Full elevated shadow (rim + drop); false draws only the hairline."
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "DrawerTitle": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "DrawerDescription": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "dropdown-menu": {
+    "DropdownMenuRoot": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "dir",
+          "type": "\"ltr\" | \"rtl\"",
+          "required": false
+        },
+        {
+          "name": "open",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "defaultOpen",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "onOpenChange",
+          "type": "((open: boolean) => void)",
+          "required": false
+        },
+        {
+          "name": "modal",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    },
+    "DropdownMenuPortal": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "container",
+          "type": "Element | DocumentFragment | null",
+          "required": false,
+          "description": "Specify a container element to portal the content into."
+        },
+        {
+          "name": "forceMount",
+          "type": "true",
+          "required": false,
+          "description": "Used to force mounting when more control is needed. Useful when\ncontrolling animation with React animation libraries."
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    },
+    "DropdownMenuTrigger": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "DropdownMenuSub": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "open",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "defaultOpen",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "onOpenChange",
+          "type": "((open: boolean) => void)",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    },
+    "DropdownMenuItem": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "onSelect",
+          "type": "((event: Event) => void)",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "textValue",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "suffixSlot",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "prefixSlot",
+          "type": "ReactNode",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "DropdownMenuCheckboxItem": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "onSelect",
+          "type": "((event: Event) => void)",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "checked",
+          "type": "\"indeterminate\" | boolean",
+          "required": false
+        },
+        {
+          "name": "onCheckedChange",
+          "type": "((checked: boolean) => void)",
+          "required": false
+        },
+        {
+          "name": "textValue",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "suffixSlot",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "prefixSlot",
+          "type": "ReactNode",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "DropdownMenuRadioGroup": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "onValueChange",
+          "type": "((value: string) => void)",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "DropdownMenuRadioItem": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "onSelect",
+          "type": "((event: Event) => void)",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "textValue",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "suffixSlot",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "prefixSlot",
+          "type": "ReactNode",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "DropdownMenuGroup": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "DropdownMenuLabel": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "DropdownMenuSubTrigger": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "textValue",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "suffixSlot",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "prefixSlot",
+          "type": "ReactNode",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "DropdownMenuSeparator": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "DropdownMenuContent": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "forceMount",
+          "type": "true",
+          "required": false,
+          "description": "Used to force mounting when more control is needed. Useful when\ncontrolling animation with React animation libraries."
+        },
+        {
+          "name": "onEscapeKeyDown",
+          "type": "((event: KeyboardEvent) => void)",
+          "required": false
+        },
+        {
+          "name": "onPointerDownOutside",
+          "type": "((event: PointerDownOutsideEvent) => void)",
+          "required": false
+        },
+        {
+          "name": "onFocusOutside",
+          "type": "((event: FocusOutsideEvent) => void)",
+          "required": false
+        },
+        {
+          "name": "onInteractOutside",
+          "type": "((event: FocusOutsideEvent | PointerDownOutsideEvent) => void)",
+          "required": false
+        },
+        {
+          "name": "onCloseAutoFocus",
+          "type": "((event: Event) => void)",
+          "required": false,
+          "description": "Event handler called when auto-focusing on close.\nCan be prevented."
+        },
+        {
+          "name": "loop",
+          "type": "boolean",
+          "required": false,
+          "default": "false",
+          "description": "Whether keyboard navigation should loop around"
+        },
+        {
+          "name": "side",
+          "type": "\"top\" | \"right\" | \"bottom\" | \"left\"",
+          "required": false
+        },
+        {
+          "name": "sideOffset",
+          "type": "number",
+          "required": false,
+          "default": "POPOVER_OFFSET"
+        },
+        {
+          "name": "align",
+          "type": "\"center\" | \"start\" | \"end\"",
+          "required": false
+        },
+        {
+          "name": "alignOffset",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "arrowPadding",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "avoidCollisions",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "collisionBoundary",
+          "type": "Boundary | Boundary[]",
+          "required": false
+        },
+        {
+          "name": "collisionPadding",
+          "type": "number | Partial<Record<\"top\" | \"right\" | \"bottom\" | \"left\", number>>",
+          "required": false,
+          "default": "8"
+        },
+        {
+          "name": "sticky",
+          "type": "\"partial\" | \"always\"",
+          "required": false
+        },
+        {
+          "name": "hideWhenDetached",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "updatePositionStrategy",
+          "type": "\"always\" | \"optimized\"",
+          "required": false
+        },
+        {
+          "name": "width",
+          "type": "\"auto\" | \"sm\" | \"md\" | \"lg\"",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "DropdownMenuArrow": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "DropdownMenuSubContent": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "forceMount",
+          "type": "true",
+          "required": false,
+          "description": "Used to force mounting when more control is needed. Useful when\ncontrolling animation with React animation libraries."
+        },
+        {
+          "name": "onEscapeKeyDown",
+          "type": "((event: KeyboardEvent) => void)",
+          "required": false
+        },
+        {
+          "name": "onPointerDownOutside",
+          "type": "((event: PointerDownOutsideEvent) => void)",
+          "required": false
+        },
+        {
+          "name": "onFocusOutside",
+          "type": "((event: FocusOutsideEvent) => void)",
+          "required": false
+        },
+        {
+          "name": "onInteractOutside",
+          "type": "((event: FocusOutsideEvent | PointerDownOutsideEvent) => void)",
+          "required": false
+        },
+        {
+          "name": "loop",
+          "type": "boolean",
+          "required": false,
+          "default": "false",
+          "description": "Whether keyboard navigation should loop around"
+        },
+        {
+          "name": "sideOffset",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "align",
+          "type": "\"start\" | \"end\"",
+          "required": false,
+          "description": "Controls the direction the subcontent appears from its anchor menu item\nDefault: start"
+        },
+        {
+          "name": "alignOffset",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "arrowPadding",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "avoidCollisions",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "collisionBoundary",
+          "type": "Boundary | Boundary[]",
+          "required": false
+        },
+        {
+          "name": "collisionPadding",
+          "type": "number | Partial<Record<\"top\" | \"right\" | \"bottom\" | \"left\", number>>",
+          "required": false
+        },
+        {
+          "name": "sticky",
+          "type": "\"partial\" | \"always\"",
+          "required": false
+        },
+        {
+          "name": "hideWhenDetached",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "updatePositionStrategy",
+          "type": "\"always\" | \"optimized\"",
+          "required": false
+        },
+        {
+          "name": "width",
+          "type": "\"auto\" | \"sm\" | \"md\" | \"lg\"",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "form": {
+    "FormRoot": {
+      "props": [
+        {
+          "name": "onClearServerErrors",
+          "type": "(() => void)",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "FormValidityState": {
+      "props": [
+        {
+          "name": "children",
+          "type": "(validity: ValidityState | undefined) => ReactNode",
+          "required": true
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    },
+    "FormField": {
+      "props": [
+        {
+          "name": "name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "serverInvalid",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "FormLabel": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "FormControl": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "FormMessage": {
+      "props": [
+        {
+          "name": "match",
+          "type": "\"badInput\" | \"patternMismatch\" | \"rangeOverflow\" | \"rangeUnderflow\" | \"stepMismatch\" | \"tooLong\" | \"tooShort\" | \"typeMismatch\" | \"valid\" | \"valueMissing\" | CustomMatcher",
+          "required": false
+        },
+        {
+          "name": "forceMatch",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "FormSubmit": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "fullscreen-modal": {
+    "FullscreenModal": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true
+        },
+        {
+          "name": "trigger",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "triggerTooltip",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "open",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "defaultOpen",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "onOpenChange",
+          "type": "((open: boolean) => void)",
+          "required": false
+        },
+        {
+          "name": "disableClose",
+          "type": "boolean",
+          "required": false,
+          "default": "false"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": true,
+          "description": "Announced to screen readers; rendered visually hidden."
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "hideCloseButton",
+          "type": "boolean",
+          "required": false,
+          "default": "false"
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    }
+  },
+  "gradient-mask": {
+    "GradientMask": {
+      "props": [
+        {
+          "name": "direction",
+          "type": "\"top\" | \"right\" | \"bottom\" | \"left\"",
+          "required": false,
+          "default": "\"top\""
+        },
+        {
+          "name": "size",
+          "type": "number",
+          "required": false,
+          "default": "24",
+          "description": "Thickness of the fade strip in px."
+        },
+        {
+          "name": "blur",
+          "type": "number",
+          "required": false,
+          "description": "Blur radius in px; defaults to size / 4 so the fade completes inside the strip."
+        },
+        {
+          "name": "color",
+          "type": "string",
+          "required": false,
+          "default": "\"var(--bg-primary)\"",
+          "description": "The color faded to — should match the scroll container's background."
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "hover-card": {
+    "HoverCardRoot": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "open",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "defaultOpen",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "onOpenChange",
+          "type": "((open: boolean) => void)",
+          "required": false
+        },
+        {
+          "name": "openDelay",
+          "type": "number",
+          "required": false,
+          "default": "300"
+        },
+        {
+          "name": "closeDelay",
+          "type": "number",
+          "required": false,
+          "default": "100"
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    },
+    "HoverCardPortal": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "container",
+          "type": "Element | DocumentFragment | null",
+          "required": false,
+          "description": "Specify a container element to portal the content into."
+        },
+        {
+          "name": "forceMount",
+          "type": "true",
+          "required": false,
+          "description": "Used to force mounting when more control is needed. Useful when\ncontrolling animation with React animation libraries."
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    },
+    "HoverCardTrigger": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "HoverCardContent": {
+      "props": [
+        {
+          "name": "forceMount",
+          "type": "true",
+          "required": false,
+          "description": "Used to force mounting when more control is needed. Useful when\ncontrolling animation with React animation libraries."
+        },
+        {
+          "name": "onEscapeKeyDown",
+          "type": "((event: KeyboardEvent) => void)",
+          "required": false,
+          "description": "Event handler called when the escape key is down.\nCan be prevented."
+        },
+        {
+          "name": "onPointerDownOutside",
+          "type": "((event: PointerDownOutsideEvent) => void)",
+          "required": false,
+          "description": "Event handler called when the a `pointerdown` event happens outside of the `HoverCard`.\nCan be prevented."
+        },
+        {
+          "name": "onFocusOutside",
+          "type": "((event: FocusOutsideEvent) => void)",
+          "required": false,
+          "description": "Event handler called when the focus moves outside of the `HoverCard`.\nCan be prevented."
+        },
+        {
+          "name": "onInteractOutside",
+          "type": "((event: FocusOutsideEvent | PointerDownOutsideEvent) => void)",
+          "required": false,
+          "description": "Event handler called when an interaction happens outside the `HoverCard`.\nSpecifically, when a `pointerdown` event happens outside or focus moves outside of it.\nCan be prevented."
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "side",
+          "type": "\"top\" | \"right\" | \"bottom\" | \"left\"",
+          "required": false
+        },
+        {
+          "name": "sideOffset",
+          "type": "number",
+          "required": false,
+          "default": "6"
+        },
+        {
+          "name": "align",
+          "type": "\"center\" | \"start\" | \"end\"",
+          "required": false
+        },
+        {
+          "name": "alignOffset",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "arrowPadding",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "avoidCollisions",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "collisionBoundary",
+          "type": "Boundary | Boundary[]",
+          "required": false
+        },
+        {
+          "name": "collisionPadding",
+          "type": "number | Partial<Record<\"top\" | \"right\" | \"bottom\" | \"left\", number>>",
+          "required": false,
+          "default": "12"
+        },
+        {
+          "name": "sticky",
+          "type": "\"partial\" | \"always\"",
+          "required": false
+        },
+        {
+          "name": "hideWhenDetached",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "updatePositionStrategy",
+          "type": "\"always\" | \"optimized\"",
+          "required": false
+        },
+        {
+          "name": "width",
+          "type": "\"auto\" | \"sm\" | \"md\" | \"lg\"",
+          "required": false,
+          "default": "\"auto\""
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "icon": {
+    "IconWrapper": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"xs\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false,
+          "default": "\"0 0 18 18\""
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "Icon": {
+      "props": [
+        {
+          "name": "icon",
+          "type": "\"link\" | \"circle\" | \"document\" | \"list\" | \"placeholder\" | \"arrow-down\" | \"arrow-left\" | \"arrow-right\" | \"arrow-up\" | \"at-symbol\" | \"check\" | \"check-circle\" | \"check-circle-fill\" | \"chevron-down\" | \"chevron-down-bold\" | \"chevron-down-mini-bold\" | \"chevron-left\" | \"chevron-left-bold\" | \"chevron-left-mini-bold\" | \"chevron-right\" | \"chevron-right-bold\" | \"chevron-right-mini-bold\" | \"chevron-up\" | \"chevron-up-bold\" | \"chevron-up-mini-bold\" | \"circle-fill\" | \"circle-grid\" | \"circle-xmark\" | \"circle-xmark-fill\" | \"crosshairs\" | \"document-fill\" | \"ellipsis-horizontal\" | \"ellipsis-vertical\" | \"folder\" | \"folder-fill\" | \"gear\" | \"gear-fill\" | \"grid-square\" | \"hash-symbol\" | \"hexagon\" | \"hexagon-dot\" | \"hexagon-fill\" | \"hexagon-fill-dot\" | \"info-circle\" | \"info-circle-fill\" | \"info-circle-xmark\" | \"lock-locked\" | \"lock-locked-fill\" | \"lock-unlocked\" | \"lock-unlocked-fill\" | \"magnifying-glass\" | \"minus\" | \"moon\" | \"pause\" | \"pause-fill\" | \"photo\" | \"photo-fill\" | \"play\" | \"play-fill\" | \"plus\" | \"rectangle\" | \"rectangle-fill\" | \"ruler-square\" | \"sidebar-left\" | \"sidebar-right\" | \"slider-horizontal\" | \"slider-vertical\" | \"square-grid\" | \"star\" | \"star-fill\" | \"star-four\" | \"star-four-fill\" | \"sun\" | \"triangle-exclamation\" | \"triangle-exclamation-fill\" | \"viewfinder\" | \"x-mark\" | \"xmark\"",
+          "required": true
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"xs\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "icon-swap": {
+    "IconSwap": {
+      "props": [
+        {
+          "name": "swapKey",
+          "type": "string | number | boolean",
+          "required": true,
+          "description": "Identifies the current state; changing it animates children out and in."
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "scale",
+          "type": "number",
+          "required": false,
+          "default": "0.5",
+          "description": "Scale the outgoing/incoming children shrink to."
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "required": false,
+          "default": "0.08",
+          "description": "Animation duration in seconds."
+        },
+        {
+          "name": "mode",
+          "type": "\"sync\" | \"wait\" | \"popLayout\"",
+          "required": false,
+          "default": "\"wait\""
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    }
+  },
+  "label": {
+    "Label": {
+      "props": [
+        {
+          "name": "color",
+          "type": "\"inherit\" | \"primary\" | \"secondary\" | \"tertiary\"",
+          "required": false,
+          "default": "\"primary\""
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"xs\"",
+          "required": false,
+          "default": "\"sm\""
+        },
+        {
+          "name": "weight",
+          "type": "\"regular\" | \"medium\" | \"semibold\"",
+          "required": false,
+          "default": "\"medium\""
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "link": {
+    "Link": {
+      "props": [],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "menu-primitives": {
+    "MenuContainer": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "width",
+          "type": "\"auto\" | \"sm\" | \"md\" | \"lg\"",
+          "required": false,
+          "default": "\"auto\""
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "MenuItem": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "suffixSlot",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "prefixSlot",
+          "type": "ReactNode",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "MenuDivider": {
+      "props": [],
+      "acceptsHtmlAttributes": true
+    },
+    "MenuGroup": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    },
+    "MenuLabel": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    },
+    "MenuTitle": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    },
+    "MenuList": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    },
+    "MenuListItem": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string | number | null",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    },
+    "MenuArrow": {
+      "props": [],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "menubar": {
+    "MenubarMenu": {
+      "props": [
+        {
+          "name": "value",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    },
+    "MenubarPortal": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "container",
+          "type": "Element | DocumentFragment | null",
+          "required": false,
+          "description": "Specify a container element to portal the content into."
+        },
+        {
+          "name": "forceMount",
+          "type": "true",
+          "required": false,
+          "description": "Used to force mounting when more control is needed. Useful when\ncontrolling animation with React animation libraries."
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    },
+    "MenubarSub": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "open",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "defaultOpen",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "onOpenChange",
+          "type": "((open: boolean) => void)",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    },
+    "MenubarItem": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "onSelect",
+          "type": "((event: Event) => void)",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "textValue",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "suffixSlot",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "prefixSlot",
+          "type": "ReactNode",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "MenubarCheckboxItem": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "onSelect",
+          "type": "((event: Event) => void)",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "checked",
+          "type": "\"indeterminate\" | boolean",
+          "required": false
+        },
+        {
+          "name": "onCheckedChange",
+          "type": "((checked: boolean) => void)",
+          "required": false
+        },
+        {
+          "name": "textValue",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "suffixSlot",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "prefixSlot",
+          "type": "ReactNode",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "MenubarRadioGroup": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "onValueChange",
+          "type": "((value: string) => void)",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "MenubarRadioItem": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "onSelect",
+          "type": "((event: Event) => void)",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "textValue",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "suffixSlot",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "prefixSlot",
+          "type": "ReactNode",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "MenubarGroup": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "MenubarLabel": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "MenubarSubTrigger": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "textValue",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "suffixSlot",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "prefixSlot",
+          "type": "ReactNode",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "MenubarSeparator": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "MenubarRoot": {
+      "props": [
+        {
+          "name": "value",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "defaultValue",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "onValueChange",
+          "type": "((value: string) => void)",
+          "required": false
+        },
+        {
+          "name": "loop",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "dir",
+          "type": "\"ltr\" | \"rtl\"",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "MenubarTrigger": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "MenubarContent": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "forceMount",
+          "type": "true",
+          "required": false,
+          "description": "Used to force mounting when more control is needed. Useful when\ncontrolling animation with React animation libraries."
+        },
+        {
+          "name": "onEscapeKeyDown",
+          "type": "((event: KeyboardEvent) => void)",
+          "required": false
+        },
+        {
+          "name": "onPointerDownOutside",
+          "type": "((event: PointerDownOutsideEvent) => void)",
+          "required": false
+        },
+        {
+          "name": "onFocusOutside",
+          "type": "((event: FocusOutsideEvent) => void)",
+          "required": false
+        },
+        {
+          "name": "onInteractOutside",
+          "type": "((event: FocusOutsideEvent | PointerDownOutsideEvent) => void)",
+          "required": false
+        },
+        {
+          "name": "onCloseAutoFocus",
+          "type": "((event: Event) => void)",
+          "required": false,
+          "description": "Event handler called when auto-focusing on close.\nCan be prevented."
+        },
+        {
+          "name": "loop",
+          "type": "boolean",
+          "required": false,
+          "default": "false",
+          "description": "Whether keyboard navigation should loop around"
+        },
+        {
+          "name": "side",
+          "type": "\"top\" | \"right\" | \"bottom\" | \"left\"",
+          "required": false
+        },
+        {
+          "name": "sideOffset",
+          "type": "number",
+          "required": false,
+          "default": "4"
+        },
+        {
+          "name": "align",
+          "type": "\"center\" | \"start\" | \"end\"",
+          "required": false
+        },
+        {
+          "name": "alignOffset",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "arrowPadding",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "avoidCollisions",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "collisionBoundary",
+          "type": "Boundary | Boundary[]",
+          "required": false
+        },
+        {
+          "name": "collisionPadding",
+          "type": "number | Partial<Record<\"top\" | \"right\" | \"bottom\" | \"left\", number>>",
+          "required": false,
+          "default": "8"
+        },
+        {
+          "name": "sticky",
+          "type": "\"partial\" | \"always\"",
+          "required": false
+        },
+        {
+          "name": "hideWhenDetached",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "updatePositionStrategy",
+          "type": "\"always\" | \"optimized\"",
+          "required": false
+        },
+        {
+          "name": "width",
+          "type": "\"auto\" | \"sm\" | \"md\" | \"lg\"",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "MenubarSubContent": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "forceMount",
+          "type": "true",
+          "required": false,
+          "description": "Used to force mounting when more control is needed. Useful when\ncontrolling animation with React animation libraries."
+        },
+        {
+          "name": "onEscapeKeyDown",
+          "type": "((event: KeyboardEvent) => void)",
+          "required": false
+        },
+        {
+          "name": "onPointerDownOutside",
+          "type": "((event: PointerDownOutsideEvent) => void)",
+          "required": false
+        },
+        {
+          "name": "onFocusOutside",
+          "type": "((event: FocusOutsideEvent) => void)",
+          "required": false
+        },
+        {
+          "name": "onInteractOutside",
+          "type": "((event: FocusOutsideEvent | PointerDownOutsideEvent) => void)",
+          "required": false
+        },
+        {
+          "name": "loop",
+          "type": "boolean",
+          "required": false,
+          "default": "false",
+          "description": "Whether keyboard navigation should loop around"
+        },
+        {
+          "name": "sideOffset",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "align",
+          "type": "\"start\" | \"end\"",
+          "required": false,
+          "description": "Controls the direction the subcontent appears from its anchor menu item\nDefault: start"
+        },
+        {
+          "name": "alignOffset",
+          "type": "number",
+          "required": false,
+          "default": "-5"
+        },
+        {
+          "name": "arrowPadding",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "avoidCollisions",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "collisionBoundary",
+          "type": "Boundary | Boundary[]",
+          "required": false
+        },
+        {
+          "name": "collisionPadding",
+          "type": "number | Partial<Record<\"top\" | \"right\" | \"bottom\" | \"left\", number>>",
+          "required": false
+        },
+        {
+          "name": "sticky",
+          "type": "\"partial\" | \"always\"",
+          "required": false
+        },
+        {
+          "name": "hideWhenDetached",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "updatePositionStrategy",
+          "type": "\"always\" | \"optimized\"",
+          "required": false
+        },
+        {
+          "name": "width",
+          "type": "\"auto\" | \"sm\" | \"md\" | \"lg\"",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "middle-dot": {
+    "MiddleDot": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    }
+  },
+  "navigation-menu": {
+    "NavigationMenuItem": {
+      "props": [
+        {
+          "name": "value",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "NavigationMenuSub": {
+      "props": [
+        {
+          "name": "value",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "defaultValue",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "onValueChange",
+          "type": "((value: string) => void)",
+          "required": false
+        },
+        {
+          "name": "orientation",
+          "type": "\"horizontal\" | \"vertical\"",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "NavigationMenuRoot": {
+      "props": [
+        {
+          "name": "value",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "defaultValue",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "onValueChange",
+          "type": "((value: string) => void)",
+          "required": false
+        },
+        {
+          "name": "dir",
+          "type": "\"ltr\" | \"rtl\"",
+          "required": false
+        },
+        {
+          "name": "orientation",
+          "type": "\"horizontal\" | \"vertical\"",
+          "required": false
+        },
+        {
+          "name": "delayDuration",
+          "type": "number",
+          "required": false,
+          "default": "200",
+          "description": "The duration from when the pointer enters the trigger until the tooltip gets opened."
+        },
+        {
+          "name": "skipDelayDuration",
+          "type": "number",
+          "required": false,
+          "default": "300",
+          "description": "How much time a user has to enter another trigger without incurring a delay again."
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "NavigationMenuList": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "NavigationMenuTrigger": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "NavigationMenuContent": {
+      "props": [
+        {
+          "name": "forceMount",
+          "type": "true",
+          "required": false,
+          "description": "Used to force mounting when more control is needed. Useful when\ncontrolling animation with React animation libraries."
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "onEscapeKeyDown",
+          "type": "((event: KeyboardEvent) => void)",
+          "required": false,
+          "description": "Event handler called when the escape key is down.\nCan be prevented."
+        },
+        {
+          "name": "onPointerDownOutside",
+          "type": "((event: PointerDownOutsideEvent) => void)",
+          "required": false,
+          "description": "Event handler called when the a `pointerdown` event happens outside of the `DismissableLayer`.\nCan be prevented."
+        },
+        {
+          "name": "onFocusOutside",
+          "type": "((event: FocusOutsideEvent) => void)",
+          "required": false,
+          "description": "Event handler called when the focus moves outside of the `DismissableLayer`.\nCan be prevented."
+        },
+        {
+          "name": "onInteractOutside",
+          "type": "((event: FocusOutsideEvent | PointerDownOutsideEvent) => void)",
+          "required": false,
+          "description": "Event handler called when an interaction happens outside the `DismissableLayer`.\nSpecifically, when a `pointerdown` event happens outside or focus moves outside of it.\nCan be prevented."
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "NavigationMenuLink": {
+      "props": [
+        {
+          "name": "active",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "onSelect",
+          "type": "((event: Event) => void)",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "otp-input": {
+    "OTPInput": {
+      "props": [
+        {
+          "name": "autoComplete",
+          "type": "\"off\" | \"one-time-code\"",
+          "required": false,
+          "default": "`\"one-time-code\"`",
+          "description": "Specifies what—if any—permission the user agent has to provide automated\nassistance in filling out form field values, as well as guidance to the\nbrowser as to the type of information expected in the field. Allows\n`\"one-time-code\"` or `\"off\"`."
+        },
+        {
+          "name": "autoFocus",
+          "type": "boolean",
+          "required": false,
+          "default": "`false`",
+          "description": "Whether or not the first fillable input should be focused on page-load."
+        },
+        {
+          "name": "autoSubmit",
+          "type": "boolean",
+          "required": false,
+          "default": "`false`",
+          "description": "Whether or not the component should attempt to automatically submit when\nall fields are filled. If the field is associated with an HTML `form`\nelement, the form's `requestSubmit` method will be called."
+        },
+        {
+          "name": "defaultValue",
+          "type": "string",
+          "required": false,
+          "description": "The initial value of the uncontrolled field."
+        },
+        {
+          "name": "dir",
+          "type": "\"ltr\" | \"rtl\"",
+          "required": false,
+          "description": "Indicates the horizontal directionality of the parent element's text."
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false,
+          "description": "Whether or not the the field's input elements are disabled."
+        },
+        {
+          "name": "form",
+          "type": "string",
+          "required": false,
+          "description": "A string specifying the `form` element with which the input is associated.\nThis string's value, if present, must match the id of a `form` element in\nthe same document."
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "description": "A string specifying a name for the input control. This name is submitted\nalong with the control's value when the form data is submitted.\nWhen set, renders a hidden input so the value submits with a form."
+        },
+        {
+          "name": "onAutoSubmit",
+          "type": "((value: string) => void)",
+          "required": false,
+          "description": "When the `autoSubmit` prop is set to `true`, this callback will be fired\nbefore attempting to submit the associated form. It will be called whether\nor not a form is located, or if submission is not allowed."
+        },
+        {
+          "name": "onValueChange",
+          "type": "((value: string) => void)",
+          "required": false,
+          "description": "A callback fired when the field's value changes. When the component is\ncontrolled, this should update the state passed to the `value` prop."
+        },
+        {
+          "name": "orientation",
+          "type": "\"horizontal\" | \"vertical\"",
+          "required": false,
+          "default": "`\"horizontal\"`",
+          "description": "Indicates the vertical directionality of the input elements."
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "required": false,
+          "description": "Defines the text displayed in a form control when the control has no value."
+        },
+        {
+          "name": "readOnly",
+          "type": "boolean",
+          "required": false,
+          "description": "Whether or not the input elements can be updated by the user."
+        },
+        {
+          "name": "sanitizeValue",
+          "type": "((value: string) => string)",
+          "required": false,
+          "description": "Function for custom sanitization when `validationType` is set to `\"none\"`.\nThis function will be called before updating values in response to user\ninteractions."
+        },
+        {
+          "name": "type",
+          "type": "\"text\" | \"password\"",
+          "required": false,
+          "description": "The input type of the field's input elements. Can be `\"password\"` or `\"text\"`."
+        },
+        {
+          "name": "validationType",
+          "type": "\"none\" | \"numeric\" | \"alpha\" | \"alphanumeric\"",
+          "required": false,
+          "default": "`\"numeric\"`",
+          "description": "Specifies the type of input validation to be used. Can be `\"alpha\"`,\n`\"numeric\"`, `\"alphanumeric\"` or `\"none\"`."
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "required": false,
+          "description": "The controlled value of the field."
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "length",
+          "type": "number",
+          "required": false,
+          "default": "6",
+          "description": "Number of digit slots."
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "password-input": {
+    "PasswordInput": {
+      "props": [
+        {
+          "name": "width",
+          "type": "number | \"fill\" | \"hug\"",
+          "required": false
+        },
+        {
+          "name": "variant",
+          "type": "\"toolbar\" | \"default\"",
+          "required": false
+        },
+        {
+          "name": "prefixSlot",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "suffixSlot",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "containerClassName",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "containerStyle",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "defaultValue",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "onValueChange",
+          "type": "((value: string) => void)",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "pie-chart": {
+    "PieChart": {
+      "props": [
+        {
+          "name": "percent",
+          "type": "number",
+          "required": true,
+          "default": "0"
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "popover": {
+    "PopoverRoot": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "open",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "defaultOpen",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "onOpenChange",
+          "type": "((open: boolean) => void)",
+          "required": false
+        },
+        {
+          "name": "modal",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    },
+    "PopoverPortal": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "container",
+          "type": "Element | DocumentFragment | null",
+          "required": false,
+          "description": "Specify a container element to portal the content into."
+        },
+        {
+          "name": "forceMount",
+          "type": "true",
+          "required": false,
+          "description": "Used to force mounting when more control is needed. Useful when\ncontrolling animation with React animation libraries."
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    },
+    "PopoverAnchor": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "virtualRef",
+          "type": "RefObject<Measurable>",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "PopoverClose": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "PopoverTrigger": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "PopoverArrow": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "PopoverContent": {
+      "props": [
+        {
+          "name": "forceMount",
+          "type": "true",
+          "required": false,
+          "description": "Used to force mounting when more control is needed. Useful when\ncontrolling animation with React animation libraries."
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "onEscapeKeyDown",
+          "type": "((event: KeyboardEvent) => void)",
+          "required": false,
+          "description": "Event handler called when the escape key is down.\nCan be prevented."
+        },
+        {
+          "name": "onPointerDownOutside",
+          "type": "((event: PointerDownOutsideEvent) => void)",
+          "required": false,
+          "description": "Event handler called when the a `pointerdown` event happens outside of the `DismissableLayer`.\nCan be prevented."
+        },
+        {
+          "name": "onFocusOutside",
+          "type": "((event: FocusOutsideEvent) => void)",
+          "required": false,
+          "description": "Event handler called when the focus moves outside of the `DismissableLayer`.\nCan be prevented."
+        },
+        {
+          "name": "onInteractOutside",
+          "type": "((event: FocusOutsideEvent | PointerDownOutsideEvent) => void)",
+          "required": false,
+          "description": "Event handler called when an interaction happens outside the `DismissableLayer`.\nSpecifically, when a `pointerdown` event happens outside or focus moves outside of it.\nCan be prevented."
+        },
+        {
+          "name": "onOpenAutoFocus",
+          "type": "((event: Event) => void)",
+          "required": false,
+          "description": "Event handler called when auto-focusing on open.\nCan be prevented."
+        },
+        {
+          "name": "onCloseAutoFocus",
+          "type": "((event: Event) => void)",
+          "required": false,
+          "description": "Event handler called when auto-focusing on close.\nCan be prevented."
+        },
+        {
+          "name": "side",
+          "type": "\"top\" | \"right\" | \"bottom\" | \"left\"",
+          "required": false
+        },
+        {
+          "name": "sideOffset",
+          "type": "number",
+          "required": false,
+          "default": "POPOVER_OFFSET"
+        },
+        {
+          "name": "align",
+          "type": "\"center\" | \"start\" | \"end\"",
+          "required": false
+        },
+        {
+          "name": "alignOffset",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "arrowPadding",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "avoidCollisions",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "collisionBoundary",
+          "type": "Boundary | Boundary[]",
+          "required": false
+        },
+        {
+          "name": "collisionPadding",
+          "type": "number | Partial<Record<\"top\" | \"right\" | \"bottom\" | \"left\", number>>",
+          "required": false,
+          "default": "12"
+        },
+        {
+          "name": "sticky",
+          "type": "\"partial\" | \"always\"",
+          "required": false
+        },
+        {
+          "name": "hideWhenDetached",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "updatePositionStrategy",
+          "type": "\"always\" | \"optimized\"",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "progress": {
+    "Progress": {
+      "props": [
+        {
+          "name": "value",
+          "type": "number | null",
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "getValueLabel",
+          "type": "((value: number, max: number) => string)",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "animated",
+          "type": "boolean",
+          "required": false,
+          "default": "false",
+          "description": "Continuously sweep a left-to-right gradient across the fill."
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "radio": {
+    "Radio": {
+      "props": [
+        {
+          "name": "value",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "checked",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "radio-group": {
+    "RadioGroup": {
+      "props": [
+        {
+          "name": "name",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "dir",
+          "type": "\"ltr\" | \"rtl\"",
+          "required": false
+        },
+        {
+          "name": "orientation",
+          "type": "\"horizontal\" | \"vertical\"",
+          "required": false
+        },
+        {
+          "name": "loop",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "defaultValue",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string | null",
+          "required": false
+        },
+        {
+          "name": "onValueChange",
+          "type": "((value: string) => void)",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "scroll-area": {
+    "ScrollAreaCorner": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ScrollAreaRoot": {
+      "props": [
+        {
+          "name": "type",
+          "type": "\"auto\" | \"always\" | \"scroll\" | \"hover\"",
+          "required": false
+        },
+        {
+          "name": "dir",
+          "type": "\"ltr\" | \"rtl\"",
+          "required": false
+        },
+        {
+          "name": "scrollHideDelay",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ScrollAreaViewport": {
+      "props": [
+        {
+          "name": "nonce",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ScrollAreaScrollbar": {
+      "props": [
+        {
+          "name": "forceMount",
+          "type": "true",
+          "required": false
+        },
+        {
+          "name": "orientation",
+          "type": "\"horizontal\" | \"vertical\"",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ScrollAreaThumb": {
+      "props": [
+        {
+          "name": "forceMount",
+          "type": "true",
+          "required": false,
+          "description": "Used to force mounting when more control is needed. Useful when\ncontrolling animation with React animation libraries."
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ScrollArea": {
+      "props": [
+        {
+          "name": "type",
+          "type": "\"auto\" | \"always\" | \"scroll\" | \"hover\"",
+          "required": false
+        },
+        {
+          "name": "dir",
+          "type": "\"ltr\" | \"rtl\"",
+          "required": false
+        },
+        {
+          "name": "scrollHideDelay",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "viewportClassName",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "select": {
+    "SelectRoot": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "open",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "defaultOpen",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "onOpenChange",
+          "type": "((open: boolean) => void)",
+          "required": false
+        },
+        {
+          "name": "dir",
+          "type": "\"ltr\" | \"rtl\"",
+          "required": false
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "autoComplete",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "form",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "defaultValue",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "onValueChange",
+          "type": "((value: string) => void)",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    },
+    "SelectValue": {
+      "props": [
+        {
+          "name": "placeholder",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "SelectGroup": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "SelectTrigger": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "SelectScrollUpButton": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "SelectScrollDownButton": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "SelectContent": {
+      "props": [
+        {
+          "name": "forceMount",
+          "type": "true",
+          "required": false,
+          "description": "Used to force mounting when more control is needed. Useful when\ncontrolling animation with React animation libraries."
+        },
+        {
+          "name": "onCloseAutoFocus",
+          "type": "((event: Event) => void)",
+          "required": false,
+          "description": "Event handler called when auto-focusing on close.\nCan be prevented."
+        },
+        {
+          "name": "onEscapeKeyDown",
+          "type": "((event: KeyboardEvent) => void)",
+          "required": false,
+          "description": "Event handler called when the escape key is down.\nCan be prevented."
+        },
+        {
+          "name": "onPointerDownOutside",
+          "type": "((event: PointerDownOutsideEvent) => void)",
+          "required": false,
+          "description": "Event handler called when the a `pointerdown` event happens outside of the `DismissableLayer`.\nCan be prevented."
+        },
+        {
+          "name": "position",
+          "type": "\"item-aligned\" | \"popper\"",
+          "required": false,
+          "default": "\"popper\""
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "side",
+          "type": "\"top\" | \"right\" | \"bottom\" | \"left\"",
+          "required": false
+        },
+        {
+          "name": "sideOffset",
+          "type": "number",
+          "required": false,
+          "default": "4"
+        },
+        {
+          "name": "align",
+          "type": "\"center\" | \"start\" | \"end\"",
+          "required": false
+        },
+        {
+          "name": "alignOffset",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "arrowPadding",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "avoidCollisions",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "collisionBoundary",
+          "type": "Boundary | Boundary[]",
+          "required": false
+        },
+        {
+          "name": "collisionPadding",
+          "type": "number | Partial<Record<\"top\" | \"right\" | \"bottom\" | \"left\", number>>",
+          "required": false,
+          "default": "12"
+        },
+        {
+          "name": "sticky",
+          "type": "\"partial\" | \"always\"",
+          "required": false
+        },
+        {
+          "name": "hideWhenDetached",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "updatePositionStrategy",
+          "type": "\"always\" | \"optimized\"",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "SelectItem": {
+      "props": [
+        {
+          "name": "value",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "textValue",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "SelectLabel": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "SelectSeparator": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "separator": {
+    "Separator": {
+      "props": [
+        {
+          "name": "orientation",
+          "type": "\"horizontal\" | \"vertical\"",
+          "required": false,
+          "description": "Either `vertical` or `horizontal`. Defaults to `horizontal`."
+        },
+        {
+          "name": "decorative",
+          "type": "boolean",
+          "required": false,
+          "description": "Whether or not the component is purely decorative. When true, accessibility-related attributes\nare updated so that that the rendered element is removed from the accessibility tree."
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "sidebar": {
+    "Sidebar": {
+      "props": [],
+      "acceptsHtmlAttributes": true
+    },
+    "SidebarHeader": {
+      "props": [],
+      "acceptsHtmlAttributes": true
+    },
+    "SidebarContent": {
+      "props": [],
+      "acceptsHtmlAttributes": true
+    },
+    "SidebarFooter": {
+      "props": [],
+      "acceptsHtmlAttributes": true
+    },
+    "SidebarSectionLabel": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    },
+    "SidebarSection": {
+      "props": [
+        {
+          "name": "label",
+          "type": "ReactNode",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "SidebarItem": {
+      "props": [
+        {
+          "name": "active",
+          "type": "boolean",
+          "required": false,
+          "default": "false"
+        },
+        {
+          "name": "href",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "prefixSlot",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "suffixSlot",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "SidebarSeparator": {
+      "props": [],
+      "acceptsHtmlAttributes": true
+    },
+    "SidebarCollapsibleSection": {
+      "props": [
+        {
+          "name": "label",
+          "type": "ReactNode",
+          "required": true
+        },
+        {
+          "name": "defaultOpen",
+          "type": "boolean",
+          "required": false,
+          "default": "true"
+        },
+        {
+          "name": "open",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "onOpenChange",
+          "type": "((open: boolean) => void)",
+          "required": false
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    }
+  },
+  "slider": {
+    "Slider": {
+      "props": [
+        {
+          "name": "name",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "orientation",
+          "type": "\"horizontal\" | \"vertical\"",
+          "required": false
+        },
+        {
+          "name": "dir",
+          "type": "\"ltr\" | \"rtl\"",
+          "required": false
+        },
+        {
+          "name": "min",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "max",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "step",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "minStepsBetweenThumbs",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "number[]",
+          "required": false
+        },
+        {
+          "name": "defaultValue",
+          "type": "number[]",
+          "required": false
+        },
+        {
+          "name": "onValueChange",
+          "type": "((value: number[]) => void)",
+          "required": false
+        },
+        {
+          "name": "onValueCommit",
+          "type": "((value: number[]) => void)",
+          "required": false
+        },
+        {
+          "name": "inverted",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "form",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "thumbLabels",
+          "type": "string[]",
+          "required": false,
+          "description": "Accessible name per thumb, in value order."
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "spinner": {
+    "Spinner": {
+      "props": [
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\"",
+          "required": false,
+          "default": "\"md\""
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "required": false,
+          "default": "\"Loading\""
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    }
+  },
+  "split-pane": {
+    "SplitPane": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true
+        },
+        {
+          "name": "defaultSizes",
+          "type": "number[]",
+          "required": false,
+          "description": "Initial size of each element"
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "required": false,
+          "description": "The id to set on the SplitView component."
+        },
+        {
+          "name": "proportionalLayout",
+          "type": "boolean",
+          "required": false,
+          "description": "Resize each view proportionally when resizing container"
+        },
+        {
+          "name": "separator",
+          "type": "boolean",
+          "required": false,
+          "description": "Whether to render a separator between panes"
+        },
+        {
+          "name": "sizes",
+          "type": "number[]",
+          "required": false,
+          "description": "Initial size of each element"
+        },
+        {
+          "name": "vertical",
+          "type": "boolean",
+          "required": false,
+          "description": "Direction to split"
+        },
+        {
+          "name": "onChange",
+          "type": "((sizes: number[]) => void)",
+          "required": false,
+          "description": "Callback on drag"
+        },
+        {
+          "name": "onReset",
+          "type": "(() => void)",
+          "required": false,
+          "description": "Callback on reset"
+        },
+        {
+          "name": "onVisibleChange",
+          "type": "((index: number, visible: boolean) => void)",
+          "required": false,
+          "description": "Callback on visibility change"
+        },
+        {
+          "name": "onDragStart",
+          "type": "((sizes: number[]) => void)",
+          "required": false,
+          "description": "Callback on drag start"
+        },
+        {
+          "name": "onDragEnd",
+          "type": "((sizes: number[]) => void)",
+          "required": false,
+          "description": "Callback on drag end"
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "description": "Sets a className attribute on the outer component"
+        },
+        {
+          "name": "maxSize",
+          "type": "number",
+          "required": false,
+          "description": "Maximum size of each element"
+        },
+        {
+          "name": "minSize",
+          "type": "number",
+          "required": false,
+          "description": "Minimum size of each element"
+        },
+        {
+          "name": "snap",
+          "type": "boolean",
+          "required": false,
+          "description": "Enable snap to zero size"
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    },
+    "SplitPanePane": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true
+        },
+        {
+          "name": "preferredSize",
+          "type": "string | number",
+          "required": false,
+          "description": "Preferred size of this pane. Allotment will attempt to use this size when adding this pane (including on initial mount) as well as when a user double clicks a sash, or the `reset` method is called on the Allotment instance."
+        },
+        {
+          "name": "priority",
+          "type": "LayoutPriority.Normal | LayoutPriority.Low | LayoutPriority.High",
+          "required": false,
+          "description": "The priority of the pane when the layout algorithm runs. Panes with higher priority will be resized first."
+        },
+        {
+          "name": "visible",
+          "type": "boolean",
+          "required": false,
+          "description": "Whether the pane should be visible"
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false,
+          "description": "Sets a className attribute on the outer component"
+        },
+        {
+          "name": "maxSize",
+          "type": "number",
+          "required": false,
+          "description": "Maximum size of each element"
+        },
+        {
+          "name": "minSize",
+          "type": "number",
+          "required": false,
+          "description": "Minimum size of each element"
+        },
+        {
+          "name": "snap",
+          "type": "boolean",
+          "required": false,
+          "description": "Enable snap to zero size"
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    }
+  },
+  "switch": {
+    "Switch": {
+      "props": [
+        {
+          "name": "checked",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "defaultChecked",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "onCheckedChange",
+          "type": "((checked: boolean) => void)",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "table": {
+    "TableRoot": {
+      "props": [],
+      "acceptsHtmlAttributes": true
+    },
+    "TableHeader": {
+      "props": [],
+      "acceptsHtmlAttributes": true
+    },
+    "TableBody": {
+      "props": [],
+      "acceptsHtmlAttributes": true
+    },
+    "TableFooter": {
+      "props": [],
+      "acceptsHtmlAttributes": true
+    },
+    "TableRow": {
+      "props": [
+        {
+          "name": "selected",
+          "type": "boolean",
+          "required": false,
+          "default": "false"
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "TableHead": {
+      "props": [],
+      "acceptsHtmlAttributes": true
+    },
+    "TableCell": {
+      "props": [],
+      "acceptsHtmlAttributes": true
+    },
+    "TableCaption": {
+      "props": [],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "tabs": {
+    "TabsRoot": {
+      "props": [
+        {
+          "name": "value",
+          "type": "string",
+          "required": false,
+          "description": "The value for the selected tab, if controlled"
+        },
+        {
+          "name": "defaultValue",
+          "type": "string",
+          "required": false,
+          "description": "The value of the tab to select by default, if uncontrolled"
+        },
+        {
+          "name": "onValueChange",
+          "type": "((value: string) => void)",
+          "required": false,
+          "description": "A function called when a new tab is selected"
+        },
+        {
+          "name": "orientation",
+          "type": "\"horizontal\" | \"vertical\"",
+          "required": false,
+          "default": "horizontal",
+          "description": "The orientation the tabs are layed out.\nMainly so arrow navigation is done accordingly (left & right vs. up & down)"
+        },
+        {
+          "name": "dir",
+          "type": "\"ltr\" | \"rtl\"",
+          "required": false,
+          "description": "The direction of navigation between toolbar items."
+        },
+        {
+          "name": "activationMode",
+          "type": "\"manual\" | \"automatic\"",
+          "required": false,
+          "default": "automatic",
+          "description": "Whether a tab is activated automatically or manually."
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "TabsList": {
+      "props": [
+        {
+          "name": "loop",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "TabsTrigger": {
+      "props": [
+        {
+          "name": "value",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "TabsContent": {
+      "props": [
+        {
+          "name": "value",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "forceMount",
+          "type": "true",
+          "required": false,
+          "description": "Used to force mounting when more control is needed. Useful when\ncontrolling animation with React animation libraries."
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "tag": {
+    "Tag": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true
+        },
+        {
+          "name": "variant",
+          "type": "\"error\" | \"success\" | \"warning\" | \"default\" | \"blue\"",
+          "required": false,
+          "default": "\"default\""
+        },
+        {
+          "name": "secondary",
+          "type": "boolean",
+          "required": false,
+          "default": "false",
+          "description": "Softer, tonal styling using the Callout background palette."
+        },
+        {
+          "name": "outline",
+          "type": "boolean",
+          "required": false,
+          "default": "false",
+          "description": "No fill, hairline ring — mirrors the secondary button's outline."
+        },
+        {
+          "name": "round",
+          "type": "boolean",
+          "required": false,
+          "default": "false"
+        },
+        {
+          "name": "mono",
+          "type": "boolean",
+          "required": false,
+          "default": "false"
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    }
+  },
+  "text": {
+    "Text": {
+      "props": [
+        {
+          "name": "as",
+          "type": "\"div\" | \"h2\" | \"h3\" | \"label\" | \"p\" | \"span\" | \"caption\" | \"code\" | \"h1\" | \"h4\" | \"h5\" | \"h6\" | \"td\" | \"th\"",
+          "required": false,
+          "default": "\"span\""
+        },
+        {
+          "name": "size",
+          "type": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"xs\" | \"2xl\" | \"3xl\" | \"4xl\" | \"5xl\"",
+          "required": false,
+          "default": "\"md\""
+        },
+        {
+          "name": "weight",
+          "type": "\"regular\" | \"medium\" | \"semibold\" | \"bold\"",
+          "required": false,
+          "default": "\"regular\""
+        },
+        {
+          "name": "color",
+          "type": "\"inherit\" | \"primary\" | \"secondary\" | \"tertiary\"",
+          "required": false,
+          "default": "\"inherit\""
+        },
+        {
+          "name": "truncate",
+          "type": "boolean",
+          "required": false,
+          "default": "false"
+        },
+        {
+          "name": "tabularNumbers",
+          "type": "boolean",
+          "required": false,
+          "default": "false"
+        },
+        {
+          "name": "mono",
+          "type": "boolean",
+          "required": false,
+          "default": "false"
+        },
+        {
+          "name": "transform",
+          "type": "\"none\" | \"uppercase\" | \"lowercase\" | \"capitalize\"",
+          "required": false
+        },
+        {
+          "name": "decoration",
+          "type": "\"none\" | \"underline\" | \"line-through\"",
+          "required": false
+        },
+        {
+          "name": "lineHeight",
+          "type": "LineHeight<string | number>",
+          "required": false,
+          "description": "Overrides the size token's line-height (e.g. 1.25 or \"20px\")."
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "text-area": {
+    "TextArea": {
+      "props": [
+        {
+          "name": "rows",
+          "type": "number",
+          "required": false,
+          "default": "3",
+          "description": "Visible rows at minimum height."
+        },
+        {
+          "name": "autoResize",
+          "type": "boolean",
+          "required": false,
+          "default": "false",
+          "description": "Grow with content (CSS field-sizing) up to maxRows."
+        },
+        {
+          "name": "maxRows",
+          "type": "number",
+          "required": false,
+          "description": "Caps the height when autoResize is set."
+        },
+        {
+          "name": "resize",
+          "type": "\"none\" | \"vertical\" | \"both\"",
+          "required": false,
+          "default": "\"none\""
+        },
+        {
+          "name": "containerClassName",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "containerStyle",
+          "type": "CSSProperties",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "text-input": {
+    "TextInput": {
+      "props": [
+        {
+          "name": "prefixSlot",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "suffixSlot",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "width",
+          "type": "number | \"fill\" | \"hug\"",
+          "required": false,
+          "default": "\"hug\""
+        },
+        {
+          "name": "variant",
+          "type": "\"toolbar\" | \"default\"",
+          "required": false,
+          "default": "\"default\""
+        },
+        {
+          "name": "containerClassName",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "containerStyle",
+          "type": "CSSProperties",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "theme": {
+    "Theme": {
+      "props": [
+        {
+          "name": "theme",
+          "type": "\"light\" | \"dark\" | \"system\"",
+          "required": true
+        },
+        {
+          "name": "gray",
+          "type": "\"gray\" | \"mauve\" | \"slate\" | \"sage\" | \"olive\" | \"sand\"",
+          "required": false,
+          "default": "\"gray\"",
+          "description": "Which gray scale --gray-* resolves to. Defaults to the neutral gray."
+        },
+        {
+          "name": "setResolvedTheme",
+          "type": "(theme: \"light\" | \"dark\") => void",
+          "required": true
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    }
+  },
+  "toast": {
+    "ToastProvider": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "required": false,
+          "default": "'Notification'",
+          "description": "An author-localized label for each toast. Used to help screen reader users\nassociate the interruption with a toast."
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "required": false,
+          "default": "5000",
+          "description": "Time in milliseconds that each toast should remain visible for."
+        },
+        {
+          "name": "swipeDirection",
+          "type": "\"right\" | \"left\" | \"up\" | \"down\"",
+          "required": false,
+          "default": "'right'",
+          "description": "Direction of pointer swipe that should close the toast."
+        },
+        {
+          "name": "swipeThreshold",
+          "type": "number",
+          "required": false,
+          "default": "50",
+          "description": "Distance in pixels that the swipe must pass before a close is triggered."
+        },
+        {
+          "name": "announcerContainer",
+          "type": "Element | DocumentFragment",
+          "required": false,
+          "default": "document.body",
+          "description": "An optional container where the toast announcements should be appended.\nThis is useful when working with focus traps or modal dialogs that make\nother elements inert."
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    },
+    "ToastViewport": {
+      "props": [
+        {
+          "name": "hotkey",
+          "type": "string[]",
+          "required": false,
+          "default": "['F8']",
+          "description": "The keys to use as the keyboard shortcut that will move focus to the toast viewport."
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "required": false,
+          "default": "'Notifications ({hotkey})'",
+          "description": "An author-localized label for the toast viewport to provide context for screen reader users\nwhen navigating page landmarks. The available `{hotkey}` placeholder will be replaced for you."
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ToastRoot": {
+      "props": [
+        {
+          "name": "open",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "defaultOpen",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "onOpenChange",
+          "type": "((open: boolean) => void)",
+          "required": false
+        },
+        {
+          "name": "forceMount",
+          "type": "true",
+          "required": false,
+          "description": "Used to force mounting when more control is needed. Useful when\ncontrolling animation with React animation libraries."
+        },
+        {
+          "name": "onPause",
+          "type": "(() => void)",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "type",
+          "type": "\"foreground\" | \"background\"",
+          "required": false
+        },
+        {
+          "name": "onEscapeKeyDown",
+          "type": "((event: KeyboardEvent) => void)",
+          "required": false
+        },
+        {
+          "name": "duration",
+          "type": "number",
+          "required": false,
+          "description": "Time in milliseconds that toast should remain visible for. Overrides value\ngiven to `ToastProvider`."
+        },
+        {
+          "name": "onResume",
+          "type": "(() => void)",
+          "required": false
+        },
+        {
+          "name": "onSwipeStart",
+          "type": "((event: SwipeEvent) => void)",
+          "required": false
+        },
+        {
+          "name": "onSwipeMove",
+          "type": "((event: SwipeEvent) => void)",
+          "required": false
+        },
+        {
+          "name": "onSwipeCancel",
+          "type": "((event: SwipeEvent) => void)",
+          "required": false
+        },
+        {
+          "name": "onSwipeEnd",
+          "type": "((event: SwipeEvent) => void)",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ToastTitle": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ToastDescription": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ToastAction": {
+      "props": [
+        {
+          "name": "altText",
+          "type": "string",
+          "required": true,
+          "description": "A short description for an alternate way to carry out the action. For screen reader users\nwho will not be able to navigate to the button easily/quickly."
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ToastClose": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "toggle": {
+    "Toggle": {
+      "props": [
+        {
+          "name": "pressed",
+          "type": "boolean",
+          "required": false,
+          "description": "The controlled state of the toggle."
+        },
+        {
+          "name": "defaultPressed",
+          "type": "boolean",
+          "required": false,
+          "default": "false",
+          "description": "The state of the toggle when initially rendered. Use `defaultPressed`\nif you do not need to control the state of the toggle."
+        },
+        {
+          "name": "onPressedChange",
+          "type": "((pressed: boolean) => void)",
+          "required": false,
+          "description": "The callback that fires when the state of the toggle changes."
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "width",
+          "type": "\"hug\" | \"square\"",
+          "required": false,
+          "default": "\"hug\""
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "toggle-group": {
+    "ToggleGroup": {
+      "props": [
+        {
+          "name": "highlightClassName",
+          "type": "string",
+          "required": false,
+          "default": "\"\""
+        },
+        {
+          "name": "round",
+          "type": "boolean",
+          "required": false,
+          "default": "false",
+          "description": "Fully rounded (pill) shape for the group, items, and highlight."
+        },
+        {
+          "name": "type",
+          "type": "\"single\"",
+          "required": true
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "required": false,
+          "description": "The controlled stateful value of the item that is pressed."
+        },
+        {
+          "name": "defaultValue",
+          "type": "string",
+          "required": false,
+          "description": "The value of the item that is pressed when initially rendered. Use\n`defaultValue` if you do not need to control the state of a toggle group."
+        },
+        {
+          "name": "onValueChange",
+          "type": "((value: string) => void)",
+          "required": false,
+          "description": "The callback that fires when the value of the toggle group changes."
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false,
+          "default": "false",
+          "description": "Whether the group is disabled from user interaction."
+        },
+        {
+          "name": "rovingFocus",
+          "type": "boolean",
+          "required": false,
+          "default": "true",
+          "description": "Whether the group should maintain roving focus of its buttons."
+        },
+        {
+          "name": "loop",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "orientation",
+          "type": "\"horizontal\" | \"vertical\"",
+          "required": false
+        },
+        {
+          "name": "dir",
+          "type": "\"ltr\" | \"rtl\"",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ToggleGroupItem": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "required": true,
+          "description": "A string value for the toggle group item. All items within a toggle group should use a unique value."
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "toolbar": {
+    "ToolbarRoot": {
+      "props": [
+        {
+          "name": "orientation",
+          "type": "\"horizontal\" | \"vertical\"",
+          "required": false
+        },
+        {
+          "name": "loop",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "dir",
+          "type": "\"ltr\" | \"rtl\"",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ToolbarButton": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "width",
+          "type": "\"hug\" | \"square\"",
+          "required": false,
+          "default": "\"hug\""
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ToolbarLink": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ToolbarSeparator": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "orientation",
+          "type": "\"horizontal\" | \"vertical\"",
+          "required": false,
+          "description": "Either `vertical` or `horizontal`. Defaults to `horizontal`."
+        },
+        {
+          "name": "decorative",
+          "type": "boolean",
+          "required": false,
+          "description": "Whether or not the component is purely decorative. When true, accessibility-related attributes\nare updated so that that the rendered element is removed from the accessibility tree."
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ToolbarToggleGroup": {
+      "props": [
+        {
+          "name": "defaultValue",
+          "type": "string | string[]",
+          "required": false,
+          "description": "The value of the item that is pressed when initially rendered. Use\n`defaultValue` if you do not need to control the state of a toggle group.\nThe value of the items that are pressed when initially rendered. Use\n`defaultValue` if you do not need to control the state of a toggle group."
+        },
+        {
+          "name": "dir",
+          "type": "\"ltr\" | \"rtl\"",
+          "required": false
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "type",
+          "type": "\"single\" | \"multiple\"",
+          "required": true
+        },
+        {
+          "name": "value",
+          "type": "string | string[]",
+          "required": false,
+          "description": "The controlled stateful value of the item that is pressed.\nThe controlled stateful value of the items that are pressed."
+        },
+        {
+          "name": "onValueChange",
+          "type": "((value: string) => void) | ((value: string[]) => void)",
+          "required": false,
+          "description": "The callback that fires when the value of the toggle group changes.\nThe callback that fires when the state of the toggle group changes."
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false,
+          "default": "false",
+          "description": "Whether the group is disabled from user interaction."
+        },
+        {
+          "name": "orientation",
+          "type": "\"horizontal\" | \"vertical\"",
+          "required": false
+        },
+        {
+          "name": "loop",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "rovingFocus",
+          "type": "boolean",
+          "required": false,
+          "default": "true",
+          "description": "Whether the group should maintain roving focus of its buttons."
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ToolbarToggleItem": {
+      "props": [
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "required": true,
+          "description": "A string value for the toggle group item. All items within a toggle group should use a unique value."
+        },
+        {
+          "name": "tooltip",
+          "type": "ReactNode",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ToolbarGroup": {
+      "props": [],
+      "acceptsHtmlAttributes": true
+    },
+    "ToolbarInput": {
+      "props": [
+        {
+          "name": "width",
+          "type": "number | \"fill\" | \"hug\"",
+          "required": false
+        },
+        {
+          "name": "prefixSlot",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "suffixSlot",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "containerClassName",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "containerStyle",
+          "type": "CSSProperties",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ToolbarSplitButton": {
+      "props": [
+        {
+          "name": "prefixSlot",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "tooltip",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "dropdownContent",
+          "type": "ReactNode",
+          "required": true
+        },
+        {
+          "name": "dropdownAlign",
+          "type": "\"center\" | \"start\" | \"end\"",
+          "required": false,
+          "default": "\"end\""
+        },
+        {
+          "name": "dropdownWidth",
+          "type": "\"auto\" | \"sm\" | \"md\" | \"lg\"",
+          "required": false,
+          "default": "\"auto\""
+        },
+        {
+          "name": "square",
+          "type": "boolean",
+          "required": false,
+          "default": "false",
+          "description": "Render the primary (left) button as a square icon button."
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
+  "tooltip": {
+    "Tooltip": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": false
+        },
+        {
+          "name": "content",
+          "type": "ReactNode",
+          "required": true
+        },
+        {
+          "name": "open",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "side",
+          "type": "\"top\" | \"right\" | \"bottom\" | \"left\"",
+          "required": false,
+          "default": "\"top\""
+        },
+        {
+          "name": "align",
+          "type": "\"center\" | \"start\" | \"end\"",
+          "required": false,
+          "default": "\"center\""
+        },
+        {
+          "name": "defaultOpen",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "onOpenChange",
+          "type": "((open: boolean) => void)",
+          "required": false
+        },
+        {
+          "name": "collisionPadding",
+          "type": "number | (number & Partial<Record<\"top\" | \"right\" | \"bottom\" | \"left\", number>>)",
+          "required": false,
+          "default": "12"
+        },
+        {
+          "name": "sideOffset",
+          "type": "number",
+          "required": false,
+          "default": "TOOLTIP_OFFSET"
+        },
+        {
+          "name": "onEscapeKeyDown",
+          "type": "((() => void) & ((event: KeyboardEvent) => void))",
+          "required": false,
+          "description": "Event handler called when the escape key is down.\nCan be prevented."
+        },
+        {
+          "name": "onPointerDownOutside",
+          "type": "((() => void) & ((event: PointerDownOutsideEvent) => void))",
+          "required": false,
+          "description": "Event handler called when the a `pointerdown` event happens outside of the `Tooltip`.\nCan be prevented."
+        },
+        {
+          "name": "delayDuration",
+          "type": "number",
+          "required": false,
+          "default": "700",
+          "description": "The duration from when the pointer enters the trigger until the tooltip gets opened. This will\noverride the prop with the same name passed to Provider."
+        },
+        {
+          "name": "disableHoverableContent",
+          "type": "boolean",
+          "required": false,
+          "default": "false",
+          "description": "When `true`, trying to hover the content will result in the tooltip closing as the pointer leaves the trigger."
+        },
+        {
+          "name": "aria-label",
+          "type": "string",
+          "required": false,
+          "description": "A more descriptive label for accessibility purpose"
+        },
+        {
+          "name": "asChild",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "forceMount",
+          "type": "true",
+          "required": false,
+          "description": "Used to force mounting when more control is needed. Useful when\ncontrolling animation with React animation libraries."
+        },
+        {
+          "name": "alignOffset",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "arrowPadding",
+          "type": "number",
+          "required": false
+        },
+        {
+          "name": "avoidCollisions",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "collisionBoundary",
+          "type": "Boundary | Boundary[]",
+          "required": false
+        },
+        {
+          "name": "sticky",
+          "type": "\"partial\" | \"always\"",
+          "required": false
+        },
+        {
+          "name": "hideWhenDetached",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "updatePositionStrategy",
+          "type": "\"always\" | \"optimized\"",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "TooltipProvider": {
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true
+        },
+        {
+          "name": "delayDuration",
+          "type": "number",
+          "required": false,
+          "default": "700",
+          "description": "The duration from when the pointer enters the trigger until the tooltip gets opened."
+        },
+        {
+          "name": "skipDelayDuration",
+          "type": "number",
+          "required": false,
+          "default": "300",
+          "description": "How much time a user has to enter another trigger without incurring a delay again."
+        },
+        {
+          "name": "disableHoverableContent",
+          "type": "boolean",
+          "required": false,
+          "default": "false",
+          "description": "When `true`, trying to hover the content will result in the tooltip closing as the pointer leaves the trigger."
+        }
+      ],
+      "acceptsHtmlAttributes": false
+    }
+  }
+}

@@ -19,4 +19,12 @@ export default defineConfig([
       globals: globals.browser,
     },
   },
+  {
+    // Docs pages export a `doc` object, often next to a small stateful
+    // wrapper component; fast-refresh granularity doesn't matter there.
+    files: ['src/docs/pages/**/*.tsx'],
+    rules: {
+      'react-refresh/only-export-components': 'off',
+    },
+  },
 ])

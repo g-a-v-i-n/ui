@@ -15,7 +15,8 @@
     "clean": "pnpm -r --no-bail run clean",
     "generate-custom-colors": "node scripts/vendor/custom-color/index.ts",
     "generate-icons": "node scripts/generate-icons.ts",
-    "generate-icons:index": "node scripts/generate-icons.ts --index-only"
+    "generate-icons:index": "node scripts/generate-icons.ts --index-only",
+    "generate-docs-props": "node scripts/generate-docs-props.ts"
   },
   "devDependencies": {
     "@oxlint/plugins": "1.79.0",

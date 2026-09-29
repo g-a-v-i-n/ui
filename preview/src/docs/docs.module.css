@@ -1,0 +1,177 @@
+/* Shell: fixed-height row of sidebar + scrolling main column. */
+.shell {
+  display: flex;
+  height: 100vh;
+  background: var(--bg-primary);
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+}
+
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 48px 48px 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.pageHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Hero: the component centered on a gray stage, with its controls alongside. */
+.hero {
+  display: flex;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  background: var(--bg-primary);
+}
+
+.stage {
+  flex: 1;
+  min-width: 0;
+  min-height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  background: var(--bg-secondary);
+}
+
+.panel {
+  width: 260px;
+  flex: none;
+  padding: 16px;
+  overflow-y: auto;
+  box-shadow: inset 1px 0 0 var(--gray-a3);
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.control {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.controlInline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.controlLabel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* A grid cell stretches its child, so hug-width triggers and inputs fill the
+   panel without overriding their own width rules. */
+.controlField {
+  display: grid;
+  min-width: 0;
+}
+
+.controlInline .controlField {
+  flex: none;
+}
+
+/* Tighter items so three or four short options fit the panel. Two classes
+   outrank the toggle group's own single-class padding rule. */
+.controlField .segmentedItem {
+  padding: 0 8px;
+}
+
+@media (max-width: 800px) {
+  .hero {
+    flex-direction: column;
+  }
+  .panel {
+    width: auto;
+    box-shadow: inset 0 1px 0 var(--gray-a3);
+  }
+  .page {
+    padding: 32px 24px 64px;
+  }
+}
+
+/* Examples: the free-form section bodies from ./sections. */
+.examples {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Props tables. */
+.propsList {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.propsTable {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.propsHeading {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tableWrap {
+  overflow-x: auto;
+}
+
+.propName {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.propType {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.propDescription {
+  min-width: 200px;
+}
+
+/* Overview. */
+.linkGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 8px 16px;
+}
+
+/* Sidebar footer settings. */
+.sidebarSettings {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 4px;
+}
