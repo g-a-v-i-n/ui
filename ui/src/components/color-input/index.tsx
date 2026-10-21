@@ -4,9 +4,10 @@ import { HexColorPicker } from "react-colorful";
 import { TextInput } from "../text-input";
 import { PopoverRoot, PopoverAnchor, PopoverContent } from "../popover";
 import styles from "./styles.module.css";
+import type { PropsOf } from "../../lib/props";
 
-type ColorInputProps = Omit<
-  React.ComponentPropsWithoutRef<"input">,
+export type ColorInputProps = Omit<
+  PropsOf<"input">,
   "value" | "defaultValue" | "onChange" | "width"
 > & {
   value?: string;
@@ -15,7 +16,12 @@ type ColorInputProps = Omit<
   width?: "fill" | "hug" | number;
   variant?: "default" | "toolbar";
   containerClassName?: string;
-  ref?: React.Ref<HTMLInputElement>;
+  /**
+   * Props for the react-colorful HexColorPicker inside the popover, e.g. a
+   * className or style to resize it, or onChangeEnd to hear when a drag ends.
+   * The color and onChange stay wired to the field's value.
+   */
+  pickerProps?: Omit<PropsOf<typeof HexColorPicker>, "color" | "onChange">;
 };
 
 const HEX_RE = /^#?([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/;
@@ -30,6 +36,7 @@ export const ColorInput = ({
   variant = "default",
   className,
   containerClassName,
+  pickerProps,
   onClick,
   ref,
   ...props
@@ -105,7 +112,7 @@ export const ColorInput = ({
           }
         }}
       >
-        <HexColorPicker color={color} onChange={commit} />
+        <HexColorPicker {...pickerProps} color={color} onChange={commit} />
       </PopoverContent>
     </PopoverRoot>
   );

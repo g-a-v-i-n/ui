@@ -1,8 +1,8 @@
 .root {
-  --scrollbar-background-hover: var(--gray-a3);
+  --scrollbar-background-hover: var(--bg-hover);
 
-  --thumb-background: var(--gray-a5);
-  --thumb-background-hover: var(--gray-a6);
+  --thumb-background: var(--bg-indicator);
+  --thumb-background-hover: var(--bg-indicator-hover);
 }
 
 .root {

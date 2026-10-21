@@ -2,14 +2,13 @@ import React from "react";
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
 
-type TextInputProps = Omit<React.ComponentPropsWithoutRef<"input">, "width"> & {
+export type TextInputProps = Omit<React.ComponentProps<"input">, "width"> & {
   prefixSlot?: React.ReactNode;
   suffixSlot?: React.ReactNode;
   width?: "fill" | "hug" | number;
   variant?: "default" | "toolbar";
   containerClassName?: string;
   containerStyle?: React.CSSProperties;
-  ref?: React.Ref<HTMLInputElement>;
 };
 
 // Gap between a slot and the input text — matches --size-8.

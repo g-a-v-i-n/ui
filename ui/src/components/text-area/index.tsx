@@ -2,10 +2,7 @@ import React from "react";
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
 
-export type TextAreaProps = Omit<
-  React.ComponentPropsWithoutRef<"textarea">,
-  "rows"
-> & {
+export type TextAreaProps = Omit<React.ComponentProps<"textarea">, "rows"> & {
   /** Visible rows at minimum height. */
   rows?: number;
   /** Grow with content (CSS field-sizing) up to maxRows. */
@@ -15,7 +12,6 @@ export type TextAreaProps = Omit<
   resize?: "none" | "vertical" | "both";
   containerClassName?: string;
   containerStyle?: React.CSSProperties;
-  ref?: React.Ref<HTMLTextAreaElement>;
 };
 
 export const TextArea = ({

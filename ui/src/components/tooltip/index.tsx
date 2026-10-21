@@ -4,8 +4,10 @@ import { MenuArrow } from "../menu-primitives";
 import { Text } from "../text";
 import { TOOLTIP_OFFSET } from "../../offsets";
 import styles from "./styles.module.css";
+import type { PropsOf } from "../../lib/props";
 
 export const TooltipProvider = TooltipPrimitive.Provider;
+export type TooltipProviderProps = PropsOf<typeof TooltipProvider>;
 
 export type TooltipProps = {
   children?: React.ReactNode;

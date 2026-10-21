@@ -1,7 +1,7 @@
 import { IconWrapper } from "../icon-wrapper";
 import type { IconProps } from "../types";
 
-export const MagnifyingGlass = (props: IconProps) => {
+export const MagnifyingGlassIcon = (props: IconProps) => {
   return (
     <IconWrapper {...props}>
       <circle cx="8" cy="8" r="5.125" transform="rotate(180 8 8)" stroke="currentColor" strokeWidth="1.75" />

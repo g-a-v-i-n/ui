@@ -1,17 +1,19 @@
 .trigger,
 .content {
-  --trigger-background: var(--bg-primary);
+  /* Resting trigger is see-through, as a TextInput's default variant; the
+     hairline + drop (--shadow-button) draw the edge and hover brings a fill. */
+  --trigger-background: transparent;
   --trigger-foreground: var(--fg-primary);
   --trigger-shadow: var(--shadow-button);
-  --trigger-background-hover: var(--gray-3);
+  --trigger-background-hover: var(--bg-tertiary);
   --trigger-foreground-placeholder: var(--fg-tertiary);
   --trigger-icon-color: var(--fg-tertiary);
 
   --item-foreground: var(--fg-primary);
-  --item-background-highlighted: var(--gray-a3);
-  --indicator-color: var(--blue-9);
+  --item-background-highlighted: var(--bg-hover);
+  --indicator-color: var(--accent);
 
-  --separator-background: var(--gray-a3);
+  --separator-shadow: var(--shadow-rule);
   --scroll-button-color: var(--fg-tertiary);
 }
 
@@ -20,7 +22,10 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--size-6);
-  height: var(--control-height-md);
+  /* As Button: the radius follows the height at --control-radius-ratio
+     (radius.css) so the corners match a Button of the same height. */
+  --height: var(--control-height-md);
+  height: var(--height);
   padding: 0 var(--size-12);
   /* The chevron pulls its side in by 4px, as a Button's suffix slot does. */
   &:has(> .triggerIcon) {
@@ -28,7 +33,7 @@
   }
 
   border: none;
-  border-radius: var(--radius-md);
+  border-radius: round(calc(var(--height) * var(--control-radius-ratio)), 1px);
   corner-shape: var(--corner-shape);
   background: var(--trigger-background);
   color: var(--trigger-foreground);
@@ -129,7 +134,7 @@
 
 .separator {
   height: var(--size-1);
-  background-color: var(--separator-background);
+  box-shadow: var(--separator-shadow);
   margin: 2px 4px;
 }
 

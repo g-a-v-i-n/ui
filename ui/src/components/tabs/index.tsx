@@ -4,6 +4,7 @@ import { Text } from "../text";
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
 import { styled } from "../../lib/styled";
+import type { PropsOf } from "../../lib/props";
 
 /* The active trigger renders the underline. When the active tab changes, the
    incoming underline glides in from where the outgoing one was (recorded in
@@ -21,6 +22,8 @@ const glide: KeyframeAnimationOptions = {
   easing: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
 };
 
+export type TabsRootProps = PropsOf<typeof TabsPrimitive.Root>;
+
 export const TabsRoot = ({
   className,
   value,
@@ -29,7 +32,7 @@ export const TabsRoot = ({
   children,
   ref,
   ...props
-}: TabsPrimitive.TabsProps & { ref?: React.Ref<HTMLDivElement> }) => {
+}: TabsRootProps) => {
   const [internalValue, setInternalValue] = React.useState(defaultValue);
   const lastUnderlineRect = React.useRef<DOMRect | null>(null);
 
@@ -56,6 +59,7 @@ export const TabsRoot = ({
 };
 
 export const TabsList = styled(TabsPrimitive.List, styles.list, "TabsList");
+export type TabsListProps = PropsOf<typeof TabsList>;
 
 const Underline = ({
   lastRect,
@@ -96,13 +100,15 @@ const Underline = ({
   return <span ref={ref} className={styles.underline} />;
 };
 
+export type TabsTriggerProps = PropsOf<typeof TabsPrimitive.Trigger>;
+
 export const TabsTrigger = ({
   children,
   value,
   className,
   ref,
   ...props
-}: TabsPrimitive.TabsTriggerProps & { ref?: React.Ref<HTMLButtonElement> }) => {
+}: TabsTriggerProps) => {
   const ctx = React.useContext(TabsContext);
   const isActive = ctx.value === value;
 
@@ -122,3 +128,4 @@ export const TabsTrigger = ({
 };
 
 export const TabsContent = styled(TabsPrimitive.Content, styles.content, "TabsContent");
+export type TabsContentProps = PropsOf<typeof TabsContent>;

@@ -1,11 +1,24 @@
 import React from "react";
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
-import { iconSizes, type IconSize } from "../../lib/icon-sizes";
+import { iconSizes } from "../../lib/icon-sizes";
+
+/* sm, md and lg match the Icon sizes of the same name: sm sits in a control's
+   slot, md on its own, lg in a block or empty state. xl is the spinner's own
+   32px step for page- and panel-level loading, well clear of the lg icon. */
+export const SPINNER_SIZES = ["sm", "md", "lg", "xl"] as const;
+export type SpinnerSize = (typeof SPINNER_SIZES)[number];
+
+const spinnerSizes = {
+  sm: iconSizes.sm,
+  md: iconSizes.md,
+  lg: iconSizes.lg,
+  xl: 32,
+} satisfies Record<SpinnerSize, number>;
 
 export type SpinnerProps = {
-  /** Named size in px, on the same scale as Icon. */
-  size?: IconSize;
+  /** Named size: sm, md and lg match the Icon of the same name; xl is 32px. */
+  size?: SpinnerSize;
   label?: string;
   className?: string;
   style?: React.CSSProperties;
@@ -17,7 +30,7 @@ export function Spinner({
   className,
   style,
 }: SpinnerProps) {
-  const px = iconSizes[size];
+  const px = spinnerSizes[size];
 
   return (
     <span

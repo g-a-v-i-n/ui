@@ -1,42 +1,52 @@
-import React from "react";
 import { DropdownMenu as DropdownMenuPrimitive } from "radix-ui";
 
 import { MenuArrow, MenuContainer } from "../menu-primitives";
 import { createMenuParts } from "../menu-primitives/create-menu-parts";
-import { POPOVER_OFFSET } from "../../offsets";
+import { MENU_OFFSET } from "../../offsets";
+import type { PropsOf } from "../../lib/props";
 
 export const DropdownMenuRoot = DropdownMenuPrimitive.Root;
+export type DropdownMenuRootProps = PropsOf<typeof DropdownMenuRoot>;
 export const DropdownMenuPortal = DropdownMenuPrimitive.Portal;
+export type DropdownMenuPortalProps = PropsOf<typeof DropdownMenuPortal>;
+export type DropdownMenuTriggerProps = PropsOf<typeof DropdownMenuPrimitive.Trigger>;
 export const DropdownMenuTrigger = (
-  props: DropdownMenuPrimitive.DropdownMenuTriggerProps
+  props: DropdownMenuTriggerProps
 ) => <DropdownMenuPrimitive.Trigger asChild {...props} />;
 export const DropdownMenuSub = DropdownMenuPrimitive.Sub;
+export type DropdownMenuSubProps = PropsOf<typeof DropdownMenuSub>;
 
 const parts = createMenuParts(DropdownMenuPrimitive);
 export const DropdownMenuItem = parts.Item;
+export type DropdownMenuItemProps = PropsOf<typeof DropdownMenuItem>;
 export const DropdownMenuCheckboxItem = parts.CheckboxItem;
+export type DropdownMenuCheckboxItemProps = PropsOf<typeof DropdownMenuCheckboxItem>;
 export const DropdownMenuRadioGroup = parts.RadioGroup;
+export type DropdownMenuRadioGroupProps = PropsOf<typeof DropdownMenuRadioGroup>;
 export const DropdownMenuRadioItem = parts.RadioItem;
+export type DropdownMenuRadioItemProps = PropsOf<typeof DropdownMenuRadioItem>;
 export const DropdownMenuGroup = parts.Group;
+export type DropdownMenuGroupProps = PropsOf<typeof DropdownMenuGroup>;
 export const DropdownMenuLabel = parts.Label;
+export type DropdownMenuLabelProps = PropsOf<typeof DropdownMenuLabel>;
 export const DropdownMenuSubTrigger = parts.SubTrigger;
+export type DropdownMenuSubTriggerProps = PropsOf<typeof DropdownMenuSubTrigger>;
 export const DropdownMenuSeparator = parts.Separator;
+export type DropdownMenuSeparatorProps = PropsOf<typeof DropdownMenuSeparator>;
 
-export type DropdownMenuCheckboxItemProps = React.ComponentProps<
-  typeof DropdownMenuCheckboxItem
->;
+export type DropdownMenuContentProps = PropsOf<typeof DropdownMenuPrimitive.Content> & {
+  width?: "sm" | "md" | "lg" | "auto";
+};
 
 export const DropdownMenuContent = ({
   children,
   collisionPadding = 8,
-  sideOffset = POPOVER_OFFSET,
+  sideOffset = MENU_OFFSET,
   className,
   width,
   ref,
   ...props
-}: DropdownMenuPrimitive.DropdownMenuContentProps & {
-  width?: "sm" | "md" | "lg" | "auto";
-} & { ref?: React.Ref<HTMLDivElement> }) => {
+}: DropdownMenuContentProps) => {
   return (
     <DropdownMenuPrimitive.Portal>
       <DropdownMenuPrimitive.Content
@@ -55,12 +65,18 @@ export const DropdownMenuContent = ({
   );
 };
 
-export const DropdownMenuArrow = ({ ref, ...props }: DropdownMenuPrimitive.DropdownMenuArrowProps & { ref?: React.Ref<SVGSVGElement> }) => {
+export type DropdownMenuArrowProps = PropsOf<typeof DropdownMenuPrimitive.Arrow>;
+
+export const DropdownMenuArrow = ({ ref, ...props }: DropdownMenuArrowProps) => {
   return (
     <DropdownMenuPrimitive.Arrow asChild {...props} ref={ref}>
       <MenuArrow />
     </DropdownMenuPrimitive.Arrow>
   );
+};
+
+export type DropdownMenuSubContentProps = PropsOf<typeof DropdownMenuPrimitive.SubContent> & {
+  width?: "sm" | "md" | "lg" | "auto";
 };
 
 export const DropdownMenuSubContent = ({
@@ -69,9 +85,7 @@ export const DropdownMenuSubContent = ({
   className,
   ref,
   ...props
-}: DropdownMenuPrimitive.DropdownMenuSubContentProps & {
-  width?: "sm" | "md" | "lg" | "auto";
-} & { ref?: React.Ref<HTMLDivElement> }) => {
+}: DropdownMenuSubContentProps) => {
   return (
     <DropdownMenuPrimitive.Portal>
       <DropdownMenuPrimitive.SubContent

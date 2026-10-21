@@ -1,4 +1,3 @@
-import React from "react";
 import { AlertDialog as AlertDialogPrimitive } from "radix-ui";
 import { motion, useAnimationControls } from "motion/react";
 import { Button, type ButtonProps } from "../button";
@@ -7,15 +6,23 @@ import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
 import { useAnimatedSize } from "../../lib/use-animated-size";
 import { styled } from "../../lib/styled";
+import type { PropsOf } from "../../lib/props";
 
 export const AlertDialogRoot = AlertDialogPrimitive.Root;
+export type AlertDialogRootProps = PropsOf<typeof AlertDialogRoot>;
 export const AlertDialogPortal = AlertDialogPrimitive.Portal;
+export type AlertDialogPortalProps = PropsOf<typeof AlertDialogPortal>;
+
+export type AlertDialogTriggerProps = PropsOf<typeof AlertDialogPrimitive.Trigger>;
 
 export const AlertDialogTrigger = (
-  props: AlertDialogPrimitive.AlertDialogTriggerProps
+  props: AlertDialogTriggerProps
 ) => <AlertDialogPrimitive.Trigger asChild {...props} />;
 
 export const AlertDialogOverlay = styled(AlertDialogPrimitive.Overlay, styles.overlay, "AlertDialogOverlay");
+export type AlertDialogOverlayProps = PropsOf<typeof AlertDialogOverlay>;
+
+export type AlertDialogContentProps = PropsOf<typeof AlertDialogPrimitive.Content>;
 
 /** The modal surface, centered over the scrim. It sizes to its content and
     tweens between sizes when that content changes; an outside click shakes
@@ -25,7 +32,7 @@ export const AlertDialogContent = ({
   className,
   ref,
   ...props
-}: AlertDialogPrimitive.AlertDialogContentProps & { ref?: React.Ref<HTMLDivElement> }) => {
+}: AlertDialogContentProps) => {
   const controls = useAnimationControls();
   const inner = useAnimatedSize();
 
@@ -62,12 +69,14 @@ export const AlertDialogContent = ({
   );
 };
 
+export type AlertDialogTitleProps = PropsOf<typeof AlertDialogPrimitive.Title>;
+
 export const AlertDialogTitle = ({
   children,
   className,
   ref,
   ...props
-}: AlertDialogPrimitive.AlertDialogTitleProps & { ref?: React.Ref<HTMLHeadingElement> }) => {
+}: AlertDialogTitleProps) => {
   return (
     <AlertDialogPrimitive.Title {...props} ref={ref} asChild>
       <Text
@@ -83,12 +92,14 @@ export const AlertDialogTitle = ({
   );
 };
 
+export type AlertDialogDescriptionProps = PropsOf<typeof AlertDialogPrimitive.Description>;
+
 export const AlertDialogDescription = ({
   children,
   className,
   ref,
   ...props
-}: AlertDialogPrimitive.AlertDialogDescriptionProps & { ref?: React.Ref<HTMLParagraphElement> }) => {
+}: AlertDialogDescriptionProps) => {
   return (
     <AlertDialogPrimitive.Description {...props} ref={ref} asChild>
       <Text
@@ -103,14 +114,16 @@ export const AlertDialogDescription = ({
   );
 };
 
+export type AlertDialogActionProps = PropsOf<typeof AlertDialogPrimitive.Action> & {
+  variant?: ButtonProps["variant"];
+};
+
 export const AlertDialogAction = ({
   children,
   variant = "primary",
   ref,
   ...props
-}: AlertDialogPrimitive.AlertDialogActionProps & {
-  variant?: ButtonProps["variant"];
-} & { ref?: React.Ref<HTMLButtonElement> }) => {
+}: AlertDialogActionProps) => {
   return (
     <AlertDialogPrimitive.Action {...props} ref={ref} asChild>
       <Button variant={variant}>{children}</Button>
@@ -118,7 +131,9 @@ export const AlertDialogAction = ({
   );
 };
 
-export const AlertDialogCancel = ({ children, ref, ...props }: AlertDialogPrimitive.AlertDialogCancelProps & { ref?: React.Ref<HTMLButtonElement> }) => {
+export type AlertDialogCancelProps = PropsOf<typeof AlertDialogPrimitive.Cancel>;
+
+export const AlertDialogCancel = ({ children, ref, ...props }: AlertDialogCancelProps) => {
   return (
     <AlertDialogPrimitive.Cancel {...props} ref={ref} asChild>
       <Button variant="secondary">{children}</Button>
@@ -126,11 +141,13 @@ export const AlertDialogCancel = ({ children, ref, ...props }: AlertDialogPrimit
   );
 };
 
+export type AlertDialogFooterProps = PropsOf<"div">;
+
 export const AlertDialogFooter = ({
   children,
   className,
   ...props
-}: React.HTMLAttributes<HTMLDivElement>) => {
+}: AlertDialogFooterProps) => {
   return (
     <div {...props} className={cx(styles.footer, className)}>
       {children}

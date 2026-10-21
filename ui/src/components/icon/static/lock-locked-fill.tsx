@@ -1,7 +1,7 @@
 import { IconWrapper } from "../icon-wrapper";
 import type { IconProps } from "../types";
 
-export const LockLockedFill = (props: IconProps) => {
+export const LockLockedFillIcon = (props: IconProps) => {
   return (
     <IconWrapper {...props}>
       <rect x="3" y="7" width="12" height="9" rx="3" fill="currentColor" />

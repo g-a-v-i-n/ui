@@ -1,7 +1,7 @@
 import React from "react";
 import { Dialog as DialogPrimitive, VisuallyHidden } from "radix-ui";
 import { Button } from "../button";
-import { Icon } from "../icon";
+import { XmarkIcon } from "../icon/static/xmark";
 import { Tooltip } from "../tooltip";
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
@@ -77,7 +77,7 @@ export const FullscreenModal = ({
                 round
                 aria-label="Close"
                 className={styles.close}
-                prefixSlot={<Icon icon="xmark" size="md" />}
+                prefixSlot={<XmarkIcon size="md" />}
               />
             </DialogPrimitive.Close>
           )}

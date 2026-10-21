@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from 'react';
 import { Avatar } from 'ui/components/avatar';
-import { Icon, type IconName } from 'ui/components/icon';
+import { Icon, type IconName } from 'ui/components/icon/registry';
 import { Tag } from 'ui/components/tag';
 import { Text } from 'ui/components/text';
 import {

@@ -1,6 +1,6 @@
 .pie {
-  --track-color: var(--gray-a3);
-  --fill-color: var(--top-ring-color, var(--blue-9));
+  --track-color: var(--bg-track);
+  --fill-color: var(--top-ring-color, var(--accent));
 }
 
 .pie {

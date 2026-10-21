@@ -2,26 +2,30 @@
   --default-shadow: var(--shadow-hairline-2);
   --default-shadow-hover: var(--shadow-hairline-3);
 
-  --toolbar-background-hover: var(--gray-a3);
-  --toolbar-background-focus: var(--gray-a3);
+  --toolbar-background-hover: var(--bg-hover);
+  --toolbar-background-focus: var(--bg-hover);
 
   --input-color: var(--fg-primary);
   --placeholder-color: var(--fg-tertiary);
 
   --slot-color: var(--fg-secondary);
 
-  /* Disabled treatment shared with TextArea: gray-a2 fill, text one shade
+  /* Disabled treatment shared with TextArea: --bg-disabled fill, text one shade
      down, resting hairline pinned. */
-  --background-disabled: var(--gray-a2);
+  --background-disabled: var(--bg-disabled);
   --input-color-disabled: var(--fg-secondary);
 }
 
 .container {
   position: relative;
   display: inline-flex;
-  height: var(--control-height-md);
-  border-radius: var(--radius-md);
   corner-shape: var(--corner-shape);
+
+  /* As Button: the radius follows the height at --control-radius-ratio
+     (radius.css) so the corners match a Button of the same height. */
+  --height: var(--control-height-md);
+  height: var(--height);
+  border-radius: round(calc(var(--height) * var(--control-radius-ratio)), 1px);
 
   /* Base horizontal inset, per side; a slot pulls its side in by 4px. Slot
      widths (--prefix-w / --suffix-w) are added on top by the input padding
@@ -30,10 +34,10 @@
   --pad-left: var(--input-pad);
   --pad-right: var(--input-pad);
   &:has(> .prefix) {
-    --pad-left: calc(var(--input-pad) - var(--size-4));
+    --pad-left: calc(var(--input-pad) - var(--size-2));
   }
   &:has(> .suffix) {
-    --pad-right: calc(var(--input-pad) - var(--size-4));
+    --pad-right: calc(var(--input-pad) - var(--size-2));
   }
 
   &[data-width="fill"] {

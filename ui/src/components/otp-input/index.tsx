@@ -5,7 +5,7 @@ import { unstable_OneTimePasswordField as OTPField } from "radix-ui";
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
 
-type OTPInputProps = OTPField.OneTimePasswordFieldProps & {
+export type OTPInputProps = OTPField.OneTimePasswordFieldProps & {
   /** Number of digit slots. */
   length?: number;
   /** When set, renders a hidden input so the value submits with a form. */

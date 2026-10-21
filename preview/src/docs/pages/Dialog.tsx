@@ -6,6 +6,7 @@ import {
   DialogTitle,
   DialogDescription,
   DialogClose,
+  DialogFooter,
 } from 'ui/components/dialog';
 import { defineDoc } from '../types';
 
@@ -33,14 +34,14 @@ export const doc = defineDoc({
         <DialogTitle>{title}</DialogTitle>
         <DialogDescription>{description}</DialogDescription>
         {actions && (
-          <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
+          <DialogFooter>
             <DialogClose asChild>
               <Button variant="secondary">Cancel</Button>
             </DialogClose>
             <DialogClose asChild>
               <Button>Confirm</Button>
             </DialogClose>
-          </div>
+          </DialogFooter>
         )}
       </DialogContent>
     </DialogRoot>

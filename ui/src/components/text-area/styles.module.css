@@ -1,12 +1,11 @@
 .container {
-  --background: var(--bg-base);
   --shadow: var(--shadow-hairline-2);
   --shadow-hover: var(--shadow-hairline-3);
 
   --foreground: var(--fg-primary);
   --placeholder-color: var(--fg-tertiary);
 
-  --background-disabled: var(--gray-a2);
+  --background-disabled: var(--bg-disabled);
   --foreground-disabled: var(--fg-secondary);
 }
 
@@ -16,7 +15,9 @@
   border-radius: var(--radius-md);
   corner-shape: var(--corner-shape);
 
-  background-color: var(--background);
+  /* Transparent like TextInput: the hairline alone draws the field, so it
+     sits on any surface without a fill of its own. */
+  background-color: transparent;
   box-shadow: var(--shadow);
   transition: box-shadow var(--duration-120) var(--ease-out-quad);
 

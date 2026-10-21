@@ -1,13 +1,15 @@
-import React from "react";
 import { HoverCard as HoverCardPrimitive } from "radix-ui";
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
+import type { PropsOf } from "../../lib/props";
+
+export type HoverCardRootProps = HoverCardPrimitive.HoverCardProps;
 
 export const HoverCardRoot = ({
   openDelay = 300,
   closeDelay = 100,
   ...props
-}: HoverCardPrimitive.HoverCardProps) => (
+}: HoverCardRootProps) => (
   <HoverCardPrimitive.Root
     openDelay={openDelay}
     closeDelay={closeDelay}
@@ -16,10 +18,15 @@ export const HoverCardRoot = ({
 );
 
 export const HoverCardPortal = HoverCardPrimitive.Portal;
+export type HoverCardPortalProps = PropsOf<typeof HoverCardPortal>;
 
-export const HoverCardTrigger = (
-  props: HoverCardPrimitive.HoverCardTriggerProps
-) => <HoverCardPrimitive.Trigger asChild {...props} />;
+export type HoverCardTriggerProps = HoverCardPrimitive.HoverCardTriggerProps;
+
+export const HoverCardTrigger = (props: HoverCardTriggerProps) => <HoverCardPrimitive.Trigger asChild {...props} />;
+
+export type HoverCardContentProps = PropsOf<typeof HoverCardPrimitive.Content> & {
+  width?: "sm" | "md" | "lg" | "auto";
+};
 
 export const HoverCardContent = ({
   children,
@@ -29,9 +36,7 @@ export const HoverCardContent = ({
   width = "auto",
   ref,
   ...props
-}: HoverCardPrimitive.HoverCardContentProps & {
-  width?: "sm" | "md" | "lg" | "auto";
-} & { ref?: React.Ref<HTMLDivElement> }) => {
+}: HoverCardContentProps) => {
   return (
     <HoverCardPrimitive.Portal>
       <HoverCardPrimitive.Content

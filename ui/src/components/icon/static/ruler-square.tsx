@@ -1,7 +1,7 @@
 import { IconWrapper } from "../icon-wrapper";
 import type { IconProps } from "../types";
 
-export const RulerSquare = (props: IconProps) => {
+export const RulerSquareIcon = (props: IconProps) => {
   return (
     <IconWrapper {...props}>
       <rect x="2.75" y="2.75" width="12.5" height="12.5" rx="2.25" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

@@ -1,6 +1,6 @@
 .root {
   --trigger-foreground: var(--fg-primary);
-  --trigger-background-hover: var(--gray-a3);
+  --trigger-background-hover: var(--bg-hover);
 }
 
 .root {

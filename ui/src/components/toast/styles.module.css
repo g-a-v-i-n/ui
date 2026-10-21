@@ -17,11 +17,11 @@
 .root {
   --action-color: var(--fg-primary);
   --action-shadow: var(--shadow-hairline-2);
-  --action-background-hover: var(--gray-a3);
+  --action-background-hover: var(--bg-hover);
 
   --close-color: var(--fg-tertiary);
   --close-color-hover: var(--fg-primary);
-  --close-background-hover: var(--gray-a3);
+  --close-background-hover: var(--bg-hover);
 }
 
 .root {

@@ -1,16 +1,24 @@
-import React from "react";
 import { Select as SelectPrimitive } from "radix-ui";
 import { Text } from "../text";
-import { Icon } from "../icon";
+import { CheckIcon } from "../icon/static/check";
+import { ChevronDownIcon } from "../icon/static/chevron-down";
+import { ChevronDownMiniBoldIcon } from "../icon/static/chevron-down-mini-bold";
+import { ChevronUpIcon } from "../icon/static/chevron-up";
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
 import { styled } from "../../lib/styled";
+import type { PropsOf } from "../../lib/props";
 
 export const SelectRoot = SelectPrimitive.Root;
+export type SelectRootProps = PropsOf<typeof SelectRoot>;
 export const SelectValue = SelectPrimitive.Value;
+export type SelectValueProps = PropsOf<typeof SelectValue>;
 export const SelectGroup = SelectPrimitive.Group;
+export type SelectGroupProps = PropsOf<typeof SelectGroup>;
 
-export const SelectTrigger = ({ children, className, asChild, ref, ...props }: SelectPrimitive.SelectTriggerProps & { ref?: React.Ref<HTMLButtonElement> }) => {
+export type SelectTriggerProps = PropsOf<typeof SelectPrimitive.Trigger>;
+
+export const SelectTrigger = ({ children, className, asChild, ref, ...props }: SelectTriggerProps) => {
   return (
     <SelectPrimitive.Trigger
       {...props}
@@ -26,7 +34,7 @@ export const SelectTrigger = ({ children, className, asChild, ref, ...props }: S
             {children}
           </Text>
           <SelectPrimitive.Icon className={styles.triggerIcon}>
-            <Icon icon="chevron-down-mini-bold" size="lg" />
+            <ChevronDownMiniBoldIcon size="lg" />
           </SelectPrimitive.Icon>
         </>
       )}
@@ -34,37 +42,43 @@ export const SelectTrigger = ({ children, className, asChild, ref, ...props }: S
   );
 };
 
+export type SelectScrollUpButtonProps = PropsOf<typeof SelectPrimitive.ScrollUpButton>;
+
 export const SelectScrollUpButton = ({
   className,
   ref,
   ...props
-}: SelectPrimitive.SelectScrollUpButtonProps & { ref?: React.Ref<HTMLDivElement> }) => {
+}: SelectScrollUpButtonProps) => {
   return (
     <SelectPrimitive.ScrollUpButton
       {...props}
       ref={ref}
       className={cx(styles.scrollButton, className)}
     >
-      <Icon icon="chevron-up" size="sm" />
+      <ChevronUpIcon size="sm" />
     </SelectPrimitive.ScrollUpButton>
   );
 };
+
+export type SelectScrollDownButtonProps = PropsOf<typeof SelectPrimitive.ScrollDownButton>;
 
 export const SelectScrollDownButton = ({
   className,
   ref,
   ...props
-}: SelectPrimitive.SelectScrollDownButtonProps & { ref?: React.Ref<HTMLDivElement> }) => {
+}: SelectScrollDownButtonProps) => {
   return (
     <SelectPrimitive.ScrollDownButton
       {...props}
       ref={ref}
       className={cx(styles.scrollButton, className)}
     >
-      <Icon icon="chevron-down" size="sm" />
+      <ChevronDownIcon size="sm" />
     </SelectPrimitive.ScrollDownButton>
   );
 };
+
+export type SelectContentProps = PropsOf<typeof SelectPrimitive.Content>;
 
 export const SelectContent = ({
   children,
@@ -74,7 +88,7 @@ export const SelectContent = ({
   collisionPadding = 12,
   ref,
   ...props
-}: SelectPrimitive.SelectContentProps & { ref?: React.Ref<HTMLDivElement> }) => {
+}: SelectContentProps) => {
   return (
     <SelectPrimitive.Portal>
       <SelectPrimitive.Content
@@ -97,7 +111,9 @@ export const SelectContent = ({
 
 // No asChild: the item owns its ItemIndicator/ItemText markup, which Select
 // needs to mirror the chosen label into the trigger.
-export const SelectItem = ({ children, className, ref, ...props }: Omit<SelectPrimitive.SelectItemProps, "asChild"> & { ref?: React.Ref<HTMLDivElement> }) => {
+export type SelectItemProps = Omit<PropsOf<typeof SelectPrimitive.Item>, "asChild">;
+
+export const SelectItem = ({ children, className, ref, ...props }: SelectItemProps) => {
   return (
     <SelectPrimitive.Item
       {...props}
@@ -105,7 +121,7 @@ export const SelectItem = ({ children, className, ref, ...props }: Omit<SelectPr
       className={cx(styles.item, className)}
     >
       <SelectPrimitive.ItemIndicator className={styles.indicator}>
-        <Icon icon="check" size="sm" />
+        <CheckIcon size="sm" />
       </SelectPrimitive.ItemIndicator>
       <Text as="span" size="sm">
         <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
@@ -114,7 +130,9 @@ export const SelectItem = ({ children, className, ref, ...props }: Omit<SelectPr
   );
 };
 
-export const SelectLabel = ({ children, className, asChild, ref, ...props }: SelectPrimitive.SelectLabelProps & { ref?: React.Ref<HTMLDivElement> }) => {
+export type SelectLabelProps = PropsOf<typeof SelectPrimitive.Label>;
+
+export const SelectLabel = ({ children, className, asChild, ref, ...props }: SelectLabelProps) => {
   return (
     <SelectPrimitive.Label
       {...props}
@@ -134,3 +152,4 @@ export const SelectLabel = ({ children, className, asChild, ref, ...props }: Sel
 };
 
 export const SelectSeparator = styled(SelectPrimitive.Separator, styles.separator, "SelectSeparator");
+export type SelectSeparatorProps = PropsOf<typeof SelectSeparator>;

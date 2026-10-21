@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button } from 'ui/components/button';
-import { Icon, type IconName } from 'ui/components/icon';
+import { Icon, type IconName } from 'ui/components/icon/registry';
 import { IconSwap } from 'ui/components/icon-swap';
 import { defineDoc } from '../types';
 

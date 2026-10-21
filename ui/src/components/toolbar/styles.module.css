@@ -1,18 +1,18 @@
 .root {
   --button-foreground: var(--fg-secondary);
-  --button-background-hover: var(--gray-a3);
+  --button-background-hover: var(--bg-hover);
   --button-foreground-hover: var(--fg-primary);
-  --button-background-selected: var(--gray-a4);
+  --button-background-selected: var(--bg-selected);
   --button-foreground-selected: var(--fg-primary);
-  --button-background-active: var(--gray-a5);
+  --button-background-active: var(--bg-pressed);
   --button-foreground-active: var(--fg-primary);
 
   --link-color: var(--fg-secondary);
   --link-color-hover: var(--fg-primary);
 
-  --separator-background: var(--gray-a3);
+  --separator-shadow: var(--shadow-rule-vertical);
 
-  --split-background-active: var(--gray-a4);
+  --split-background-active: var(--bg-pressed);
   --split-foreground-active: var(--fg-primary);
 }
 
@@ -112,7 +112,7 @@
   width: var(--size-1);
   align-self: stretch;
   margin: 2px;
-  background: var(--separator-background);
+  box-shadow: var(--separator-shadow);
 }
 
 .toggleGroup {

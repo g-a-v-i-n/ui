@@ -2,6 +2,12 @@ import React from "react";
 import { Text } from "../text";
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
+import type { PropsOf } from "../../lib/props";
+
+export type MenuContainerProps = PropsOf<"div"> & {
+  children: React.ReactNode;
+  width?: "sm" | "md" | "lg" | "auto";
+};
 
 export const MenuContainer = ({
   children,
@@ -9,13 +15,7 @@ export const MenuContainer = ({
   className,
   ref,
   ...props
-}: {
-  children: React.ReactNode;
-  className?: string;
-  width?: "sm" | "md" | "lg" | "auto";
-} & React.HTMLAttributes<HTMLDivElement> & {
-    ref?: React.Ref<HTMLDivElement>;
-  }) => {
+}: MenuContainerProps) => {
   return (
     <div
       {...props}
@@ -28,6 +28,12 @@ export const MenuContainer = ({
   );
 };
 
+export type MenuItemProps = PropsOf<"div"> & {
+  children: React.ReactNode;
+  suffixSlot?: React.ReactNode;
+  prefixSlot?: React.ReactNode;
+};
+
 export const MenuItem = ({
   children,
   className,
@@ -35,14 +41,7 @@ export const MenuItem = ({
   prefixSlot,
   ref,
   ...props
-}: {
-  children: React.ReactNode;
-  className?: string;
-  suffixSlot?: React.ReactNode;
-  prefixSlot?: React.ReactNode;
-} & React.HTMLAttributes<HTMLDivElement> & {
-    ref?: React.Ref<HTMLDivElement>;
-  }) => {
+}: MenuItemProps) => {
   return (
     <div
       {...props}
@@ -62,10 +61,9 @@ export const MenuItem = ({
   );
 };
 
-export const MenuDivider = ({
-  className,
-  ...props
-}: React.ComponentProps<"div">) => {
+export type MenuDividerProps = PropsOf<"div">;
+
+export const MenuDivider = ({ className, ...props }: MenuDividerProps) => {
   return (
     <div {...props} className={cx(styles.divider, className)}>
       <hr />
@@ -73,15 +71,14 @@ export const MenuDivider = ({
   );
 };
 
+export type MenuGroupProps = PropsOf<"div">;
+
 export const MenuGroup = ({
   children,
   className,
   ref,
   ...props
-}: {
-  children?: React.ReactNode;
-  className?: string;
-} & { ref?: React.Ref<HTMLDivElement> }) => {
+}: MenuGroupProps) => {
   return (
     <div
       {...props}
@@ -93,14 +90,12 @@ export const MenuGroup = ({
   );
 };
 
-export const MenuLabel = ({
-  children,
-  className,
-  ...props
-}: {
+export type MenuLabelProps = {
   children: React.ReactNode;
   className?: string;
-}) => {
+};
+
+export const MenuLabel = ({ children, className, ...props }: MenuLabelProps) => {
   return (
     <Text
       as="div"
@@ -113,14 +108,12 @@ export const MenuLabel = ({
   );
 };
 
-export const MenuTitle = ({
-  children,
-  className,
-  ...props
-}: {
+export type MenuTitleProps = {
   children?: React.ReactNode;
   className?: string;
-}) => {
+};
+
+export const MenuTitle = ({ children, className, ...props }: MenuTitleProps) => {
   return (
     <Text
       as="div"
@@ -134,14 +127,12 @@ export const MenuTitle = ({
   );
 };
 
-export const MenuList = ({
-  children,
-  className,
-  ...props
-}: {
+export type MenuListProps = {
   children?: React.ReactNode;
   className?: string;
-}) => {
+};
+
+export const MenuList = ({ children, className, ...props }: MenuListProps) => {
   return (
     <div className={cx(className, styles.menuList)} {...props}>
       {children}
@@ -149,16 +140,18 @@ export const MenuList = ({
   );
 };
 
+export type MenuListItemProps = {
+  className?: string;
+  label?: string;
+  value?: string | number | null;
+};
+
 export const MenuListItem = ({
   className,
   label,
   value,
   ...props
-}: {
-  className?: string;
-  label?: string;
-  value?: string | number | null;
-}) => {
+}: MenuListItemProps) => {
   return (
     <div className={cx(className, styles.listItem)} {...props}>
       <Text size="xs" color="secondary" className={styles.listItemLabel}>
@@ -176,10 +169,9 @@ export const MenuListItem = ({
    per side. SVGProps already includes ref, so it flows through the spread.
    Props spread first: Radix Arrow injects its default 10x5 width/height via
    asChild, and our fixed 28x9 size must win. */
-export const MenuArrow = ({
-  className,
-  ...props
-}: React.SVGProps<SVGSVGElement>) => {
+export type MenuArrowProps = PropsOf<"svg">;
+
+export const MenuArrow = ({ className, ...props }: MenuArrowProps) => {
   return (
     <svg
       {...props}

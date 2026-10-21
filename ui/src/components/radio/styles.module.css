@@ -1,7 +1,7 @@
 .root {
-  --background: var(--gray-1);
+  --background: var(--bg-primary);
   --shadow-unchecked: var(--shadow-button);
-  --background-checked: var(--blue-9);
+  --background-checked: var(--accent);
   --accent-gradient: var(--gradient-accent);
 
   --indicator-background: #fff;

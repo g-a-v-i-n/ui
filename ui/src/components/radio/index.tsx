@@ -1,15 +1,11 @@
-import React from "react";
 import { RadioGroup as RadioGroupPrimitive } from "radix-ui";
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
+import type { PropsOf } from "../../lib/props";
 
-export const Radio = ({
-  className,
-  ref,
-  ...props
-}: RadioGroupPrimitive.RadioGroupItemProps & {
-  ref?: React.Ref<HTMLButtonElement>;
-}) => {
+export type RadioProps = PropsOf<typeof RadioGroupPrimitive.Item>;
+
+export const Radio = ({ className, ref, ...props }: RadioProps) => {
   return (
     <RadioGroupPrimitive.Item
       {...props}

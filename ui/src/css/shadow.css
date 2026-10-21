@@ -1,70 +1,117 @@
-/* Per-element color "arguments" for the shadow tokens: set --shadow-color
-   (drop shadows) or --hairline-color (rims) on an element and its shadow
-   tokens re-tint; unset, the var() fallbacks below carry the defaults.
-   Registered as non-inheriting so a slot tints only the element it's set on,
-   never the subtree. syntax "*" rather than <color>: a typed registration
-   requires an initial-value, which would always win over the fallbacks. */
-@property --shadow-color {
-    syntax: "*";
-    inherits: false;
-}
-@property --hairline-color {
-    syntax: "*";
-    inherits: false;
-}
+/* Elevation tokens.
 
-/* Tokens are assembled on every element (`*`) instead of :root on purpose:
-   a var() inside a custom property is substituted where that property is
-   DEFINED, so :root-level tokens would lock in :root's slot resolution and
-   per-element slots would be inert. Consequence: overriding a whole token
-   (e.g. --shadow-button) for a subtree needs `.scope, .scope *`, as the
-   dark block does. */
-* {
-    --shadow-sm: 0px 1px 1px 0px var(--shadow-color, var(--black-a1));
-    --shadow-md: 0px 2px 4px 0px var(--shadow-color, var(--black-a2));
-    --shadow-lg: 0px 4px 8px 0px var(--shadow-color, var(--black-a3));
-    --shadow-xl: 0px 0px 48px 0px var(--shadow-color, var(--black-a1));
-    --shadow-debug: 0 10px 10px 0px var(--black-a11);
+   Two kinds of part: hairline rims (a zero-offset spread shadow that draws a
+   crisp edge) and drop shadows. Each part is published as a SHAPE — offsets,
+   blur, spread, no color — and a default COLOR, and the two are assembled
+   into the ready-made tokens most components use (--shadow-button,
+   --shadow-card, --shadow-elevated, …).
 
-    --shadow-hairline-1: 0 0 0 0.75px var(--hairline-color, var(--gray-a4));
-    --shadow-hairline-2: 0 0 0 0.75px var(--hairline-color, var(--gray-a5));
-    --shadow-hairline-3: 0 0 0 0.75px var(--hairline-color, var(--gray-a7));
+   A component that needs a tinted rim or drop composes its own box-shadow
+   from a shape and whatever color role fits, instead of overriding a slot:
 
-    /* Inset mirrors of the hairlines — same widths/colors, drawn inward. */
-    --shadow-hairline-inset-1: inset 0 0 0 0.75px var(--hairline-color, var(--gray-a4));
-    --shadow-hairline-inset-2: inset 0 0 0 0.75px var(--hairline-color, var(--gray-a5));
-    --shadow-hairline-inset-3: inset 0 0 0 0.75px var(--hairline-color, var(--gray-a7));
+     box-shadow:
+       var(--hairline-shape) var(--danger-border),
+       var(--shadow-sm-shape) var(--danger-tint);
 
+   Everything is declared on :root, so overriding a token for a subtree is an
+   ordinary `.scope { --shadow-card: … }` with no `*` selector involved.
+
+   Colors flip through light-dark(). The few shapes that differ in dark —
+   hairlines a quarter-pixel thicker, drops tighter and lower — can't, so they
+   follow the same rule as color-scheme (see color.css): an explicit
+   data-theme wins, otherwise the OS preference. Those shape overrides apply
+   to the document theme; a nested data-theme subtree flips its colors but
+   keeps the document's shadow geometry, since the assembled tokens were
+   already resolved on :root. */
+
+:root {
+    /* Shapes */
+    --hairline-width: 0.5px;
+    --hairline-shape: 0 0 0 var(--hairline-width);
+    --hairline-inset-shape: inset 0 0 0 var(--hairline-width);
+
+    --shadow-sm-shape: 0 1px 1px 0;
+    --shadow-md-shape: 0 2px 4px 0;
+    --shadow-lg-shape: 0 4px 8px 0;
+    --shadow-xl-shape: 0 0 48px 0;
+    --shadow-elevated-shape: 0 10px 40px 0;
+
+    /* Default colors */
+    --shadow-sm-color: light-dark(var(--black-a1), var(--black-a2));
+    --shadow-md-color: light-dark(var(--black-a2), var(--black-a3));
+    --shadow-lg-color: var(--black-a3);
+    --shadow-xl-color: light-dark(var(--black-a1), var(--black-a8));
+    --shadow-elevated-color: light-dark(var(--black-a3), var(--black-a6));
+    /* The raised thumb of a slider or switch. */
+    --shadow-thumb-color: var(--gray-a5);
+
+    /* Assembled drops */
+    --shadow-sm: var(--shadow-sm-shape) var(--shadow-sm-color);
+    --shadow-md: var(--shadow-md-shape) var(--shadow-md-color);
+    --shadow-lg: var(--shadow-lg-shape) var(--shadow-lg-color);
+    --shadow-xl: var(--shadow-xl-shape) var(--shadow-xl-color);
+    --shadow-debug: 0 10px 10px 0 var(--black-a11);
+    --shadow-thumb: 0 1px 2px 0 var(--shadow-thumb-color);
+    --shadow-thumb-ring: 0 0 0 1px var(--shadow-thumb-color);
+
+    /* Assembled rims — the three border tiers as hairlines. */
+    --shadow-hairline-1: var(--hairline-shape) var(--border);
+    --shadow-hairline-2: var(--hairline-shape) var(--border-strong);
+    --shadow-hairline-3: var(--hairline-shape) var(--border-emphasis);
+    --shadow-hairline-inset-1: var(--hairline-inset-shape) var(--border);
+    --shadow-hairline-inset-2: var(--hairline-inset-shape) var(--border-strong);
+    --shadow-hairline-inset-3: var(--hairline-inset-shape) var(--border-emphasis);
+
+    /* Rules — separators drawn as a hairline. The element keeps a 1px track
+       for layout (transparent) and paints the line as an inset shadow of
+       --hairline-width along its leading edge, so a separator is as thin as a
+       rim (0.5px light, 1px dark) instead of a full-pixel fill. */
+    --rule-shape: inset 0 var(--hairline-width) 0 0;
+    --rule-shape-vertical: inset var(--hairline-width) 0 0 0;
+    --shadow-rule: var(--rule-shape) var(--border-subtle);
+    --shadow-rule-vertical: var(--rule-shape-vertical) var(--border-subtle);
+
+    /* Composites */
     --shadow-button: var(--shadow-hairline-1), var(--shadow-sm);
-    --shadow-card: var(--shadow-hairline-1), var(--shadow-sm);
+    --shadow-card-drop: var(--shadow-sm);
+    --shadow-card: var(--shadow-hairline-1), var(--shadow-card-drop);
     --shadow-modal: var(--shadow-hairline-1), var(--shadow-xl);
     /* Elevated surfaces (menus, popovers, dialogs, tooltips): rim + soft drop.
-       The rim is the surface's own edge (--border-elevated), not a hairline,
-       so only the drop takes the --shadow-color slot. */
-    --shadow-elevated: 0 0 0 1px var(--border-elevated), 0px 10px 40px 0px var(--shadow-color, var(--black-a3));
+       The rim is the surface's own edge (--border-elevated), not a hairline. */
+    --shadow-elevated: 0 0 0 1px var(--border-elevated), var(--shadow-elevated-shape) var(--shadow-elevated-color);
 }
 
-
-.dark,
-.dark * {
-    --shadow-sm: 0px 1px 2px 0px var(--shadow-color, var(--black-a2));
-    --shadow-md: 0px 1px 4px 0px var(--shadow-color, var(--black-a3));
-    --shadow-lg: 0px 2px 8px 0px var(--shadow-color, var(--black-a3));
-    --shadow-xl: 0px 8px 18px 0px var(--shadow-color, var(--black-a8));
-    --shadow-debug: 0 10px 10px 0px var(--black-a11);
-
-    --shadow-hairline-1: 0 0 0 1px var(--hairline-color, var(--gray-a3));
-    --shadow-hairline-2: 0 0 0 1px var(--hairline-color, var(--gray-a4));
-    --shadow-hairline-3: 0 0 0 1px var(--hairline-color, var(--gray-a6));
-
-    /* Inset mirrors of the hairlines — same widths/colors, drawn inward. */
-    --shadow-hairline-inset-1: inset 0 0 0 1px var(--hairline-color, var(--gray-a3));
-    --shadow-hairline-inset-2: inset 0 0 0 1px var(--hairline-color, var(--gray-a4));
-    --shadow-hairline-inset-3: inset 0 0 0 1px var(--hairline-color, var(--gray-a6));
-
-    --shadow-button: var(--shadow-hairline-1), var(--shadow-sm);
-    --shadow-card: var(--shadow-hairline-1), var(--shadow-lg);
-    --shadow-modal: var(--shadow-hairline-1), var(--shadow-xl);
-    /* Elevated surfaces: gray-3 rim (via --border-elevated) + deeper drop. */
-    --shadow-elevated: 0 0 0 1px var(--border-elevated), 0px 16px 32px 0px var(--shadow-color, var(--black-a4));
+/* Dark-mode shapes. The block is written twice because a media query can't
+   join a selector list: once for an explicit data-theme="dark", once for the
+   OS preference when the document leaves the choice to it. */
+[data-theme="dark"] {
+    --hairline-width: 1px;
+    --shadow-sm-shape: 0 1px 2px 0;
+    --shadow-md-shape: 0 1px 4px 0;
+    --shadow-lg-shape: 0 2px 8px 0;
+    --shadow-xl-shape: 0 8px 18px 0;
+    --shadow-elevated-shape: 0 16px 32px 0;
+    --shadow-card-drop: var(--shadow-lg);
+}
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]),
+    [data-theme="system"] {
+        --hairline-width: 1px;
+        --shadow-sm-shape: 0 1px 2px 0;
+        --shadow-md-shape: 0 1px 4px 0;
+        --shadow-lg-shape: 0 2px 8px 0;
+        --shadow-xl-shape: 0 8px 18px 0;
+        --shadow-elevated-shape: 0 16px 32px 0;
+        --shadow-card-drop: var(--shadow-lg);
+    }
+}
+/* A light subtree inside a dark document takes the light shapes back. */
+[data-theme="light"] {
+    --hairline-width: 0.75px;
+    --shadow-sm-shape: 0 1px 1px 0;
+    --shadow-md-shape: 0 2px 4px 0;
+    --shadow-lg-shape: 0 4px 8px 0;
+    --shadow-xl-shape: 0 0 48px 0;
+    --shadow-elevated-shape: 0 10px 40px 0;
+    --shadow-card-drop: var(--shadow-sm);
 }

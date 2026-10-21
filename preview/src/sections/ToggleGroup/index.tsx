@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ToggleGroup, ToggleGroupItem } from 'ui/components/toggle-group';
-import { Icon } from 'ui/components/icon';
+import { Icon } from 'ui/components/icon/registry';
 import { Section } from '../../Section';
 
 export function ToggleGroupSection() {

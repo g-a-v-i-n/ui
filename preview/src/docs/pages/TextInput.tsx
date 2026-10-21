@@ -1,4 +1,4 @@
-import { Icon } from 'ui/components/icon';
+import { Icon } from 'ui/components/icon/registry';
 import { Tag } from 'ui/components/tag';
 import { TextInput } from 'ui/components/text-input';
 import { defineDoc } from '../types';

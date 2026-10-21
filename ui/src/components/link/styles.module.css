@@ -1,6 +1,6 @@
 .link {
-  --foreground: var(--blue-9);
-  --foreground-hover: var(--blue-11);
+  --foreground: var(--accent);
+  --foreground-hover: var(--accent-text);
 }
 
 .link {

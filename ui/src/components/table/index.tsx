@@ -3,22 +3,29 @@ import { Text } from "../text";
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
 import { styled } from "../../lib/styled";
+import type { PropsOf } from "../../lib/props";
 
 export const TableRoot = styled("table", styles.table, "TableRoot");
+export type TableRootProps = PropsOf<typeof TableRoot>;
 export const TableHeader = styled("thead", styles.header, "TableHeader");
+export type TableHeaderProps = PropsOf<typeof TableHeader>;
 export const TableBody = styled("tbody", styles.body, "TableBody");
+export type TableBodyProps = PropsOf<typeof TableBody>;
 export const TableFooter = styled("tfoot", styles.footer, "TableFooter");
+export type TableFooterProps = PropsOf<typeof TableFooter>;
+
+export type TableRowProps = PropsOf<"tr"> & {
+  selected?: boolean;
+  /** Set false to drop the hover fill on body rows that are not interactive. */
+  hoverable?: boolean;
+};
 
 export const TableRow = ({
   className,
   selected = false,
   hoverable = true,
   ...props
-}: React.ComponentProps<"tr"> & {
-  selected?: boolean;
-  /** Set false to drop the hover fill on body rows that are not interactive. */
-  hoverable?: boolean;
-}) => {
+}: TableRowProps) => {
   return (
     <tr
       {...props}
@@ -29,11 +36,13 @@ export const TableRow = ({
   );
 };
 
+export type TableHeadProps = Omit<PropsOf<"th">, "color">;
+
 export const TableHead = ({
   className,
   ref,
   ...props
-}: Omit<React.ThHTMLAttributes<HTMLTableCellElement>, "color"> & { ref?: React.Ref<HTMLTableCellElement> }) => {
+}: TableHeadProps) => {
   return (
     <Text
       as="th"
@@ -48,11 +57,13 @@ export const TableHead = ({
   );
 };
 
+export type TableCellProps = Omit<PropsOf<"td">, "color">;
+
 export const TableCell = ({
   className,
   ref,
   ...props
-}: Omit<React.TdHTMLAttributes<HTMLTableCellElement>, "color"> & { ref?: React.Ref<HTMLTableCellElement> }) => {
+}: TableCellProps) => {
   return (
     <Text
       as="td"
@@ -66,7 +77,9 @@ export const TableCell = ({
   );
 };
 
-export const TableCaption = ({ className, ref, ...props }: Omit<React.HTMLAttributes<HTMLTableCaptionElement>, "color"> & { ref?: React.Ref<HTMLTableCaptionElement> }) => {
+export type TableCaptionProps = Omit<PropsOf<"caption">, "color">;
+
+export const TableCaption = ({ className, ref, ...props }: TableCaptionProps) => {
   return (
     <Text
       as="caption"

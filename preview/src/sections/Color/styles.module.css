@@ -1,0 +1,116 @@
+.group {
+  display: grid;
+  gap: var(--size-6);
+  max-width: 960px;
+}
+
+.groupNote {
+  margin-bottom: var(--size-10);
+  max-width: 640px;
+}
+
+/* Roles */
+.roleGroups {
+  display: grid;
+  gap: var(--size-20);
+}
+
+.roleGroup {
+  display: grid;
+  gap: var(--size-4);
+}
+
+.roles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--size-8);
+  margin-top: var(--size-6);
+}
+
+.role {
+  display: flex;
+  align-items: center;
+  gap: var(--size-10);
+  min-width: 0;
+}
+
+.roleSwatch {
+  flex: none;
+  width: var(--size-36);
+  height: var(--size-36);
+  border-radius: var(--radius-sm);
+  corner-shape: var(--corner-shape);
+  box-shadow: var(--shadow-hairline-inset-1);
+}
+
+.roleText {
+  display: grid;
+  min-width: 0;
+}
+
+/* Scales */
+.scales {
+  display: grid;
+  gap: var(--size-16);
+}
+
+.scale {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: var(--size-12);
+  align-items: start;
+}
+
+.scaleTitle {
+  padding-top: var(--size-2);
+}
+
+.ramps {
+  display: grid;
+  gap: var(--size-6);
+}
+
+.ramp {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--size-4);
+}
+
+.cell {
+  min-width: 0;
+}
+
+.swatch {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  border-radius: var(--radius-xs);
+  corner-shape: var(--corner-shape);
+  box-shadow: var(--shadow-hairline-inset-1);
+  background: var(--swatch);
+}
+
+/* Alpha steps paint over a faint checker so the transparency reads: the
+   color is a flat gradient layer on top of the two checker gradients. */
+.ramp[data-alpha] .swatch {
+  background-image:
+    linear-gradient(var(--swatch), var(--swatch)),
+    linear-gradient(45deg, var(--bg-tertiary) 25%, transparent 25%, transparent 75%, var(--bg-tertiary) 75%),
+    linear-gradient(45deg, var(--bg-tertiary) 25%, transparent 25%, transparent 75%, var(--bg-tertiary) 75%);
+  background-size: auto, 8px 8px, 8px 8px;
+  background-position: 0 0, 0 0, 4px 4px;
+}
+
+.label {
+  display: block;
+  margin-top: var(--size-2);
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 640px) {
+  .scale {
+    grid-template-columns: 1fr;
+  }
+}

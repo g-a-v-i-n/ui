@@ -18,7 +18,7 @@ export type Page = {
    else is a component page. The value is the sidebar label. */
 const FOUNDATIONS: Record<string, string> = {
   FontScale: 'Font scale',
-  ColorScaleExperiment: 'Color scale',
+  Color: 'Color',
 };
 
 const docModules = import.meta.glob<{ doc: Doc }>('./pages/*.tsx', { eager: true });

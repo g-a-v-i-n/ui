@@ -1,18 +1,23 @@
 .root {
-  --background: var(--gray-a3);
+  --shadow: var(--shadow-rule);
+  --shadow-vertical: var(--shadow-rule-vertical);
 }
 
+/* A 1px track drawn as a hairline (shadow.css --shadow-rule), so the line is
+   as thin as a control's rim rather than a full-pixel fill. */
 .root {
-  background: var(--background);
+  background: transparent;
   flex: none;
 
   &[data-orientation="horizontal"] {
     height: var(--size-1);
     width: 100%;
+    box-shadow: var(--shadow);
   }
 
   &[data-orientation="vertical"] {
     width: var(--size-1);
     align-self: stretch;
+    box-shadow: var(--shadow-vertical);
   }
 }

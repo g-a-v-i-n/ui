@@ -2,7 +2,8 @@ import React from "react";
 import { Popover as PopoverPrimitive } from "radix-ui";
 import { TextInput } from "../text-input";
 import { Text } from "../text";
-import { Icon } from "../icon";
+import { CheckIcon } from "../icon/static/check";
+import { ChevronDownIcon } from "../icon/static/chevron-down";
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
 
@@ -12,7 +13,7 @@ export type ComboboxItem = {
   disabled?: boolean;
 };
 
-type ComboboxProps = {
+export type ComboboxProps = {
   items: ComboboxItem[];
   value?: string;
   defaultValue?: string;
@@ -147,7 +148,7 @@ export const Combobox = ({
       onMouseDown={(e) => e.preventDefault()}
       onClick={() => handleOpenChange(!open)}
     >
-      <Icon icon="chevron-down" size="lg" />
+      <ChevronDownIcon size="lg" />
     </button>
   );
 
@@ -228,7 +229,7 @@ export const Combobox = ({
                     onClick={() => commit(item)}
                   >
                     <span className={styles.indicator} aria-hidden="true">
-                      {selected && <Icon icon="check" size="sm" />}
+                      {selected && <CheckIcon size="sm" />}
                     </span>
                     <Text as="span" size="sm" color="inherit">
                       {item.label}

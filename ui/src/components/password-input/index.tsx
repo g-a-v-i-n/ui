@@ -9,14 +9,13 @@ import styles from "./styles.module.css";
 // autofill for control over the mask glyph.
 const MASK = "*";
 
-type PasswordInputProps = Omit<
+export type PasswordInputProps = Omit<
   React.ComponentProps<typeof TextInput>,
   "type" | "value" | "defaultValue" | "onChange"
 > & {
   value?: string;
   defaultValue?: string;
   onValueChange?: (value: string) => void;
-  ref?: React.Ref<HTMLInputElement>;
 };
 
 // Recover the real value after the browser edited the masked string. The masked

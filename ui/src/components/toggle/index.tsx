@@ -3,6 +3,11 @@ import { Toggle as TogglePrimitive } from "radix-ui";
 import styles from "./styles.module.css";
 import { wrapTextChildren } from "../text/wrap";
 import { cx } from "../../lib/cx";
+import type { PropsOf } from "../../lib/props";
+
+export type ToggleProps = PropsOf<typeof TogglePrimitive.Root> & {
+  width?: "hug" | "square";
+};
 
 export const Toggle = ({
   children,
@@ -10,7 +15,7 @@ export const Toggle = ({
   width = "hug",
   ref,
   ...props
-}: TogglePrimitive.ToggleProps & { width?: "hug" | "square" } & { ref?: React.Ref<HTMLButtonElement> }) => {
+}: ToggleProps) => {
   return (
     <TogglePrimitive.Root
       {...props}

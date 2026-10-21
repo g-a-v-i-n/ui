@@ -1,10 +1,11 @@
-import { Icon } from 'ui/components/icon';
+import { Icon } from 'ui/components/icon/registry';
 import { Text } from 'ui/components/text';
 import { defineDoc } from '../types';
 
 export const doc = defineDoc({
   description:
-    'A glyph from the icon set. Five named sizes; the color comes from the surrounding text.',
+    'A glyph from the icon set. Five named sizes; the color comes from the surrounding text. Import a glyph by name (`CheckIcon` from ui/components/icon) so only the icons you render ship; the string-keyed `Icon` below lives in ui/components/icon/registry and bundles the whole set.',
+  modules: ['icon/registry', 'icon'],
   propsFor: ['Icon', 'IconWrapper'],
   controls: {
     icon: {

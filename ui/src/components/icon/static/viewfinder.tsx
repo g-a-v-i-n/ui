@@ -1,7 +1,7 @@
 import { IconWrapper } from "../icon-wrapper";
 import type { IconProps } from "../types";
 
-export const Viewfinder = (props: IconProps) => {
+export const ViewfinderIcon = (props: IconProps) => {
   return (
     <IconWrapper {...props}>
       <path d="M6.5 2.5H5.7C4.5799 2.5 4.01984 2.5 3.59202 2.71799C3.21569 2.90973 2.90973 3.21569 2.71799 3.59202C2.5 4.01984 2.5 4.5799 2.5 5.7V6.5" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />

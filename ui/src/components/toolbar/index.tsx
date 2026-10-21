@@ -1,7 +1,7 @@
 import React from "react";
 import { Toolbar as ToolbarPrimitive } from "radix-ui";
 import { wrapTextChildren } from "../text/wrap";
-import { Icon } from "../icon";
+import { ChevronDownMiniBoldIcon } from "../icon/static/chevron-down-mini-bold";
 import { Tooltip } from "../tooltip";
 import {
   DropdownMenuRoot,
@@ -9,13 +9,19 @@ import {
   DropdownMenuContent,
   DropdownMenuArrow,
 } from "../dropdown-menu";
-import { POPOVER_OFFSET } from "../../offsets";
+import { MENU_OFFSET } from "../../offsets";
 import { TextInput } from "../text-input";
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
 import { styled } from "../../lib/styled";
+import type { PropsOf } from "../../lib/props";
 
 export const ToolbarRoot = styled(ToolbarPrimitive.Root, styles.root, "ToolbarRoot");
+export type ToolbarRootProps = PropsOf<typeof ToolbarRoot>;
+
+export type ToolbarButtonProps = PropsOf<typeof ToolbarPrimitive.Button> & {
+  width?: "hug" | "square";
+};
 
 export const ToolbarButton = ({
   children,
@@ -23,7 +29,7 @@ export const ToolbarButton = ({
   width = "hug",
   ref,
   ...props
-}: ToolbarPrimitive.ToolbarButtonProps & { width?: "hug" | "square" } & { ref?: React.Ref<HTMLButtonElement> }) => {
+}: ToolbarButtonProps) => {
   return (
     <ToolbarPrimitive.Button
       {...props}
@@ -36,7 +42,9 @@ export const ToolbarButton = ({
   );
 };
 
-export const ToolbarLink = ({ children, className, ref, ...props }: ToolbarPrimitive.ToolbarLinkProps & { ref?: React.Ref<HTMLAnchorElement> }) => {
+export type ToolbarLinkProps = PropsOf<typeof ToolbarPrimitive.Link>;
+
+export const ToolbarLink = ({ children, className, ref, ...props }: ToolbarLinkProps) => {
   return (
     <ToolbarPrimitive.Link
       {...props}
@@ -53,12 +61,18 @@ export const ToolbarSeparator = styled(
   styles.separator,
   "ToolbarSeparator"
 );
+export type ToolbarSeparatorProps = PropsOf<typeof ToolbarSeparator>;
 
 export const ToolbarToggleGroup = styled(
   ToolbarPrimitive.ToggleGroup,
   styles.toggleGroup,
   "ToolbarToggleGroup"
 );
+export type ToolbarToggleGroupProps = PropsOf<typeof ToolbarToggleGroup>;
+
+export type ToolbarToggleItemProps = PropsOf<typeof ToolbarPrimitive.ToggleItem> & {
+  tooltip?: React.ReactNode;
+};
 
 export const ToolbarToggleItem = ({
   children,
@@ -66,10 +80,7 @@ export const ToolbarToggleItem = ({
   className,
   ref,
   ...props
-}: ToolbarPrimitive.ToolbarToggleItemProps & {
-  tooltip?: React.ReactNode;
-  ref?: React.Ref<HTMLButtonElement>;
-}) => {
+}: ToolbarToggleItemProps) => {
   const item = (
     <ToolbarPrimitive.ToggleItem
       {...props}
@@ -93,6 +104,7 @@ export const ToolbarToggleItem = ({
 
 /* Plain layout grouping for related toolbar controls. */
 export const ToolbarGroup = styled("div", styles.group, "ToolbarGroup");
+export type ToolbarGroupProps = PropsOf<typeof ToolbarGroup>;
 
 export type ToolbarInputProps = Omit<
   React.ComponentProps<typeof TextInput>,
@@ -114,7 +126,7 @@ export type ToolbarSplitButtonProps = {
   /** Render the primary (left) button as a square icon button. */
   square?: boolean;
   children?: React.ReactNode;
-} & Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "prefix">;
+} & Omit<PropsOf<"button">, "prefix">;
 
 export const ToolbarSplitButton = ({
   children,
@@ -128,7 +140,7 @@ export const ToolbarSplitButton = ({
   className,
   ref,
   ...props
-}: ToolbarSplitButtonProps & { ref?: React.Ref<HTMLButtonElement> }) => {
+}: ToolbarSplitButtonProps) => {
   const primaryButton = (
     <ToolbarPrimitive.Button
       {...props}
@@ -157,14 +169,14 @@ export const ToolbarSplitButton = ({
             className={styles.splitTrigger}
           >
             <span className={styles.splitChevron} aria-hidden="true">
-              <Icon icon="chevron-down-mini-bold" size="lg" />
+              <ChevronDownMiniBoldIcon size="lg" />
             </span>
           </ToolbarPrimitive.Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent
           align={dropdownAlign}
           width={dropdownWidth}
-          sideOffset={POPOVER_OFFSET}
+          sideOffset={MENU_OFFSET}
         >
           {dropdownContent}
           <DropdownMenuArrow />

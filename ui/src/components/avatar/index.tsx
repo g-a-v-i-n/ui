@@ -4,6 +4,7 @@ import { Text, type TextProps } from "../text";
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
 import { styled } from "../../lib/styled";
+import type { PropsOf } from "../../lib/props";
 
 /* Sized on the control height scale (the Button size prop), so an avatar
    lines up with a button or input of the same size. */
@@ -21,16 +22,18 @@ const fallbackTextSize = {
   xl: "xl",
 } satisfies Record<Size, TextProps["size"]>;
 
+export type AvatarRootProps = PropsOf<typeof AvatarPrimitive.Root> & {
+  /** Control height, on the same scale as the Button size prop. */
+  size?: Size;
+};
+
 export const AvatarRoot = ({
   className,
   size = "md",
   children,
   ref,
   ...props
-}: AvatarPrimitive.AvatarProps & {
-  /** Control height, on the same scale as the Button size prop. */
-  size?: Size;
-} & { ref?: React.Ref<HTMLSpanElement> }) => {
+}: AvatarRootProps) => {
   return (
     <AvatarContext.Provider value={{ size }}>
       <AvatarPrimitive.Root
@@ -49,13 +52,16 @@ export const AvatarRoot = ({
 };
 
 export const AvatarImage = styled(AvatarPrimitive.Image, styles.image, "AvatarImage");
+export type AvatarImageProps = PropsOf<typeof AvatarImage>;
+
+export type AvatarFallbackProps = PropsOf<typeof AvatarPrimitive.Fallback>;
 
 export const AvatarFallback = ({
   children,
   className,
   ref,
   ...props
-}: AvatarPrimitive.AvatarFallbackProps & { ref?: React.Ref<HTMLSpanElement> }) => {
+}: AvatarFallbackProps) => {
   const { size } = React.useContext(AvatarContext);
   return (
     <AvatarPrimitive.Fallback
@@ -70,20 +76,20 @@ export const AvatarFallback = ({
   );
 };
 
+export type AvatarProps = AvatarRootProps & {
+  src?: string;
+  alt?: string;
+  fallback?: React.ReactNode;
+  delayMs?: number;
+};
+
 export const Avatar = ({
   src,
   alt = "",
   fallback,
   delayMs,
   ...rootProps
-}: AvatarPrimitive.AvatarProps & {
-  /** Control height, on the same scale as the Button size prop. */
-  size?: Size;
-  src?: string;
-  alt?: string;
-  fallback?: React.ReactNode;
-  delayMs?: number;
-}) => {
+}: AvatarProps) => {
   return (
     <AvatarRoot {...rootProps}>
       {src && <AvatarImage src={src} alt={alt} />}

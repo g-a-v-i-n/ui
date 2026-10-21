@@ -1,28 +1,28 @@
 .button {
-  --primary-background: var(--fg-primary);
-  --primary-foreground: var(--bg-base);
+  --primary-background: var(--bg-inverse);
+  --primary-foreground: var(--fg-inverse);
   --primary-shadow: var(--shadow-sm);
-  --primary-background-hover: var(--gray-11);
-  --primary-background-active: var(--gray-10);
+  --primary-background-hover: var(--bg-inverse-hover);
+  --primary-background-active: var(--bg-inverse-active);
 
   --secondary-background: var(--bg-control);
   --secondary-foreground: var(--fg-primary);
-  --secondary-shadow: var(--shadow-button);
-  /* Hairline steps through the tiers (1/2/3) as the state deepens. */
-  --secondary-hairline-color: var(--gray-a3);
-  --secondary-hairline-color-hover: var(--gray-a4);
-  --secondary-hairline-color-active: var(--gray-a6);
+  /* The rim steps through the border tiers as the state deepens; the
+     secondary and destructive box-shadows below compose it from the
+     hairline shape in shadow.css plus a drop. */
+  --secondary-rim: var(--border);
+  --secondary-rim-hover: var(--border-strong);
+  --secondary-rim-active: var(--border-emphasis);
   --secondary-background-hover: var(--bg-control-hover);
   --secondary-background-active: var(--bg-control-active);
 
-  --destructive-background: var(--bg-control);
-  --destructive-foreground: var(--tomato-9);
-  --destructive-shadow: var(--shadow-button);
-  /* Red-tinted shadow via the shadow.css color slots. */
-  --destructive-shadow-color: var(--tomato-a3);
-  --destructive-hairline-color: var(--tomato-a3);
-  --destructive-hairline-color-hover: var(--tomato-a4);
-  --destructive-hairline-color-active: var(--tomato-a6);
+  --destructive-background: var(--bg-control-destructive);
+  --destructive-foreground: var(--danger);
+  /* Red-tinted rim and drop. */
+  --destructive-drop-color: var(--danger-tint);
+  --destructive-rim: var(--danger-border-subtle);
+  --destructive-rim-hover: var(--danger-border);
+  --destructive-rim-active: var(--danger-border-strong);
   --destructive-background-hover: var(--bg-control-destructive-hover);
   --destructive-background-active: var(--bg-control-destructive-active);
 
@@ -37,31 +37,32 @@
   gap: var(--size-6);
   corner-shape: var(--corner-shape);
 
+  /* Each size sets its height and inline padding; the radius follows the
+     height at --control-radius-ratio (radius.css), so the corners stay in
+     proportion from xs to xl instead of reading a radius step per size. */
+  height: var(--height);
+  border-radius: round(calc(var(--height) * var(--control-radius-ratio)), 1px);
+
   &[data-size="xs"] {
-    height: var(--control-height-xs);
+    --height: var(--control-height-xs);
     --pad: var(--size-8);
-    border-radius: var(--radius-md);
     gap: var(--size-4);
   }
   &[data-size="sm"] {
-    height: var(--control-height-sm);
-    --pad: var(--size-10);
-    border-radius: var(--radius-md);
+    --height: var(--control-height-sm);
+    --pad: var(--size-12);
   }
   &[data-size="md"] {
-    height: var(--control-height-md);
-    --pad: var(--size-12);
-    border-radius: var(--radius-md);
+    --height: var(--control-height-md);
+    --pad: var(--size-14);
   }
   &[data-size="lg"] {
-    height: var(--control-height-lg);
+    --height: var(--control-height-lg);
     --pad: var(--size-16);
-    border-radius: var(--radius-xl);
   }
   &[data-size="xl"] {
-    height: var(--control-height-xl);
+    --height: var(--control-height-xl);
     --pad: var(--size-20);
-    border-radius: var(--radius-2xl);
   }
 
   /* Inline padding per size. A slot pulls its side in by 4px so the icon
@@ -100,34 +101,35 @@
   &[data-variant="secondary"] {
     background: var(--secondary-background);
     color: var(--secondary-foreground);
-    --hairline-color: var(--secondary-hairline-color);
-    box-shadow: var(--secondary-shadow);
+    --rim: var(--secondary-rim);
+    box-shadow: var(--hairline-shape) var(--rim), var(--shadow-sm);
 
     &:hover {
       background: var(--secondary-background-hover);
-      --hairline-color: var(--secondary-hairline-color-hover);
+      --rim: var(--secondary-rim-hover);
     }
 
     &:active {
       background: var(--secondary-background-active);
-      --hairline-color: var(--secondary-hairline-color-active);
+      --rim: var(--secondary-rim-active);
     }
   }
 
   &[data-variant="destructive"] {
     background: var(--destructive-background);
     color: var(--destructive-foreground);
-    --shadow-color: var(--destructive-shadow-color);
-    --hairline-color: var(--destructive-hairline-color);
-    box-shadow: var(--destructive-shadow);
+    --rim: var(--destructive-rim);
+    box-shadow:
+      var(--hairline-shape) var(--rim),
+      var(--shadow-sm-shape) var(--destructive-drop-color);
 
     &:hover {
       background: var(--destructive-background-hover);
-      --hairline-color: var(--destructive-hairline-color-hover);
+      --rim: var(--destructive-rim-hover);
     }
     &:active {
       background: var(--destructive-background-active);
-      --hairline-color: var(--destructive-hairline-color-active);
+      --rim: var(--destructive-rim-active);
     }
   }
 
@@ -150,21 +152,7 @@
   &[data-width="square"] {
     padding: 0;
     flex: none;
-  }
-  &[data-size="xs"][data-width="square"] {
-    width: var(--control-height-xs);
-  }
-  &[data-size="sm"][data-width="square"] {
-    width: var(--control-height-sm);
-  }
-  &[data-size="md"][data-width="square"] {
-    width: var(--control-height-md);
-  }
-  &[data-size="lg"][data-width="square"] {
-    width: var(--control-height-lg);
-  }
-  &[data-size="xl"][data-width="square"] {
-    width: var(--control-height-xl);
+    width: var(--height);
   }
 
   &[data-round="true"] {

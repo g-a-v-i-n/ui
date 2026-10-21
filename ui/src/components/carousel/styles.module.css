@@ -1,12 +1,16 @@
 .root {
-  --arrow-background: var(--bg-base);
+  /* The arrows are floating surfaces over the slides, same as a popover:
+     frosted --bg-elevated with the elevated rim and drop shadow. */
+  --arrow-background: var(--bg-elevated);
+  --arrow-background-hover: var(--bg-elevated-hover);
   --arrow-color: var(--fg-primary);
-  --arrow-shadow: var(--shadow-button);
-  --arrow-background-hover: var(--bg-secondary);
+  --arrow-shadow:
+    0 0 0 1px var(--border-elevated),
+    var(--shadow-elevated-shape) var(--shadow-elevated-color);
 
-  --dot-background: var(--gray-a5);
-  --dot-background-hover: var(--gray-a7);
-  --dot-background-selected: var(--blue-9);
+  --dot-background: var(--bg-indicator);
+  --dot-background-hover: var(--bg-indicator-hover);
+  --dot-background-selected: var(--accent);
 }
 
 .root {
@@ -42,6 +46,11 @@
 
 /* Overlaid prev/next controls, vertically centered. */
 .arrow {
+  composes: floatingSurface from "../../css/recipes.module.css";
+  --surface-background: var(--arrow-background);
+  --surface-shadow: var(--arrow-shadow);
+  --surface-radius: var(--radius-full);
+
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -55,11 +64,8 @@
   padding: 0;
 
   border: none;
-  border-radius: var(--radius-full);
   corner-shape: round;
-  background: var(--arrow-background);
   color: var(--arrow-color);
-  box-shadow: var(--arrow-shadow);
   cursor: pointer;
 
   transition:
@@ -68,12 +74,12 @@
     box-shadow var(--duration-120) var(--ease-out-quad);
 
   &:hover {
-    background: var(--arrow-background-hover);
+    --surface-background: var(--arrow-background-hover);
   }
 
   &:focus-visible {
     outline: none;
-    box-shadow: var(--focus-shadow), var(--shadow-sm);
+    box-shadow: var(--focus-shadow), var(--arrow-shadow);
   }
 
   &:disabled {
@@ -109,16 +115,17 @@
 
   transition:
     background-color var(--duration-120) var(--ease-out-quad),
-    transform var(--duration-120) var(--ease-out-quad),
+    width var(--duration-120) var(--ease-out-quad),
     box-shadow var(--duration-120) var(--ease-out-quad);
 
   &:hover {
     background: var(--dot-background-hover);
   }
 
+  /* The current slide's dot stretches into a pill. */
   &[data-active] {
+    width: var(--size-18);
     background: var(--dot-background-selected);
-    transform: scale(1.15);
   }
 
   &:focus-visible {

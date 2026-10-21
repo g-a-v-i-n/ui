@@ -1,4 +1,4 @@
-import { Icon } from 'ui/components/icon';
+import { Icon } from 'ui/components/icon/registry';
 import { Button } from 'ui/components/button';
 import { DropdownMenuTrigger } from 'ui/components/dropdown-menu';
 import { Section } from '../../Section';

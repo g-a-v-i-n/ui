@@ -2,20 +2,20 @@
    menu-style nav items grouped into (optionally collapsible) sections. */
 .root {
   --background: var(--bg-secondary);
-  --edge-shadow: inset -1px 0 0 var(--gray-a3);
-  --footer-shadow: inset 0 1px 0 var(--gray-a3);
+  --edge-shadow: inset -1px 0 0 var(--border-subtle);
+  --footer-shadow: inset 0 1px 0 var(--border-subtle);
 
   --item-foreground: var(--fg-secondary);
-  --item-background-hover: var(--gray-a3);
+  --item-background-hover: var(--bg-hover);
   --item-foreground-hover: var(--fg-primary);
-  --item-background-selected: var(--gray-a4);
+  --item-background-selected: var(--bg-selected);
   --item-foreground-selected: var(--fg-primary);
   --item-icon-color: var(--fg-tertiary);
   --item-icon-color-hover: var(--fg-primary);
 
-  --separator-background: var(--gray-a3);
+  --separator-shadow: var(--shadow-rule);
 
-  --collapsible-trigger-background-hover: var(--gray-a3);
+  --collapsible-trigger-background-hover: var(--bg-hover);
   --chevron-color: var(--fg-tertiary);
 }
 
@@ -139,7 +139,7 @@
 
 .separator {
   height: var(--size-1);
-  background: var(--separator-background);
+  box-shadow: var(--separator-shadow);
   margin: 4px 8px;
   flex: none;
 }

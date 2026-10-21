@@ -1,20 +1,24 @@
-import React from "react";
 import { NavigationMenu as NavigationMenuPrimitive } from "radix-ui";
 import { Text } from "../text";
-import { Icon } from "../icon";
+import { ChevronDownIcon } from "../icon/static/chevron-down";
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
 import { styled } from "../../lib/styled";
+import type { PropsOf } from "../../lib/props";
 
 export const NavigationMenuItem = NavigationMenuPrimitive.Item;
+export type NavigationMenuItemProps = PropsOf<typeof NavigationMenuItem>;
 export const NavigationMenuSub = NavigationMenuPrimitive.Sub;
+export type NavigationMenuSubProps = PropsOf<typeof NavigationMenuSub>;
+
+export type NavigationMenuRootProps = PropsOf<typeof NavigationMenuPrimitive.Root>;
 
 export const NavigationMenuRoot = ({
   children,
   className,
   ref,
   ...props
-}: NavigationMenuPrimitive.NavigationMenuProps & { ref?: React.Ref<HTMLElement> }) => {
+}: NavigationMenuRootProps) => {
   return (
     <NavigationMenuPrimitive.Root
       {...props}
@@ -30,6 +34,9 @@ export const NavigationMenuRoot = ({
 };
 
 export const NavigationMenuList = styled(NavigationMenuPrimitive.List, styles.list, "NavigationMenuList");
+export type NavigationMenuListProps = PropsOf<typeof NavigationMenuList>;
+
+export type NavigationMenuTriggerProps = PropsOf<typeof NavigationMenuPrimitive.Trigger>;
 
 export const NavigationMenuTrigger = ({
   children,
@@ -37,7 +44,7 @@ export const NavigationMenuTrigger = ({
   asChild,
   ref,
   ...props
-}: NavigationMenuPrimitive.NavigationMenuTriggerProps & { ref?: React.Ref<HTMLButtonElement> }) => {
+}: NavigationMenuTriggerProps) => {
   return (
     <NavigationMenuPrimitive.Trigger
       {...props}
@@ -53,7 +60,7 @@ export const NavigationMenuTrigger = ({
             {children}
           </Text>
           <span className={styles.chevron} aria-hidden="true">
-            <Icon icon="chevron-down" size="sm" />
+            <ChevronDownIcon size="sm" />
           </span>
         </>
       )}
@@ -62,6 +69,9 @@ export const NavigationMenuTrigger = ({
 };
 
 export const NavigationMenuContent = styled(NavigationMenuPrimitive.Content, styles.content, "NavigationMenuContent");
+export type NavigationMenuContentProps = PropsOf<typeof NavigationMenuContent>;
+
+export type NavigationMenuLinkProps = PropsOf<typeof NavigationMenuPrimitive.Link>;
 
 export const NavigationMenuLink = ({
   children,
@@ -69,7 +79,7 @@ export const NavigationMenuLink = ({
   asChild,
   ref,
   ...props
-}: NavigationMenuPrimitive.NavigationMenuLinkProps & { ref?: React.Ref<HTMLAnchorElement> }) => {
+}: NavigationMenuLinkProps) => {
   return (
     <NavigationMenuPrimitive.Link
       {...props}

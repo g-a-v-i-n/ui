@@ -2,7 +2,8 @@ import { Slider } from 'ui/components/slider';
 import { defineDoc } from '../types';
 
 export const doc = defineDoc({
-  description: 'Picks a number, or a range with two thumbs, by dragging along a track.',
+  description:
+    'Picks a number, or a range with two thumbs, by dragging along a track. A defaultValue is marked on the track with a tick, and double-clicking a thumb snaps it back there.',
   controls: {
     range: { type: 'boolean', label: 'Range (two thumbs)', default: false },
     orientation: { type: 'segmented', options: ['horizontal', 'vertical'], default: 'horizontal' },

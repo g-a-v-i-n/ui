@@ -15,4 +15,7 @@ body,
 .section-body-column {
   flex-direction: column;
   align-items: stretch;
+  /* A wrapping column flex container stretches its items' heights (grids
+     inside then pad out their rows), so columns never wrap. */
+  flex-wrap: nowrap;
 }

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Icon } from 'ui/components/icon';
+import { Icon } from 'ui/components/icon/registry';
 import { Button } from 'ui/components/button';
 import { IconSwap } from 'ui/components/icon-swap';
 import { Section } from '../../Section';

@@ -1,21 +1,12 @@
-export type { IconProps, IconWrapperProps } from "./types";
+/**
+ * The icon set as named components — `import { CheckIcon } from "ui/components/icon"`.
+ * Each glyph is its own module, so a consumer's bundle carries only the icons
+ * it renders. Every icon takes `IconProps` (size, aria-*, className, style).
+ *
+ * To pick an icon by name at runtime (`<Icon icon="check" />`, `iconNames`),
+ * import from `ui/components/icon/registry` instead; that entry references
+ * every glyph by nature, so it is kept out of this one.
+ */
+export type { IconProps, IconWrapperProps, IconSize } from "./types";
 export { IconWrapper } from "./icon-wrapper";
-
-import type { IconProps } from "./types";
-import { icons } from "./registry";
-
-export { icons };
-
-export type IconName = keyof typeof icons;
-export const iconNames =
-  // SAFETY: `icons` is keyed exactly by IconName, so its runtime keys are that union.
-  Object.keys(icons) as IconName[];
-
-type IconComponentProps = {
-  icon: IconName;
-} & IconProps;
-
-export const Icon = ({ icon, ...props }: IconComponentProps) => {
-  const IconComponent = icons[icon];
-  return <IconComponent {...props} />;
-};
+export * from "./names";

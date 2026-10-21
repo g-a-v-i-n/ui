@@ -1,9 +1,3 @@
-.actions {
-  display: flex;
-  gap: 8px;
-  justify-content: flex-end;
-}
-
 .options {
   display: flex;
   flex-direction: column;

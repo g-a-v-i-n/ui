@@ -1,4 +1,3 @@
-import React from "react";
 import { Menubar as MenubarPrimitive } from "radix-ui";
 import { Text } from "../text";
 import { MenuContainer } from "../menu-primitives";
@@ -6,26 +5,42 @@ import { createMenuParts } from "../menu-primitives/create-menu-parts";
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
 import { styled } from "../../lib/styled";
+import type { PropsOf } from "../../lib/props";
 
-export const MenubarMenu = (props: MenubarPrimitive.MenubarMenuProps) => (
+export type MenubarMenuProps = MenubarPrimitive.MenubarMenuProps;
+
+export const MenubarMenu = (props: MenubarMenuProps) => (
   <MenubarPrimitive.Menu {...props} />
 );
 export const MenubarPortal = MenubarPrimitive.Portal;
+export type MenubarPortalProps = PropsOf<typeof MenubarPortal>;
 export const MenubarSub = MenubarPrimitive.Sub;
+export type MenubarSubProps = PropsOf<typeof MenubarSub>;
 
 const parts = createMenuParts(MenubarPrimitive);
 export const MenubarItem = parts.Item;
+export type MenubarItemProps = PropsOf<typeof MenubarItem>;
 export const MenubarCheckboxItem = parts.CheckboxItem;
+export type MenubarCheckboxItemProps = PropsOf<typeof MenubarCheckboxItem>;
 export const MenubarRadioGroup = parts.RadioGroup;
+export type MenubarRadioGroupProps = PropsOf<typeof MenubarRadioGroup>;
 export const MenubarRadioItem = parts.RadioItem;
+export type MenubarRadioItemProps = PropsOf<typeof MenubarRadioItem>;
 export const MenubarGroup = parts.Group;
+export type MenubarGroupProps = PropsOf<typeof MenubarGroup>;
 export const MenubarLabel = parts.Label;
+export type MenubarLabelProps = PropsOf<typeof MenubarLabel>;
 export const MenubarSubTrigger = parts.SubTrigger;
+export type MenubarSubTriggerProps = PropsOf<typeof MenubarSubTrigger>;
 export const MenubarSeparator = parts.Separator;
+export type MenubarSeparatorProps = PropsOf<typeof MenubarSeparator>;
 
 export const MenubarRoot = styled(MenubarPrimitive.Root, styles.root, "MenubarRoot");
+export type MenubarRootProps = PropsOf<typeof MenubarRoot>;
 
-export const MenubarTrigger = ({ children, className, asChild, ref, ...props }: MenubarPrimitive.MenubarTriggerProps & { ref?: React.Ref<HTMLButtonElement> }) => {
+export type MenubarTriggerProps = PropsOf<typeof MenubarPrimitive.Trigger>;
+
+export const MenubarTrigger = ({ children, className, asChild, ref, ...props }: MenubarTriggerProps) => {
   return (
     <MenubarPrimitive.Trigger
       {...props}
@@ -44,6 +59,10 @@ export const MenubarTrigger = ({ children, className, asChild, ref, ...props }: 
   );
 };
 
+export type MenubarContentProps = PropsOf<typeof MenubarPrimitive.Content> & {
+  width?: "sm" | "md" | "lg" | "auto";
+};
+
 export const MenubarContent = ({
   children,
   className,
@@ -52,9 +71,7 @@ export const MenubarContent = ({
   width,
   ref,
   ...props
-}: MenubarPrimitive.MenubarContentProps & {
-  width?: "sm" | "md" | "lg" | "auto";
-} & { ref?: React.Ref<HTMLDivElement> }) => {
+}: MenubarContentProps) => {
   return (
     <MenubarPrimitive.Portal>
       <MenubarPrimitive.Content
@@ -75,6 +92,10 @@ export const MenubarContent = ({
   );
 };
 
+export type MenubarSubContentProps = PropsOf<typeof MenubarPrimitive.SubContent> & {
+  width?: "sm" | "md" | "lg" | "auto";
+};
+
 export const MenubarSubContent = ({
   children,
   className,
@@ -82,9 +103,7 @@ export const MenubarSubContent = ({
   width,
   ref,
   ...props
-}: MenubarPrimitive.MenubarSubContentProps & {
-  width?: "sm" | "md" | "lg" | "auto";
-} & { ref?: React.Ref<HTMLDivElement> }) => {
+}: MenubarSubContentProps) => {
   return (
     <MenubarPrimitive.Portal>
       <MenubarPrimitive.SubContent

@@ -1,9 +1,9 @@
 .root {
   --background: var(--bg-tertiary);
 
-  --item-foreground: var(--gray-9);
-  --item-foreground-hover: var(--gray-12);
-  --item-foreground-selected: var(--gray-12);
+  --item-foreground: var(--fg-quaternary);
+  --item-foreground-hover: var(--fg-primary);
+  --item-foreground-selected: var(--fg-primary);
 
   --highlight-background: var(--bg-base);
 }

@@ -1,10 +1,12 @@
 .card {
-  /* Raised: sits above the page surface with a soft shadow. */
-  --primary-background: var(--bg-primary);
+  /* Raised: sits above the page surface with a soft shadow. White in light;
+     a faint white wash in dark so it lifts off any surface it sits on. */
+  --primary-background: light-dark(var(--gray-0), var(--white-a1));
   --primary-shadow: var(--shadow-card);
 
-  /* Flat: depth comes from the darker background, no shadow. */
-  --secondary-background: var(--bg-secondary);
+  /* Flat: depth comes from the gray wash (gray-2 over the page), no shadow.
+     Translucent so it matches on any surface. */
+  --secondary-background: var(--gray-a2);
 }
 
 .card {

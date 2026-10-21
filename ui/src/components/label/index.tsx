@@ -1,10 +1,10 @@
-import React from "react";
 import { Label as LabelPrimitive } from "radix-ui";
 import { Text } from "../text";
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
+import type { PropsOf } from "../../lib/props";
 
-type LabelProps = LabelPrimitive.LabelProps & {
+export type LabelProps = PropsOf<typeof LabelPrimitive.Root> & {
   size?: "xs" | "sm" | "md";
   weight?: "regular" | "medium" | "semibold";
   color?: "primary" | "secondary" | "tertiary" | "inherit";
@@ -18,7 +18,7 @@ export const Label = ({
   color = "primary",
   ref,
   ...props
-}: LabelProps & { ref?: React.Ref<HTMLLabelElement> }) => {
+}: LabelProps) => {
   return (
     <LabelPrimitive.Root {...props} ref={ref} asChild>
       <Text

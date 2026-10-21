@@ -6,13 +6,15 @@ const SIZE = 48;
 const STROKE = 6;
 const CIRCUMFERENCE = 15.91549430918952;
 
+export type PieChartProps = Omit<React.ComponentProps<"svg">, "children"> & {
+  percent: number;
+};
+
 export const PieChart = ({
   percent = 0,
   className,
   ...props
-}: Omit<React.ComponentProps<"svg">, "children"> & {
-  percent: number;
-}) => {
+}: PieChartProps) => {
   const maskId = useId();
   const pct = Math.min(100, Math.max(0, percent || 0));
   // Round caps paint a dot even for a zero-length dash; square them at 0%.

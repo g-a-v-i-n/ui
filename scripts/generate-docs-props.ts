@@ -1,7 +1,8 @@
 /**
  * Generate the props tables for the preview docs site.
  *
- * Walks every ui/src/components/<dir>/index.tsx and, for each exported
+ * Walks every ui/src/components/<dir>/index.tsx (and nested entries such as
+ * icon/registry/index.tsx) and, for each exported
  * component, records its props (name, type, required, default, description)
  * via the TypeScript compiler API. Props inherited from React's own DOM
  * typings (HTML/SVG/ARIA attributes) are dropped — the table notes that native
@@ -52,13 +53,21 @@ if (configFile.error) {
 }
 const parsed = ts.parseJsonConfigFileContent(configFile.config, ts.sys, path.dirname(configPath));
 
-const dirs = readdirSync(COMPONENTS_DIR, { withFileTypes: true })
-  .filter((entry) => entry.isDirectory())
-  .map((entry) => entry.name)
-  .sort();
-const entryFiles = dirs
-  .map((dir) => path.join(COMPONENTS_DIR, dir, "index.tsx"))
-  .filter((file) => existsSync(file));
+/* One module per component folder, plus one per nested entry folder that has
+   its own index.tsx (icon/registry), keyed the way consumers import them:
+   ui/components/<key>. */
+const dirs: string[] = [];
+for (const entry of readdirSync(COMPONENTS_DIR, { withFileTypes: true })) {
+  if (!entry.isDirectory()) continue;
+  if (existsSync(path.join(COMPONENTS_DIR, entry.name, "index.tsx"))) dirs.push(entry.name);
+  for (const nested of readdirSync(path.join(COMPONENTS_DIR, entry.name), { withFileTypes: true })) {
+    if (!nested.isDirectory()) continue;
+    const key = `${entry.name}/${nested.name}`;
+    if (existsSync(path.join(COMPONENTS_DIR, key, "index.tsx"))) dirs.push(key);
+  }
+}
+dirs.sort();
+const entryFiles = dirs.map((dir) => path.join(COMPONENTS_DIR, dir, "index.tsx"));
 
 const program = ts.createProgram({
   rootNames: entryFiles,

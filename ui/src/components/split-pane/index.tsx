@@ -11,7 +11,12 @@ import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
 
 export type SplitPaneHandle = AllotmentHandle;
-export type SplitPaneProps = AllotmentProps & { className?: string };
+export type SplitPaneProps = AllotmentProps & {
+  className?: string;
+  /* allotment resolves its own bundled @types/react, so the ref prop type
+     must come from Allotment itself rather than our React.Ref. */
+  ref?: React.ComponentPropsWithRef<typeof Allotment>["ref"];
+};
 export type SplitPanePaneProps = React.ComponentProps<typeof Allotment.Pane>;
 
 export { LayoutPriority, setSashSize };
@@ -20,11 +25,7 @@ export const SplitPane = ({
   className,
   ref,
   ...props
-}: SplitPaneProps & {
-  /* allotment resolves its own bundled @types/react, so the ref prop type
-     must come from Allotment itself rather than our React.Ref. */
-  ref?: React.ComponentPropsWithRef<typeof Allotment>["ref"];
-}) => {
+}: SplitPaneProps) => {
   return (
     <Allotment
       {...props}

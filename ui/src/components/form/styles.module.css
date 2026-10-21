@@ -1,5 +1,5 @@
 .message {
-  --message-color: var(--tomato-9);
+  --message-color: var(--danger);
 }
 
 .field {

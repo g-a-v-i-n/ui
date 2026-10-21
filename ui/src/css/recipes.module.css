@@ -6,13 +6,19 @@
 
 /* Elevated floating surface: menus, popovers, dialogs, tooltips, toasts.
    The page sits on --bg-base; every floating surface sits on --bg-elevated
-   with --shadow-elevated drawing its rim and drop shadow (see css/color.css). */
+   with a rim (--surface-rim, default --border-elevated) and the elevated drop
+   shadow (see css/color.css, css/shadow.css). MenuArrow reads --surface-rim
+   too, so an arrow's edge always matches the surface it sits against. */
 .floatingSurface {
   background: var(--surface-background, var(--bg-elevated));
   backdrop-filter: var(--surface-blur, var(--blur-elevated));
   border-radius: var(--surface-radius, var(--radius-lg));
   corner-shape: var(--corner-shape);
-  box-shadow: var(--surface-shadow, var(--shadow-elevated));
+  box-shadow: var(
+    --surface-shadow,
+    0 0 0 1px var(--surface-rim, var(--border-elevated)),
+    var(--shadow-elevated-shape) var(--shadow-elevated-color)
+  );
 }
 
 /* Radix popper enter/exit: scale pop for surfaces with no meaningful side

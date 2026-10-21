@@ -441,7 +441,7 @@
           "type": "\"primary\" | \"secondary\"",
           "required": false,
           "default": "\"primary\"",
-          "description": "\"primary\" is raised (bg-primary + card shadow); \"secondary\" is flat (bg-secondary)."
+          "description": "\"primary\" is raised (white / faint white wash + card shadow); \"secondary\" is flat (gray-a2 wash)."
         }
       ],
       "acceptsHtmlAttributes": true
@@ -643,6 +643,12 @@
           "name": "containerClassName",
           "type": "string",
           "required": false
+        },
+        {
+          "name": "pickerProps",
+          "type": "Omit<Partial<ColorPickerBaseProps<string>>, \"color\" | \"onChange\">",
+          "required": false,
+          "description": "Props for the react-colorful HexColorPicker inside the popover, e.g. a\nclassName or style to resize it, or onChangeEnd to hear when a drag ends.\nThe color and onChange stay wired to the field's value."
         }
       ],
       "acceptsHtmlAttributes": true
@@ -1384,6 +1390,11 @@
       ],
       "acceptsHtmlAttributes": true
     },
+    "DialogFooter": {
+      "props": [],
+      "acceptsHtmlAttributes": true,
+      "description": "The action row at the foot of the surface, separated by a hairline."
+    },
     "DialogDescription": {
       "props": [
         {
@@ -1959,7 +1970,7 @@
           "name": "sideOffset",
           "type": "number",
           "required": false,
-          "default": "POPOVER_OFFSET"
+          "default": "MENU_OFFSET"
         },
         {
           "name": "align",
@@ -2151,6 +2162,11 @@
         {
           "name": "name",
           "type": "string",
+          "required": false
+        },
+        {
+          "name": "__scopeForm",
+          "type": "Scope",
           "required": false
         }
       ],
@@ -2547,13 +2563,2708 @@
       ],
       "acceptsHtmlAttributes": true
     },
-    "Icon": {
+    "ArrowDownIcon": {
       "props": [
         {
-          "name": "icon",
-          "type": "\"link\" | \"circle\" | \"document\" | \"list\" | \"placeholder\" | \"arrow-down\" | \"arrow-left\" | \"arrow-right\" | \"arrow-up\" | \"at-symbol\" | \"check\" | \"check-circle\" | \"check-circle-fill\" | \"chevron-down\" | \"chevron-down-bold\" | \"chevron-down-mini-bold\" | \"chevron-left\" | \"chevron-left-bold\" | \"chevron-left-mini-bold\" | \"chevron-right\" | \"chevron-right-bold\" | \"chevron-right-mini-bold\" | \"chevron-up\" | \"chevron-up-bold\" | \"chevron-up-mini-bold\" | \"circle-fill\" | \"circle-grid\" | \"circle-xmark\" | \"circle-xmark-fill\" | \"crosshairs\" | \"document-fill\" | \"ellipsis-horizontal\" | \"ellipsis-vertical\" | \"folder\" | \"folder-fill\" | \"gear\" | \"gear-fill\" | \"grid-square\" | \"hash-symbol\" | \"hexagon\" | \"hexagon-dot\" | \"hexagon-fill\" | \"hexagon-fill-dot\" | \"info-circle\" | \"info-circle-fill\" | \"info-circle-xmark\" | \"lock-locked\" | \"lock-locked-fill\" | \"lock-unlocked\" | \"lock-unlocked-fill\" | \"magnifying-glass\" | \"minus\" | \"moon\" | \"pause\" | \"pause-fill\" | \"photo\" | \"photo-fill\" | \"play\" | \"play-fill\" | \"plus\" | \"rectangle\" | \"rectangle-fill\" | \"ruler-square\" | \"sidebar-left\" | \"sidebar-right\" | \"slider-horizontal\" | \"slider-vertical\" | \"square-grid\" | \"star\" | \"star-fill\" | \"star-four\" | \"star-four-fill\" | \"sun\" | \"triangle-exclamation\" | \"triangle-exclamation-fill\" | \"viewfinder\" | \"x-mark\" | \"xmark\"",
-          "required": true
+          "name": "className",
+          "type": "string",
+          "required": false
         },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ArrowLeftIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ArrowRightIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ArrowUpIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "AtSymbolIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "CheckIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "CheckCircleIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "CheckCircleFillIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ChevronDownIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ChevronDownBoldIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ChevronDownMiniBoldIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ChevronLeftIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ChevronLeftBoldIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ChevronLeftMiniBoldIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ChevronRightIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ChevronRightBoldIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ChevronRightMiniBoldIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ChevronUpIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ChevronUpBoldIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ChevronUpMiniBoldIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "CircleIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "CircleFillIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "CircleGridIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "CircleXmarkIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "CircleXmarkFillIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "CrosshairsIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "DocumentIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "DocumentFillIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "EllipsisHorizontalIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "EllipsisVerticalIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "FolderIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "FolderFillIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "GearIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "GearFillIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "GridSquareIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "HashSymbolIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "HexagonIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "HexagonDotIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "HexagonFillIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "HexagonFillDotIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "InfoCircleIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "InfoCircleFillIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "LinkIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ListIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "LockLockedIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "LockLockedFillIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "LockUnlockedIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "LockUnlockedFillIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "MagnifyingGlassIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "MinusIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "MoonIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "PauseIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "PauseFillIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "PhotoIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "PhotoFillIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "PlaceholderIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "PlayIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "PlayFillIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "PlusIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "RectangleIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "RectangleFillIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "RulerSquareIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "SidebarLeftIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "SidebarRightIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "SliderHorizontalIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "SliderVerticalIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "SquareGridIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "StarIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "StarFillIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "StarFourIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "StarFourFillIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "SunIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "TriangleExclamationIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "TriangleExclamationFillIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "ViewfinderIcon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    },
+    "XmarkIcon": {
+      "props": [
         {
           "name": "className",
           "type": "string",
@@ -2637,6 +5348,49 @@
       "acceptsHtmlAttributes": false
     }
   },
+  "icon/registry": {
+    "Icon": {
+      "props": [
+        {
+          "name": "className",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "style",
+          "type": "CSSProperties",
+          "required": false
+        },
+        {
+          "name": "size",
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "required": false,
+          "description": "Named size in px. Overridden by width/height."
+        },
+        {
+          "name": "width",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "height",
+          "type": "string | number",
+          "required": false
+        },
+        {
+          "name": "viewBox",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "icon",
+          "type": "\"link\" | \"circle\" | \"document\" | \"list\" | \"placeholder\" | \"arrow-down\" | \"arrow-left\" | \"arrow-right\" | \"arrow-up\" | \"at-symbol\" | \"check\" | \"check-circle\" | \"check-circle-fill\" | \"chevron-down\" | \"chevron-down-bold\" | \"chevron-down-mini-bold\" | \"chevron-left\" | \"chevron-left-bold\" | \"chevron-left-mini-bold\" | \"chevron-right\" | \"chevron-right-bold\" | \"chevron-right-mini-bold\" | \"chevron-up\" | \"chevron-up-bold\" | \"chevron-up-mini-bold\" | \"circle-fill\" | \"circle-grid\" | \"circle-xmark\" | \"circle-xmark-fill\" | \"crosshairs\" | \"document-fill\" | \"ellipsis-horizontal\" | \"ellipsis-vertical\" | \"folder\" | \"folder-fill\" | \"gear\" | \"gear-fill\" | \"grid-square\" | \"hash-symbol\" | \"hexagon\" | \"hexagon-dot\" | \"hexagon-fill\" | \"hexagon-fill-dot\" | \"info-circle\" | \"info-circle-fill\" | \"info-circle-xmark\" | \"lock-locked\" | \"lock-locked-fill\" | \"lock-unlocked\" | \"lock-unlocked-fill\" | \"magnifying-glass\" | \"minus\" | \"moon\" | \"pause\" | \"pause-fill\" | \"photo\" | \"photo-fill\" | \"play\" | \"play-fill\" | \"plus\" | \"rectangle\" | \"rectangle-fill\" | \"ruler-square\" | \"sidebar-left\" | \"sidebar-right\" | \"slider-horizontal\" | \"slider-vertical\" | \"square-grid\" | \"star\" | \"star-fill\" | \"star-four\" | \"star-four-fill\" | \"sun\" | \"triangle-exclamation\" | \"triangle-exclamation-fill\" | \"viewfinder\" | \"x-mark\" | \"xmark\"",
+          "required": true
+        }
+      ],
+      "acceptsHtmlAttributes": true
+    }
+  },
   "label": {
     "Label": {
       "props": [
@@ -2682,11 +5436,6 @@
           "required": true
         },
         {
-          "name": "className",
-          "type": "string",
-          "required": false
-        },
-        {
           "name": "width",
           "type": "\"auto\" | \"sm\" | \"md\" | \"lg\"",
           "required": false,
@@ -2701,11 +5450,6 @@
           "name": "children",
           "type": "ReactNode",
           "required": true
-        },
-        {
-          "name": "className",
-          "type": "string",
-          "required": false
         },
         {
           "name": "suffixSlot",
@@ -2725,19 +5469,8 @@
       "acceptsHtmlAttributes": true
     },
     "MenuGroup": {
-      "props": [
-        {
-          "name": "children",
-          "type": "ReactNode",
-          "required": false
-        },
-        {
-          "name": "className",
-          "type": "string",
-          "required": false
-        }
-      ],
-      "acceptsHtmlAttributes": false
+      "props": [],
+      "acceptsHtmlAttributes": true
     },
     "MenuLabel": {
       "props": [
@@ -3682,13 +6415,13 @@
     "PasswordInput": {
       "props": [
         {
-          "name": "width",
-          "type": "number | \"fill\" | \"hug\"",
+          "name": "variant",
+          "type": "\"toolbar\" | \"default\"",
           "required": false
         },
         {
-          "name": "variant",
-          "type": "\"toolbar\" | \"default\"",
+          "name": "width",
+          "type": "number | \"fill\" | \"hug\"",
           "required": false
         },
         {
@@ -4605,7 +7338,8 @@
         {
           "name": "orientation",
           "type": "\"horizontal\" | \"vertical\"",
-          "required": false
+          "required": false,
+          "default": "\"horizontal\""
         },
         {
           "name": "dir",
@@ -4615,12 +7349,14 @@
         {
           "name": "min",
           "type": "number",
-          "required": false
+          "required": false,
+          "default": "0"
         },
         {
           "name": "max",
           "type": "number",
-          "required": false
+          "required": false,
+          "default": "100"
         },
         {
           "name": "step",
@@ -4640,7 +7376,8 @@
         {
           "name": "defaultValue",
           "type": "number[]",
-          "required": false
+          "required": false,
+          "description": "The slider's default, one entry per thumb. Besides seeding an\nuncontrolled slider it is marked on the track with a 1px tick, and\ndouble-clicking a thumb snaps it back to it. Works with `value` too."
         },
         {
           "name": "onValueChange",
@@ -4655,7 +7392,8 @@
         {
           "name": "inverted",
           "type": "boolean",
-          "required": false
+          "required": false,
+          "default": "false"
         },
         {
           "name": "form",
@@ -4682,10 +7420,10 @@
       "props": [
         {
           "name": "size",
-          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"",
+          "type": "\"sm\" | \"md\" | \"lg\" | \"xl\"",
           "required": false,
           "default": "\"md\"",
-          "description": "Named size in px, on the same scale as Icon."
+          "description": "Named size: sm, md and lg match the Icon of the same name; xl is 32px."
         },
         {
           "name": "label",
@@ -5254,34 +7992,53 @@
         {
           "name": "theme",
           "type": "\"light\" | \"dark\" | \"system\"",
-          "required": true
+          "required": false,
+          "description": "Color mode. \"system\" (the default) leaves it to the OS preference."
         },
         {
           "name": "gray",
           "type": "\"gray\" | \"mauve\" | \"slate\" | \"sage\" | \"olive\" | \"sand\"",
           "required": false,
-          "default": "\"gray\"",
           "description": "Which gray scale --gray-* resolves to. Defaults to the neutral gray."
         },
         {
           "name": "fontScale",
           "type": "\"default\" | \"compact\"",
           "required": false,
-          "default": "\"default\"",
           "description": "Which font-size ramp --font-size-* resolves to."
-        },
-        {
-          "name": "setResolvedTheme",
-          "type": "(theme: \"light\" | \"dark\") => void",
-          "required": true
         },
         {
           "name": "children",
           "type": "ReactNode",
-          "required": true
+          "required": false
         }
       ],
-      "acceptsHtmlAttributes": false
+      "acceptsHtmlAttributes": false,
+      "description": "Theme the whole document: writes the theme attributes to <html>, with\ntransitions suppressed so the page recolors at once rather than each\ncomponent cross-fading at its own pace. Every prop is optional and defaults\nto \"no attribute\"; render it only when the app lets the user choose. Apps\nthat already manage <html data-theme> themselves (next-themes and the like)\ncan skip it — the CSS only needs the attribute. The current mode is read\nback with `useResolvedTheme`."
+    },
+    "ThemeScope": {
+      "props": [
+        {
+          "name": "theme",
+          "type": "\"light\" | \"dark\" | \"system\"",
+          "required": false,
+          "description": "Color mode. \"system\" (the default) leaves it to the OS preference."
+        },
+        {
+          "name": "gray",
+          "type": "\"gray\" | \"mauve\" | \"slate\" | \"sage\" | \"olive\" | \"sand\"",
+          "required": false,
+          "description": "Which gray scale --gray-* resolves to. Defaults to the neutral gray."
+        },
+        {
+          "name": "fontScale",
+          "type": "\"default\" | \"compact\"",
+          "required": false,
+          "description": "Which font-size ramp --font-size-* resolves to."
+        }
+      ],
+      "acceptsHtmlAttributes": true,
+      "description": "Theme a subtree: a <div> carrying the theme attributes, so its contents\nresolve every color token against their own color-scheme (a dark panel on\na light page, a preview of the other mode). Portaled content (menus,\ndialogs) renders under <body> and follows the document theme instead."
     }
   },
   "toast": {

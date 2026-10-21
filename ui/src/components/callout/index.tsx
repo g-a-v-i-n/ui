@@ -1,12 +1,18 @@
 import React from "react";
 import { Text } from "../text";
-import { Icon, type IconName } from "../icon";
+import type { IconProps } from "../icon";
+import { InfoCircleIcon } from "../icon/static/info-circle";
+import { CheckCircleIcon } from "../icon/static/check-circle";
+import { TriangleExclamationIcon } from "../icon/static/triangle-exclamation";
+import { CircleXmarkIcon } from "../icon/static/circle-xmark";
+import { XmarkIcon } from "../icon/static/xmark";
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
+import type { PropsOf } from "../../lib/props";
 
 type Variant = "info" | "success" | "warning" | "error";
 
-type CalloutProps = Omit<React.ComponentPropsWithoutRef<"div">, "title"> & {
+export type CalloutProps = Omit<PropsOf<"div">, "title"> & {
   variant?: Variant;
   /** Optional bold heading rendered above the body. */
   title?: React.ReactNode;
@@ -14,16 +20,15 @@ type CalloutProps = Omit<React.ComponentPropsWithoutRef<"div">, "title"> & {
   icon?: React.ReactNode;
   /** When provided, renders a trailing dismiss button. */
   onClose?: () => void;
-  ref?: React.Ref<HTMLDivElement>;
 };
 
 // Default leading icon per variant, from the icon set.
 const defaultIcon = {
-  info: "info-circle",
-  success: "check-circle",
-  warning: "triangle-exclamation",
-  error: "circle-xmark",
-} satisfies Record<Variant, IconName>;
+  info: InfoCircleIcon,
+  success: CheckCircleIcon,
+  warning: TriangleExclamationIcon,
+  error: CircleXmarkIcon,
+} satisfies Record<Variant, React.ComponentType<IconProps>>;
 
 export const Callout = ({
   variant = "info",
@@ -35,6 +40,7 @@ export const Callout = ({
   ref,
   ...props
 }: CalloutProps) => {
+  const DefaultIcon = defaultIcon[variant];
   return (
     <div
       {...props}
@@ -44,7 +50,7 @@ export const Callout = ({
       className={cx(styles.callout, className)}
     >
       <span className={styles.icon} aria-hidden="true">
-        {icon ?? <Icon icon={defaultIcon[variant]} size="lg" />}
+        {icon ?? <DefaultIcon size="lg" />}
       </span>
       <div className={styles.content}>
         {title && (
@@ -71,7 +77,7 @@ export const Callout = ({
           aria-label="Dismiss"
           onClick={onClose}
         >
-          <Icon icon="x-mark" size="lg" />
+          <XmarkIcon size="lg" />
         </button>
       )}
     </div>

@@ -1,7 +1,7 @@
 import { IconWrapper } from "../icon-wrapper";
 import type { IconProps } from "../types";
 
-export const SquareGrid = (props: IconProps) => {
+export const SquareGridIcon = (props: IconProps) => {
   return (
     <IconWrapper {...props}>
       <rect x="2" y="2" width="6" height="6" rx="2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

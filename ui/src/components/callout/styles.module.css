@@ -2,10 +2,10 @@
   --foreground: var(--fg-primary);
   --shadow: var(--shadow-hairline-1);
 
-  --info-icon-color: var(--blue-9);
-  --success-icon-color: var(--grass-9);
-  --warning-icon-color: var(--amber-9);
-  --error-icon-color: var(--tomato-9);
+  --info-icon-color: var(--accent);
+  --success-icon-color: var(--success);
+  --warning-icon-color: var(--warning);
+  --error-icon-color: var(--danger);
 }
 
 .callout {

@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./styles.module.css";
 import { wrapTextChildren } from "../text/wrap";
 import { cx } from "../../lib/cx";
+import type { PropsOf } from "../../lib/props";
 
 type Variant = "primary" | "secondary" | "destructive";
 type Width = "hug" | "fill" | "square";
@@ -16,7 +17,7 @@ export type ButtonProps = {
   prefixSlot?: React.ReactNode;
   suffixSlot?: React.ReactNode;
   children?: React.ReactNode;
-} & Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "prefix" | "width">;
+} & Omit<PropsOf<"button">, "prefix" | "width">;
 
 export const Button = ({
   variant = "primary",
@@ -29,7 +30,7 @@ export const Button = ({
   children,
   ref,
   ...props
-}: ButtonProps & { ref?: React.Ref<HTMLButtonElement> }) => {
+}: ButtonProps) => {
   return (
     <button
       ref={ref}

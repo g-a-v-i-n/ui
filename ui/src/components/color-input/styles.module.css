@@ -1,6 +1,6 @@
 .swatch {
   /* A subtle inset hairline so light swatches stay legible on light surfaces. */
-  --swatch-shadow: inset 0 0 0 1px var(--gray-a4);
+  --swatch-shadow: inset 0 0 0 1px var(--border);
 }
 
 .swatch {
@@ -12,6 +12,9 @@
   box-shadow: var(--swatch-shadow);
   cursor: pointer;
   flex: none;
+  /* A solid block crowds the text more than a glyph does: widen the slot gap.
+     The margin counts toward the measured prefix width. */
+  margin-right: var(--size-4);
 }
 
 .content {

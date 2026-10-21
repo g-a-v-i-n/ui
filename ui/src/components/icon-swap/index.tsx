@@ -18,7 +18,7 @@ export type IconSwapProps = {
 
 /* Cross-fades children when swapKey changes — render the icon for the
    current state inside, keyed by that state:
-   <IconSwap swapKey={open}>{open ? <Icon icon="chevron-up" /> : <Icon icon="chevron-down" />}</IconSwap> */
+   <IconSwap swapKey={open}>{open ? <ChevronUpIcon /> : <ChevronDownIcon />}</IconSwap> */
 export const IconSwap = ({
   swapKey,
   children,

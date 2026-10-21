@@ -1,6 +1,6 @@
 .root {
   --background: var(--bg-tertiary);
-  --rim-color: var(--gray-a2);
+  --rim-color: var(--border-faint);
 
   --fallback-color: var(--fg-secondary);
 }

@@ -1,5 +1,6 @@
 import React from "react";
-import { Icon } from "../icon";
+import { CheckIcon } from "../icon/static/check";
+import { ChevronRightMiniBoldIcon } from "../icon/static/chevron-right-mini-bold";
 import { MenuDivider, MenuGroup, MenuItem, MenuLabel } from "./index";
 import styles from "./styles.module.css";
 
@@ -67,7 +68,7 @@ export function createMenuParts<
       prefixSlot={
         <>
           <primitive.ItemIndicator asChild>
-            <Icon icon="check" size="lg" data-check />
+            <CheckIcon size="lg" data-check />
           </primitive.ItemIndicator>
           {slots.prefixSlot ?? null}
         </>
@@ -129,7 +130,7 @@ export function createMenuParts<
       <primitive.SubTrigger {...rest} asChild>
         <MenuItem
           suffixSlot={
-            slots.suffixSlot ?? <Icon icon="chevron-right-mini-bold" size="sm" />
+            slots.suffixSlot ?? <ChevronRightMiniBoldIcon size="sm" />
           }
           prefixSlot={slots.prefixSlot}
         >

@@ -1,13 +1,15 @@
 .root {
-  --track-background: var(--gray-3);
+  --track-background: var(--bg-track);
 
-  --range-background: var(--blue-9);
-  --range-background-disabled: var(--gray-8);
+  --range-background: var(--accent);
+  --range-background-disabled: var(--fg-disabled);
 
   --thumb-background: #fff;
-  --thumb-shadow:
-    0 0 0 1px var(--gray-a5),
-    0 var(--size-1) var(--size-2) var(--gray-a5);
+  --thumb-shadow: var(--shadow-thumb-ring), var(--shadow-thumb);
+  /* Read by index.tsx to line ticks up with the thumb center. */
+  --thumb-size: var(--size-16);
+
+  --tick-background: var(--fg-tertiary);
 }
 
 .root {
@@ -59,10 +61,43 @@
   }
 }
 
+/* Default-value marker: a 1px line crossing the track, centered on where the
+   thumb lands at that value (index.tsx sets the start-edge offset inline). */
+.tick {
+  position: absolute;
+  pointer-events: none;
+  background: var(--tick-background);
+
+  &[data-orientation="horizontal"] {
+    top: 50%;
+    width: 1px;
+    height: var(--size-8);
+  }
+  &[data-orientation="vertical"] {
+    left: 50%;
+    width: var(--size-8);
+    height: 1px;
+  }
+
+  /* Center the line on the offset edge. */
+  &[data-edge="left"] {
+    translate: -50% -50%;
+  }
+  &[data-edge="right"] {
+    translate: 50% -50%;
+  }
+  &[data-edge="bottom"] {
+    translate: -50% 50%;
+  }
+  &[data-edge="top"] {
+    translate: -50% -50%;
+  }
+}
+
 .thumb {
   display: block;
-  width: var(--size-16);
-  height: var(--size-16);
+  width: var(--thumb-size);
+  height: var(--thumb-size);
   background: var(--thumb-background);
   border-radius: 50%;
   box-shadow: var(--thumb-shadow);
@@ -71,7 +106,7 @@
 
   &:focus-visible {
     outline: none;
-    box-shadow: var(--focus-shadow), 0 var(--size-1) var(--size-2) var(--gray-a5);
+    box-shadow: var(--focus-shadow), var(--shadow-thumb);
   }
 
   &[data-disabled] {

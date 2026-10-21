@@ -1,9 +1,11 @@
 import React from "react";
-import { Icon } from "../icon";
+import { ChevronLeftIcon } from "../icon/static/chevron-left";
+import { ChevronRightIcon } from "../icon/static/chevron-right";
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
+import type { PropsOf } from "../../lib/props";
 
-type CarouselProps = Omit<React.ComponentPropsWithoutRef<"div">, "children"> & {
+export type CarouselProps = Omit<PropsOf<"div">, "children"> & {
   /** Each direct child is one slide. */
   children: React.ReactNode;
   /** Loop seamlessly past the last/first slide. */
@@ -13,7 +15,6 @@ type CarouselProps = Omit<React.ComponentPropsWithoutRef<"div">, "children"> & {
   /** Show prev/next arrow buttons. */
   arrows?: boolean;
   className?: string;
-  ref?: React.Ref<HTMLDivElement>;
 };
 
 // Swipe must travel this fraction of the viewport width to advance a slide.
@@ -155,7 +156,7 @@ export const Carousel = ({
               onClick={prev}
               disabled={atStart}
             >
-              <Icon icon="chevron-left" size="sm" />
+              <ChevronLeftIcon size="sm" />
             </button>
             <button
               type="button"
@@ -164,7 +165,7 @@ export const Carousel = ({
               onClick={next}
               disabled={atEnd}
             >
-              <Icon icon="chevron-right" size="sm" />
+              <ChevronRightIcon size="sm" />
             </button>
           </>
         )}

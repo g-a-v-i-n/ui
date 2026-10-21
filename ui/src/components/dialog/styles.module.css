@@ -27,8 +27,8 @@
   transform: translate(-50%, -50%);
   z-index: var(--layer-dialog);
 
-  padding: 20px;
-
+  /* No padding here: title, description and footer each pad themselves, so
+     the footer's border can run edge to edge. */
   max-width: calc(100vw - 16px);
   max-height: 85vh;
 
@@ -49,18 +49,36 @@
   }
 }
 
-/* The stack of title, description and actions. It sits in a plain wrapper
+/* The stack of title, description and footer. It sits in a plain wrapper
    that useAnimatedSize tweens between content sizes. */
 .inner {
   display: flex;
   flex-direction: column;
   gap: 12px;
+
+  /* Whatever ends the stack closes the 20px inset, unless it's the footer,
+     which carries its own. */
+  > :last-child:not(.footer) {
+    padding-bottom: 20px;
+  }
 }
 
 .title {
   margin: 0;
+  padding: 20px 20px 0;
 }
 
 .description {
   margin: 0;
+  padding: 0 20px;
+}
+
+/* Action row: a hairline above, 20px clear of the content (12px gap + 8px). */
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+  padding: 16px 16px 16px 20px;
+  border-top: 1px solid var(--border-subtle);
 }

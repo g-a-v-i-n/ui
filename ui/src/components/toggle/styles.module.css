@@ -1,10 +1,10 @@
 .toggle {
   --foreground: var(--fg-secondary);
 
-  --background-hover: var(--gray-a3);
+  --background-hover: var(--bg-hover);
   --foreground-hover: var(--fg-primary);
 
-  --background-checked: var(--gray-a4);
+  --background-checked: var(--bg-selected);
   --foreground-checked: var(--fg-primary);
 }
 
@@ -17,7 +17,7 @@
   padding: 0 var(--size-8);
 
   border: none;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   corner-shape: var(--corner-shape);
   background: transparent;
   color: var(--foreground);

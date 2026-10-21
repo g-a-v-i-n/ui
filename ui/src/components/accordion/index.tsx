@@ -1,19 +1,18 @@
-import React from "react";
 import { Accordion as AccordionPrimitive } from "radix-ui";
 import { Text } from "../text";
-import { Icon } from "../icon";
+import { ChevronDownIcon } from "../icon/static/chevron-down";
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
 import { styled } from "../../lib/styled";
+import type { PropsOf } from "../../lib/props";
+
+export type AccordionRootProps = PropsOf<typeof AccordionPrimitive.Root>;
 
 export const AccordionRoot = ({
   className,
   ref,
   ...props
-}: (
-  | AccordionPrimitive.AccordionSingleProps
-  | AccordionPrimitive.AccordionMultipleProps
-) & { ref?: React.Ref<HTMLDivElement> }) => {
+}: AccordionRootProps) => {
   return (
     <AccordionPrimitive.Root
       {...props}
@@ -24,13 +23,16 @@ export const AccordionRoot = ({
 };
 
 export const AccordionItem = styled(AccordionPrimitive.Item, styles.item, "AccordionItem");
+export type AccordionItemProps = PropsOf<typeof AccordionItem>;
+
+export type AccordionTriggerProps = PropsOf<typeof AccordionPrimitive.Trigger>;
 
 export const AccordionTrigger = ({
   children,
   className,
   ref,
   ...props
-}: AccordionPrimitive.AccordionTriggerProps & { ref?: React.Ref<HTMLButtonElement> }) => {
+}: AccordionTriggerProps) => {
   return (
     <AccordionPrimitive.Header className={styles.header}>
       <AccordionPrimitive.Trigger
@@ -42,19 +44,21 @@ export const AccordionTrigger = ({
           {children}
         </Text>
         <span className={styles.chevron} aria-hidden="true">
-          <Icon icon="chevron-down" size="sm" />
+          <ChevronDownIcon size="sm" />
         </span>
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
   );
 };
 
+export type AccordionContentProps = PropsOf<typeof AccordionPrimitive.Content>;
+
 export const AccordionContent = ({
   children,
   className,
   ref,
   ...props
-}: AccordionPrimitive.AccordionContentProps & { ref?: React.Ref<HTMLDivElement> }) => {
+}: AccordionContentProps) => {
   return (
     <AccordionPrimitive.Content
       {...props}

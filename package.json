@@ -10,11 +10,12 @@
     "agentation": "agentation-mcp server",
     "dev": "node scripts/dev.ts",
     "build": "pnpm --filter ui run build",
-    "build:all": "pnpm generate-icons && pnpm generate-custom-colors && pnpm --filter ui run build && pnpm --filter preview run build",
+    "build:all": "pnpm generate-color-scales && pnpm generate-custom-colors && pnpm --filter ui run build && pnpm --filter preview run build",
     "typecheck": "pnpm -r --no-bail run typecheck && pnpm typecheck:scripts",
     "typecheck:scripts": "tsc -p tsconfig.scripts.json",
     "clean": "pnpm -r --no-bail run clean",
     "generate-custom-colors": "node scripts/vendor/custom-color/index.ts",
+    "generate-color-scales": "node scripts/generate-color-scales.ts",
     "generate-icons": "node scripts/generate-icons.ts",
     "generate-icons:index": "node scripts/generate-icons.ts --index-only",
     "generate-docs-props": "node scripts/generate-docs-props.ts"

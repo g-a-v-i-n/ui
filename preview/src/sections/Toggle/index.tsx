@@ -1,4 +1,4 @@
-import { Icon } from 'ui/components/icon';
+import { Icon } from 'ui/components/icon/registry';
 import { Toggle } from 'ui/components/toggle';
 import { Section } from '../../Section';
 

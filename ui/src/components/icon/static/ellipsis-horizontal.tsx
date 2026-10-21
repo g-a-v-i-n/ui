@@ -1,7 +1,7 @@
 import { IconWrapper } from "../icon-wrapper";
 import type { IconProps } from "../types";
 
-export const EllipsisHorizontal = (props: IconProps) => {
+export const EllipsisHorizontalIcon = (props: IconProps) => {
   return (
     <IconWrapper {...props}>
       <circle cx="9" cy="9" r="1.5" fill="currentColor" />

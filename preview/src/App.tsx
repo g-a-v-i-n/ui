@@ -1,6 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { Navigate, Route, Routes, useLocation } from 'react-router';
-import { Theme, type FontScale, type GrayTone } from 'ui/components/theme';
+import {
+  FONT_SCALES,
+  GRAY_TONES,
+  THEME_MODES,
+  Theme,
+  type FontScale,
+  type GrayTone,
+  type ThemeMode,
+} from 'ui/components/theme';
 import { TooltipProvider } from 'ui/components/tooltip';
 import { ToastProvider, ToastViewport } from 'ui/components/toast';
 
@@ -11,11 +19,25 @@ import { Overview } from './docs/Overview';
 import { pages } from './docs/registry';
 import styles from './docs/docs.module.css';
 
+/* The three theme choices persist in localStorage under the keys the inline
+   script in index.html reads, so a reload paints the saved theme before React
+   runs (see themeInitScript in ui/components/theme). */
+function usePersisted<T extends string>(key: string, values: readonly T[], fallback: T) {
+  const [value, setValue] = useState<T>(() => {
+    const saved = localStorage.getItem(key);
+    return values.find((v) => v === saved) ?? fallback;
+  });
+  useEffect(() => {
+    if (value === fallback) localStorage.removeItem(key);
+    else localStorage.setItem(key, value);
+  }, [key, value, fallback]);
+  return [value, setValue] as const;
+}
+
 function App() {
-  const [theme, setTheme] = useState<'light' | 'dark' | 'system'>('system');
-  const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>('light');
-  const [gray, setGray] = useState<GrayTone>('gray');
-  const [fontScale, setFontScale] = useState<FontScale>('default');
+  const [theme, setTheme] = usePersisted<ThemeMode>('theme', THEME_MODES, 'system');
+  const [gray, setGray] = usePersisted<GrayTone>('gray', GRAY_TONES, 'gray');
+  const [fontScale, setFontScale] = usePersisted<FontScale>('font-scale', FONT_SCALES, 'default');
 
   // The main column scrolls, not the window, so reset it on navigation.
   const mainRef = useRef<HTMLElement>(null);
@@ -25,7 +47,7 @@ function App() {
   }, [pathname]);
 
   return (
-    <Theme theme={theme} gray={gray} fontScale={fontScale} setResolvedTheme={setResolvedTheme}>
+    <Theme theme={theme} gray={gray} fontScale={fontScale}>
       <TooltipProvider delayDuration={200}>
         <ToastProvider swipeDirection="right">
           <TestDropdownMenuProvider>
@@ -33,7 +55,6 @@ function App() {
               <DocsSidebar
                 theme={theme}
                 onThemeChange={setTheme}
-                resolvedTheme={resolvedTheme}
                 gray={gray}
                 onGrayChange={setGray}
                 fontScale={fontScale}

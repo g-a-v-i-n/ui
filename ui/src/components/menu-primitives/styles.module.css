@@ -9,10 +9,10 @@
 .title,
 .listItem,
 .arrow {
-  /* The arrow sits against the container card: same surface, and its hairline
-     edge matches the card's --shadow-elevated rim in both modes. */
+  /* The arrow sits against a floating surface: same fill, and its hairline
+     edge takes the surface's own rim (--surface-rim, recipes.module.css). */
   --arrow-background: var(--bg-elevated);
-  --arrow-edge-color: var(--border-elevated);
+  --arrow-edge-color: var(--surface-rim, var(--border-elevated));
 
   --label-color: var(--fg-tertiary);
 
@@ -21,9 +21,9 @@
   --item-foreground-highlighted: var(--fg-primary);
   --item-background-active: var(--highlight-active);
   --item-icon-color: var(--fg-secondary);
-  --item-check-color: var(--blue-9);
+  --item-check-color: var(--accent);
 
-  --divider-background: var(--gray-4);
+  --divider-shadow: var(--shadow-rule);
 
   --list-background: var(--bg-tertiary);
   --title-color: var(--fg-primary);
@@ -36,6 +36,8 @@
    shadow (--shadow-elevated), 1px-gap stack of items with 4px outer padding. */
 .container {
   composes: floatingSurface popperAnimation from "../../css/recipes.module.css";
+
+  --surface-rim: var(--border-elevated-strong);
 
   display: flex;
   flex-direction: column;
@@ -67,15 +69,17 @@
   color: var(--label-color);
 }
 
-/* Menu item — 6px × 8px padding, 8px radius, regular 12px text on a 1.25
-   leading (content-sized, no fixed height). Highlight is the macOS-style
+/* Menu item — chrome control height, 8px inline padding, 8px radius, regular
+   text on a 1.25 leading. The height is pinned so items with an 18px icon or
+   sub-trigger chevron match text-only ones. Highlight is the macOS-style
    solid blue with white text. */
 .item {
   position: relative;
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 6px 8px;
+  min-height: var(--control-height-chrome);
+  padding: 0 8px;
   gap: 6px;
   border-radius: var(--radius-sm);
   corner-shape: var(--corner-shape);
@@ -170,7 +174,8 @@
   hr {
     width: 100%;
     height: var(--size-1);
-    background-color: var(--divider-background);
+    box-shadow: var(--divider-shadow);
+    background: transparent;
     border: none;
   }
 }

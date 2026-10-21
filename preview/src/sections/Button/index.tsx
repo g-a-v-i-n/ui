@@ -1,5 +1,5 @@
 import { Button } from 'ui/components/button';
-import { Icon } from 'ui/components/icon';
+import { Icon } from 'ui/components/icon/registry';
 import { Section } from '../../Section';
 import styles from './styles.module.css';
 

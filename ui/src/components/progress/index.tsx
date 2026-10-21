@@ -1,18 +1,19 @@
-import React from "react";
 import { Progress as ProgressPrimitive } from "radix-ui";
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
+import type { PropsOf } from "../../lib/props";
+
+export type ProgressProps = PropsOf<typeof ProgressPrimitive.Root> & {
+  /** Continuously sweep a left-to-right gradient across the fill. */
+  animated?: boolean;
+};
 
 export const Progress = ({
   className,
   animated = false,
   ref,
   ...props
-}: ProgressPrimitive.ProgressProps & {
-  /** Continuously sweep a left-to-right gradient across the fill. */
-  animated?: boolean;
-  ref?: React.Ref<HTMLDivElement>;
-}) => {
+}: ProgressProps) => {
   const max = props.max != null && props.max > 0 ? props.max : 100;
   // No value means indeterminate: leave the indicator untransformed.
   const pct =

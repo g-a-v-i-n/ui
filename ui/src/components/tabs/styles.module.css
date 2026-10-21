@@ -1,10 +1,10 @@
 .root {
-  --list-shadow: inset 0 -1px 0 var(--gray-a3);
+  --list-shadow: inset 0 -1px 0 var(--border-subtle);
 
-  --trigger-color: var(--gray-9);
-  --trigger-color-hover: var(--gray-11);
-  --trigger-color-selected: var(--gray-12);
-  --trigger-background-hover: var(--gray-a3);
+  --trigger-color: var(--fg-quaternary);
+  --trigger-color-hover: var(--fg-secondary);
+  --trigger-color-selected: var(--fg-primary);
+  --trigger-background-hover: var(--bg-hover);
 
   --underline-background: var(--fg-primary);
 }

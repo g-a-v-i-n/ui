@@ -4,9 +4,9 @@
 
   /* Named to match select's item vars — .option composes select's .item. */
   --item-foreground: var(--fg-primary);
-  --item-background-highlighted: var(--gray-a3);
+  --item-background-highlighted: var(--bg-hover);
 
-  --indicator-color: var(--blue-9);
+  --indicator-color: var(--accent);
 }
 
 .anchor {

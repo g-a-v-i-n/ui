@@ -16,17 +16,22 @@ import {
 } from 'ui/components/sidebar';
 import { Tag } from 'ui/components/tag';
 import { Text } from 'ui/components/text';
-import { FONT_SCALES, GRAY_TONES, type FontScale, type GrayTone } from 'ui/components/theme';
+import {
+  FONT_SCALES,
+  GRAY_TONES,
+  THEME_MODES,
+  useResolvedTheme,
+  type FontScale,
+  type GrayTone,
+  type ThemeMode,
+} from 'ui/components/theme';
 import uiPackage from 'ui/package.json';
 import { groups, type Page } from './registry';
 import { useLinkProps } from './navigation';
 import styles from './docs.module.css';
 
-type ThemeChoice = 'light' | 'dark' | 'system';
-const THEMES: ThemeChoice[] = ['light', 'dark', 'system'];
-
-function isTheme(value: string): value is ThemeChoice {
-  return (THEMES as string[]).includes(value);
+function isTheme(value: string): value is ThemeMode {
+  return (THEME_MODES as readonly string[]).includes(value);
 }
 function isGrayTone(value: string): value is GrayTone {
   return (GRAY_TONES as readonly string[]).includes(value);
@@ -56,20 +61,19 @@ function HomeItem() {
 export function DocsSidebar({
   theme,
   onThemeChange,
-  resolvedTheme,
   gray,
   onGrayChange,
   fontScale,
   onFontScaleChange,
 }: {
-  theme: ThemeChoice;
-  onThemeChange: (theme: ThemeChoice) => void;
-  resolvedTheme: 'light' | 'dark';
+  theme: ThemeMode;
+  onThemeChange: (theme: ThemeMode) => void;
   gray: GrayTone;
   onGrayChange: (gray: GrayTone) => void;
   fontScale: FontScale;
   onFontScaleChange: (fontScale: FontScale) => void;
 }) {
+  const resolvedTheme = useResolvedTheme();
   return (
     <Sidebar>
       <SidebarHeader>
@@ -106,7 +110,7 @@ export function DocsSidebar({
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                {THEMES.map((choice) => (
+                {THEME_MODES.map((choice) => (
                   <SelectItem key={choice} value={choice}>
                     {choice === 'system' ? `system (${resolvedTheme})` : choice}
                   </SelectItem>

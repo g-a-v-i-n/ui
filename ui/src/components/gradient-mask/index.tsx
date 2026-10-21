@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
+import type { PropsOf } from "../../lib/props";
 
 export type GradientMaskProps = {
   direction?: "top" | "bottom" | "left" | "right";
@@ -10,7 +11,7 @@ export type GradientMaskProps = {
   blur?: number;
   /** The color faded to — should match the scroll container's background. */
   color?: string;
-} & React.HTMLAttributes<HTMLDivElement>;
+} & PropsOf<"div">;
 
 /* Fades out the edge of a scroll container. Position the nearest ancestor
    (the non-scrolling wrapper, not the scroller itself) relative. The fade is
@@ -25,7 +26,7 @@ export const GradientMask = ({
   style,
   ref,
   ...props
-}: GradientMaskProps & { ref?: React.Ref<HTMLDivElement> }) => {
+}: GradientMaskProps) => {
   return (
     <div
       {...props}

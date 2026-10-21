@@ -9,13 +9,13 @@ export function CardSection() {
       <Card variant="primary" className={styles.card}>
         <Text size="sm" weight="medium">Primary</Text>
         <Text size="sm" color="secondary">
-          bg-primary with a card shadow.
+          White, or a faint white wash in dark, with a card shadow.
         </Text>
       </Card>
       <Card variant="secondary" className={styles.card}>
         <Text size="sm" weight="medium">Secondary</Text>
         <Text size="sm" color="secondary">
-          Flat, bg-secondary, no shadow.
+          Flat gray-a2 wash, no shadow.
         </Text>
       </Card>
     </Section>

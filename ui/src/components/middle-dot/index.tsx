@@ -1,7 +1,9 @@
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
 
-export function MiddleDot({ className }: { className?: string }) {
+export type MiddleDotProps = { className?: string };
+
+export function MiddleDot({ className }: MiddleDotProps) {
   return (
     <svg
       viewBox="0 0 24 24"

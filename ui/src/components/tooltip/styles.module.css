@@ -1,15 +1,16 @@
 .content {
   --foreground: var(--fg-primary);
 
-  --code-background: var(--gray-3);
+  --code-background: var(--bg-tertiary);
 
-  --link-color: var(--blue-10);
+  --link-color: var(--accent-strong);
 }
 
 .content {
   composes: floatingSurface from "../../css/recipes.module.css";
 
   --surface-radius: var(--radius-sm);
+  --surface-rim: var(--border-elevated-strong);
 
   z-index: var(--layer-tooltip);
   pointer-events: all;

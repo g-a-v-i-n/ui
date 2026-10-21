@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import styles from "./styles.module.css";
 import { wrapTextChildren } from "../text/wrap";
 import { cx } from "../../lib/cx";
+import type { PropsOf } from "../../lib/props";
 
 /* The active item renders the highlight pill as a motion element with an
    instance-scoped layoutId, so it glides between items on change. */
@@ -18,11 +19,15 @@ const transition = {
   ease: [0.25, 0.46, 0.45, 0.94] as const,
 };
 
-type ToggleGroupProps = {
+export type ToggleGroupProps = {
   highlightClassName?: string;
   /** Fully rounded (pill) shape for the group, items, and highlight. */
   round?: boolean;
-} & ToggleGroupPrimitive.ToggleGroupSingleProps;
+} & Extract<
+  /* Root's props are a single | multiple union; this group is single-select. */
+  PropsOf<typeof ToggleGroupPrimitive.Root>,
+  { type: "single" }
+>;
 
 export const ToggleGroup = ({
   className,
@@ -34,7 +39,7 @@ export const ToggleGroup = ({
   children,
   ref,
   ...props
-}: ToggleGroupProps & { ref?: React.Ref<HTMLDivElement> }) => {
+}: ToggleGroupProps) => {
   const [internalValue, setInternalValue] = React.useState(defaultValue);
   const baseId = React.useId();
 
@@ -63,13 +68,15 @@ export const ToggleGroup = ({
   );
 };
 
+export type ToggleGroupItemProps = PropsOf<typeof ToggleGroupPrimitive.Item>;
+
 export const ToggleGroupItem = ({
   className,
   children,
   value,
   ref,
   ...props
-}: ToggleGroupPrimitive.ToggleGroupItemProps & { ref?: React.Ref<HTMLButtonElement> }) => {
+}: ToggleGroupItemProps) => {
   const ctx = React.useContext(ToggleGroupContext);
   const isActive = value !== "" && ctx.value === value;
 

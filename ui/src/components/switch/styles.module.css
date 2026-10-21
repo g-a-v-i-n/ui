@@ -1,10 +1,10 @@
 .track {
-  --track-background: var(--gray-4);
-  --track-background-checked: var(--blue-9);
+  --track-background: var(--bg-quaternary);
+  --track-background-checked: var(--accent);
   --track-gradient-checked: var(--gradient-accent);
 
   --thumb-background: #fff;
-  --thumb-shadow: 0 var(--size-1) var(--size-2) var(--gray-a5);
+  --thumb-shadow: var(--shadow-thumb);
 }
 
 .track {

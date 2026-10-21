@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Icon } from 'ui/components/icon';
+import { Icon } from 'ui/components/icon/registry';
 import { PasswordInput } from 'ui/components/password-input';
 import { Section } from '../../Section';
 import styles from './styles.module.css';

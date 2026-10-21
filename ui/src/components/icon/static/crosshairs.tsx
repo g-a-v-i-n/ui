@@ -1,7 +1,7 @@
 import { IconWrapper } from "../icon-wrapper";
 import type { IconProps } from "../types";
 
-export const Crosshairs = (props: IconProps) => {
+export const CrosshairsIcon = (props: IconProps) => {
   return (
     <IconWrapper {...props}>
       <path d="M9 2V6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

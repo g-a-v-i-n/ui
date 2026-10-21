@@ -1,52 +1,51 @@
 .tag {
-  --default-background: var(--gray-12);
-  --default-foreground: var(--gray-0);
+  --default-background: var(--bg-inverse);
+  --default-foreground: var(--fg-inverse);
 
-  --success-background: var(--grass-10);
+  --success-background: var(--success-strong);
   --success-foreground: var(--bg-base);
 
-  --warning-background: var(--amber-10);
+  --warning-background: var(--warning-strong);
   --warning-foreground: var(--bg-base);
 
-  --error-background: var(--tomato-10);
+  --error-background: var(--danger-strong);
   --error-foreground: var(--bg-base);
 
-  --blue-background: var(--blue-10);
+  --blue-background: var(--accent-strong);
   --blue-foreground: var(--bg-base);
 
   /* Secondary: softer tonal fills sharing the Callout background palette. */
-  --secondary-default-background: var(--gray-a3);
-  --secondary-default-foreground: var(--gray-12);
-  --secondary-success-background: var(--grass-a3);
-  --secondary-success-foreground: var(--grass-11);
-  --secondary-warning-background: var(--amber-a3);
-  --secondary-warning-foreground: var(--amber-11);
-  --secondary-error-background: var(--tomato-a3);
-  --secondary-error-foreground: var(--tomato-11);
-  --secondary-blue-background: var(--blue-a3);
-  --secondary-blue-foreground: var(--blue-11);
+  --secondary-default-background: var(--bg-tint);
+  --secondary-default-foreground: var(--fg-primary);
+  --secondary-success-background: var(--success-tint);
+  --secondary-success-foreground: var(--success-text);
+  --secondary-warning-background: var(--warning-tint);
+  --secondary-warning-foreground: var(--warning-text);
+  --secondary-error-background: var(--danger-tint);
+  --secondary-error-foreground: var(--danger-text);
+  --secondary-blue-background: var(--accent-tint);
+  --secondary-blue-foreground: var(--accent-text);
 
-  /* Outline: the secondary button's hairline ring, no fill. The default ring
-     color comes from the shadow token's own fallback; colored variants tint it
-     through the --hairline-color slot (as the destructive button does). */
-  --outline-shadow: var(--shadow-hairline-1);
-  --outline-default-foreground: var(--gray-11);
-  --outline-success-foreground: var(--grass-11);
-  --outline-success-hairline-color: var(--grass-a4);
-  --outline-warning-foreground: var(--amber-11);
-  --outline-warning-hairline-color: var(--amber-a4);
-  --outline-error-foreground: var(--tomato-11);
-  --outline-error-hairline-color: var(--tomato-a4);
-  --outline-blue-foreground: var(--blue-11);
-  --outline-blue-hairline-color: var(--blue-a4);
+  /* Outline: the secondary button's hairline ring, no fill — the hairline
+     shape from shadow.css around a per-variant border color. */
+  --outline-hairline-color: var(--border);
+  --outline-default-foreground: var(--fg-secondary);
+  --outline-success-foreground: var(--success-text);
+  --outline-success-hairline-color: var(--success-border);
+  --outline-warning-foreground: var(--warning-text);
+  --outline-warning-hairline-color: var(--warning-border);
+  --outline-error-foreground: var(--danger-text);
+  --outline-error-hairline-color: var(--danger-border);
+  --outline-blue-foreground: var(--accent-text);
+  --outline-blue-hairline-color: var(--accent-border);
 }
 
 .tag {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: var(--size-4) var(--size-8);
-  border-radius: var(--radius-sm);
+  padding: var(--size-2) var(--size-6);
+  border-radius: var(--radius-xs);
   corner-shape: var(--corner-shape);
   font-variant-numeric: tabular-nums;
 
@@ -105,26 +104,26 @@
 
   &[data-outline="true"] {
     background-color: transparent;
-    box-shadow: var(--outline-shadow);
+    box-shadow: var(--hairline-shape) var(--outline-hairline-color);
 
     &[data-variant="default"] {
       color: var(--outline-default-foreground);
     }
     &[data-variant="success"] {
       color: var(--outline-success-foreground);
-      --hairline-color: var(--outline-success-hairline-color);
+      --outline-hairline-color: var(--outline-success-hairline-color);
     }
     &[data-variant="warning"] {
       color: var(--outline-warning-foreground);
-      --hairline-color: var(--outline-warning-hairline-color);
+      --outline-hairline-color: var(--outline-warning-hairline-color);
     }
     &[data-variant="error"] {
       color: var(--outline-error-foreground);
-      --hairline-color: var(--outline-error-hairline-color);
+      --outline-hairline-color: var(--outline-error-hairline-color);
     }
     &[data-variant="blue"] {
       color: var(--outline-blue-foreground);
-      --hairline-color: var(--outline-blue-hairline-color);
+      --outline-hairline-color: var(--outline-blue-hairline-color);
     }
   }
 }

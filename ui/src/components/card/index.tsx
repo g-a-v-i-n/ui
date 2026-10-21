@@ -1,13 +1,12 @@
-import React from "react";
 import styles from "./styles.module.css";
 import { cx } from "../../lib/cx";
+import type { PropsOf } from "../../lib/props";
 
 type Variant = "primary" | "secondary";
 
-type CardProps = React.ComponentPropsWithoutRef<"div"> & {
-  /** "primary" is raised (bg-primary + card shadow); "secondary" is flat (bg-secondary). */
+export type CardProps = PropsOf<"div"> & {
+  /** "primary" is raised (white / faint white wash + card shadow); "secondary" is flat (gray-a2 wash). */
   variant?: Variant;
-  ref?: React.Ref<HTMLDivElement>;
 };
 
 export const Card = ({

@@ -1,7 +1,7 @@
 import { IconWrapper } from "../icon-wrapper";
 import type { IconProps } from "../types";
 
-export const SliderHorizontal = (props: IconProps) => {
+export const SliderHorizontalIcon = (props: IconProps) => {
   return (
     <IconWrapper {...props}>
       <path d="M7.5 13L13 13M5 5L10.5 5" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />

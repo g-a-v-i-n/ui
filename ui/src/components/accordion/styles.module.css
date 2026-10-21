@@ -1,5 +1,5 @@
 .root {
-  --item-border-color: var(--gray-a3);
+  --item-border-color: var(--border-subtle);
 
   --chevron-color: var(--fg-tertiary);
   --chevron-color-hover: var(--fg-secondary);

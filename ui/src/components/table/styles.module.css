@@ -1,9 +1,12 @@
 .table {
   --foreground: var(--fg-primary);
 
-  --row-border-color: var(--gray-a3);
-  --row-background-hover: var(--gray-a2);
-  --row-background-selected: var(--gray-a3);
+  --row-border-color: var(--border-subtle);
+  --row-background-hover: var(--bg-hover-subtle);
+  --row-background-selected: var(--bg-selected);
+  /* The caps either side of a highlighted row (see .cell below). */
+  --row-cap-width: var(--size-8);
+  --row-cap-radius: var(--radius-sm);
 
   --head-color: var(--fg-tertiary);
   --footer-color: var(--fg-secondary);
@@ -22,10 +25,15 @@
 .row {
   border-bottom: 1px solid var(--row-border-color);
 
+  /* Follows the row fill through its states; the first and last cells read
+     it to paint the caps. */
+  --row-cap-background: transparent;
+
   transition: background-color var(--duration-120) var(--ease-in-out-quad);
 
   &[data-selected] {
     background-color: var(--row-background-selected);
+    --row-cap-background: var(--row-background-selected);
   }
 }
 
@@ -39,11 +47,13 @@
   /* TableRow's `hoverable={false}` opts a non-interactive row out. */
   &:not([data-hoverable="false"]):hover {
     background-color: var(--row-background-hover);
+    --row-cap-background: var(--row-background-hover);
   }
 
   /* Outranks the hover rule above so a selected row keeps its fill. */
   &[data-selected]:hover {
     background-color: var(--row-background-selected);
+    --row-cap-background: var(--row-background-selected);
   }
 
   &:last-child {
@@ -73,6 +83,36 @@ th.head,
   &:last-child {
     padding-right: 0;
   }
+}
+
+/* Caps: the table's edges are flush with the content, so a hovered or
+   selected body row extends its fill --row-cap-width past each edge with
+   rounded outer corners. Drawn on the end cells (a <tr> can't reliably host
+   positioned pseudo-elements) in the row's own highlight color. */
+.body .cell:first-child,
+.body .cell:last-child {
+  position: relative;
+
+  &::before,
+  &::after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: var(--row-cap-width);
+    background: var(--row-cap-background);
+    pointer-events: none;
+    transition: background-color var(--duration-120) var(--ease-in-out-quad);
+  }
+}
+.body .cell:first-child::before {
+  content: "";
+  right: 100%;
+  border-radius: var(--row-cap-radius) 0 0 var(--row-cap-radius);
+}
+.body .cell:last-child::after {
+  content: "";
+  left: 100%;
+  border-radius: 0 var(--row-cap-radius) var(--row-cap-radius) 0;
 }
 
 .footer td.cell {

@@ -1,7 +1,7 @@
 .text {
-  --primary-foreground: var(--gray-12);
-  --secondary-foreground: var(--gray-11);
-  --tertiary-foreground: var(--gray-10);
+  --primary-foreground: var(--fg-primary);
+  --secondary-foreground: var(--fg-secondary);
+  --tertiary-foreground: var(--fg-tertiary);
 }
 
 .text {

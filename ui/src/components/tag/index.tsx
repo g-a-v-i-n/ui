@@ -5,7 +5,7 @@ import { cx } from "../../lib/cx";
 
 type Variant = "default" | "success" | "warning" | "error" | "blue";
 
-type TagProps = {
+export type TagProps = {
   children: ReactNode;
   variant?: Variant;
   /** Softer, tonal styling using the Callout background palette. */

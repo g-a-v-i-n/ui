@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Icon } from 'ui/components/icon';
+import { Icon } from 'ui/components/icon/registry';
 import { Text } from 'ui/components/text';
 import { Tag } from 'ui/components/tag';
 import { Avatar } from 'ui/components/avatar';

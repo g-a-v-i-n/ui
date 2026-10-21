@@ -1,12 +1,12 @@
 .root {
-  --track-background: var(--gray-3);
+  --track-background: var(--bg-track);
 
-  --indicator-background: var(--blue-9);
+  --indicator-background: var(--accent);
   --indicator-sweep-gradient: linear-gradient(
     90deg,
-    var(--blue-9),
-    var(--blue-4),
-    var(--blue-9)
+    var(--accent),
+    var(--accent-soft),
+    var(--accent)
   );
 }
 

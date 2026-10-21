@@ -1,5 +1,5 @@
 .root {
-  --slot-background: var(--bg-base);
+  --slot-background: transparent;
   --slot-foreground: var(--fg-primary);
   --slot-shadow: var(--shadow-hairline-2);
   --slot-shadow-hover: var(--shadow-hairline-3);

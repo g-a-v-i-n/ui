@@ -1,4 +1,4 @@
-import { Icon, iconNames } from 'ui/components/icon';
+import { Icon, iconNames } from 'ui/components/icon/registry';
 import { Text } from 'ui/components/text';
 import { Section } from '../../Section';
 import styles from './styles.module.css';

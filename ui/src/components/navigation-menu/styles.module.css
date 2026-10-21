@@ -1,6 +1,6 @@
 .root {
   --item-foreground: var(--fg-primary);
-  --item-background-hover: var(--gray-a3);
+  --item-background-hover: var(--bg-hover);
   --chevron-color: var(--fg-tertiary);
 }
 

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Icon, type IconName } from 'ui/components/icon';
+import { Icon, type IconName } from 'ui/components/icon/registry';
 import { ToggleGroup, ToggleGroupItem } from 'ui/components/toggle-group';
 import { defineDoc, type Controls, type ControlValues } from '../types';
 

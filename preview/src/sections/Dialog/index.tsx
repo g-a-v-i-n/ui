@@ -7,6 +7,7 @@ import {
   DialogTitle,
   DialogDescription,
   DialogClose,
+  DialogFooter,
 } from 'ui/components/dialog';
 import { Text } from 'ui/components/text';
 import { Section } from '../../Section';
@@ -34,14 +35,14 @@ function ResizingDialog() {
             <Text as="p" size="sm">Strip metadata</Text>
           </div>
         )}
-        <div className={styles.actions}>
+        <DialogFooter>
           <Button variant="secondary" onClick={() => setExpanded((value) => !value)}>
             {expanded ? 'Fewer options' : 'More options'}
           </Button>
           <DialogClose asChild>
             <Button>Export</Button>
           </DialogClose>
-        </div>
+        </DialogFooter>
       </DialogContent>
     </DialogRoot>
   );
@@ -60,14 +61,14 @@ export function DialogSection() {
             This is a dialog rendered from the ui package. Press escape or click outside to
             dismiss.
           </DialogDescription>
-          <div className={styles.actions}>
+          <DialogFooter>
             <DialogClose asChild>
               <Button variant="secondary">Cancel</Button>
             </DialogClose>
             <DialogClose asChild>
               <Button>Confirm</Button>
             </DialogClose>
-          </div>
+          </DialogFooter>
         </DialogContent>
       </DialogRoot>
       <ResizingDialog />

@@ -1,7 +1,7 @@
 import { IconWrapper } from "../icon-wrapper";
 import type { IconProps } from "../types";
 
-export const Plus = (props: IconProps) => {
+export const PlusIcon = (props: IconProps) => {
   return (
     <IconWrapper {...props}>
       <path d="M9 3V15" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />

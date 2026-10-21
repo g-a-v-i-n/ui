@@ -5,6 +5,18 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>UI docs</title>
+    <!-- Restores the persisted theme/gray/font-scale picks before first paint;
+         the same code themeInitScript() from ui/components/theme returns. -->
+    <script>
+      (function () {
+        try {
+          var d = document.documentElement, s = localStorage;
+          var v = s.getItem("theme"); if (["light", "dark"].indexOf(v) > -1) d.setAttribute("data-theme", v);
+          v = s.getItem("gray"); if (["mauve", "slate", "sage", "olive", "sand"].indexOf(v) > -1) d.setAttribute("data-gray", v);
+          v = s.getItem("font-scale"); if (["compact"].indexOf(v) > -1) d.setAttribute("data-font-scale", v);
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
